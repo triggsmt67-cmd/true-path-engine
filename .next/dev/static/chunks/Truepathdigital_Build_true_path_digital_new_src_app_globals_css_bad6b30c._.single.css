@@ -1,0 +1,27 @@
+/* [project]/Truepathdigital_Build/true_path_digital_new/src/app/globals.css [app-client] (css) */
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 5, 5, 5;
+  --background-end-rgb: 5, 5, 5;
+}
+
+body {
+  color: #e5e7eb;
+  background: #121212;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  @apply bg-white / [.03] border border-white / 5 backdrop-blur-sm;
+}
+
+/*# sourceMappingURL=Truepathdigital_Build_true_path_digital_new_src_app_globals_css_bad6b30c._.single.css.map*/

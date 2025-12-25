@@ -1,0 +1,25 @@
+/* [project]/Truepathdigital_Build/true_path_digital_new/src/components/Globals/PreviewNotice/PreviewNotice.module.css [app-client] (css) */
+.PreviewNotice-module__39kHuG__preview {
+  text-align: center;
+  color: #fff;
+  white-space: nowrap;
+  background-color: #000;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  justify-content: space-between;
+  width: 280px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 5px 15px;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.PreviewNotice-module__39kHuG__link {
+  margin-left: 10px;
+}
+
+/*# sourceMappingURL=e8697_new_src_components_Globals_PreviewNotice_PreviewNotice_module_css_bad6b30c._.single.css.map*/
