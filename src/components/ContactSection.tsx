@@ -40,7 +40,7 @@ const ContactSection: React.FC = () => {
                         </h2>
 
                         <p className="text-xl text-gray-400 mb-12 max-w-md leading-relaxed font-light">
-                            We replace guesswork with intelligence. Tell us where you want to go, and we'll build the map to get you there.
+                            We replace guesswork with intelligence. Tell us where you want to go, and we&apos;ll build the map to get you there.
                         </p>
 
                         {/* Contact Items - Spatial Composition (Asymmetry) */}
