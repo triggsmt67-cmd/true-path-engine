@@ -1,35 +1,37 @@
-"use client";
+
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Monitor, Target, Cpu, ArrowRight } from 'lucide-react';
+import { Search, TrendingUp, ShieldAlert, ArrowRight } from 'lucide-react';
 
 const solutions = [
     {
-        role: "The Foundation",
-        title: "Web Infrastructure",
-        description: "Your website shouldn't just look good; it needs to convert. We build high-velocity, SEO-optimized digital HQs that turn visitors into qualified leads instantly.",
-        tags: ["React Architecture", "CMS Integration", "Conversion Design"],
-        icon: Monitor
+        role: "Strategic Insight",
+        title: "Buyer clarity",
+        description: "Understanding how people actually find and trust your business today—not how they used to.",
+        tags: ["Consumer Psychology", "Market Attribution", "Trust Frameworks"],
+        icon: Search
     },
     {
-        role: "The Fuel",
-        title: "Traffic Protocols",
-        description: "Stop burning cash on broad targeting. We deploy sniper-focused Google and Social ad campaigns that put your offer in front of the 1% ready to buy.",
-        tags: ["Google Ads", "Social Strategy", "Retargeting Loops"],
-        icon: Target
+        role: "Resource Optimization",
+        title: "Paid growth decisions",
+        description: "Knowing what’s working, what’s wasting money, and what to stop doing—before you spend more.",
+        tags: ["Google Ads Audit", "CPA Reduction", "Budget Scaling"],
+        icon: TrendingUp
     },
     {
-        role: "The Engine",
-        title: "Automation Intelligence",
-        description: "The fortune is in the follow-up. We build CRM workflows that nurture leads, schedule appointments, and close deals while you sleep.",
-        tags: ["CRM Setup", "Lead Nurture", "AI Agents"],
-        icon: Cpu
+        role: "Operational Efficiency",
+        title: "AI, used carefully",
+        description: "Automation where it reduces effort and noise—not where it creates new confusion.",
+        tags: ["Process Mapping", "Tool Integration", "Noise Reduction"],
+        icon: ShieldAlert
     }
 ];
 
+import { SpotlightCard } from './SpotlightCard';
+
 const Solutions: React.FC = () => {
     return (
-        <section id="solutions" className="py-20 md:py-28 bg-[#121212] relative overflow-hidden border-b border-white/5 scroll-mt-20">
+        <section id="solutions" className="py-10 md:py-16 bg-background relative overflow-hidden border-b border-white/5 scroll-mt-20">
             {/* Abstract Background Grid/Pattern */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                 <svg width="100%" height="100%">
@@ -42,31 +44,28 @@ const Solutions: React.FC = () => {
                 </svg>
             </div>
 
-            {/* Background Gradient Spotlights */}
-            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full opacity-30 pointer-events-none"></div>
-            <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-500/5 blur-[120px] rounded-full opacity-20 pointer-events-none"></div>
-
             <div className="max-w-[1400px] mx-auto px-6 relative z-10">
 
                 {/* Section Header */}
-                <div className="mb-16 md:mb-20 max-w-3xl">
+                <div className="mb-8 md:mb-12 max-w-3xl">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6 }}
-                        className="text-4xl md:text-6xl font-semibold text-white mb-6 tracking-tight"
+                        className="text-3xl md:text-5xl lg:text-6xl font-semibold text-white mb-6 tracking-normal"
+
                     >
-                        Systems, Not Services.
+                        Strategic Infrastructure
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.1 }}
-                        className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-2xl font-normal"
+                        className="text-lg md:text-xl text-secondary leading-relaxed max-w-2xl font-normal"
                     >
-                        We don&apos;t bill by the hour. We install proprietary growth protocols designed to function without constant maintenance.
+                        Clear decisions across your primary growth levers.
                     </motion.p>
                 </div>
 
@@ -78,44 +77,53 @@ const Solutions: React.FC = () => {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.15 }}
-                            className="group relative flex flex-col h-full bg-white/[0.02] backdrop-blur-sm border border-white/10 rounded-3xl p-8 hover:bg-white/[0.04] hover:border-primary/50 transition-all duration-500 hover:shadow-[0_0_40px_-10px_rgba(255,107,0,0.15)]"
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            className="relative group h-full"
                         >
-                            {/* Icon Header */}
-                            <div className="flex items-start justify-between mb-8">
-                                <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all duration-300 shadow-[0_4px_20px_-5px_rgba(0,0,0,0.5)]">
-                                    <solution.icon className="w-8 h-8 group-hover:animate-pulse" strokeWidth={1.5} />
-                                </div>
-                                <span className="text-xs font-medium text-gray-500 uppercase tracking-widest border border-white/10 px-3 py-1 rounded-full group-hover:border-primary/30 group-hover:text-primary transition-colors">
-                                    {solution.role}
-                                </span>
-                            </div>
+                            <SpotlightCard
+                                spotlightColor="rgba(255, 107, 0, 0.1)"
+                                className="relative flex flex-col h-full bg-white/[0.02] border border-white/5 rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+                            >
+                                {/* Vertical Accent Line (Hover Only) */}
+                                <div className="absolute left-0 top-1/2 -translate-y-1/2 h-2/3 w-[2px] bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-linear" />
 
-                            {/* Content */}
-                            <div className="flex-1 mb-8">
-                                <h3 className="text-2xl font-medium text-white mb-4 group-hover:text-primary transition-colors duration-300 tracking-tight">
-                                    {solution.title}
-                                </h3>
-                                <p className="text-gray-400 leading-relaxed font-normal">
-                                    {solution.description}
-                                </p>
-                            </div>
-
-                            {/* Tags List */}
-                            <div className="space-y-3 pt-6 border-t border-white/5">
-                                {solution.tags.map((tag, i) => (
-                                    <div key={i} className="flex items-center gap-3 text-sm text-gray-400 group-hover:text-gray-200 transition-colors">
-                                        <ArrowRight className="w-3.5 h-3.5 text-primary/50 group-hover:text-primary group-hover:translate-x-1 transition-all" />
-                                        {tag}
+                                {/* Icon Header */}
+                                <div className="flex items-center justify-between mb-8 opacity-80 group-hover:opacity-100 transition-opacity">
+                                    <div className="text-secondary group-hover:text-primary transition-colors duration-300">
+                                        <solution.icon className="w-6 h-6" strokeWidth={1.5} />
                                     </div>
-                                ))}
-                            </div>
+                                    <span className="text-[10px] font-medium text-secondary uppercase tracking-widest bg-white/[0.03] px-2 py-1 rounded">
+                                        {solution.role}
+                                    </span>
+                                </div>
+
+                                {/* Content */}
+                                <div className="flex-1 mb-8">
+                                    <h3 className="text-xl md:text-2xl font-semibold text-white mb-4 group-hover:text-white transition-colors tracking-tight">
+                                        {solution.title}
+                                    </h3>
+                                    <p className="text-secondary text-sm md:text-base leading-relaxed font-light">
+                                        {solution.description}
+                                    </p>
+                                </div>
+
+                                {/* Tags List */}
+                                <div className="space-y-2 pt-6 border-t border-white/5">
+                                    {solution.tags.map((tag, i) => (
+                                        <div key={i} className="flex items-center gap-2 text-xs text-secondary/60 group-hover:text-secondary transition-colors">
+                                            <div className="w-1 h-1 rounded-full bg-gray-700 group-hover:bg-primary/50 transition-colors"></div>
+                                            {tag}
+                                        </div>
+                                    ))}
+                                </div>
+                            </SpotlightCard>
                         </motion.div>
                     ))}
                 </div>
 
             </div>
         </section>
+
     );
 };
 

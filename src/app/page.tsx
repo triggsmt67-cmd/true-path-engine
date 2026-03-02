@@ -9,10 +9,11 @@ import MissionSection from '@/components/MissionSection';
 import Solutions from '@/components/Solutions';
 import TrailGrid from '@/components/TrailGrid';
 import AboutSection from '@/components/AboutSection';
-import ContactSection from '@/components/ContactSection';
 import StakesSection from '@/components/StakesSection';
-import Footer from '@/components/Footer';
 import SectionSeparator from '@/components/SectionSeparator';
+import ComparisonSection from '@/components/ComparisonSection';
+import QuoteSection from '@/components/QuoteSection';
+import Footer from '@/components/Footer';
 
 export default function Page() {
   return (
@@ -32,31 +33,24 @@ export default function Page() {
         <Navbar />
         <main>
           <Hero />
-
-          <SectionSeparator number="01" title="REALITY CHECK" />
-
+          <SectionSeparator number="01" title="GROWTH ENGINE" />
           <FeatureSplit />
+          <QuoteSection />
+
+          <SectionSeparator number="02" title="THE MISSION" />
           <MissionSection />
 
-          <SectionSeparator number="02" title="INFRASTRUCTURE" />
-
+          <SectionSeparator number="03" title="INFRASTRUCTURE" />
           <Solutions />
 
-          <SectionSeparator number="03" title="THE PROTOCOL" />
-
+          <SectionSeparator number="04" title="THE PROTOCOL" />
           <TrailGrid />
 
           <SectionSeparator number="05" title="THE CHOICE" />
-
           <StakesSection />
 
           <SectionSeparator number="06" title="THE ARCHITECT" />
-
           <AboutSection />
-
-          <SectionSeparator number="07" title="ESTABLISH CONTEXT" />
-
-          <ContactSection />
         </main>
         <Footer />
       </div>
