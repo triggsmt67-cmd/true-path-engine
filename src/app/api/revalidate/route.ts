@@ -22,7 +22,10 @@ export async function PUT(request: NextRequest) {
     }
 
     if (tags && Array.isArray(tags) && tags.length > 0) {
-      tags.forEach((tag: string) => revalidateTag(tag));
+      tags.forEach((tag: string) => {
+        // @ts-expect-error Next.js 16 revalidateTag expects 2 arguments
+        revalidateTag(tag);
+      });
       console.log("Revalidated tags:", tags);
       revalidated = true;
     }
