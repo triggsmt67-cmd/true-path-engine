@@ -5,8 +5,8 @@ import Footer from '@/components/Footer';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Blog | True Path Digital',
-  description: 'Insights, strategies, and updates from True Path Digital.',
+  title: 'Protocol Feed | True Path Digital',
+  description: 'Tactical guides, system updates, and growth protocols for the modern business owner.',
 };
 
 async function getPosts() {
@@ -42,19 +42,31 @@ async function getPosts() {
     }
   `;
 
-  const data = await fetchGraphQL(query);
-  return data?.posts?.nodes || [];
+  try {
+    const data = await fetchGraphQL(query);
+    return data?.posts?.nodes || [];
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    return [];
+  }
 }
 
 export default async function BlogPage() {
   const posts = await getPosts();
 
   return (
-    <main className="bg-[#121212] min-h-screen flex flex-col">
+    <main className="bg-[#050505] min-h-screen flex flex-col selection:bg-primary selection:text-white">
       <Navbar />
-      <div className="pt-20"> {/* Add padding for fixed navbar */}
+
+      {/* Background Grid */}
+      <div className="fixed inset-0 z-0 pointer-events-none opacity-20">
+        <div className="absolute inset-0 bg-[radial-gradient(#ffffff08_1px,transparent_1px)] [background-size:40px_40px]"></div>
+      </div>
+
+      <div className="relative z-10 pt-20">
         <BlogList posts={posts} />
       </div>
+
       <Footer />
     </main>
   );

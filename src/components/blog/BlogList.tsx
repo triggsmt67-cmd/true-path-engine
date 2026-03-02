@@ -98,7 +98,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
                                     {post.categories?.nodes.slice(0, 2).map((cat) => (
                                         <span
                                             key={cat.slug}
-                                            className="px-2 py-1 rounded-full text-[9px] font-bold tracking-wider uppercase bg-black/50 backdrop-blur-md border border-white/10 text-primary"
+                                            className="px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-primary text-white shadow-lg shadow-primary/20 backdrop-blur-md border border-white/10"
                                         >
                                             {cat.name}
                                         </span>

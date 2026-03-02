@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/Truepathdigital_Build/true_path_digital_new/src/app/globals.css"],"sourcesContent":["@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\n:root {\n  --foreground-rgb: 255, 255, 255;\n  --background-start-rgb: 5, 5, 5;\n  --background-end-rgb: 5, 5, 5;\n}\n\nbody {\n  color: #e5e7eb;\n  background: #121212;\n}\n\n@layer utilities {\n  .text-balance {\n    text-wrap: balance;\n  }\n\n  .glass-card {\n    @apply bg-white/[0.03] border border-white/5 backdrop-blur-sm;\n  }\n}"],"names":[],"mappings":"AAAA;;AACA;;AACA;;AAEA;;;;;;AAMA;;;;;AAKA;EACE;;;;EAKE"}}]
-}

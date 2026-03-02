@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/Truepathdigital_Build/true_path_digital_new/src/components/Globals/PreviewNotice/PreviewNotice.module.css"],"sourcesContent":[".preview {\n  position: fixed;\n  top: 0;\n  right: 0;\n  left: 0;\n  margin: 0 auto;\n  width: 280px;\n  text-align: center;\n  max-width: 100%;\n  border-bottom-left-radius: 5px;\n  border-bottom-right-radius: 5px;\n  background-color: #000;\n  color: #fff;\n  padding: 5px 15px;\n  display: flex;\n  justify-content: space-between;\n  white-space: nowrap;\n}\n\n.link {\n  margin-left: 10px;\n}\n"],"names":[],"mappings":"AAAA;;;;;;;;;;;;;;;;;;;AAmBA"}}]
-}

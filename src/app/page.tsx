@@ -9,6 +9,7 @@ import MissionSection from '@/components/MissionSection';
 import Solutions from '@/components/Solutions';
 import TrailGrid from '@/components/TrailGrid';
 import AboutSection from '@/components/AboutSection';
+import ContactSection from '@/components/ContactSection';
 import StakesSection from '@/components/StakesSection';
 import Footer from '@/components/Footer';
 import SectionSeparator from '@/components/SectionSeparator';
@@ -52,6 +53,10 @@ export default function Page() {
           <SectionSeparator number="06" title="THE ARCHITECT" />
 
           <AboutSection />
+
+          <SectionSeparator number="07" title="ESTABLISH CONTEXT" />
+
+          <ContactSection />
         </main>
         <Footer />
       </div>
