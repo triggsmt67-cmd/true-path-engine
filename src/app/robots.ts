@@ -3,8 +3,9 @@ import { MetadataRoute } from "next";
 export const revalidate = 0;
 
 export default async function robots(): Promise<MetadataRoute.Robots> {
+  const wpUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://admin.truepath406.com";
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/robots.txt`,
+    `${wpUrl}/robots.txt`,
     { cache: "no-store" },
   );
 

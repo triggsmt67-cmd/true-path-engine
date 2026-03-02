@@ -24,8 +24,10 @@ export async function fetchGraphQL<T = any>(
       },
     });
 
+    const wpUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://admin.truepath406.com";
+
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/graphql`,
+      `${wpUrl}/graphql`,
       {
         method: "POST",
         headers: {

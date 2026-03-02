@@ -3,8 +3,9 @@ import { MetadataRoute } from "next";
 export const revalidate = 0;
 
 async function getTotalCounts() {
+  const wpUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://admin.truepath406.com";
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/sitemap/v1/totalpages`,
+    `${wpUrl}/wp-json/sitemap/v1/totalpages`,
   );
   const data = await response.json();
   if (!data) return [];
@@ -29,17 +30,19 @@ async function getPostsUrls({
   type: string;
   perPage: number;
 }) {
+  const wpUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://admin.truepath406.com";
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/sitemap/v1/posts?pageNo=${page}&postType=${type}&perPage=${perPage}`,
+    `${wpUrl}/wp-json/sitemap/v1/posts?pageNo=${page}&postType=${type}&perPage=${perPage}`,
   );
 
   const data = await response.json();
 
   if (!data) return [];
 
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://truepath406.com";
   const posts = data.map((post: any) => {
     return {
-      url: `${process.env.NEXT_PUBLIC_BASE_URL}${post.url}`,
+      url: `${baseUrl}${post.url}`,
       lastModified: new Date(post.post_modified_date)
         .toISOString()
         .split("T")[0],

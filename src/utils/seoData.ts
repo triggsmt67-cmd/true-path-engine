@@ -3,8 +3,9 @@ import { Page } from "@/gql/graphql";
 export const setSeoData = ({ seo }: { seo: any }) => {
   if (!seo) return {};
 
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://truepath406.com";
   return {
-    metadataBase: new URL(`${process.env.NEXT_PUBLIC_BASE_URL}`),
+    metadataBase: new URL(baseUrl),
     title: seo.title || "",
     description: seo.metaDesc || "",
     robots: {

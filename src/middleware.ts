@@ -13,14 +13,16 @@ export async function middleware(request: NextRequest) {
     "",
   );
 
+  const wpUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://admin.truepath406.com";
+
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/redirection/v1/redirect/?filterBy%5Burl-match%5D=plain&filterBy%5Burl%5D=${pathnameWithoutTrailingSlash}`,
+    `${wpUrl}/wp-json/redirection/v1/redirect/?filterBy%5Burl-match%5D=plain&filterBy%5Burl%5D=${pathnameWithoutTrailingSlash}`,
     {
       headers: {
         Authorization: `Basic ${Buffer.from(basicAuth).toString("base64")}`,
         "Content-Type": "application/json",
       },
-    },
+    }
   );
 
   const data = await response.json();
@@ -34,9 +36,10 @@ export async function middleware(request: NextRequest) {
       return NextResponse.next();
     }
 
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://truepath406.com";
     const newUrl = new URL(
       redirect.action_data.url,
-      process.env.NEXT_PUBLIC_BASE_URL,
+      baseUrl
     ).toString();
 
     return NextResponse.redirect(newUrl, {

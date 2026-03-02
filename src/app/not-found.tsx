@@ -11,11 +11,12 @@ import { SeoQuery } from "@/queries/general/SeoQuery";
 const notFoundPageWordPressId = 501;
 
 export async function generateMetadata(): Promise<Metadata> {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://truepath406.com";
   return {
     title: "404 - Not Found",
     description: "Page not found",
     alternates: {
-      canonical: `${process.env.NEXT_PUBLIC_BASE_URL}/404-not-found/`,
+      canonical: `${baseUrl}/404-not-found/`,
     },
   } as Metadata;
 }
