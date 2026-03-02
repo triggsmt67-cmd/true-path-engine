@@ -1,9 +1,7 @@
 import { draftMode } from "next/headers";
-import { Inter } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import "@/app/globals.css";
 import { PreviewNotice } from "@/components/Globals/PreviewNotice/PreviewNotice";
-
-const inter = Inter({ subsets: ["latin"] });
 
 import type { Metadata } from 'next';
 
@@ -57,7 +55,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className={inter.className} suppressHydrationWarning>
+      <body className={GeistSans.className} suppressHydrationWarning>
         {isEnabled && <PreviewNotice />}
         {children}
       </body>
