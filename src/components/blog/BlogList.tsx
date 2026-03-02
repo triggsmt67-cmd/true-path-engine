@@ -39,116 +39,91 @@ const BlogList: React.FC<BlogListProps> = ({ posts }) => {
     return (
         <section className="py-20 md:py-28 bg-[#121212] min-h-screen relative overflow-hidden">
 
-            {/* Background Elements */}
-            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
-            <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full opacity-20 pointer-events-none"></div>
+            {/* Background Grid */}
+            <div className="fixed inset-0 z-0 pointer-events-none flex justify-center">
+                <div className="w-full max-w-[1400px] h-full border-l border-white/[0.03] border-r flex justify-between">
+                    <div className="h-full w-px bg-white/[0.03]"></div>
+                    <div className="h-full w-px bg-white/[0.03]"></div>
+                    <div className="h-full w-px bg-white/[0.03]"></div>
+                    <div className="h-full w-px bg-white/[0.03]"></div>
+                    <div className="h-full w-px bg-white/[0.03]"></div>
+                </div>
+            </div>
 
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
+            <div className="max-w-[1400px] mx-auto px-6 relative z-10">
 
                 {/* Header */}
-                <div className="mb-16 md:mb-20 max-w-3xl">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
-                    >
-                        <div className="flex items-center gap-3 mb-6">
-                            <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                            <span className="text-xs font-medium tracking-[0.2em] text-primary uppercase">
-                                Intelligence Feed
-                            </span>
+                <section className="relative px-6 overflow-hidden pt-12 mb-16 md:mb-20">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] blur-[150px] rounded-full pointer-events-none bg-primary/5" />
+                    <div className="text-center relative z-10">
+                        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+                            <div className="flex items-center justify-center gap-3 mb-8">
+                                <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-primary">The Intelligence Vault</span>
+                            </div>
+                            <h1 className="text-3xl md:text-6xl lg:text-7xl font-semibold tracking-tight leading-[1.1] mb-8 text-white">
+                                Clear thinking for when the <br className="hidden md:block" />
+                                right move isn’t obvious.
+                            </h1>
+                            <p className="text-lg md:text-xl max-w-2xl mx-auto font-light leading-relaxed mb-12 text-secondary">
+                                Notes, frameworks, and field-tested insights on making better marketing decisions — without chasing trends or tools.
+                            </p>
+                        </motion.div>
+                    </div>
+                </section>
+
+                {/* Main Content Area */}
+                <div className="max-w-[1400px] mx-auto py-12 flex flex-col lg:flex-row gap-16">
+                    <div className="flex-1">
+                        <div className="flex flex-col gap-6 mb-16">
+                            <div className="flex items-center gap-4">
+                                <div className="p-3.5 rounded-2xl bg-primary/10 text-primary border border-primary/20 shadow-sm shadow-primary/5">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-file-text"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" /><path d="M14 2v4a2 2 0 0 0 2 2h4" /><path d="M10 9H8" /><path d="M16 13H8" /><path d="M16 17H8" /></svg>
+                                </div>
+                                <div className="space-y-1">
+                                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white">
+                                        Latest Thinking
+                                    </h2>
+                                </div>
+                            </div>
+                            <p className="text-xl max-w-3xl leading-relaxed font-light text-secondary">
+                                Strategic observations, technical notes, and conversion frameworks from the field.
+                            </p>
                         </div>
-                        <h1 className="text-4xl md:text-6xl font-semibold text-white mb-6 tracking-tight">
-                            Insights from the <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">Digital Frontlines.</span>
-                        </h1>
-                        <p className="text-lg text-gray-400 leading-relaxed max-w-2xl font-normal">
-                            Tactical guides, system updates, and growth protocols for the modern business owner.
-                        </p>
-                    </motion.div>
-                </div>
 
-                {/* Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                    {posts.map((post, index) => (
-                        <motion.article
-                            key={post.id}
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
-                            className="group relative flex flex-col h-full bg-white/[0.03] backdrop-blur-sm border border-white/5 rounded-3xl overflow-hidden hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_30px_-10px_rgba(255,107,0,0.1)]"
-                        >
-                            {/* Image */}
-                            <div className="aspect-[16/9] relative overflow-hidden bg-white/5">
-                                {post.featuredImage?.node?.sourceUrl ? (
-                                    <img
-                                        src={post.featuredImage.node.sourceUrl}
-                                        alt={post.featuredImage.node.altText || post.title}
-                                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter grayscale group-hover:grayscale-0"
-                                    />
-                                ) : (
-                                    <div className="w-full h-full flex items-center justify-center text-gray-600">
-                                        <span className="text-xs uppercase tracking-widest">No Image</span>
-                                    </div>
-                                )}
-                                <div className="absolute inset-0 bg-gradient-to-t from-[#121212] to-transparent opacity-60"></div>
-
-                                {/* Categories Overlay */}
-                                <div className="absolute top-4 left-4 flex flex-wrap gap-2">
-                                    {post.categories?.nodes.slice(0, 2).map((cat) => (
-                                        <span
-                                            key={cat.slug}
-                                            className="px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-primary text-white shadow-lg shadow-primary/20 backdrop-blur-md border border-white/10"
-                                        >
-                                            {cat.name}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-
-                            {/* Content */}
-                            <div className="p-6 md:p-8 flex flex-col flex-1">
-
-                                {/* Meta */}
-                                <div className="flex items-center gap-4 text-xs font-medium text-gray-500 mb-4">
-                                    <div className="flex items-center gap-1.5">
-                                        <Calendar className="w-3.5 h-3.5 text-primary" />
-                                        <span>{new Date(post.date).toLocaleDateString()}</span>
-                                    </div>
-                                    {post.author?.node?.name && (
-                                        <div className="flex items-center gap-1.5">
-                                            <User className="w-3.5 h-3.5 text-primary" />
-                                            <span>{post.author.node.name}</span>
+                        <div className="grid gap-8">
+                            {posts.map((post, index) => (
+                                <Link href={`/blog/${post.slug}`} key={post.id} className="block decoration-transparent">
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: index * 0.05 }}
+                                        className="group relative border rounded-3xl p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-10 transition-all cursor-pointer bg-[#121417] border-white/5 hover:border-primary/40 hover:bg-white/[0.03]"
+                                    >
+                                        <div className="flex-1 space-y-4">
+                                            <div className="flex items-center gap-4">
+                                                {post.categories?.nodes.slice(0, 1).map((cat) => (
+                                                    <span key={cat.slug} className="text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded border bg-primary/5 border-primary/20 text-primary">
+                                                        {cat.name}
+                                                    </span>
+                                                ))}
+                                                <div className="flex items-center gap-1.5 text-[11px] font-mono uppercase tracking-widest text-secondary/30">
+                                                    <Calendar className="w-3.5 h-3.5" />{new Date(post.date).toLocaleDateString()}
+                                                </div>
+                                            </div>
+                                            <h3 className="text-2xl md:text-3xl font-bold tracking-tight transition-colors group-hover:text-primary text-white">
+                                                {post.title}
+                                            </h3>
+                                            <div className="text-base md:text-lg leading-relaxed font-light line-clamp-2 transition-colors text-secondary/60" dangerouslySetInnerHTML={{ __html: post.excerpt }} />
                                         </div>
-                                    )}
-                                </div>
 
-                                {/* Title */}
-                                <h3 className="text-xl font-medium text-white mb-3 group-hover:text-primary transition-colors line-clamp-2">
-                                    {post.title}
-                                </h3>
-
-                                {/* Excerpt */}
-                                <div
-                                    className="text-sm text-gray-400 leading-relaxed mb-6 line-clamp-3 flex-1"
-                                    dangerouslySetInnerHTML={{ __html: post.excerpt }}
-                                />
-
-                                {/* Link */}
-                                <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/5">
-                                    <Link href={`/blog/${post.slug}`} className="inline-flex items-center gap-2 text-sm font-medium text-white group-hover:text-primary transition-colors">
-                                        Read Protocol
-                                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                    </Link>
-
-                                    {/* Small Category Indicator for those not in overlay */}
-                                    {post.categories && post.categories.nodes.length > 2 && (
-                                        <span className="text-[10px] text-gray-500">+{post.categories.nodes.length - 2} more</span>
-                                    )}
-                                </div>
-                            </div>
-                        </motion.article>
-                    ))}
+                                        <div className="flex items-center justify-center w-12 h-12 rounded-full border transition-all bg-white/5 border-white/10 text-secondary/40 group-hover:bg-primary group-hover:border-primary group-hover:text-white shrink-0">
+                                            <ArrowRight className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
+                                        </div>
+                                    </motion.div>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
                 </div>
 
             </div>

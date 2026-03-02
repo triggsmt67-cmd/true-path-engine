@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Compass, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -19,34 +20,33 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
-        isScrolled
-          ? 'bg-[#121212]/80 backdrop-blur-md border-white/5 py-4'
-          : 'bg-transparent border-transparent py-6'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${isScrolled
+        ? 'bg-[#121417]/90 backdrop-blur-md border-white/5 py-4 shadow-xl shadow-black/50'
+        : 'bg-transparent border-transparent py-6'
+        }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-2 group cursor-pointer">
+        <Link href="/" className="flex items-center gap-2 group cursor-pointer decoration-transparent">
           <div className="relative">
             <Compass className="w-8 h-8 text-primary group-hover:rotate-45 transition-transform duration-500" />
             <div className="absolute inset-0 bg-primary/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
           </div>
-          <span className="font-semibold text-lg tracking-tight text-white">
+          <span className="font-semibold text-lg tracking-tight text-white hover:text-white transition-colors decoration-transparent">
             True Path <span className="text-white/50 font-normal">Digital</span>
           </span>
-        </div>
+        </Link>
 
         {/* Desktop Links */}
         <div className="hidden md:flex items-center gap-8">
           {links.map((link) => (
-            <a
+            <Link
               key={link}
-              href={link === 'Blog' ? '/blog/' : `#${link.toLowerCase().replace(' ', '-')}`}
-              className="text-sm font-medium text-gray-400 hover:text-white transition-colors"
+              href={link === 'Blog' ? '/blog/' : `/#${link.toLowerCase().replace(' ', '-')}`}
+              className="text-sm font-medium text-gray-400 hover:text-white transition-colors decoration-transparent"
             >
               {link}
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -77,14 +77,14 @@ const Navbar: React.FC = () => {
           >
             <div className="px-6 py-8 flex flex-col gap-6">
               {links.map((link) => (
-                <a
+                <Link
                   key={link}
-                  href={link === 'Blog' ? '/blog/' : `#${link.toLowerCase().replace(' ', '-')}`}
-                  className="text-lg text-gray-300 hover:text-primary font-medium"
+                  href={link === 'Blog' ? '/blog/' : `/#${link.toLowerCase().replace(' ', '-')}`}
+                  className="text-lg text-gray-300 hover:text-primary font-medium decoration-transparent"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {link}
-                </a>
+                </Link>
               ))}
               <button className="bg-primary w-full py-3 rounded-full text-white font-bold">
                 Book Strategy Call
