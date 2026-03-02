@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "True Path Digital | Clear Thinking for Montana Business Owners",
   description: "Stop guessing. Start arriving. High-performance marketing intelligence, AI strategy, and conversion infrastructure for Montana businesses.",
   metadataBase: new URL('https://truepath406.com'),
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: 'website',
     url: 'https://truepath406.com',
