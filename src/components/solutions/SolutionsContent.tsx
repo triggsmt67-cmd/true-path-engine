@@ -311,7 +311,7 @@ export default function SolutionsContent({ frameworks, serviceNodes }: Solutions
                        </div>
                     </motion.div>
                     
-                    <h4 className="text-2xl font-semibold text-white mb-4">Regional Logic</h4>
+                    <h4 className="text-2xl font-semibold text-white mb-4">Regional Logic (Internal)</h4>
                     <p className="text-secondary/60 text-sm max-w-xs mx-auto leading-relaxed">Proprietary map-matching algorithms tuned for local search intent.</p>
                  </div>
               </div>
