@@ -24,7 +24,7 @@ export const RevealText: React.FC<RevealTextProps> = ({
         hidden: { opacity: 0 },
         visible: (i = 1) => ({
             opacity: 1,
-            transition: { staggerChildren: 0.08, delayChildren: delay * i },
+            transition: { staggerChildren: 0.04, delayChildren: delay * i },
         }),
     };
 
@@ -34,9 +34,9 @@ export const RevealText: React.FC<RevealTextProps> = ({
             y: 0,
             transition: {
                 type: "spring",
-                damping: 25,
-                stiffness: 120,
-                duration: 0.8,
+                damping: 30,
+                stiffness: 150,
+                duration: 0.4,
             },
         },
         hidden: {

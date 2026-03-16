@@ -14,8 +14,8 @@ const Hero: React.FC = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.3,
+        staggerChildren: 0.08,
+        delayChildren: 0.1,
       },
     },
   };
@@ -82,7 +82,7 @@ const Hero: React.FC = () => {
                 highlightWords={["marketing", "decisions"]}
                 highlightClassName="text-transparent bg-clip-text bg-gradient-to-br from-[#fbbf24] via-primary to-[#78350f]"
 
-                delay={0.5}
+                delay={0.1}
               />
             </h1>
 

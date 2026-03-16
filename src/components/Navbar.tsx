@@ -8,6 +8,7 @@ import { CONTACT_LINKS } from '@/constants/links';
 
 const NAV_ITEMS = [
   { label: 'Home', href: '/' },
+  { label: 'Solutions', href: '/solutions' },
   { label: 'How I Work', href: '/#how-i-work' },
   { label: 'About', href: '/#about' },
   { label: 'Insights', href: '/blog/' },
@@ -55,6 +56,8 @@ const Navbar: React.FC = () => {
   useEffect(() => {
     if (pathname.startsWith('/blog')) {
       setActiveSegment('/blog/');
+    } else if (pathname.startsWith('/solutions')) {
+      setActiveSegment(pathname);
     } else if (pathname === '/') {
       setActiveSegment('/');
     }

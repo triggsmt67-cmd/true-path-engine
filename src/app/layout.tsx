@@ -43,7 +43,19 @@ const structuredData = {
       "logo": {
         "@type": "ImageObject",
         "url": "https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
-      }
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressRegion": "MT",
+        "addressCountry": "US"
+      },
+      "areaServed": {
+        "@type": "State",
+        "name": "Montana"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/trevor-riggs-marketing/"
+      ]
     }
   ]
 };

@@ -53,6 +53,7 @@ async function getPostsUrls({
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://truepath406.com";
   const sitemap = [];
 
   const details = await getTotalCounts();
@@ -75,7 +76,39 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const posts = postsUrls.flat();
 
-  sitemap.push(...posts);
+  sitemap.push(
+    {
+      url: baseUrl,
+      lastModified: new Date().toISOString().split("T")[0],
+      changeFrequency: "daily" as const,
+      priority: 1,
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date().toISOString().split("T")[0],
+      changeFrequency: "daily" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/solutions`,
+      lastModified: new Date().toISOString().split("T")[0],
+      changeFrequency: "weekly" as const,
+      priority: 1.0,
+    },
+    {
+      url: `${baseUrl}/solutions/local-authority`,
+      lastModified: new Date().toISOString().split("T")[0],
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/solutions/lead-velocity`,
+      lastModified: new Date().toISOString().split("T")[0],
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    },
+    ...posts
+  );
 
   return sitemap;
 }

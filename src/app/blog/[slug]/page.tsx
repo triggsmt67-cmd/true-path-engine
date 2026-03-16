@@ -3,7 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, Clock } from 'lucide-react';
+import { ArrowLeft, Clock, Zap } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 import AIScanZone from '@/components/blog/AIScanZone';
@@ -188,6 +188,31 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
     // Clean excerpt for display
     const cleanExcerpt = post.excerpt?.replace(/<[^>]*>?/gm, '').replace(/Continue reading.*/gi, '').trim() || '';
 
+    const breadcrumbData = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://truepath406.com/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Insights",
+                "item": "https://truepath406.com/blog/"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": post.title,
+                "item": `https://truepath406.com/blog/${slug}`
+            }
+        ]
+    };
+
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "TechArticle",
@@ -202,24 +227,45 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
             "url": SOCIAL_LINKS.linkedin
         },
         "publisher": {
+            "@id": "https://truepath406.com/#organization",
             "@type": "Organization",
             "name": "True Path Digital",
             "logo": {
                 "@type": "ImageObject",
                 "url": "https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
-            }
+            },
+            "sameAs": [
+                SOCIAL_LINKS.linkedin
+            ]
         },
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": `https://truepath406.com/blog/${slug}`
-        }
+        },
+        "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": [".ai-summary-zone"]
+        },
+        "about": [
+            { "@type": "Thing", "name": "Marketing Strategy" },
+            { "@type": "Thing", "name": "Artificial Intelligence" },
+            { "@type": "Thing", "name": "Conversion Rate Optimization" }
+        ]
     };
 
     return (
-        <main className="bg-slate-50 dark:bg-[#121417] min-h-screen flex flex-col transition-colors duration-500 selection:bg-primary selection:text-white">
+        <main 
+            className="bg-slate-50 dark:bg-[#121417] min-h-screen flex flex-col transition-colors duration-500 selection:bg-primary selection:text-white"
+            data-ai-content="article"
+            data-ai-slug={slug}
+        >
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+            />
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
             />
             <Navbar />
             <ThemeToggle />
@@ -306,7 +352,7 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
             <section className="pt-6 pb-20 px-6 relative z-10">
                 <div className="max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-16">
                     {/* Article Content */}
-                    <article className="lg:col-span-8">
+                    <article className="lg:col-span-8" data-ai-main-content="true">
                         <div
                             className="prose prose-lg md:prose-xl max-w-none transition-all duration-300
                             prose-headings:text-slate-900 dark:prose-headings:text-white prose-headings:font-semibold prose-headings:tracking-tight
@@ -320,6 +366,33 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                             dark:prose-invert dark:prose-orange"
                             dangerouslySetInnerHTML={{ __html: post.content }}
                         />
+
+                        {/* Strategic CTA: Logic Loop */}
+                        <div className="mt-16 p-8 md:p-12 rounded-[2.5rem] bg-primary relative overflow-hidden group">
+                            <div className="absolute inset-0 bg-black/10 mix-blend-overlay"></div>
+                            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+                                <div className="max-w-xl text-center md:text-left">
+                                    <div className="flex items-center justify-center md:justify-start gap-3 mb-6">
+                                        <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center text-white">
+                                            <Zap className="w-4 h-4" />
+                                        </div>
+                                        <span className="text-[10px] font-bold tracking-[0.2em] text-white uppercase">Infrastructure Context</span>
+                                    </div>
+                                    <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4 tracking-tight">
+                                        This strategy is a component of our Growth Infrastructure.
+                                    </h3>
+                                    <p className="text-white/80 font-light leading-relaxed">
+                                        Implementation requires more than just reading. See how this logic fits into our core Montana frameworks.
+                                    </p>
+                                </div>
+                                <Link 
+                                    href="/solutions"
+                                    className="px-8 py-4 rounded-full bg-white text-primary font-bold transition-all hover:scale-105 active:scale-95 shadow-xl decoration-transparent whitespace-nowrap"
+                                >
+                                    Explore Solutions Hub
+                                </Link>
+                            </div>
+                        </div>
 
                         {/* Bottom Bar: Back + Share */}
                         <div className="mt-20 pt-12 border-t flex flex-col md:flex-row items-center justify-between gap-8 border-slate-200 dark:border-white/10">

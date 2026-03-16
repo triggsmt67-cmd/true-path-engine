@@ -1,29 +1,33 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Search, TrendingUp, ShieldAlert, ArrowRight } from 'lucide-react';
+import { Search, TrendingUp, ShieldAlert, ArrowRight, MapPin, Zap } from 'lucide-react';
+import Link from 'next/link';
 
 const solutions = [
     {
-        role: "Strategic Insight",
-        title: "Buyer clarity",
-        description: "Understanding how people actually find and trust your business today—not how they used to.",
-        tags: ["Consumer Psychology", "Market Attribution", "Trust Frameworks"],
-        icon: Search
+        role: "Strategic Logic",
+        title: "Local Authority",
+        description: "Dominate the map and anchor your authority in the Montana market through proprietary proximity engines.",
+        tags: ["Proximity Mastery", "Semantic Trust", "Maps Dominance"],
+        icon: MapPin,
+        href: "/solutions/local-authority"
     },
     {
-        role: "Resource Optimization",
-        title: "Paid growth decisions",
-        description: "Knowing what’s working, what’s wasting money, and what to stop doing—before you spend more.",
-        tags: ["Google Ads Audit", "CPA Reduction", "Budget Scaling"],
-        icon: TrendingUp
+        role: "Conversion Velocity",
+        title: "Lead Velocity",
+        description: "Stop losing jobs to slow responses. Instant lead capture and automated response built specifically for the Trades.",
+        tags: ["LSA Management", "Missed Call Recovery", "Automated Nurture"],
+        icon: Zap,
+        href: "/solutions/lead-velocity"
     },
     {
-        role: "Operational Efficiency",
-        title: "AI, used carefully",
-        description: "Automation where it reduces effort and noise—not where it creates new confusion.",
-        tags: ["Process Mapping", "Tool Integration", "Noise Reduction"],
-        icon: ShieldAlert
+        role: "Operational Scaling",
+        title: "AI & Process Logic",
+        description: "Automation where it reduces effort and noise—capturing jobs you're currently losing to administrative friction.",
+        tags: ["Process Mapping", "Tool Integration", "Friction Reduction"],
+        icon: ShieldAlert,
+        href: "/#how-i-work"
     }
 ];
 
@@ -80,43 +84,49 @@ const Solutions: React.FC = () => {
                             transition={{ duration: 0.5, delay: index * 0.1 }}
                             className="relative group h-full"
                         >
-                            <SpotlightCard
-                                spotlightColor="rgba(255, 107, 0, 0.1)"
-                                className="relative flex flex-col h-full bg-white/[0.02] border border-white/5 rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
-                            >
-                                {/* Vertical Accent Line (Hover Only) */}
-                                <div className="absolute left-0 top-1/2 -translate-y-1/2 h-2/3 w-[2px] bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-linear" />
+                            <Link href={solution.href} className="block h-full decoration-transparent">
+                                <SpotlightCard
+                                    spotlightColor="rgba(255, 107, 0, 0.1)"
+                                    className="relative flex flex-col h-full bg-white/[0.02] border border-white/5 rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+                                >
+                                    {/* Vertical Accent Line (Hover Only) */}
+                                    <div className="absolute left-0 top-1/2 -translate-y-1/2 h-2/3 w-[2px] bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-linear" />
 
-                                {/* Icon Header */}
-                                <div className="flex items-center justify-between mb-8 opacity-80 group-hover:opacity-100 transition-opacity">
-                                    <div className="text-secondary group-hover:text-primary transition-colors duration-300">
-                                        <solution.icon className="w-6 h-6" strokeWidth={1.5} />
-                                    </div>
-                                    <span className="text-[10px] font-medium text-secondary uppercase tracking-widest bg-white/[0.03] px-2 py-1 rounded">
-                                        {solution.role}
-                                    </span>
-                                </div>
-
-                                {/* Content */}
-                                <div className="flex-1 mb-8">
-                                    <h3 className="text-xl md:text-2xl font-semibold text-white mb-4 group-hover:text-white transition-colors tracking-tight">
-                                        {solution.title}
-                                    </h3>
-                                    <p className="text-secondary text-sm md:text-base leading-relaxed font-light">
-                                        {solution.description}
-                                    </p>
-                                </div>
-
-                                {/* Tags List */}
-                                <div className="space-y-2 pt-6 border-t border-white/5">
-                                    {solution.tags.map((tag, i) => (
-                                        <div key={i} className="flex items-center gap-2 text-xs text-secondary/60 group-hover:text-secondary transition-colors">
-                                            <div className="w-1 h-1 rounded-full bg-gray-700 group-hover:bg-primary/50 transition-colors"></div>
-                                            {tag}
+                                    {/* Icon Header */}
+                                    <div className="flex items-center justify-between mb-8 opacity-80 group-hover:opacity-100 transition-opacity">
+                                        <div className="text-secondary group-hover:text-primary transition-colors duration-300">
+                                            <solution.icon className="w-6 h-6" strokeWidth={1.5} />
                                         </div>
-                                    ))}
-                                </div>
-                            </SpotlightCard>
+                                        <span className="text-[10px] font-medium text-secondary uppercase tracking-widest bg-white/[0.03] px-2 py-1 rounded">
+                                            {solution.role}
+                                        </span>
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="flex-1 mb-8">
+                                        <h3 className="text-xl md:text-2xl font-semibold text-white mb-4 group-hover:text-white transition-colors tracking-tight">
+                                            {solution.title}
+                                        </h3>
+                                        <p className="text-secondary text-sm md:text-base leading-relaxed font-light mb-6">
+                                            {solution.description}
+                                        </p>
+                                        <div className="flex items-center gap-2 text-primary font-medium text-sm border-b border-primary/0 group-hover:border-primary/50 w-fit transition-all pb-0.5">
+                                            Explore Framework
+                                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                        </div>
+                                    </div>
+
+                                    {/* Tags List */}
+                                    <div className="space-y-2 pt-6 border-t border-white/5">
+                                        {solution.tags.map((tag, i) => (
+                                            <div key={i} className="flex items-center gap-2 text-xs text-secondary/60 group-hover:text-secondary transition-colors">
+                                                <div className="w-1 h-1 rounded-full bg-gray-700 group-hover:bg-primary/50 transition-colors"></div>
+                                                {tag}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </SpotlightCard>
+                            </Link>
                         </motion.div>
                     ))}
                 </div>

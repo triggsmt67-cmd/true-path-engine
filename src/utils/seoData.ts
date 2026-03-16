@@ -25,7 +25,7 @@ export const setSeoData = ({ seo }: { seo: any }) => {
           alt: seo.opengraphImage?.altText || "",
         },
       ],
-      locale: "da_DK",
+      locale: "en_US",
       type: seo.opengraphType || "website",
     },
     twitter: {
