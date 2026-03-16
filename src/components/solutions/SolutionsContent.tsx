@@ -289,29 +289,22 @@ export default function SolutionsContent({ frameworks, serviceNodes }: Solutions
                  <div className="absolute inset-0 bg-primary/[0.02] blur-3xl rounded-full"></div>
                  
                  <div className="relative z-10 text-center">
-                    <motion.div
-                      initial={{ y: -80, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ 
-                        type: "spring", 
-                        damping: 15, 
-                        stiffness: 100, 
-                        delay: 0.4 
-                      }}
-                      className="mb-10 relative"
-                    >
-                       {/* High-Fidelity Branding SVG */}
-                       <div className="w-24 h-24 md:w-32 md:h-32 mx-auto relative group-hover:scale-105 transition-transform duration-700">
-                         <img 
-                           src="/truepath-logo.svg" 
-                           alt="True Path Regional Logic Icon" 
-                           className="w-full h-full drop-shadow-[0_15px_30px_rgba(255,107,0,0.3)] object-contain"
-                         />
-                       </div>
-                    </motion.div>
+                     <motion.div
+                       initial={{ y: -80, opacity: 0 }}
+                       whileInView={{ y: 0, opacity: 1 }}
+                       viewport={{ once: true }}
+                       transition={{ 
+                         type: "spring", 
+                         damping: 15, 
+                         stiffness: 100, 
+                         delay: 0.4 
+                       }}
+                       className="mb-8"
+                     >
+                        <MapPin className="w-20 h-20 md:w-28 md:h-28 text-primary mx-auto opacity-90 drop-shadow-[0_10px_20px_rgba(255,107,0,0.4)]" />
+                     </motion.div>
                     
-                    <h4 className="text-2xl font-semibold text-white mb-4">Regional Logic (Internal)</h4>
+                    <h4 className="text-2xl font-semibold text-white mb-4">Regional Logic</h4>
                     <p className="text-secondary/60 text-sm max-w-xs mx-auto leading-relaxed">Proprietary map-matching algorithms tuned for local search intent.</p>
                  </div>
               </div>
