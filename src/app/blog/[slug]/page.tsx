@@ -3,10 +3,14 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowLeft, Calendar, User, Clock, Share2 } from 'lucide-react';
+import { ArrowLeft, Clock } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import ThemeToggle from '@/components/ui/ThemeToggle';
+import AIScanZone from '@/components/blog/AIScanZone';
+import ArticleScrollProgress from '@/components/blog/ArticleScrollProgress';
+import ArticleShareButtons from '@/components/blog/ArticleShareButtons';
 import { nextSlugToWpSlug } from '@/utils/nextSlugToWpSlug';
+import { SOCIAL_LINKS } from '@/constants/links';
 
 // --- Types ---
 interface Post {
@@ -31,6 +35,43 @@ interface Post {
             slug: string;
         }[];
     };
+    aiOverviews?: {
+        ai_overviews?: {
+            ai_quick_answer?: string;
+            ai_takeaways?: string;
+            ai_faqs?: string;
+        } | {
+            ai_quick_answer?: string;
+            ai_takeaways?: string;
+            ai_faqs?: string;
+        }[];
+    };
+}
+
+// --- AI Data Parsing Utilities ---
+function parseTakeaways(text: string): string[] {
+    if (!text) return [];
+    return text
+        .split(/\r?\n/)
+        .map(line => line.replace(/^[•\-\s*]+/, '').trim())
+        .filter(line => line.length > 0);
+}
+
+function parseFaqs(text: string): { question: string, answer: string }[] {
+    if (!text) return [];
+    const blocks = text.split(/\n\s*\n/);
+    const faqs: { question: string, answer: string }[] = [];
+    blocks.forEach(block => {
+        const lines = block.split(/\n/);
+        let q = '', a = '';
+        lines.forEach(line => {
+            const trimmed = line.trim();
+            if (trimmed.toLowerCase().startsWith('q:')) q = trimmed.replace(/^q:\s*/i, '');
+            if (trimmed.toLowerCase().startsWith('a:')) a = trimmed.replace(/^a:\s*/i, '');
+        });
+        if (q && a) faqs.push({ question: q, answer: a });
+    });
+    return faqs;
 }
 
 // --- Data Fetching ---
@@ -58,6 +99,13 @@ async function getPost(slug: string): Promise<Post | null> {
           nodes {
             name
             slug
+          }
+        }
+        aiOverviews {
+          ai_overviews {
+            ai_quick_answer
+            ai_takeaways
+            ai_faqs
           }
         }
       }
@@ -114,22 +162,44 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
         notFound();
     }
 
-    // Estimate reading time (rough)
+    // Estimate reading time
     const wordCount = post.content.split(/\s+/).length;
     const readingTime = Math.ceil(wordCount / 200);
+
+    // Date formatting to match Vite version
+    const dateStr = post.date
+        ? new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+        : 'Unknown Date';
+
+    // Parse AI Data
+    const rawAi = post.aiOverviews?.ai_overviews;
+    let aiDataRaw = Array.isArray(rawAi) ? rawAi[0] : rawAi;
+    if (Array.isArray(rawAi) && rawAi.length > 1) {
+        const titleWords = post.title.toLowerCase().split(' ').filter(w => w.length > 3);
+        const match = rawAi.find(item =>
+            titleWords.some(word => item.ai_quick_answer?.toLowerCase().includes(word))
+        );
+        if (match) aiDataRaw = match;
+    }
+
+    const aiTakeaways = aiDataRaw?.ai_takeaways ? parseTakeaways(aiDataRaw.ai_takeaways) : [];
+    const aiFaqs = aiDataRaw?.ai_faqs ? parseFaqs(aiDataRaw.ai_faqs) : [];
+
+    // Clean excerpt for display
+    const cleanExcerpt = post.excerpt?.replace(/<[^>]*>?/gm, '').replace(/Continue reading.*/gi, '').trim() || '';
 
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "TechArticle",
         "headline": post.title,
-        "description": post.excerpt?.replace(/<[^>]*>?/gm, '').substring(0, 160),
+        "description": cleanExcerpt.substring(0, 160),
         "image": post.featuredImage?.node?.sourceUrl || "https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg",
         "datePublished": post.date,
         "author": {
             "@type": "Person",
             "name": post.author?.node?.name || "Trevor Riggs",
             "jobTitle": "Founder & Architect",
-            "url": "https://www.linkedin.com/in/trevorriggs"
+            "url": SOCIAL_LINKS.linkedin
         },
         "publisher": {
             "@type": "Organization",
@@ -146,130 +216,163 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
     };
 
     return (
-        <main className="bg-white dark:bg-[#050505] min-h-screen flex flex-col transition-colors duration-500 selection:bg-primary selection:text-white">
+        <main className="bg-slate-50 dark:bg-[#121417] min-h-screen flex flex-col transition-colors duration-500 selection:bg-primary selection:text-white">
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
             />
             <Navbar />
             <ThemeToggle />
+            <ArticleScrollProgress />
 
-            {/* Progress Bar (Visual only for now) */}
-            <div className="fixed top-0 left-0 w-full h-1 z-[60] bg-white/5">
-                <div className="h-full bg-primary shadow-[0_0_10px_rgba(255,107,0,0.8)] w-0 transition-all duration-300"></div>
-            </div>
+            {/* Two-Column Hero — Matching Vite Design */}
+            <section className="relative pt-32 pb-16 md:pb-24 px-6 overflow-hidden">
+                {/* Subtle background gradient */}
+                <div className="absolute top-0 left-0 w-full h-[600px] opacity-20 pointer-events-none bg-gradient-to-b from-primary/5 to-transparent dark:from-primary/10 dark:to-transparent" />
 
-            {/* Hero Section */}
-            <header className="relative w-full min-h-[70vh] flex items-end pb-24 pt-44 overflow-hidden">
-                <div className="absolute inset-0 z-0">
-                    {post.featuredImage?.node?.sourceUrl ? (
-                        <>
-                            <img
-                                src={post.featuredImage.node.sourceUrl}
-                                alt={post.featuredImage.node.altText || post.title}
-                                className="w-full h-full object-cover scale-105"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent dark:from-[#050505] dark:via-[#050505]/80 dark:to-transparent"></div>
-                        </>
-                    ) : (
-                        <div className="w-full h-full bg-[#111] relative overflow-hidden">
-                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#FF6B0015,transparent_70%)]"></div>
-                            <div className="absolute inset-x-0 bottom-0 h-96 bg-gradient-to-t from-white dark:from-[#050505] to-transparent"></div>
-                        </div>
-                    )}
-                </div>
+                <div className="max-w-[1400px] mx-auto relative z-10">
+                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-                <div className="relative z-10 max-w-5xl mx-auto px-6 w-full">
-                    {/* Breadcrumb */}
-                    <Link
-                        href="/blog"
-                        className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-primary transition-colors mb-8 group"
-                    >
-                        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                        Back to Intelligence Feed
-                    </Link>
-
-                    {/* Categories */}
-                    <div className="flex flex-wrap gap-2 mb-8">
-                        {post.categories?.nodes.map((cat) => (
-                            <span
-                                key={cat.slug}
-                                className="px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-primary/10 border border-primary/20 text-primary backdrop-blur-md"
-                            >
-                                {cat.name}
-                            </span>
-                        ))}
-                    </div>
-
-                    {/* Title */}
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white leading-[1.1] mb-10 tracking-tight">
-                        {post.title}
-                    </h1>
-
-                    {/* Meta */}
-                    <div className="flex flex-wrap items-center gap-8 text-sm text-gray-600 dark:text-gray-400 font-medium">
-                        <div className="flex items-center gap-2.5">
-                            <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
-                                <User className="w-4 h-4 text-primary" />
-                            </div>
-                            <span>{post.author?.node?.name || "Protocol Officer"}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                            <Calendar className="w-4 h-4 text-primary" />
-                            <span>{new Date(post.date).toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' })}</span>
-                        </div>
-                        <div className="flex items-center gap-2 border-l border-gray-200 dark:border-white/10 pl-8">
-                            <Clock className="w-4 h-4 text-primary" />
-                            <span>{readingTime} min read</span>
-                        </div>
-                    </div>
-                </div>
-            </header>
-
-            {/* Layout Container */}
-            <div className="relative z-10 max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-[1fr_250px] gap-16 py-20">
-
-                {/* Main Content */}
-                <article className="w-full">
-                    <div
-                        className="prose prose-xl dark:prose-invert max-w-none 
-                        prose-headings:text-gray-900 dark:prose-headings:text-white prose-headings:font-bold prose-headings:tracking-tight
-                        prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-8
-                        prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-                        prose-strong:text-gray-900 dark:prose-strong:text-white
-                        prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:bg-gray-50 dark:prose-blockquote:bg-white/[0.02] 
-                        prose-blockquote:py-6 prose-blockquote:px-8 prose-blockquote:rounded-r-2xl prose-blockquote:not-italic prose-blockquote:text-xl
-                        prose-img:rounded-[2rem] prose-img:shadow-2xl prose-img:border prose-img:border-black/5 dark:prose-img:border-white/5
-                        prose-ul:list-disc prose-ol:list-decimal"
-                        dangerouslySetInnerHTML={{ __html: post.content }}
-                    />
-                </article>
-
-                {/* Sidebar / Tools */}
-                <aside className="hidden lg:block">
-                    <div className="sticky top-32 space-y-12">
-                        {/* Share */}
+                        {/* Left Column: Article Detail */}
                         <div>
-                            <h4 className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-6 flex items-center gap-2">
-                                <Share2 className="w-3.5 h-3.5" /> Share Protocol
-                            </h4>
-                            <div className="grid grid-cols-2 gap-3">
-                                <button className="p-3 rounded-2xl bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/5 hover:border-primary/50 transition-all text-xs font-medium">LinkedIn</button>
-                                <button className="p-3 rounded-2xl bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/5 hover:border-primary/50 transition-all text-xs font-medium">X / Twitter</button>
+                            <Link
+                                href="/blog"
+                                className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] mb-10 group transition-colors text-primary hover:text-slate-900 dark:hover:text-white decoration-transparent"
+                            >
+                                <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
+                                Return to Intelligence Vault
+                            </Link>
+
+                            <div className="flex items-center gap-4 mb-8">
+                                {post.categories?.nodes.map((cat) => (
+                                    <span
+                                        key={cat.slug}
+                                        className="px-3 py-1 rounded-full border text-[10px] font-bold tracking-widest uppercase bg-primary/5 border-primary/10 text-primary dark:bg-primary/10 dark:border-primary/20"
+                                    >
+                                        {cat.name}
+                                    </span>
+                                ))}
+                                <div className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-widest text-slate-400 dark:text-secondary/40">
+                                    <Clock className="w-3 h-3" /> {dateStr}
+                                </div>
                             </div>
+
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.05] mb-10 text-slate-900 dark:text-white">
+                                {post.title}
+                            </h1>
+
+                            {cleanExcerpt && (
+                                <p className="text-xl md:text-2xl font-light leading-relaxed border-l-2 pl-8 text-slate-600 border-primary/20 dark:text-secondary dark:border-primary/30">
+                                    {cleanExcerpt}
+                                </p>
+                            )}
                         </div>
 
-                        {/* CTA */}
-                        <div className="p-8 rounded-[2rem] bg-gradient-to-br from-primary to-[#ff8533] text-white shadow-2xl shadow-primary/20">
-                            <h4 className="text-xl font-bold mb-4">Ready to implement?</h4>
-                            <p className="text-sm text-white/80 mb-6 leading-relaxed">Let&apos;s build your custom growth protocol together.</p>
-                            <Link href="/" className="inline-block w-full py-3 bg-white text-primary rounded-full text-center text-sm font-bold hover:bg-black hover:text-white transition-all">
-                                Get Started
-                            </Link>
+                        {/* Right Column: Featured Image */}
+                        <div className="relative aspect-[4/3] lg:aspect-auto lg:h-[550px]">
+                            <div className="absolute inset-0 rounded-[2rem] overflow-hidden border shadow-2xl border-slate-200 shadow-slate-200/50 dark:border-white/10 dark:shadow-primary/5">
+                                {post.featuredImage?.node?.sourceUrl ? (
+                                    <img
+                                        src={post.featuredImage.node.sourceUrl}
+                                        alt={post.featuredImage.node.altText || post.title}
+                                        className="w-full h-full object-cover"
+                                    />
+                                ) : (
+                                    <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
+                                        <div className="w-20 h-20 rounded-full bg-primary/20 blur-2xl" />
+                                    </div>
+                                )}
+                                <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent pointer-events-none" />
+                            </div>
+
+                            {/* Decorative blurs */}
+                            <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 blur-3xl rounded-full" />
+                            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/5 blur-3xl rounded-full" />
                         </div>
                     </div>
-                </aside>
-            </div>
+
+                    {/* AI Overview Zone */}
+                    <div className="mt-16 lg:mt-20 max-w-5xl">
+                        <AIScanZone
+                            aiQuickAnswer={aiDataRaw?.ai_quick_answer}
+                            aiTakeaways={aiTakeaways}
+                            aiFaqs={aiFaqs}
+                        />
+                    </div>
+                </div>
+            </section>
+
+            {/* Main Content + Author Sidebar */}
+            <section className="pt-6 pb-20 px-6 relative z-10">
+                <div className="max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-16">
+                    {/* Article Content */}
+                    <article className="lg:col-span-8">
+                        <div
+                            className="prose prose-lg md:prose-xl max-w-none transition-all duration-300
+                            prose-headings:text-slate-900 dark:prose-headings:text-white prose-headings:font-semibold prose-headings:tracking-tight
+                            prose-p:text-slate-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-8
+                            prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+                            prose-strong:text-slate-900 dark:prose-strong:text-white
+                            prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:bg-white/[0.03] dark:prose-blockquote:bg-white/[0.03]
+                            prose-blockquote:py-6 prose-blockquote:px-8 prose-blockquote:rounded-r-2xl prose-blockquote:not-italic prose-blockquote:text-xl
+                            prose-img:rounded-[2rem] prose-img:shadow-2xl prose-img:border prose-img:border-black/5 dark:prose-img:border-white/5
+                            prose-ul:list-disc prose-ol:list-decimal
+                            dark:prose-invert dark:prose-orange"
+                            dangerouslySetInnerHTML={{ __html: post.content }}
+                        />
+
+                        {/* Bottom Bar: Back + Share */}
+                        <div className="mt-20 pt-12 border-t flex flex-col md:flex-row items-center justify-between gap-8 border-slate-200 dark:border-white/10">
+                            <Link
+                                href="/blog"
+                                className="px-8 py-4 rounded-full border font-bold transition-all flex items-center gap-3 bg-white border-slate-200 text-slate-900 hover:bg-slate-50 hover:border-primary/30 shadow-sm dark:bg-white/[0.03] dark:border-white/10 dark:text-white dark:hover:bg-white/[0.08] dark:hover:border-primary/30 decoration-transparent"
+                            >
+                                <ArrowLeft className="w-5 h-5" /> Back to Insights
+                            </Link>
+                            <ArticleShareButtons title={post.title} slug={slug} />
+                        </div>
+                    </article>
+
+                    {/* Author Sidebar */}
+                    <aside className="lg:col-span-4">
+                        <div className="p-8 rounded-3xl border sticky top-32 transition-all relative overflow-hidden bg-white border-slate-200 shadow-xl dark:bg-[#121417]/80 dark:backdrop-blur-md dark:border-white/10">
+                            <div className="absolute -top-10 -left-10 w-32 h-32 blur-[80px] rounded-full opacity-30 pointer-events-none bg-primary/20 dark:bg-primary" />
+
+                            <h4 className="text-[10px] font-bold tracking-[0.25em] uppercase mb-8 text-slate-400 dark:text-gray-500">Published By</h4>
+
+                            <div className="flex items-center gap-5 mb-8 relative z-10">
+                                <div className="w-14 h-14 rounded-2xl overflow-hidden border p-0.5 border-primary/20 bg-primary/5 dark:border-primary/40 dark:bg-primary/10">
+                                    <img
+                                        src="https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
+                                        className="w-full h-full object-cover rounded-[14px]"
+                                        alt="Trevor Riggs"
+                                        loading="lazy"
+                                    />
+                                </div>
+                                <div>
+                                    <div className="font-bold text-xl tracking-tight text-slate-900 dark:text-white">
+                                        {post.author?.node?.name || 'Trevor Riggs'}
+                                    </div>
+                                    <div className="text-primary text-[10px] font-bold uppercase tracking-[0.15em]">Founder / Architect</div>
+                                </div>
+                            </div>
+
+                            <p className="text-sm leading-relaxed mb-10 font-light text-slate-600 dark:text-secondary/70">
+                                25+ years engineering high-conversion sales systems and strategic digital infrastructure for high-growth firms.
+                            </p>
+
+                            <a
+                                href={SOCIAL_LINKS.linkedin}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block w-full py-4 rounded-xl bg-primary text-white font-bold text-sm text-center transition-all hover:scale-[1.02] active:scale-[0.98] shadow-[0_10px_30px_-5px_rgba(180,83,9,0.3)] hover:shadow-[0_15px_35px_-5px_rgba(180,83,9,0.4)] decoration-transparent"
+                            >
+                                Connect on LinkedIn
+                            </a>
+                        </div>
+                    </aside>
+                </div>
+            </section>
 
             <Footer />
         </main>
