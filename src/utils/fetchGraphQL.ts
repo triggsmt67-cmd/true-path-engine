@@ -36,8 +36,11 @@ export async function fetchGraphQL<T = any>(
           ...headers,
         },
         body,
-        cache: preview ? "no-cache" : "default",
+        // If in preview, don't cache at all. 
+        // Otherwise, revalidate every 600 seconds (10 minutes) as a safety net.
+        cache: preview ? "no-cache" : undefined,
         next: {
+          revalidate: preview ? 0 : 600,
           tags: ["wordpress"],
         },
       },
