@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Linkedin, Twitter, Mail, Instagram } from 'lucide-react';
+import { Linkedin, Facebook, Mail, Instagram } from 'lucide-react';
 import { SOCIAL_LINKS } from '../constants/links';
 
 const Footer: React.FC = () => {
@@ -28,13 +28,13 @@ const Footer: React.FC = () => {
                 <Linkedin className="w-5 h-5" />
               </a>
               <a
-                href={SOCIAL_LINKS.twitter}
+                href={SOCIAL_LINKS.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 rounded-full bg-white/5 border border-white/10 text-secondary hover:text-primary hover:border-primary/50 transition-all"
-                aria-label="X"
+                aria-label="Facebook"
               >
-                <Twitter className="w-5 h-5" />
+                <Facebook className="w-5 h-5" />
               </a>
               <a
                 href={SOCIAL_LINKS.instagram}

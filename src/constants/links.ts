@@ -6,9 +6,9 @@
 export const SOCIAL_LINKS = {
   linkedin: "https://www.linkedin.com/in/trevor-riggs-marketing/",
   twitter: "https://x.com/truepathdigital", // Placeholder
-  instagram: "https://instagram.com/truepathdigital", // Placeholder
-  facebook: "https://facebook.com/truepathdigital", // Placeholder
-  email: "trevor@truepath406.com", // Placeholder
+  instagram: "https://www.instagram.com/real_trevorriggs/", 
+  facebook: "https://www.facebook.com/trevorriggsofficial", 
+  email: "trevor@truepath406.com", 
 };
 
 export const CONTACT_LINKS = {
