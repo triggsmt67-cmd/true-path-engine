@@ -11,6 +11,7 @@ import TrailGrid from '@/components/TrailGrid';
 import AboutSection from '@/components/AboutSection';
 import StakesSection from '@/components/StakesSection';
 import SectionSeparator from '@/components/SectionSeparator';
+import SocialProofSection from '@/components/SocialProofSection';
 import ComparisonSection from '@/components/ComparisonSection';
 import QuoteSection from '@/components/QuoteSection';
 import Footer from '@/components/Footer';
@@ -61,16 +62,19 @@ export default function Page() {
           <SectionSeparator number="02" title="THE MISSION" />
           <MissionSection />
 
-          <SectionSeparator number="03" title="INFRASTRUCTURE" />
+          <SectionSeparator number="03" title="DECISION AREAS" />
           <Solutions />
 
           <SectionSeparator number="04" title="THE PROTOCOL" />
           <TrailGrid />
 
-          <SectionSeparator number="05" title="THE CHOICE" />
+          <SectionSeparator number="05" title="THE PROOF" />
+          <SocialProofSection />
+
+          <SectionSeparator number="06" title="THE CHOICE" />
           <StakesSection />
 
-          <SectionSeparator number="06" title="THE ARCHITECT" />
+          <SectionSeparator number="07" title="THE ARCHITECT" />
           <AboutSection />
         </main>
         <Footer />

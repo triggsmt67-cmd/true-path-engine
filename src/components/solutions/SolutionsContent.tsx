@@ -45,6 +45,8 @@ interface Node {
   spotlight: string;
   wpCategory?: string;
   evidence?: Evidence;
+  staticEvidence?: string;
+  cta?: string;
 }
 
 interface Framework {
@@ -58,6 +60,7 @@ interface Framework {
   bgColor: string;
   borderColor: string;
   spotlight: string;
+  cta?: string;
 }
 
 interface SolutionsContentProps {
@@ -85,12 +88,14 @@ export default function SolutionsContent({ frameworks, serviceNodes }: Solutions
             </div>
             
             <h1 className="text-4xl md:text-6xl lg:text-8xl font-semibold mb-10 tracking-tighter leading-[1.1]">
-              Montana <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#fbbf24] via-primary to-[#78350f]">Growth Infrastructure</span>
+              Decision Infrastructure <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#fbbf24] via-primary to-[#78350f]">for Montana Service Shops</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-secondary mb-12 max-w-2xl leading-relaxed font-light">
-              A proprietary ecosystem of frameworks and tactical nodes designed to own the Montana trade market. Stop buying services. Start building a moat.
+              Most businesses do not need more tactics.
+              <br />
+              They need better visibility into what is leaking, what is working, and what should happen next.
             </p>
           </motion.div>
         </div>
@@ -131,7 +136,7 @@ export default function SolutionsContent({ frameworks, serviceNodes }: Solutions
                           <h2 className="text-3xl md:text-4xl font-semibold text-white mb-6 tracking-tight">
                             {fw.title}
                           </h2>
-                          <p className="text-lg text-secondary/70 font-light leading-relaxed mb-10">
+                          <p className="text-lg text-secondary/70 font-light leading-relaxed mb-10 whitespace-pre-line">
                             {fw.description}
                           </p>
                           
@@ -146,7 +151,7 @@ export default function SolutionsContent({ frameworks, serviceNodes }: Solutions
                         </div>
 
                         <div className="flex items-center gap-3 text-primary font-semibold group-hover:gap-5 transition-all">
-                          Enter Command Center
+                          {fw.cta || "Enter Command Center"}
                           <ArrowRight className={`w-5 h-5 ${fw.color === 'text-primary' ? 'text-primary' : fw.color}`} />
                         </div>
                       </div>
@@ -165,9 +170,12 @@ export default function SolutionsContent({ frameworks, serviceNodes }: Solutions
       <section className="py-12 md:py-16 mb-20">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="mb-16 text-center lg:text-left">
-            <h2 className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight">A-La-Carte Infrastructure</h2>
-            <p className="text-lg text-secondary font-light max-w-2xl">
-              Specific tactical components that can be deployed individually to plug gaps in your current growth cycle.
+            <h2 className="text-3xl md:text-5xl font-semibold mb-6 tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-[#fbbf24] via-primary to-[#78350f]">
+              PRACTICAL REVIEW AREAS
+            </h2>
+            <p className="text-lg text-secondary font-light max-w-2xl mx-auto lg:mx-0">
+              These are not “services” in the agency sense.<br className="hidden md:block" />
+              They’re the practical parts of the business that often need clarity before more money gets spent.
             </p>
           </div>
 
@@ -186,44 +194,47 @@ export default function SolutionsContent({ frameworks, serviceNodes }: Solutions
                   <SpotlightCard
                     key={index}
                     spotlightColor={node.spotlight}
-                    className="p-8 bg-[#0d0d0d] border border-white/10 rounded-3xl group cursor-pointer hover:border-white/20 transition-all duration-300 h-full flex flex-col hover:shadow-[0_0_30px_rgba(255,107,0,0.02)]"
+                    className="p-6 bg-[#0d0d0d] border border-white/10 rounded-3xl group cursor-pointer hover:border-white/20 transition-all duration-300 h-full flex flex-col hover:shadow-[0_0_30px_rgba(255,107,0,0.02)]"
                   >
-                    <div className="flex items-center gap-4 mb-6">
+                    <div className="flex items-center gap-3 mb-4">
                       <div className={`w-10 h-10 rounded-xl bg-white/[0.03] flex items-center justify-center ${node.color} group-hover:bg-white/[0.05] transition-colors`}>
                         <IconComponent className="w-5 h-5" />
                       </div>
                       <span className="text-[10px] font-mono text-secondary/40 uppercase tracking-widest">{node.category}</span>
                     </div>
                     
-                    <h3 className="text-xl font-semibold text-white mb-3 tracking-tight">{node.title}</h3>
-                    <p className="text-sm text-secondary/60 font-light leading-relaxed mb-6">
+                    <h3 className="text-xl font-semibold text-white mb-2 tracking-tight">{node.title}</h3>
+                    <p className="text-sm text-secondary/60 font-light leading-relaxed mb-4 whitespace-pre-line">
                       {node.description}
                     </p>
 
-                    {/* Dynamic Evidence Section */}
-                    {node.evidence && (
+                    {/* Dynamic or Static Evidence Section */}
+                    {(node.staticEvidence || node.evidence) && (
                       <Link 
-                        href={`/blog/${node.evidence.slug}`}
-                        className="mt-auto mb-6 p-4 rounded-xl bg-white/[0.03] border border-white/5 hover:border-primary/30 hover:bg-white/[0.06] transition-all duration-300 group/evidence decoration-transparent"
+                        href={node.evidence ? `/blog/${node.evidence.slug}` : '#'}
+                        className={`mt-auto mb-4 p-3.5 rounded-xl bg-white/[0.03] border border-white/5 transition-all duration-300 group/evidence decoration-transparent ${node.evidence ? 'hover:border-primary/30 hover:bg-white/[0.06]' : 'cursor-default'}`}
+                        onClick={(e) => { if (!node.evidence) e.preventDefault(); }}
                       >
-                        <div className="flex items-center justify-between mb-2">
+                        <div className="flex items-center justify-between mb-1.5">
                           <div className="flex items-center gap-2">
                             <FileText className="w-3 h-3 text-primary" />
                             <span className="text-[9px] font-bold uppercase tracking-widest text-primary/60">Logic Proof</span>
                           </div>
-                          <ArrowRight className="w-3 h-3 text-primary opacity-0 -translate-x-2 group-hover/evidence:opacity-100 group-hover/evidence:translate-x-0 transition-all duration-300" />
+                          {node.evidence && <ArrowRight className="w-3 h-3 text-primary opacity-0 -translate-x-2 group-hover/evidence:opacity-100 group-hover/evidence:translate-x-0 transition-all duration-300" />}
                         </div>
-                        <div className="text-[11px] text-white/80 line-clamp-2 leading-relaxed group-hover/evidence:text-white transition-colors">
-                          {node.evidence.title}
+                        <div className="text-[11px] text-white/80 line-clamp-2 leading-relaxed group-hover/evidence:text-white transition-colors whitespace-pre-line">
+                          {node.staticEvidence || node.evidence?.title}
                         </div>
-                        <div className="mt-3 text-[8px] font-bold text-primary uppercase tracking-[0.2em] opacity-40 group-hover/evidence:opacity-100 transition-opacity">
-                          Read Full Intelligence →
-                        </div>
+                        {node.evidence && (
+                          <div className="mt-2 text-[8px] font-bold text-primary uppercase tracking-[0.2em] opacity-40 group-hover/evidence:opacity-100 transition-opacity">
+                            Read Full Intelligence →
+                          </div>
+                        )}
                       </Link>
                     )}
                     
                     <div className="flex items-center gap-2 text-[10px] font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity uppercase tracking-widest mt-auto">
-                       View Specs
+                       {node.cta || 'View Review Area'}
                        <ArrowRight className="w-3 h-3" />
                     </div>
                   </SpotlightCard>
@@ -246,23 +257,37 @@ export default function SolutionsContent({ frameworks, serviceNodes }: Solutions
            >
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-[10px] uppercase font-bold tracking-widest mb-8">
                 <Globe className="w-3 h-3" />
-                The Proximity Advantage
+                Regional Focus
               </div>
               <h2 className="text-4xl md:text-6xl font-semibold mb-10 tracking-tighter leading-tight">
-                Dominate the <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-br from-white to-white/40">Montana Corridor.</span>
+                The Montana <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-br from-white to-white/40">Advantage.</span>
               </h2>
-              <p className="text-xl text-secondary font-light leading-relaxed mb-8">
-                Whether you're operating out of **Missoula**, scaling in **Billings**, or establishing a moat in **Bozeman**, your infrastructure must be regionally aware.
+              <p className="text-xl text-secondary font-light leading-relaxed mb-6">
+                Montana businesses do not operate in generic conditions.
+              </p>
+              <div className="text-secondary/80 font-light max-w-lg mb-6">
+                Demand shifts with:
+                <ul className="list-disc pl-5 mt-3 space-y-1 text-secondary/60">
+                  <li>weather</li>
+                  <li>seasonality</li>
+                  <li>staffing realities</li>
+                  <li>service area distance</li>
+                  <li>local trust</li>
+                  <li>regional expectations</li>
+                </ul>
+              </div>
+              <p className="text-secondary/60 font-light max-w-lg mb-6">
+                What works in a larger metro or under a national agency model does not always translate well here.
               </p>
               <p className="text-secondary/60 font-light max-w-lg mb-12">
-                Generic out-of-state agencies don't understand the proximity weighting of our local maps or the psychological intent of a Montana buyer. We built this engine specifically for this landscape.
+                This work is built around Montana service shops that need practical clarity — not generic growth advice.
               </p>
               
               <div className="flex gap-12 border-t border-white/5 pt-12">
                  <div>
                    <div className="text-3xl font-semibold text-white mb-1">Missoula</div>
-                   <div className="text-xs text-secondary uppercase tracking-widest">HQ Location</div>
+                   <div className="text-xs text-secondary uppercase tracking-widest">Home Base</div>
                  </div>
                  <div>
                    <div className="text-3xl font-semibold text-white mb-1">Montana</div>

@@ -6,28 +6,31 @@ import Link from 'next/link';
 
 const solutions = [
     {
-        role: "Strategic Logic",
-        title: "Local Authority",
-        description: "Dominate the map and anchor your authority in the Montana market through proprietary proximity engines.",
-        tags: ["Proximity Mastery", "Semantic Trust", "Maps Dominance"],
+        role: "DEMAND CLARITY",
+        title: "Demand Capture",
+        description: "If the phone rings but the process breaks after that, more lead volume only creates more waste.\n\nThis is where I look at missed calls, response gaps, intake friction, and where good opportunities are slipping through.",
+        tags: ["Call Handling", "Missed Opportunity Recovery", "Intake Clarity"],
         icon: MapPin,
-        href: "/solutions/local-authority"
+        href: "/solutions/local-authority",
+        cta: "See What I Look For"
     },
     {
-        role: "Conversion Velocity",
-        title: "Lead Velocity",
-        description: "Stop losing jobs to slow responses. Instant lead capture and automated response built specifically for the Trades.",
-        tags: ["LSA Management", "Missed Call Recovery", "Automated Nurture"],
+        role: "CONVERSION DISCIPLINE",
+        title: "Demand Conversion",
+        description: "A visibility problem and a conversion problem are not the same thing.\n\nThis is where I look at booking rate, follow-up discipline, and whether the business is turning real inquiries into booked work consistently.",
+        tags: ["Booking Rate", "Follow-Up Discipline", "Trust Signals"],
         icon: Zap,
-        href: "/solutions/lead-velocity"
+        href: "/solutions/lead-velocity",
+        cta: "See What I Look For"
     },
     {
-        role: "Operational Scaling",
-        title: "AI & Process Logic",
-        description: "Automation where it reduces effort and noise—capturing jobs you're currently losing to administrative friction.",
-        tags: ["Process Mapping", "Tool Integration", "Friction Reduction"],
-        icon: ShieldAlert,
-        href: "/#how-i-work"
+        role: "DECISION SUPPORT",
+        title: "Demand Stability",
+        description: "A lot of service businesses stay busy, but stay busy in the wrong way.\n\nThis is where I look at work mix, seasonal exposure, referral dependency, and whether current visibility supports the kind of jobs the business actually wants more of.",
+        tags: ["Work Mix", "Seasonal Stability", "Higher-Value Positioning"],
+        icon: TrendingUp,
+        href: "/solutions/demand-stability",
+        cta: "See What I Look For"
     }
 ];
 
@@ -60,7 +63,7 @@ const Solutions: React.FC = () => {
                         className="text-3xl md:text-5xl lg:text-6xl font-semibold text-white mb-6 tracking-normal"
 
                     >
-                        Strategic Infrastructure
+                        Decision Areas
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -69,7 +72,7 @@ const Solutions: React.FC = () => {
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="text-lg md:text-xl text-secondary leading-relaxed max-w-2xl font-normal"
                     >
-                        Clear decisions across your primary growth levers.
+                        Clearer decisions across the parts of the business that affect demand, trust, and wasted spend.
                     </motion.p>
                 </div>
 
@@ -107,11 +110,11 @@ const Solutions: React.FC = () => {
                                         <h3 className="text-xl md:text-2xl font-semibold text-white mb-4 group-hover:text-white transition-colors tracking-tight">
                                             {solution.title}
                                         </h3>
-                                        <p className="text-secondary text-sm md:text-base leading-relaxed font-light mb-6">
+                                        <p className="text-secondary text-sm md:text-base leading-relaxed font-light mb-6 whitespace-pre-line">
                                             {solution.description}
                                         </p>
                                         <div className="flex items-center gap-2 text-primary font-medium text-sm border-b border-primary/0 group-hover:border-primary/50 w-fit transition-all pb-0.5">
-                                            Explore Framework
+                                            {(solution as any).cta || "Explore Framework"}
                                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                         </div>
                                     </div>

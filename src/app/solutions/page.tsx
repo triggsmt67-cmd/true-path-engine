@@ -6,85 +6,90 @@ import SolutionsContent from '@/components/solutions/SolutionsContent';
 
 const frameworks = [
   {
-    title: "Local Authority Framework",
+    title: "Demand Capture",
     subtitle: "Logic Pillar 01",
-    description: "Dominating the map and anchoring your authority in the Montana market through proprietary proximity engines.",
-    points: ["Proximity Mastery", "Semantic Trust", "Maps Dominance"],
+    description: "If the phone rings but the process breaks after that, more lead volume only creates more waste.\n\nThis is where we look at how demand is being caught, where it is slipping, and what friction is quietly costing booked work.",
+    points: ["Call Handling", "Missed Opportunity Recovery", "Intake Clarity"],
     href: "/solutions/local-authority",
     icon: "MapPin",
     color: "text-blue-400",
     bgColor: "bg-blue-400/10",
     borderColor: "border-blue-400/20",
-    spotlight: "rgba(59, 130, 246, 0.1)"
+    spotlight: "rgba(59, 130, 246, 0.1)",
+    cta: "Review This Area"
   },
   {
-    title: "Lead Velocity Framework",
+    title: "Demand Conversion",
     subtitle: "Logic Pillar 02",
-    description: "Stop losing jobs to slow responses. Instant lead capture and automated response built specifically for the Trades.",
-    points: ["LSA Management", "Missed Call Recovery", "Automated Nurture"],
+    description: "A visibility problem and a conversion problem are not the same thing.\n\nThis is where we look at what happens after an inquiry comes in — whether trust is strong, follow-up is disciplined, and the business is turning opportunities into booked work consistently.",
+    points: ["Booking Rate", "Follow-Up Discipline", "Trust Signals"],
     href: "/solutions/lead-velocity",
     icon: "Zap",
     color: "text-primary",
     bgColor: "bg-primary/10",
     borderColor: "border-primary/20",
-    spotlight: "rgba(255, 107, 0, 0.1)"
+    spotlight: "rgba(255, 107, 0, 0.1)",
+    cta: "Review This Area"
   }
 ];
 
 const serviceNodes = [
   {
-    title: "GMB Optimization",
-    description: "Beyond just NAP data. We optimize for categorical dominance, coordinate integrity, and primary search area signals to own the 3-pack.",
+    title: "Google Business Profile",
+    description: "For many service businesses, this is still one of the most important demand and trust surfaces.\n\nI look at whether the profile supports the business clearly — or quietly weakens it through neglect, inconsistency, or weak proof.",
     icon: "MapPin",
-    category: "Proximity",
+    category: "Trust",
     color: "text-blue-400",
     spotlight: "rgba(59, 130, 246, 0.05)",
-    wpCategory: "gmb-optimization"
+    staticEvidence: "An inactive Google Business Profile can quietly reduce trust before the phone ever rings.",
+    cta: "View Review Area"
   },
   {
-    title: "Local Service Ads (LSA)",
-    description: "Direct call-injection for trade businesses. We handle the background checks, budget scaling, and dispute management to ensure a sub-$50 lead cost.",
+    title: "Paid Lead Sources",
+    description: "When lead quality drops or cost rises, the first question is not always how to get more.\n\nSometimes the better question is whether the current spend is producing the kind of work the business actually wants.",
     icon: "Target",
-    category: "Paid",
+    category: "Spend",
     color: "text-emerald-400",
     spotlight: "rgba(16, 185, 129, 0.05)",
-    wpCategory: "paid-growth"
+    staticEvidence: "Poor lead quality is often a spend-discipline problem before it is a traffic problem.",
+    cta: "View Review Area"
   },
   {
-    title: "Automated Intake",
-    description: "Turning missed calls into jobs. Our AI-driven SMS fallback captures homeowners the second you can't answer, booking quotes 24/7.",
+    title: "Intake and Follow-Up",
+    description: "Missed calls and weak follow-up quietly cost more than most owners realize.",
     icon: "MessageSquare",
-    category: "Logic",
+    category: "Process",
     color: "text-violet-400",
     spotlight: "rgba(139, 92, 246, 0.05)",
-    wpCategory: "automated-intake"
+    cta: "View Review Area"
   },
   {
-    title: "Reputation Scaling",
-    description: "Not just getting reviews, but building a moat. Automated review velocity systems that prompt customers exactly when their trust is highest.",
+    title: "Reputation and Public Proof",
+    description: "A business can do good work and still have weak public trust reinforcement.",
     icon: "Star",
     category: "Trust",
     color: "text-cyan-400",
     spotlight: "rgba(6, 182, 212, 0.05)",
-    wpCategory: "reputation-scaling"
+    cta: "View Review Area"
   },
   {
-    title: "Strategic AI",
-    description: "Operational automation designed for field techs. Reducing paperwork and scheduling friction so your team can focus on the job, not the app.",
+    title: "AI and Automation",
+    description: "AI is useful when it reduces friction.\n\nIt becomes a problem when it adds more noise, more tools, or false confidence.\n\nNot as a replacement for judgment.\nAs support for better decisions.",
     icon: "Settings",
     category: "Process",
     color: "text-amber-400",
     spotlight: "rgba(245, 158, 11, 0.05)",
-    wpCategory: "ai-used-carefully"
+    staticEvidence: "AI is most useful when it simplifies the work, not when it distracts from it.",
+    cta: "View Review Area"
   },
   {
-    title: "Market Shield",
-    description: "Active competitive defense. We monitor the Montana landscape to ensure your proximity remains unchallenged by out-of-state competitors.",
+    title: "Demand Stability",
+    description: "A lot of service businesses stay busy, but stay busy in the wrong way.",
     icon: "Lock",
     category: "Strategy",
     color: "text-indigo-400",
     spotlight: "rgba(99, 102, 241, 0.05)",
-    wpCategory: "market-shield"
+    cta: "View Review Area"
   }
 ];
 
@@ -117,9 +122,9 @@ export default async function SolutionsHubPage() {
   }
 
   // Map evidence to nodes
-  const nodesWithEvidence = serviceNodes.map(node => {
+  const nodesWithEvidence = serviceNodes.map((node: any) => {
     const latestPost = evidencePosts.find(post => 
-      post.categories?.nodes.some((cat: any) => cat.slug === node.wpCategory)
+      post.categories?.nodes.some((cat: any) => node.wpCategory && cat.slug === node.wpCategory)
     );
     
     return {
