@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { fetchGraphQL } from '@/utils/fetchGraphQL';
 import SolutionsContent from '@/components/solutions/SolutionsContent';
+import { decodeHtmlEntities } from '@/utils/decodeHtmlEntities';
 
 const frameworks = [
   {
@@ -48,7 +49,7 @@ const serviceNodes = [
     category: "Paid",
     color: "text-emerald-400",
     spotlight: "rgba(16, 185, 129, 0.05)",
-    wpCategory: "paid-growth"
+    wpCategory: "local-service-ads"
   },
   {
     title: "Automated Intake",
@@ -75,7 +76,7 @@ const serviceNodes = [
     category: "Process",
     color: "text-amber-400",
     spotlight: "rgba(245, 158, 11, 0.05)",
-    wpCategory: "ai-used-carefully"
+    wpCategory: "strategic-ai"
   },
   {
     title: "Market Shield",
@@ -125,15 +126,35 @@ export default async function SolutionsHubPage() {
     return {
       ...node,
       evidence: latestPost ? {
-        title: latestPost.title,
+        title: decodeHtmlEntities(latestPost.title),
         slug: latestPost.slug,
         date: latestPost.date
       } : undefined
     };
   });
 
+  const solutionsSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "https://truepath406.com/solutions/#service",
+    "name": "Montana Growth Infrastructure",
+    "serviceType": "Marketing Consulting",
+    "provider": {
+      "@id": "https://truepath406.com/#organization"
+    },
+    "areaServed": {
+      "@type": "State",
+      "name": "Montana"
+    },
+    "description": "A proprietary ecosystem of frameworks and tactical nodes designed to own the Montana trade market."
+  };
+
   return (
     <div className="min-h-screen bg-background text-ice font-sans selection:bg-primary selection:text-white relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(solutionsSchema) }}
+      />
       <div className="fixed inset-0 z-0 pointer-events-none flex justify-center">
         <div className="w-full max-w-[1400px] h-full border-l border-white/[0.03] border-r flex justify-between">
           <div className="h-full w-px bg-white/[0.03]"></div>

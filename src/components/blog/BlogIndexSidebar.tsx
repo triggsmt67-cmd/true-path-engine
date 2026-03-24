@@ -2,7 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { START_HERE_LINKS } from '@/constants/curatedLinks';
+import { decodeHtmlEntities } from '@/utils/decodeHtmlEntities';
+import { SOCIAL_LINKS } from '@/constants/links';
 import {
     Terminal,
     Zap,
@@ -28,7 +29,16 @@ interface BlogIndexSidebarProps {
     categories: Category[];
     onCategoryClick: (slug: string) => void;
     selectedCategorySlug: string | null;
+    foundationalPosts?: any[];
 }
+
+const DEFAULT_FOUNDATIONAL_LINKS = [
+    {
+        title: "The Number One Profit Leak",
+        slug: "the-number-one-profit-leak",
+        excerpt: "The silent killer of contracting profits."
+    }
+];
 
 const CATEGORY_ICON_MAP: Record<string, any> = {
     'growth-strategy': Lightbulb,
@@ -44,10 +54,11 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
     categories,
     onCategoryClick,
     selectedCategorySlug,
+    foundationalPosts,
 }) => {
     // Filter and sort categories: show 4-8 max, exclude Uncategorized
     const displayCategories = categories
-        .filter(cat => cat.slug !== 'uncategorized' && cat.count > 0)
+        .filter(cat => cat.slug !== 'uncategorized' && cat.slug !== 'blog' && cat.count > 0)
         .sort((a, b) => b.count - a.count)
         .slice(0, 8);
 
@@ -106,10 +117,14 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
                     </p>
                 </div>
                 <nav className="flex flex-col gap-5">
-                    {START_HERE_LINKS.map((link, idx) => (
+                    {(foundationalPosts && foundationalPosts.length > 0 ? foundationalPosts : DEFAULT_FOUNDATIONAL_LINKS).map((post, idx) => {
+                        const title = decodeHtmlEntities(post.title);
+                        const excerpt = decodeHtmlEntities(post.excerpt?.replace(/<[^>]*>?/gm, '').substring(0, 60) || '');
+                        
+                        return (
                         <Link
-                            key={idx}
-                            href={`/blog/${link.href}`}
+                            key={post.id || idx}
+                            href={`/blog/${post.slug}`}
                             className="group text-left p-2 -mx-2 rounded-2xl transition-all hover:bg-white/[0.02] decoration-transparent"
                         >
                             <div className="flex items-start gap-4">
@@ -118,11 +133,11 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
                                 </div>
                                 <div className="space-y-1.5 flex-1">
                                     <span className="block text-[13px] font-bold leading-tight transition-colors text-white group-hover:text-primary">
-                                        {link.title}
+                                        {title}
                                     </span>
-                                    {link.shortLabel && (
+                                    {excerpt && (
                                         <p className="text-[11px] leading-relaxed font-light transition-colors text-secondary/40">
-                                            {link.shortLabel}
+                                            {excerpt}...
                                         </p>
                                     )}
                                 </div>
@@ -131,7 +146,7 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
                                 </div>
                             </div>
                         </Link>
-                    ))}
+                    )})}
                 </nav>
 
                 <div className="mt-10 p-8 rounded-3xl border transition-all relative overflow-hidden bg-primary/5 border-primary/20 shadow-2xl shadow-primary/5">
@@ -151,6 +166,41 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
                             <ArrowRight className="w-3.5 h-3.5 group-hover/sub:translate-x-1 transition-transform" />
                         </button>
                     </div>
+                </div>
+
+                {/* Author Sidebar */}
+                <div className="mt-10 p-8 rounded-3xl border transition-all relative overflow-hidden bg-white/[0.02] border-white/5 shadow-2xl">
+                    <div className="absolute -top-10 -left-10 w-32 h-32 blur-[80px] rounded-full opacity-30 pointer-events-none bg-primary/20" />
+
+                    <h4 className="text-[10px] font-bold tracking-[0.25em] uppercase mb-8 text-secondary/40">Connect</h4>
+
+                    <div className="flex items-center gap-5 mb-8 relative z-10">
+                        <div className="w-14 h-14 rounded-2xl overflow-hidden border p-0.5 border-primary/20 bg-primary/10">
+                            <img
+                                src="https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
+                                className="w-full h-full object-cover object-top rounded-[14px]"
+                                alt="Trevor Riggs"
+                                loading="lazy"
+                            />
+                        </div>
+                        <div>
+                            <div className="font-bold text-xl tracking-tight text-white">Trevor Riggs</div>
+                            <div className="text-primary text-[10px] font-bold uppercase tracking-[0.15em]">Founder / Architect</div>
+                        </div>
+                    </div>
+
+                    <p className="text-sm leading-relaxed mb-10 font-light text-secondary/70">
+                        25+ years engineering high-conversion sales systems and strategic digital infrastructure for high-growth firms.
+                    </p>
+
+                    <a
+                        href={SOCIAL_LINKS.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full py-4 rounded-xl bg-primary text-white font-bold text-sm text-center transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-primary/20 decoration-transparent"
+                    >
+                        Connect on LinkedIn
+                    </a>
                 </div>
             </div>
         </aside>

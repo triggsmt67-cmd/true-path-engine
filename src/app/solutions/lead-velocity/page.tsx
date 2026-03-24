@@ -41,8 +41,28 @@ const pillars = [
 ];
 
 export default function LeadVelocityPage() {
+  const leadVelocitySchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "https://truepath406.com/solutions/lead-velocity#service",
+    "name": "Lead Velocity Framework",
+    "serviceType": "Lead Capture & Automation",
+    "provider": {
+      "@id": "https://truepath406.com/#organization"
+    },
+    "areaServed": {
+      "@type": "State",
+      "name": "Montana"
+    },
+    "description": "Stop losing jobs to slow responses. A proprietary conversion engine for Montana trade businesses including Plumbing, HVAC, and Septic."
+  };
+
   return (
     <div className="min-h-screen bg-background text-ice font-sans selection:bg-primary selection:text-white relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(leadVelocitySchema) }}
+      />
       <div className="fixed inset-0 z-0 pointer-events-none flex justify-center">
         <div className="w-full max-w-[1400px] h-full border-l border-white/[0.03] border-r flex justify-between">
           <div className="h-full w-px bg-white/[0.03]"></div>

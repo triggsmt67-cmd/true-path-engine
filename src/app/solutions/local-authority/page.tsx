@@ -41,8 +41,28 @@ const pillars = [
 ];
 
 export default function LocalAuthorityPage() {
+  const localAuthoritySchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": "https://truepath406.com/solutions/local-authority#service",
+    "name": "Local Authority Framework",
+    "serviceType": "Local SEO & Proximity Marketing",
+    "provider": {
+      "@id": "https://truepath406.com/#organization"
+    },
+    "areaServed": {
+      "@type": "State",
+      "name": "Montana"
+    },
+    "description": "The Proximity Engine: A high-performance framework for dominating Montana's local search map through strategic authority, not generic SEO."
+  };
+
   return (
     <div className="min-h-screen bg-background text-ice font-sans selection:bg-primary selection:text-white relative">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localAuthoritySchema) }}
+      />
       {/* Global Background Grid */}
       <div className="fixed inset-0 z-0 pointer-events-none flex justify-center">
         <div className="w-full max-w-[1400px] h-full border-l border-white/[0.03] border-r flex justify-between">

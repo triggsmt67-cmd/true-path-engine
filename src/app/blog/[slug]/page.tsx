@@ -11,6 +11,7 @@ import ArticleScrollProgress from '@/components/blog/ArticleScrollProgress';
 import ArticleShareButtons from '@/components/blog/ArticleShareButtons';
 import { nextSlugToWpSlug } from '@/utils/nextSlugToWpSlug';
 import { SOCIAL_LINKS } from '@/constants/links';
+import { decodeHtmlEntities } from '@/utils/decodeHtmlEntities';
 
 // --- Types ---
 interface Post {
@@ -130,16 +131,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     }
 
     const url = `https://truepath406.com/blog/${slug}`;
+    const cleanTitle = decodeHtmlEntities(post.title);
+    const cleanDesc = decodeHtmlEntities(post.excerpt?.replace(/<[^>]*>?/gm, '').substring(0, 160) || '');
 
     return {
-        title: `${post.title} | True Path Digital`,
-        description: post.excerpt?.replace(/<[^>]*>?/gm, '').substring(0, 160),
+        title: `${cleanTitle} | True Path Digital`,
+        description: cleanDesc,
         alternates: {
             canonical: url,
         },
         openGraph: {
-            title: `${post.title} | True Path Digital`,
-            description: post.excerpt?.replace(/<[^>]*>?/gm, '').substring(0, 160),
+            title: `${cleanTitle} | True Path Digital`,
+            description: cleanDesc,
             url: url,
             type: 'article',
             publishedTime: post.date,
@@ -186,7 +189,9 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
     const aiFaqs = aiDataRaw?.ai_faqs ? parseFaqs(aiDataRaw.ai_faqs) : [];
 
     // Clean excerpt for display
-    const cleanExcerpt = post.excerpt?.replace(/<[^>]*>?/gm, '').replace(/Continue reading.*/gi, '').trim() || '';
+    const rawExcerpt = post.excerpt?.replace(/<[^>]*>?/gm, '').replace(/Continue reading.*/gi, '').trim() || '';
+    const cleanExcerptText = decodeHtmlEntities(rawExcerpt);
+    const cleanTitleText = decodeHtmlEntities(post.title);
 
     const breadcrumbData = {
         "@context": "https://schema.org",
@@ -207,7 +212,7 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
             {
                 "@type": "ListItem",
                 "position": 3,
-                "name": post.title,
+                "name": cleanTitleText,
                 "item": `https://truepath406.com/blog/${slug}`
             }
         ]
@@ -216,8 +221,8 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
     const structuredData = {
         "@context": "https://schema.org",
         "@type": "TechArticle",
-        "headline": post.title,
-        "description": cleanExcerpt.substring(0, 160),
+        "headline": cleanTitleText,
+        "description": cleanExcerptText.substring(0, 160),
         "image": post.featuredImage?.node?.sourceUrl || "https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg",
         "datePublished": post.date,
         "author": {
@@ -304,12 +309,12 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                             </div>
 
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.05] mb-10 text-slate-900 dark:text-white">
-                                {post.title}
+                                {cleanTitleText}
                             </h1>
 
-                            {cleanExcerpt && (
+                            {cleanExcerptText && (
                                 <p className="text-xl md:text-2xl font-light leading-relaxed border-l-2 pl-8 text-slate-600 border-primary/20 dark:text-secondary dark:border-primary/30">
-                                    {cleanExcerpt}
+                                    {cleanExcerptText}
                                 </p>
                             )}
                         </div>
@@ -402,7 +407,7 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                             >
                                 <ArrowLeft className="w-5 h-5" /> Back to Insights
                             </Link>
-                            <ArticleShareButtons title={post.title} slug={slug} />
+                            <ArticleShareButtons title={cleanTitleText} slug={slug} />
                         </div>
                     </article>
 
@@ -417,7 +422,7 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                                 <div className="w-14 h-14 rounded-2xl overflow-hidden border p-0.5 border-primary/20 bg-primary/5 dark:border-primary/40 dark:bg-primary/10">
                                     <img
                                         src="https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
-                                        className="w-full h-full object-cover rounded-[14px]"
+                                        className="w-full h-full object-cover object-top rounded-[14px]"
                                         alt="Trevor Riggs"
                                         loading="lazy"
                                     />

@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import BlogIndexSidebar from './BlogIndexSidebar';
+import { decodeHtmlEntities } from '@/utils/decodeHtmlEntities';
 
 interface Post {
   id: string;
@@ -69,7 +70,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts, categories }) => {
   };
 
   // Clean excerpt HTML for search
-  const stripHtml = (html: string) => html.replace(/<[^>]*>?/gm, '');
+  const stripHtml = (html: string) => decodeHtmlEntities(html.replace(/<[^>]*>?/gm, ''));
 
   const filteredPosts = useMemo(() => {
     let result = posts;
@@ -143,7 +144,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts, categories }) => {
           >
             All Thinking
           </button>
-          {categories.filter(c => c.count > 0 && c.slug !== 'uncategorized').map(cat => (
+          {categories.filter(c => c.count > 0 && c.slug !== 'uncategorized' && c.slug !== 'blog').map(cat => (
             <button
               key={cat.id}
               onClick={() => handleCategoryClick(cat.slug)}
@@ -218,7 +219,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts, categories }) => {
                                 <Clock className="w-3.5 h-3.5" />{new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                               </div>
                             </div>
-                            <h3 className="text-2xl md:text-3xl font-bold tracking-tight transition-colors group-hover:text-primary text-white">{post.title}</h3>
+                            <h3 className="text-2xl md:text-3xl font-bold tracking-tight transition-colors group-hover:text-primary text-white" dangerouslySetInnerHTML={{ __html: post.title }} />
                             <div className="text-base md:text-lg leading-relaxed font-light line-clamp-2 transition-colors text-secondary/60" dangerouslySetInnerHTML={{ __html: post.excerpt }} />
                           </div>
 
@@ -237,6 +238,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts, categories }) => {
                 categories={categories}
                 onCategoryClick={handleCategoryClick}
                 selectedCategorySlug={selectedCategorySlug}
+                foundationalPosts={posts.filter(p => p.categories?.nodes.some(c => c.slug === 'foundational')).slice(0, 3)}
               />
             </div>
           </motion.section>
