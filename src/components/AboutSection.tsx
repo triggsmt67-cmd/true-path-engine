@@ -2,7 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, ShieldCheck, FileText, ArrowRight } from 'lucide-react';
-import { SOCIAL_LINKS } from '../constants/links';
+import { SOCIAL_LINKS, CONTACT_LINKS } from '../constants/links';
 import { Magnetic } from './Magnetic';
 
 
@@ -81,10 +81,10 @@ const AboutSection: React.FC = () => {
             </div>
 
             {/* Final CTA Button */}
-            <div className="text-center sm:text-left">
+            <div className="text-center sm:text-left mt-8">
               <Magnetic amount={0.2}>
                 <a
-                  href={SOCIAL_LINKS.linkedin}
+                  href={CONTACT_LINKS.calendar}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="relative inline-flex h-14 overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-[0_0_40px_-5px_rgba(180,83,9,0.35)] w-full sm:w-auto transition-all hover:scale-[1.02] active:scale-95 duration-300"
@@ -92,12 +92,15 @@ const AboutSection: React.FC = () => {
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-primary/40 via-primary/80 to-primary/40 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
                   <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[#0a0a0a] px-8 text-lg font-medium text-white backdrop-blur-3xl gap-3 transition-colors group-hover:bg-background">
-                    Start with a conversation
+                    Review My Current Setup
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </span>
                 </a>
 
               </Magnetic>
+              <p className="text-xs text-secondary/60 mt-3 sm:ml-2">
+                Takes 15 minutes. No sales pitch. I’ll call your cell.
+              </p>
             </div>
 
 

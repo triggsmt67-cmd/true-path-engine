@@ -1,143 +1,73 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
-import { fetchGraphQL } from '@/utils/fetchGraphQL';
 import SolutionsContent from '@/components/solutions/SolutionsContent';
-import { decodeHtmlEntities } from '@/utils/decodeHtmlEntities';
 
-const frameworks = [
+const coreServices = [
   {
-    title: "Local Authority Framework",
-    subtitle: "Logic Pillar 01",
-    description: "Dominating the map and anchoring your authority in the Montana market through proprietary proximity engines.",
-    points: ["Proximity Mastery", "Semantic Trust", "Maps Dominance"],
+    title: "Google Business Profile Optimization",
+    description: "Show up better in local search with a stronger profile, clearer services, better trust signals, and cleaner local positioning.",
+    icon: "MapPin",
     href: "/solutions/local-authority",
-    icon: "MapPin",
     color: "text-blue-400",
-    bgColor: "bg-blue-400/10",
-    borderColor: "border-blue-400/20",
-    spotlight: "rgba(59, 130, 246, 0.1)"
+    spotlight: "rgba(59, 130, 246, 0.05)"
   },
   {
-    title: "Lead Velocity Framework",
-    subtitle: "Logic Pillar 02",
-    description: "Stop losing jobs to slow responses. Instant lead capture and automated response built specifically for the Trades.",
-    points: ["LSA Management", "Missed Call Recovery", "Automated Nurture"],
-    href: "/solutions/lead-velocity",
+    title: "Missed Call Recovery & Lead Response",
+    description: "Stop losing jobs to missed calls, slow replies, and follow-up gaps that cool leads off fast.",
     icon: "Zap",
+    href: "/solutions/lead-velocity",
     color: "text-primary",
-    bgColor: "bg-primary/10",
-    borderColor: "border-primary/20",
-    spotlight: "rgba(255, 107, 0, 0.1)"
-  }
-];
-
-const serviceNodes = [
-  {
-    title: "GMB Optimization",
-    description: "Beyond just NAP data. We optimize for categorical dominance, coordinate integrity, and primary search area signals to own the 3-pack.",
-    icon: "MapPin",
-    category: "Proximity",
-    color: "text-blue-400",
-    spotlight: "rgba(59, 130, 246, 0.05)",
-    wpCategory: "gmb-optimization"
+    spotlight: "rgba(255, 107, 0, 0.05)"
   },
   {
-    title: "Local Service Ads (LSA)",
-    description: "Direct call-injection for trade businesses. We handle the background checks, budget scaling, and dispute management to ensure a sub-$50 lead cost.",
-    icon: "Target",
-    category: "Paid",
-    color: "text-emerald-400",
-    spotlight: "rgba(16, 185, 129, 0.05)",
-    wpCategory: "local-service-ads"
-  },
-  {
-    title: "Automated Intake",
-    description: "Turning missed calls into jobs. Our AI-driven SMS fallback captures homeowners the second you can't answer, booking quotes 24/7.",
-    icon: "MessageSquare",
-    category: "Logic",
-    color: "text-violet-400",
-    spotlight: "rgba(139, 92, 246, 0.05)",
-    wpCategory: "automated-intake"
-  },
-  {
-    title: "Reputation Scaling",
-    description: "Not just getting reviews, but building a moat. Automated review velocity systems that prompt customers exactly when their trust is highest.",
+    title: "Review Generation Systems",
+    description: "Build a simple process that helps you get more reviews without constantly chasing customers.",
     icon: "Star",
-    category: "Trust",
+    href: "#",
     color: "text-cyan-400",
-    spotlight: "rgba(6, 182, 212, 0.05)",
-    wpCategory: "reputation-scaling"
+    spotlight: "rgba(6, 182, 212, 0.05)"
   },
   {
-    title: "Strategic AI",
-    description: "Operational automation designed for field techs. Reducing paperwork and scheduling friction so your team can focus on the job, not the app.",
-    icon: "Settings",
-    category: "Process",
+    title: "Website Conversion Repair",
+    description: "Turn more visitors into calls, quote requests, and booked work by removing friction and tightening the message.",
+    icon: "Globe",
+    href: "#",
+    color: "text-emerald-400",
+    spotlight: "rgba(16, 185, 129, 0.05)"
+  },
+  {
+    title: "Demand Leak Audit",
+    description: "Find out where visibility, follow-up, conversion, and response are breaking down before spending more money.",
+    icon: "Target",
+    href: "#",
+    color: "text-violet-400",
+    spotlight: "rgba(139, 92, 246, 0.05)"
+  },
+  {
+    title: "Estimate Follow-Up & Booking Automation",
+    description: "Keep quotes and inquiries from going cold with a cleaner, more consistent follow-up process.",
+    icon: "MessageSquare",
+    href: "#",
     color: "text-amber-400",
-    spotlight: "rgba(245, 158, 11, 0.05)",
-    wpCategory: "strategic-ai"
+    spotlight: "rgba(245, 158, 11, 0.05)"
   },
   {
-    title: "Market Shield",
-    description: "Active competitive defense. We monitor the Montana landscape to ensure your proximity remains unchallenged by out-of-state competitors.",
-    icon: "Lock",
-    category: "Strategy",
+    title: "Local Services Ads Setup & Cleanup",
+    description: "Improve lead flow from Local Services Ads with cleaner setup, better response handling, and less wasted spend.",
+    icon: "Settings",
+    href: "#",
     color: "text-indigo-400",
-    spotlight: "rgba(99, 102, 241, 0.05)",
-    wpCategory: "market-shield"
+    spotlight: "rgba(99, 102, 241, 0.05)"
   }
 ];
-
-// Query to get the latest post for each category
-const EVIDENCE_QUERY = `
-  query GetHubEvidence {
-    posts(first: 100) {
-      nodes {
-        title
-        slug
-        date
-        categories {
-          nodes {
-            slug
-          }
-        }
-      }
-    }
-  }
-`;
 
 export default async function SolutionsHubPage() {
-  let evidencePosts: any[] = [];
-  
-  try {
-    const data = await fetchGraphQL(EVIDENCE_QUERY);
-    evidencePosts = data?.posts?.nodes || [];
-  } catch (err) {
-    console.error("Failed to fetch hub evidence:", err);
-  }
-
-  // Map evidence to nodes
-  const nodesWithEvidence = serviceNodes.map(node => {
-    const latestPost = evidencePosts.find(post => 
-      post.categories?.nodes.some((cat: any) => cat.slug === node.wpCategory)
-    );
-    
-    return {
-      ...node,
-      evidence: latestPost ? {
-        title: decodeHtmlEntities(latestPost.title),
-        slug: latestPost.slug,
-        date: latestPost.date
-      } : undefined
-    };
-  });
-
   const solutionsSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
     "@id": "https://truepath406.com/solutions/#service",
-    "name": "Montana Growth Infrastructure",
+    "name": "True Path Digital Core Services",
     "serviceType": "Marketing Consulting",
     "provider": {
       "@id": "https://truepath406.com/#organization"
@@ -146,7 +76,7 @@ export default async function SolutionsHubPage() {
       "@type": "State",
       "name": "Montana"
     },
-    "description": "A proprietary ecosystem of frameworks and tactical nodes designed to own the Montana trade market."
+    "description": "Practical marketing and revenue services for owner-operated local service businesses in Montana."
   };
 
   return (
@@ -167,8 +97,7 @@ export default async function SolutionsHubPage() {
       <div className="relative z-10">
         <Navbar />
         <SolutionsContent 
-          frameworks={frameworks} 
-          serviceNodes={nodesWithEvidence} 
+          services={coreServices} 
         />
         <Footer />
       </div>

@@ -1,42 +1,42 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Activity, Users, MapPin, BrainCircuit, CheckCircle2, ArrowDown, ArrowRight } from 'lucide-react';
+import { MapPin, PhoneMissed, Star, TrendingDown, CheckCircle2, ArrowDown, ArrowRight } from 'lucide-react';
 import { CONTACT_LINKS } from '../constants/links';
 import { SpotlightCard } from './SpotlightCard';
 
 
 const stackItems = [
     {
-        title: 'Paid Ads Data',
-        subtitle: 'What’s actually happening in your accounts',
-        icon: Activity,
+        title: 'Weak Google Visibility',
+        subtitle: 'You’re harder to find than you should be in local search.',
+        icon: MapPin,
         color: 'text-blue-400',
         bg: 'bg-blue-400/10',
         border: 'border-blue-400/20',
         spotlight: 'rgba(96, 165, 250, 0.15)'
     },
     {
-        title: 'Buyer Behavior',
-        subtitle: 'How real people are responding—not just clicks',
-        icon: Users,
+        title: 'Missed Calls & Slow Response',
+        subtitle: 'Leads cool off fast when no one answers or follows up.',
+        icon: PhoneMissed,
         color: 'text-purple-400',
         bg: 'bg-purple-400/10',
         border: 'border-purple-400/20',
         spotlight: 'rgba(192, 132, 252, 0.15)'
     },
     {
-        title: 'Local Market Context',
-        subtitle: 'Montana seasonality, demand, and constraints',
-        icon: MapPin,
+        title: 'Thin Reviews & Weak Trust',
+        subtitle: 'Good businesses still lose work when proof is missing.',
+        icon: Star,
         color: 'text-emerald-400',
         bg: 'bg-emerald-400/10',
         border: 'border-emerald-400/20',
         spotlight: 'rgba(52, 211, 153, 0.15)'
     },
     {
-        title: 'AI Analysis',
-        subtitle: 'Used as support, not a decision-maker',
-        icon: BrainCircuit,
+        title: 'Wasted Spend & Leaky Conversion',
+        subtitle: 'Traffic and ad dollars do not matter if they do not turn into calls.',
+        icon: TrendingDown,
         color: 'text-orange-400',
         bg: 'bg-orange-400/10',
         border: 'border-orange-400/20',
@@ -56,7 +56,7 @@ const DecisionStack: React.FC<DecisionStackProps> = ({ disableSpotlight = false 
                 {/* Header */}
                 <div className="px-6 py-5 border-b border-white/5 bg-white/[0.02]">
                     <h3 className="text-sm font-bold text-secondary uppercase tracking-widest text-center">
-                        Intelligent Decision Stack
+                        Where Jobs Get Lost
                     </h3>
                 </div>
 
@@ -129,7 +129,7 @@ const DecisionStack: React.FC<DecisionStackProps> = ({ disableSpotlight = false 
                                         Review My Current Setup
                                     </div>
                                     <div className="text-xs text-secondary/60 font-medium leading-relaxed group-hover/btn:text-white/70 transition-colors duration-300">
-                                        ↳ Takes 15 minutes. No sales pitch. <br />I'll call your cell.
+                                        Takes 15 minutes. No sales pitch. <br />I'll call your cell.
                                     </div>
                                 </div>
                             </div>

@@ -4,6 +4,7 @@
 import React from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
+import EarlyProofSection from '@/components/EarlyProofSection';
 import FeatureSplit from '@/components/FeatureSplit';
 import MissionSection from '@/components/MissionSection';
 import Solutions from '@/components/Solutions';
@@ -54,6 +55,7 @@ export default function Page() {
         <Navbar />
         <main>
           <Hero />
+          <EarlyProofSection />
           <SectionSeparator number="01" title="GROWTH ENGINE" />
           <FeatureSplit />
           <QuoteSection />
@@ -61,16 +63,16 @@ export default function Page() {
           <SectionSeparator number="02" title="THE MISSION" />
           <MissionSection />
 
-          <SectionSeparator number="03" title="INFRASTRUCTURE" />
+          <SectionSeparator number="03" title="CORE SERVICES" />
           <Solutions />
 
-          <SectionSeparator number="04" title="THE PROTOCOL" />
+          <SectionSeparator number="04" title="HOW I WORK" />
           <TrailGrid />
 
-          <SectionSeparator number="05" title="THE CHOICE" />
+          <SectionSeparator number="05" title="WHO THIS IS FOR" />
           <StakesSection />
 
-          <SectionSeparator number="06" title="THE ARCHITECT" />
+          <SectionSeparator number="06" title="ABOUT TREVOR" />
           <AboutSection />
         </main>
         <Footer />

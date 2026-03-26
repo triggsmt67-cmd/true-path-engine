@@ -70,14 +70,14 @@ const Hero: React.FC = () => {
             <motion.div variants={itemVariants} className="flex items-center gap-3 mb-6 md:mb-8">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_10px_#FF6B00]"></span>
               <span className="text-[10px] md:text-xs font-medium tracking-[0.2em] text-primary uppercase">
-                Marketing Intelligence
+                For Montana Service Businesses
               </span>
             </motion.div>
 
             {/* Heading with Reveal effect */}
             <h1 className="mb-6 md:mb-8 font-semibold tracking-tighter leading-[1.2] md:leading-[1.1]">
               <RevealText
-                text="Clear marketing decisions for Montana business owners"
+                text="Clearer marketing decisions for owner-operated service businesses"
                 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5.5rem]"
                 highlightWords={["marketing", "decisions"]}
                 highlightClassName="text-transparent bg-clip-text bg-gradient-to-br from-[#fbbf24] via-primary to-[#78350f]"
@@ -89,31 +89,47 @@ const Hero: React.FC = () => {
 
             {/* Subhead */}
             <motion.p variants={itemVariants} className="text-lg md:text-2xl text-secondary mb-8 md:mb-10 max-w-2xl leading-relaxed font-normal">
-              Clear thinking around paid ads, buyer behavior, and practical use of AI— so you stop guessing, stop wasting money, and feel confident again.
+              I help local service businesses fix weak Google visibility, missed calls, slow follow-up, and wasted ad spend.
             </motion.p>
 
             {/* CTA Group */}
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-6 w-full sm:w-auto">
-              <Magnetic amount={0.2}>
-                <a
-                  href={CONTACT_LINKS.calendar}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="relative inline-flex h-16 overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-[0_0_40px_-5px_rgba(180,83,9,0.35)] w-full sm:w-auto transition-all hover:scale-[1.02] active:scale-95 duration-300"
+            <motion.div variants={itemVariants} className="flex flex-col gap-6 w-full lg:w-auto">
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6 w-full">
+                <Magnetic amount={0.2}>
+                  <a
+                    href={CONTACT_LINKS.calendar}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative inline-flex h-14 md:h-16 overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-[0_0_40px_-5px_rgba(180,83,9,0.35)] w-full sm:w-auto transition-all hover:scale-[1.02] active:scale-95 duration-300"
 
-                >
-                  <span className="absolute inset-0 bg-gradient-to-r from-primary/40 via-primary/80 to-primary/40 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
-                  <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[#0a0a0a] px-10 text-base font-medium text-white backdrop-blur-3xl gap-3 transition-colors group-hover:bg-background whitespace-nowrap">
-                    Start with a conversation
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </span>
-                </a>
+                  >
+                    <span className="absolute inset-0 bg-gradient-to-r from-primary/40 via-primary/80 to-primary/40 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
+                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[#0a0a0a] px-8 md:px-10 text-sm md:text-base font-medium text-white backdrop-blur-3xl gap-3 transition-colors group-hover:bg-background whitespace-nowrap">
+                      Review My Current Setup
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                    </span>
+                  </a>
 
-              </Magnetic>
+                </Magnetic>
 
-              <div className="flex items-center gap-2 text-sm text-secondary">
-                <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                <span className="md:whitespace-nowrap">Find out what to turn off before you spend another dime.</span>
+                <Magnetic amount={0.2}>
+                  <a
+                    href="/solutions"
+                    className="inline-flex h-14 md:h-16 items-center justify-center rounded-full px-8 md:px-10 text-sm md:text-base font-medium text-white border border-white/10 hover:bg-white/5 transition-colors duration-300 whitespace-nowrap w-full sm:w-auto"
+                  >
+                    See How I Work
+                  </a>
+                </Magnetic>
+              </div>
+
+              <div className="flex flex-col items-center lg:items-start gap-3 mt-2">
+                <div className="flex items-center gap-2 text-sm text-secondary">
+                  <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
+                  <span className="md:whitespace-nowrap">Find out what to turn off before you spend another dime.</span>
+                </div>
+                <p className="text-xs text-secondary/60 max-w-md text-center lg:text-left">
+                  Built for businesses where the phone matters, time is limited, and bad systems quietly cost jobs.
+                </p>
               </div>
             </motion.div>
           </motion.div>

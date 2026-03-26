@@ -156,7 +156,7 @@ const Navbar: React.FC = () => {
             rel="noopener noreferrer"
             className="inline-block bg-primary hover:bg-[#ff8533] text-white px-6 py-2 rounded-full text-sm font-semibold transition-all hover:shadow-[0_0_20px_rgba(255,107,0,0.4)] transform hover:-translate-y-0.5 decoration-transparent"
           >
-            Start with a conversation
+            Review My Current Setup
           </a>
         </div>
 
@@ -197,7 +197,7 @@ const Navbar: React.FC = () => {
                 rel="noopener noreferrer"
                 className="block text-center bg-primary w-full py-3 rounded-full text-white font-bold decoration-transparent"
               >
-                Start with a conversation
+                Review My Current Setup
               </a>
             </div>
           </motion.div>

@@ -1,33 +1,57 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Search, TrendingUp, ShieldAlert, ArrowRight, MapPin, Zap } from 'lucide-react';
+import { MapPin, PhoneCall, Star, MousePointerClick, Search, Calendar, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 const solutions = [
     {
-        role: "Strategic Logic",
-        title: "Local Authority",
-        description: "Dominate the map and anchor your authority in the Montana market through proprietary proximity engines.",
-        tags: ["Proximity Mastery", "Semantic Trust", "Maps Dominance"],
+        role: "Visibility",
+        title: "Google Business Profile Optimization",
+        description: "Improve your Google Business Profile with complete business information, clearer categories, and stronger review signals so local customers can find you more easily.",
+        tags: ["Clear Categories", "Accurate Info", "Review Signals"],
         icon: MapPin,
         href: "/solutions/local-authority"
     },
     {
-        role: "Conversion Velocity",
-        title: "Lead Velocity",
-        description: "Stop losing jobs to slow responses. Instant lead capture and automated response built specifically for the Trades.",
-        tags: ["LSA Management", "Missed Call Recovery", "Automated Nurture"],
-        icon: Zap,
+        role: "Speed",
+        title: "Missed Call Recovery & Lead Response",
+        description: "Stop losing jobs to missed calls, slow replies, and follow-up gaps that cool leads off fast.",
+        tags: ["Auto-text Reply", "Call Tracking", "Lead Capture"],
+        icon: PhoneCall,
         href: "/solutions/lead-velocity"
     },
     {
-        role: "Operational Scaling",
-        title: "AI & Process Logic",
-        description: "Automation where it reduces effort and noise—capturing jobs you're currently losing to administrative friction.",
-        tags: ["Process Mapping", "Tool Integration", "Friction Reduction"],
-        icon: ShieldAlert,
-        href: "/#how-i-work"
+        role: "Trust",
+        title: "Review Generation Systems",
+        description: "Build a simple process that helps you get more reviews without constantly chasing customers.",
+        tags: ["Automated Requests", "Google Integration", "Reputation"],
+        icon: Star,
+        href: "/solutions"
+    },
+    {
+        role: "Conversion",
+        title: "Website Conversion Repair",
+        description: "Turn more visitors into calls, quote requests, and booked work by removing friction and tightening the message.",
+        tags: ["Clear CTAs", "Mobile Layouts", "Easy Forms"],
+        icon: MousePointerClick,
+        href: "/solutions"
+    },
+    {
+        role: "Analysis",
+        title: "Demand Leak Audit",
+        description: "Find out where visibility, follow-up, conversion, and response are breaking down before spending more money.",
+        tags: ["Data Review", "Process Mapping", "Cost Savings"],
+        icon: Search,
+        href: "/solutions"
+    },
+    {
+        role: "Automation",
+        title: "Estimate Follow-Up & Booking Automation",
+        description: "Keep quotes and inquiries from going cold with a cleaner, more consistent follow-up process.",
+        tags: ["Quote Tracking", "Status Updates", "Drip Campaigns"],
+        icon: Calendar,
+        href: "/solutions"
     }
 ];
 
@@ -60,7 +84,7 @@ const Solutions: React.FC = () => {
                         className="text-3xl md:text-5xl lg:text-6xl font-semibold text-white mb-6 tracking-normal"
 
                     >
-                        Strategic Infrastructure
+                        Core Services
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -111,7 +135,7 @@ const Solutions: React.FC = () => {
                                             {solution.description}
                                         </p>
                                         <div className="flex items-center gap-2 text-primary font-medium text-sm border-b border-primary/0 group-hover:border-primary/50 w-fit transition-all pb-0.5">
-                                            Explore Framework
+                                            View Details
                                             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                         </div>
                                     </div>

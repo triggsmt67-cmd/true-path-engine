@@ -18,10 +18,12 @@ const StakesSection: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="lg:col-span-5"
           >
-            <h2 className="text-4xl md:text-6xl font-semibold text-white mb-8 tracking-tight leading-[1]">
-              This work is for <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-orange-300">business owners who are done guessing.</span>
+            <h2 className="text-4xl md:text-6xl font-semibold text-white mb-6 tracking-tight leading-[1.1]">
+              Who This Is For
             </h2>
+            <p className="text-xl md:text-2xl text-secondary leading-relaxed max-w-md font-light mb-8 lg:mb-0">
+              Built for businesses where the owner is busy, the phone matters, and bad follow-up costs real jobs.
+            </p>
             <div className="hidden lg:block relative h-64">
               <div className="absolute inset-0 bg-primary/5 blur-[80px] rounded-full" />
               <UserCheck className="w-32 h-32 text-primary/10 absolute top-10 left-10" />
@@ -39,15 +41,16 @@ const StakesSection: React.FC = () => {
             {/* List */}
             <ul className="space-y-8">
               {[
-                "don’t know which marketing advice to trust anymore",
-                "want clarity before committing more money",
-                "care more about understanding than hype"
+                "Owner-operated local service providers",
+                "Businesses losing jobs to missed calls, slow response, or weak local visibility",
+                "Owners who want clarity before committing more marketing dollars",
+                "Businesses needing better conversion and stronger trust from existing demand"
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-6 group">
                   <div className="p-3 rounded-2xl bg-white/[0.03] border border-white/10 text-primary group-hover:bg-primary group-hover:text-white transition-all">
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
-                  <span className="text-xl md:text-2xl text-secondary font-normal leading-relaxed lowercase">{item}</span>
+                  <span className="text-xl md:text-2xl text-secondary font-light leading-relaxed">{item}</span>
                 </li>
               ))}
             </ul>
@@ -58,11 +61,11 @@ const StakesSection: React.FC = () => {
                 <Sparkles className="w-16 h-16 text-primary" />
               </div>
               <div className="space-y-6 relative z-10">
-                <p className="text-lg md:text-xl text-secondary font-normal leading-relaxed">
-                  If you’re looking for someone to “just run ads,” this won’t be a good fit.
+                <p className="text-lg md:text-xl text-secondary font-light leading-relaxed">
+                  If you have a large corporate marketing department or want flashy agency hype, this isn’t a good fit.
                 </p>
                 <p className="text-xl md:text-2xl text-white font-medium leading-relaxed">
-                  If you want to understand why things work — and make the next decision with confidence — we’ll work well together.
+                  If you want practical, plainspoken consulting that fixes real revenue leaks—we’ll work well together.
                 </p>
               </div>
             </div>
