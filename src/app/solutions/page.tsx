@@ -24,7 +24,7 @@ const coreServices = [
     title: "Review Generation Systems",
     description: "Build a simple process that helps you get more reviews without constantly chasing customers.",
     icon: "Star",
-    href: "#",
+    href: "/solutions/review-system",
     color: "text-cyan-400",
     spotlight: "rgba(6, 182, 212, 0.05)"
   },
@@ -32,7 +32,7 @@ const coreServices = [
     title: "Website Conversion Repair",
     description: "Turn more visitors into calls, quote requests, and booked work by removing friction and tightening the message.",
     icon: "Globe",
-    href: "#",
+    href: "/solutions/website-conversion",
     color: "text-emerald-400",
     spotlight: "rgba(16, 185, 129, 0.05)"
   },
@@ -40,7 +40,7 @@ const coreServices = [
     title: "Demand Leak Audit",
     description: "Find out where visibility, follow-up, conversion, and response are breaking down before spending more money.",
     icon: "Target",
-    href: "#",
+    href: "/solutions/demand-audit",
     color: "text-violet-400",
     spotlight: "rgba(139, 92, 246, 0.05)"
   },
@@ -48,7 +48,7 @@ const coreServices = [
     title: "Estimate Follow-Up & Booking Automation",
     description: "Keep quotes and inquiries from going cold with a cleaner, more consistent follow-up process.",
     icon: "MessageSquare",
-    href: "#",
+    href: "/solutions/estimate-follow-up",
     color: "text-amber-400",
     spotlight: "rgba(245, 158, 11, 0.05)"
   },
@@ -56,7 +56,7 @@ const coreServices = [
     title: "Local Services Ads Setup & Cleanup",
     description: "Improve lead flow from Local Services Ads with cleaner setup, better response handling, and less wasted spend.",
     icon: "Settings",
-    href: "#",
+    href: "/solutions/local-services-ads",
     color: "text-indigo-400",
     spotlight: "rgba(99, 102, 241, 0.05)"
   }

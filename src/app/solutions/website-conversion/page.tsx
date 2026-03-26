@@ -4,66 +4,66 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SectionSeparator from '@/components/SectionSeparator';
 import { SpotlightCard } from '@/components/SpotlightCard';
-import { Shield, Search, ArrowRight, CheckCircle2, Target, Zap, Settings, Star } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Target, Settings, HelpCircle, MousePointer2, ShieldAlert, AlertOctagon, MessageSquare, ShieldCheck, LineChart } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Google Business Profile Optimization | True Path Digital',
-  description: 'Improve your Google Business Profile so local customers can find you more easily, trust what they see, and take action faster.',
+  title: 'Website Conversion Repair | True Path Digital',
+  description: 'Fix the parts of your website that create hesitation, confusion, or friction so more of your existing traffic turns into real inquiries.',
   alternates: {
-    canonical: 'https://truepath406.com/solutions/local-authority'
+    canonical: 'https://truepath406.com/solutions/website-conversion'
   }
 };
 
 const problemCards = [
   {
-    title: "Weak local visibility",
-    body: "Your business is not showing up clearly enough when nearby customers search for the services you actually offer.",
-    icon: Search
+    title: "Unclear messaging",
+    body: "People land on the site, but they cannot quickly tell what you do, who you help, or why they should trust you.",
+    icon: HelpCircle
+  },
+  {
+    title: "Weak calls to action",
+    body: "The site does not make the next step obvious enough, so visitors hesitate instead of calling or reaching out.",
+    icon: MousePointer2
   },
   {
     title: "Thin trust signals",
-    body: "Your profile may exist, but weak reviews, outdated details, or poor presentation make it easier to skip.",
-    icon: Shield
+    body: "Reviews, proof, photos, service detail, and credibility cues are too weak to support a confident decision.",
+    icon: ShieldAlert
   },
   {
-    title: "Confusing services",
-    body: "Customers cannot quickly tell what you do, where you work, or whether you are the right fit.",
-    icon: Target
-  },
-  {
-    title: "Traffic that does not convert",
-    body: "People find you, but the profile and linked website do not make the next step clear enough.",
-    icon: Zap
+    title: "Friction that kills action",
+    body: "Mobile experience, layout issues, confusing page flow, or scattered information make it harder than it should be to take the next step.",
+    icon: AlertOctagon
   }
 ];
 
 const optimizationChecklist = [
-  "Google Business Profile audit",
-  "Primary and secondary category review",
-  "Service list cleanup and clarification",
-  "Business description rewrite",
-  "Hours, details, and profile accuracy cleanup",
-  "Review and response guidance",
-  "Photo and media recommendations",
-  "Website link and conversion alignment",
+  "Homepage messaging review",
+  "Service-page clarity review",
+  "Call-to-action cleanup",
+  "Trust signal review",
+  "Mobile conversion friction review",
+  "Page hierarchy and content flow improvements",
+  "Contact and quote-request path cleanup",
+  "Service-to-page alignment recommendations",
   "Priority action plan for what to fix first"
 ];
 
 const whoThisIsFor = [
-  "HVAC, plumbing, electrical, roofing, septic, cleaning, landscaping, auto repair, and similar service businesses",
-  "Owner-operated or family-run businesses where the phone matters",
-  "Companies with an active Google profile that still feels underwhelming",
-  "Businesses that want clearer visibility before spending more on ads"
+  "Owner-operated businesses relying on calls and quote requests",
+  "Companies with a site that feels dated, thin, confusing, or underwhelming",
+  "Businesses getting traffic but not enough inquiries from it",
+  "Teams that need a clearer path from visit to action"
 ];
 
-export default function GoogleBusinessProfilePage() {
+export default function WebsiteConversionPage() {
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": "https://truepath406.com/solutions/local-authority#service",
-    "name": "Google Business Profile Optimization",
-    "serviceType": "Local Visibility & Conversion",
+    "@id": "https://truepath406.com/solutions/website-conversion#service",
+    "name": "Website Conversion Repair",
+    "serviceType": "Conversion Rate Optimization",
     "provider": {
       "@id": "https://truepath406.com/#organization"
     },
@@ -71,7 +71,7 @@ export default function GoogleBusinessProfilePage() {
       "@type": "State",
       "name": "Montana"
     },
-    "description": "Improve your Google Business Profile so local customers can find you more easily, trust what they see, and take action faster."
+    "description": "Fix the parts of your website that create hesitation, confusion, or friction so more of your existing traffic turns into real inquiries."
   };
 
   return (
@@ -100,23 +100,23 @@ export default function GoogleBusinessProfilePage() {
             <div className="max-w-[1400px] mx-auto px-6">
               <div className="max-w-4xl">
                 <div className="flex items-center gap-3 mb-8">
-                  <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_10px_#FF6B00]"></span>
+                  <span className="w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_#FF6B00]"></span>
                   <span className="text-[10px] md:text-xs font-semibold tracking-[0.2em] text-primary uppercase">
                     Core Service
                   </span>
                 </div>
                 
                 <h1 className="text-5xl md:text-6xl lg:text-8xl font-semibold mb-10 tracking-tighter leading-[1.05]">
-                  Show Up Better in <br className="hidden sm:block" />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#fbbf24] via-primary to-[#78350f]">Local Search</span>
+                  Turn More Website Visitors <br className="hidden lg:block" />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#fbbf24] via-primary to-[#78350f]">Into Calls</span>
                 </h1>
                 
                 <p className="text-xl md:text-2xl text-white font-medium mb-6">
-                  Improve your Google Business Profile so local customers can find you more easily, trust what they see, and take action faster.
+                  Fix the parts of your website that create hesitation, confusion, or friction so more of your existing traffic turns into real inquiries.
                 </p>
 
                 <p className="text-lg md:text-xl text-secondary/80 mb-12 max-w-2xl leading-relaxed font-light">
-                  This is practical help for service businesses with weak visibility, unclear service messaging, stale profile details, or trust signals that are not doing enough work.
+                  This is practical help for service businesses whose website may look acceptable, but is not doing enough to support trust, action, and booked work.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center gap-6">
@@ -153,10 +153,10 @@ export default function GoogleBusinessProfilePage() {
             <div className="max-w-[1400px] mx-auto px-6">
               <div className="mb-16 max-w-3xl">
                 <h2 className="text-3xl md:text-5xl font-semibold text-white mb-8 tracking-tight leading-tight">
-                  Your profile should help people choose you faster.
+                  A website can look fine and still underperform.
                 </h2>
                 <p className="text-xl text-secondary font-light leading-relaxed">
-                  A weak Google Business Profile quietly costs jobs. Sometimes the business is good, but the profile looks incomplete, unclear, or stale. That gap creates doubt right when a customer is deciding who to call.
+                  A lot of small service businesses assume their website is “good enough” because it loads, has a few pages, and shows their phone number. But if the message is unclear, trust is weak, or the next step is not obvious, real visitors leave without calling.
                 </p>
               </div>
 
@@ -187,13 +187,13 @@ export default function GoogleBusinessProfilePage() {
                     </div>
                     <h3 className="text-2xl font-semibold text-white mb-6 relative z-10">The Goal</h3>
                     <p className="text-secondary font-light leading-relaxed mb-6 relative z-10">
-                      This service is for businesses that already have a profile but know it is not doing enough.
+                      This service is for businesses already getting some traffic but not enough action from it.
                     </p>
                     <p className="text-secondary font-light leading-relaxed mb-6 relative z-10">
-                      The goal is <span className="text-white font-medium">not</span> to make the page look “optimized.” 
+                      The goal is <span className="text-white font-medium">not</span> to redesign everything for the sake of it.
                     </p>
                     <p className="text-secondary font-light leading-relaxed relative z-10">
-                      The goal is to make it clearer, stronger, and more trustworthy where real customers are already searching.
+                      The goal is to fix the parts of the site that get in the way of trust and conversion.
                     </p>
                   </SpotlightCard>
                 </div>
@@ -201,15 +201,15 @@ export default function GoogleBusinessProfilePage() {
             </div>
           </section>
 
-          <SectionSeparator number="02" title="WHAT I ACTUALLY OPTIMIZE" />
+          <SectionSeparator number="02" title="WHAT I ACTUALLY HELP IMPROVE" />
 
-          {/* 3. WHAT I ACTUALLY OPTIMIZE SECTION */}
+          {/* 3. WHAT I ACTUALLY HELP IMPROVE SECTION */}
           <section className="py-20 lg:py-32 bg-[#080808] border-y border-white/5 relative overflow-hidden">
              <div className="absolute inset-0 bg-primary/2 blur-[120px] pointer-events-none" />
              <div className="max-w-[1400px] mx-auto px-6 relative z-10">
                 <div className="mb-16">
-                  <h2 className="text-3xl md:text-5xl font-semibold text-white mb-6 tracking-tight">Concrete profile improvements.</h2>
-                  <p className="text-xl text-primary font-medium">Not vague SEO language.</p>
+                  <h2 className="text-3xl md:text-5xl font-semibold text-white mb-6 tracking-tight">Practical website fixes.</h2>
+                  <p className="text-xl text-primary font-medium">Not vague redesign talk.</p>
                 </div>
                 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -230,9 +230,9 @@ export default function GoogleBusinessProfilePage() {
           {/* 4. WHO THIS IS FOR SECTION */}
           <section className="py-20">
              <div className="max-w-[1400px] mx-auto px-6">
-                <div className="mb-16 max-w-2xl">
+                <div className="mb-16 max-w-3xl">
                   <h2 className="text-3xl md:text-5xl font-semibold text-white mb-8 tracking-tight leading-tight">
-                    Built for service businesses where visibility and trust affect the next call.
+                    Built for service businesses that need their website to do more than just exist.
                   </h2>
                 </div>
 
@@ -262,47 +262,47 @@ export default function GoogleBusinessProfilePage() {
                    </div>
                    
                    <h2 className="text-3xl md:text-5xl font-semibold text-white mb-16 tracking-tight relative z-10 max-w-3xl">
-                     A stronger local presence that makes <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbbf24] to-primary">choosing you easier.</span>
+                     A site that makes the next step <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbbf24] to-primary">easier to take.</span>
                    </h2>
 
                    <div className="grid md:grid-cols-2 gap-x-12 gap-y-10 relative z-10">
                       <div className="flex gap-5">
                          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                           <Shield className="w-5 h-5 text-primary" />
+                           <MessageSquare className="w-5 h-5 text-primary" />
                          </div>
                          <div>
-                           <p className="text-lg text-white font-medium mb-2">A more credible profile</p>
-                           <p className="text-secondary font-light leading-relaxed">A profile that looks more complete, credible, and current.</p>
+                           <p className="text-lg text-white font-medium mb-2">Clearer messaging</p>
+                           <p className="text-secondary font-light leading-relaxed">Language that helps visitors understand the offer faster.</p>
                          </div>
                       </div>
                       
                       <div className="flex gap-5">
                          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                           <Search className="w-5 h-5 text-primary" />
-                         </div>
-                         <div>
-                           <p className="text-lg text-white font-medium mb-2">Clearer service language</p>
-                           <p className="text-secondary font-light leading-relaxed">Messaging that matches what customers are actually searching for.</p>
-                         </div>
-                      </div>
-                      
-                      <div className="flex gap-5">
-                         <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                           <Star className="w-5 h-5 text-primary" />
+                           <ShieldCheck className="w-5 h-5 text-primary" />
                          </div>
                          <div>
                            <p className="text-lg text-white font-medium mb-2">Stronger trust signals</p>
-                           <p className="text-secondary font-light leading-relaxed">Enhanced trust through better review presentation, visuals, and profile detail.</p>
+                           <p className="text-secondary font-light leading-relaxed">Proof and credibility visible at the exact moment people are deciding.</p>
                          </div>
                       </div>
                       
                       <div className="flex gap-5">
                          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                           <Zap className="w-5 h-5 text-primary" />
+                           <ArrowRight className="w-5 h-5 text-primary" />
                          </div>
                          <div>
-                           <p className="text-lg text-white font-medium mb-2">A cleaner conversion path</p>
-                           <p className="text-secondary font-light leading-relaxed">A straightforward path from search to call, click, or booking.</p>
+                           <p className="text-lg text-white font-medium mb-2">Better calls to action</p>
+                           <p className="text-secondary font-light leading-relaxed">Cleaner page flow with obvious next steps that guide users to reach out.</p>
+                         </div>
+                      </div>
+                      
+                      <div className="flex gap-5">
+                         <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                           <LineChart className="w-5 h-5 text-primary" />
+                         </div>
+                         <div>
+                           <p className="text-lg text-white font-medium mb-2">Fewer points of confusion</p>
+                           <p className="text-secondary font-light leading-relaxed">A more useful website that actively supports calls, quote requests, and booked work.</p>
                          </div>
                       </div>
                    </div>
@@ -323,11 +323,11 @@ export default function GoogleBusinessProfilePage() {
 
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-8 tracking-tighter leading-tight">
                 Start with a review of <br className="hidden sm:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbbf24] to-primary">your current profile.</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbbf24] to-primary">what your website is doing now.</span>
               </h2>
               
               <p className="text-lg text-secondary/80 font-light leading-relaxed mb-12 max-w-2xl mx-auto">
-                If the profile is thin, unclear, out of date, or not aligned with the services you actually want more of, that is usually visible pretty fast. The first step is not guessing. It is reviewing what is there now and identifying what to fix first.
+                If your site is getting traffic but not enough calls or inquiries, that usually points to a clarity or friction problem. The first step is to look at what a real visitor is seeing, where trust is weak, and what is getting in the way of action.
               </p>
 
               <div className="flex flex-col items-center justify-center gap-6">
@@ -362,23 +362,23 @@ export default function GoogleBusinessProfilePage() {
                 
                 <div className="space-y-6">
                    <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.05)" className="p-8 md:p-10 bg-[#0a0a0a] border border-white/10 shadow-2xl shadow-black/40 rounded-[2rem]">
-                      <h3 className="text-xl font-semibold text-white mb-4">Is this the same thing as local SEO?</h3>
+                      <h3 className="text-xl font-semibold text-white mb-4">Is this a full website redesign?</h3>
                       <p className="text-lg text-secondary font-light leading-relaxed">
-                        Part of it overlaps, but this service is more practical and more focused. It is about improving the actual Google Business Profile customers see when they search, not selling vague SEO work.
+                        Not necessarily. Sometimes the biggest gains come from fixing messaging, calls to action, trust signals, and page flow without rebuilding the whole site.
                       </p>
                    </SpotlightCard>
                    
                    <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.05)" className="p-8 md:p-10 bg-[#0a0a0a] border border-white/10 shadow-2xl shadow-black/40 rounded-[2rem]">
-                      <h3 className="text-xl font-semibold text-white mb-4">Can you guarantee rankings?</h3>
+                      <h3 className="text-xl font-semibold text-white mb-4">How do I know if my website is the problem?</h3>
                       <p className="text-lg text-secondary font-light leading-relaxed">
-                        No. But I can improve the quality, clarity, and trust of the profile, which gives you a stronger local presence and a better shot at converting the visibility you earn.
+                        If traffic is coming in but calls and quote requests feel weaker than they should, the website may be creating confusion or friction at the wrong moment.
                       </p>
                    </SpotlightCard>
 
                    <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.05)" className="p-8 md:p-10 bg-[#0a0a0a] border border-white/10 shadow-2xl shadow-black/40 rounded-[2rem]">
                       <h3 className="text-xl font-semibold text-white mb-4">Who is this best for?</h3>
                       <p className="text-lg text-secondary font-light leading-relaxed">
-                        It is best for local service businesses that already have a profile but know it is incomplete, stale, underperforming, or not aligned with the work they actually want more of.
+                        It is best for local service businesses with an existing website that feels underwhelming, unclear, or not effective enough at turning traffic into real inquiries.
                       </p>
                    </SpotlightCard>
                 </div>

@@ -1,52 +1,69 @@
-
 import React from 'react';
 import { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SectionSeparator from '@/components/SectionSeparator';
 import { SpotlightCard } from '@/components/SpotlightCard';
-import { Zap, PhoneCall, MessageSquare, TrendingUp, ArrowRight, CheckCircle2, ShieldCheck, Clock } from 'lucide-react';
+import { Shield, ArrowRight, CheckCircle2, Target, Zap, Settings, PhoneMissed, Clock, Filter, FileText, CheckCircle, TrendingUp, Key, BrainCircuit } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Lead Velocity Framework | High-Performance Trade Growth',
-  description: 'The Lead Velocity Framework: Stop losing jobs to slow responses. A proprietary conversion engine for Montana trade businesses—Plumbing, HVAC, and Septic.',
+  title: 'Missed Call Recovery & Lead Response | True Path Digital',
+  description: 'Set up a cleaner, faster lead-response process so calls, forms, and quote requests stop slipping through the cracks.',
   alternates: {
     canonical: 'https://truepath406.com/solutions/lead-velocity'
   }
 };
 
-const pillars = [
+const problemCards = [
   {
-    role: "Demand Capture",
-    title: "The Intent Siphon",
-    description: "We don't chase 'likes.' We position your business at the top of Google Local Services (LSA) exactly when an emergency happens.",
-    tags: ["LSA Management", "High-Intent Search", "Emergency Call Capture"],
-    icon: PhoneCall
+    title: "Missed calls",
+    body: "The phone rings, no one answers, and the lead moves on to the next business before anyone calls back.",
+    icon: PhoneMissed
   },
   {
-    role: "Response Speed",
-    title: "Missed Call S-O-S",
-    description: "Every missed call is a job for your competitor. Our system sends an instant SMS response to capture the lead before they call the next guy.",
-    tags: ["Instant SMS Back-link", "Leaked Lead Recovery", "24/7 Response Logic"],
-    icon: MessageSquare
+    title: "Slow response",
+    body: "Even interested customers cool off fast when replies take too long or no one follows up clearly.",
+    icon: Clock
   },
   {
-    role: "Revenue Engine",
-    title: "Appointment Velocity",
-    description: "Automated scheduling and follow-ups. We turn incoming noise into confirmed appointments in your calendar, with zero effort from your techs.",
-    tags: ["Automated Nurture", "Calendar Integration", "Lead-to-Job Tracking"],
-    icon: TrendingUp
+    title: "Inconsistent intake",
+    body: "Calls, forms, texts, and quote requests come in through different places, but there is no clean process for handling them.",
+    icon: Filter
+  },
+  {
+    title: "Quotes that go cold",
+    body: "Estimates are sent, then forgotten. Without follow-up, warm opportunities quietly disappear.",
+    icon: FileText
   }
 ];
 
-export default function LeadVelocityPage() {
-  const leadVelocitySchema = {
+const optimizationChecklist = [
+  "Lead-response audit",
+  "Missed call risk review",
+  "Intake path cleanup",
+  "Response-speed review",
+  "Follow-up gap identification",
+  "Quote and estimate follow-up recommendations",
+  "Simple missed call recovery process",
+  "Call / text / form handoff cleanup",
+  "Priority action plan for what to fix first"
+];
+
+const whoThisIsFor = [
+  "Owner-operated businesses where the owner is often in the field",
+  "Small teams where calls, forms, and admin are handled inconsistently",
+  "Businesses getting leads but not enough booked jobs from them",
+  "Companies where estimates and callbacks tend to fall through the cracks"
+];
+
+export default function LeadResponsePage() {
+  const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
     "@id": "https://truepath406.com/solutions/lead-velocity#service",
-    "name": "Lead Velocity Framework",
-    "serviceType": "Lead Capture & Automation",
+    "name": "Missed Call Recovery & Lead Response",
+    "serviceType": "Lead Management & Operations",
     "provider": {
       "@id": "https://truepath406.com/#organization"
     },
@@ -54,16 +71,18 @@ export default function LeadVelocityPage() {
       "@type": "State",
       "name": "Montana"
     },
-    "description": "Stop losing jobs to slow responses. A proprietary conversion engine for Montana trade businesses including Plumbing, HVAC, and Septic."
+    "description": "Set up a cleaner, faster lead-response process so calls, forms, and quote requests stop slipping through the cracks."
   };
 
   return (
     <div className="min-h-screen bg-background text-ice font-sans selection:bg-primary selection:text-white relative">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(leadVelocitySchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
-      <div className="fixed inset-0 z-0 pointer-events-none flex justify-center">
+      
+      {/* Global Background Grid */}
+      <div className="fixed inset-0 z-0 pointer-events-none flex justify-center opacity-40">
         <div className="w-full max-w-[1400px] h-full border-l border-white/[0.03] border-r flex justify-between">
           <div className="h-full w-px bg-white/[0.03]"></div>
           <div className="h-full w-px bg-white/[0.03]"></div>
@@ -76,220 +95,296 @@ export default function LeadVelocityPage() {
         <Navbar />
         
         <main className="pt-24 md:pt-32">
-          {/* Lead Velocity Hero */}
+          {/* 1. HERO SECTION */}
           <section className="relative py-20 lg:py-32 overflow-hidden">
             <div className="max-w-[1400px] mx-auto px-6">
               <div className="max-w-4xl">
                 <div className="flex items-center gap-3 mb-8">
-                  <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_10px_#FF6B00]"></span>
-                  <span className="text-[10px] md:text-xs font-medium tracking-[0.2em] text-primary uppercase">
-                    Logic Pillar 02
+                  <span className="w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_#FF6B00]"></span>
+                  <span className="text-[10px] md:text-xs font-semibold tracking-[0.2em] text-primary uppercase">
+                    Core Service
                   </span>
                 </div>
                 
-                <h1 className="text-4xl md:text-6xl lg:text-8xl font-semibold mb-10 tracking-tighter leading-[1.1]">
-                   Stop losing jobs <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#fbbf24] via-primary to-[#78350f]">to the slow response.</span>
+                <h1 className="text-5xl md:text-6xl lg:text-8xl font-semibold mb-10 tracking-tighter leading-[1.05]">
+                  Stop Losing Jobs to <br className="hidden lg:block" />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#fbbf24] via-primary to-[#78350f]">Missed Calls and Slow Response</span>
                 </h1>
                 
-                <p className="text-xl md:text-2xl text-secondary mb-12 max-w-2xl leading-relaxed font-light">
-                  Most leads are lost in the first 5 minutes. The Lead Velocity Framework turns your phone into a high-speed revenue engine. Built for the Trades.
+                <p className="text-xl md:text-2xl text-white font-medium mb-6">
+                  Set up a cleaner, faster lead-response process so calls, forms, and quote requests stop slipping through the cracks.
+                </p>
+
+                <p className="text-lg md:text-xl text-secondary/80 mb-12 max-w-2xl leading-relaxed font-light">
+                  This is practical help for service businesses where the owner is busy, the phone matters, and weak follow-up quietly costs real jobs.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center gap-6">
                   <Link
                     href="https://calendly.com/triggsmt67"
-                    className="relative inline-flex h-16 w-full sm:w-auto overflow-hidden rounded-full p-[1px] group"
+                    className="relative inline-flex h-16 w-full sm:w-auto overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-[0_0_40px_-5px_rgba(180,83,9,0.35)] transition-all hover:scale-[1.02] active:scale-95 duration-300"
                   >
-                    <span className="absolute inset-0 bg-gradient-to-r from-primary/40 via-primary/80 to-primary/40 opacity-70 group-hover:opacity-100 transition-opacity" />
-                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[#0a0a0a] px-10 text-base font-medium text-white backdrop-blur-3xl gap-3 transition-colors group-hover:bg-background whitespace-nowrap">
-                      Audit Your Lead Speed
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    <span className="absolute inset-0 bg-gradient-to-r from-primary/40 via-primary/80 to-primary/40 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
+                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[#0a0a0a] px-10 text-base font-semibold text-white backdrop-blur-3xl gap-3 transition-colors group-hover:bg-background whitespace-nowrap">
+                      Review My Current Setup
+                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                     </span>
                   </Link>
                   
-                  <div className="flex items-center gap-2 text-sm text-secondary/60 italic">
-                    <Clock className="w-4 h-4 text-primary" />
-                    <span>Average tradesman response time: 24h. Yours? 30 seconds.</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <SectionSeparator number="01" title="THE LEAK" />
-          
-          {/* The Pain Section */}
-          <section className="py-20 bg-white/[0.01]">
-            <div className="max-w-[1400px] mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
-              <div>
-                <h2 className="text-3xl md:text-5xl font-semibold mb-8 tracking-tight">
-                  Your "SEO" doesn't matter <br />
-                  if no one answers the phone.
-                </h2>
-                <div className="space-y-6 text-lg text-secondary/80 font-light leading-relaxed">
-                  <p>
-                    You can spend thousands to be #1 in the Maps, but if a homeowner with a failed septic tank calls you and it goes to voicemail, they are clicking the next listing.
-                  </p>
-                  <p>
-                    <strong>The job is gone.</strong>
-                  </p>
-                  <p>
-                    The Lead Velocity Framework is about <span className="text-white font-normal">Revenue Insurance.</span> We fix the leaky bucket of missed calls and slow follow-ups so that every marketing dollar you spend actually puts a truck in a driveway.
-                  </p>
-                </div>
-              </div>
-              <div className="bg-white/[0.02] border border-white/5 p-12 rounded-3xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-8 opacity-20">
-                  <ShieldCheck className="w-40 h-40 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold mb-6 uppercase tracking-widest text-primary">The Logic</h3>
-                <ul className="space-y-8 relative z-10">
-                  <li className="flex gap-4">
-                    <span className="text-primary font-mono text-sm pt-1">01</span>
-                    <div>
-                      <h4 className="font-medium text-white mb-2">High-Intent Siphon</h4>
-                      <p className="text-sm text-secondary/60">Using LSA and Google Search to only capture people who need a solution right now.</p>
-                    </div>
-                  </li>
-                  <li className="flex gap-4">
-                    <span className="text-primary font-mono text-sm pt-1">02</span>
-                    <div>
-                      <h4 className="font-medium text-white mb-2">Missed Call Recovery</h4>
-                      <p className="text-sm text-secondary/60">If you miss a call, an automated text conversation starts instantly to book the quote.</p>
-                    </div>
-                  </li>
-                  <li className="flex gap-4">
-                    <span className="text-primary font-mono text-sm pt-1">03</span>
-                    <div>
-                      <h4 className="font-medium text-white mb-2">Speed-to-Lead Ratio</h4>
-                      <p className="text-sm text-secondary/60">Studies show response under 5 mins increases close rates by 391%.</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <SectionSeparator number="02" title="THE INFRASTRUCTURE" />
-
-          {/* Pillars Grid */}
-          <section className="py-20 mb-32">
-            <div className="max-w-[1400px] mx-auto px-6">
-              <div className="mb-16 max-w-xl">
-                <h2 className="text-3xl md:text-5xl font-semibold text-white mb-8 tracking-tight">The Velocity Engine</h2>
-                <p className="text-lg text-secondary font-light">Built for plumbers, HVAC techs, and service pro owners who are too busy working to play receptionist.</p>
-              </div>
-              
-              <div className="grid md:grid-cols-3 gap-8">
-                {pillars.map((pillar, index) => (
-                  <SpotlightCard
-                    key={index}
-                    spotlightColor="rgba(255, 107, 0, 0.1)"
-                    className="relative flex flex-col h-full bg-white/[0.02] border border-white/5 rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 group"
+                  <Link
+                    href="/#how-i-work"
+                    className="inline-flex h-16 w-full sm:w-auto items-center justify-center rounded-full px-10 text-base font-medium text-white border border-white/10 hover:bg-white/5 transition-colors duration-300 whitespace-nowrap"
                   >
-                    <div className="absolute left-0 top-1/2 -translate-y-1/2 h-2/3 w-[2px] bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200" />
-                    
-                    <div className="flex items-center justify-between mb-8">
-                      <div className="text-secondary group-hover:text-primary transition-colors duration-300">
-                        <pillar.icon className="w-6 h-6" strokeWidth={1.5} />
-                      </div>
-                      <span className="text-[10px] font-medium text-secondary uppercase tracking-widest bg-white/[0.03] px-2 py-1 rounded">
-                        {pillar.role}
-                      </span>
-                    </div>
-
-                    <div className="flex-1 mb-8">
-                      <h3 className="text-xl md:text-2xl font-semibold text-white mb-4 tracking-tight">
-                        {pillar.title}
-                      </h3>
-                      <p className="text-secondary text-sm leading-relaxed font-light">
-                        {pillar.description}
-                      </p>
-                    </div>
-
-                    <div className="space-y-2 pt-6 border-t border-white/5">
-                      {pillar.tags.map((tag, i) => (
-                        <div key={i} className="flex items-center gap-2 text-xs text-secondary/60 group-hover:text-secondary transition-colors">
-                          <div className="w-1 h-1 rounded-full bg-gray-700 group-hover:bg-primary/50 transition-colors"></div>
-                          {tag}
-                        </div>
-                      ))}
-                    </div>
-                  </SpotlightCard>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* Value Comparison */}
-          <section className="py-20 mb-20">
-            <div className="max-w-[1400px] mx-auto px-6">
-              <div className="grid lg:grid-cols-2 gap-12 items-center bg-[#0d0d0d] rounded-3xl border border-white/5 overflow-hidden">
-                <div className="p-12 lg:p-20">
-                  <h2 className="text-3xl md:text-5xl font-semibold mb-8 tracking-tight">Stop wasting quotes.</h2>
-                  <p className="text-lg text-secondary/80 font-light mb-12">
-                    Traditional marketing gets you phone calls. We get you appointments.
-                  </p>
-                  
-                  <div className="space-y-4">
-                    <div className="flex items-start gap-4 p-6 bg-white/[0.02] border border-white/5 rounded-xl">
-                      <div className="bg-red-500/10 p-2 rounded-lg mt-1">
-                        <Clock className="w-5 h-5 text-red-500" />
-                      </div>
-                      <div>
-                        <h4 className="text-white font-medium mb-1">Standard Marketing Flow</h4>
-                        <p className="text-sm text-secondary/50">Missed calls go to voicemail. Leads wait 48 hours for a callback. By then, they've already booked your neighbor.</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start gap-4 p-6 bg-primary/5 border border-primary/20 rounded-xl relative overflow-hidden group">
-                      <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
-                        <Zap className="w-20 h-20 text-primary" />
-                      </div>
-                      <div className="bg-primary/10 p-2 rounded-lg mt-1">
-                        <CheckCircle2 className="w-5 h-5 text-primary" />
-                      </div>
-                      <div>
-                        <h4 className="text-primary font-bold mb-1">Lead Velocity Engine</h4>
-                        <p className="text-sm text-primary/70 font-medium">Instant AI-driven response. Missed calls recovered in 15 seconds. High-intent buyers captured and booked 24/7.</p>
-                      </div>
-                    </div>
-                  </div>
+                    See How I Work
+                  </Link>
                 </div>
                 
-                <div className="relative h-full min-h-[400px] bg-gradient-to-br from-primary/20 to-[#0a0a0a] flex items-center justify-center p-12">
-                   <div className="text-center">
-                     <PhoneCall className="w-24 h-24 text-primary mx-auto mb-8 opacity-40" />
-                     <h3 className="text-4xl font-semibold text-white mb-6">Built for Trades.</h3>
-                     <p className="text-secondary max-w-sm mx-auto">No fluff. Just jobs on the board.</p>
-                   </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* Trade CTA */}
-          <section className="py-20 md:py-32 bg-primary relative overflow-hidden text-center group">
-             <div className="absolute inset-0 bg-black/10 mix-blend-overlay"></div>
-             <div className="max-w-4xl mx-auto px-6 relative z-10">
-                <h2 className="text-4xl md:text-6xl lg:text-7xl font-semibold text-white mb-10 tracking-tighter">
-                   Let's see how many <br />
-                   jobs you're losing.
-                </h2>
-                <p className="text-xl md:text-2xl text-white/80 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
-                   Run a free Missed Call Audit. We'll simulate a high-intent search and show you exactly where your intake process is breaking.
+                <p className="text-sm text-secondary/60 mt-6 sm:ml-4 text-center sm:text-left">
+                  Takes 15 minutes. No sales pitch. I’ll call your cell.
                 </p>
+              </div>
+            </div>
+          </section>
+
+          <SectionSeparator number="01" title="WHAT THIS FIXES" />
+          
+          {/* 2. WHAT THIS FIXES SECTION */}
+          <section className="py-20">
+            <div className="max-w-[1400px] mx-auto px-6">
+              <div className="mb-16 max-w-3xl">
+                <h2 className="text-3xl md:text-5xl font-semibold text-white mb-8 tracking-tight leading-tight">
+                  Most lost jobs do not look like “marketing problems.”
+                </h2>
+                <p className="text-xl text-secondary font-light leading-relaxed">
+                  A lot of service businesses think they need more leads when the real problem is that the leads they already get are not being handled fast enough or consistently enough. Missed calls, slow follow-up, and weak intake systems quietly kill booked work.
+                </p>
+              </div>
+
+              <div className="grid lg:grid-cols-3 gap-8 items-start">
+                <div className="lg:col-span-2 grid sm:grid-cols-2 gap-6">
+                  {problemCards.map((card, index) => (
+                    <SpotlightCard
+                      key={index}
+                      spotlightColor="rgba(255, 107, 0, 0.05)"
+                      className="p-8 bg-white/[0.02] border border-white/10 shadow-xl shadow-black/40 rounded-3xl h-full flex flex-col"
+                    >
+                      <div className="w-12 h-12 rounded-xl bg-white/[0.03] flex items-center justify-center text-primary mb-6">
+                        <card.icon className="w-6 h-6" />
+                      </div>
+                      <h3 className="text-xl font-semibold text-white mb-3">{card.title}</h3>
+                      <p className="text-secondary/70 font-light leading-relaxed">{card.body}</p>
+                    </SpotlightCard>
+                  ))}
+                </div>
+
+                <div className="lg:col-span-1 h-full">
+                  <SpotlightCard
+                    spotlightColor="rgba(255, 107, 0, 0.08)"
+                    className="p-10 bg-[#0d0d0d] border border-primary/20 rounded-3xl h-full flex flex-col justify-center relative overflow-hidden"
+                  >
+                    <div className="absolute top-0 right-0 p-8 opacity-5">
+                      <Settings className="w-40 h-40 text-primary" />
+                    </div>
+                    <h3 className="text-2xl font-semibold text-white mb-6 relative z-10">The Goal</h3>
+                    <p className="text-secondary font-light leading-relaxed mb-6 relative z-10">
+                      This service is for businesses that are already generating demand but know too much of it is leaking out after the first contact.
+                    </p>
+                    <p className="text-secondary font-light leading-relaxed mb-6 relative z-10">
+                      The goal is <span className="text-white font-medium">not</span> to add more noise.
+                    </p>
+                    <p className="text-secondary font-light leading-relaxed relative z-10">
+                      The goal is to tighten the response path so more real opportunities turn into booked work.
+                    </p>
+                  </SpotlightCard>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <SectionSeparator number="02" title="WHAT I ACTUALLY HELP IMPROVE" />
+
+          {/* 3. WHAT I ACTUALLY HELP IMPROVE SECTION */}
+          <section className="py-20 lg:py-32 bg-[#080808] border-y border-white/5 relative overflow-hidden">
+             <div className="absolute inset-0 bg-primary/2 blur-[120px] pointer-events-none" />
+             <div className="max-w-[1400px] mx-auto px-6 relative z-10">
+                <div className="mb-16">
+                  <h2 className="text-3xl md:text-5xl font-semibold text-white mb-6 tracking-tight">Practical response improvements.</h2>
+                  <p className="text-xl text-primary font-medium">Not abstract sales process talk.</p>
+                </div>
                 
-                <Link
-                  href="https://calendly.com/triggsmt67"
-                  className="inline-flex h-20 items-center justify-center rounded-full bg-white px-12 text-xl font-semibold text-primary shadow-[0_20px_50px_-10px_rgba(0,0,0,0.3)] transition-all hover:scale-[1.05] active:scale-95 group-hover:shadow-[0_25px_60px_-10px_rgba(0,0,0,0.4)]"
-                >
-                   Book Your Lead Audit
-                   <ArrowRight className="ml-3 w-6 h-6" />
-                </Link>
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                   {optimizationChecklist.map((item, index) => (
+                     <div key={index} className="flex items-start gap-4 p-6 bg-white/[0.02] border border-white/5 rounded-2xl hover:bg-white/[0.04] transition-colors">
+                        <div className="mt-1">
+                          <CheckCircle2 className="w-5 h-5 text-primary" />
+                        </div>
+                        <span className="text-white font-medium">{item}</span>
+                     </div>
+                   ))}
+                </div>
              </div>
           </section>
+
+          <SectionSeparator number="03" title="WHO THIS IS FOR" />
+
+          {/* 4. WHO THIS IS FOR SECTION */}
+          <section className="py-20">
+             <div className="max-w-[1400px] mx-auto px-6">
+                <div className="mb-16 max-w-3xl">
+                  <h2 className="text-3xl md:text-5xl font-semibold text-white mb-8 tracking-tight leading-tight">
+                    Built for service businesses where speed and follow-up affect booked work.
+                  </h2>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                   {whoThisIsFor.map((point, index) => (
+                     <SpotlightCard 
+                       key={index}
+                       spotlightColor="rgba(255, 255, 255, 0.05)"
+                       className="p-8 bg-[#0a0a0a] border border-white/10 rounded-3xl flex items-start gap-5 shadow-xl shadow-black/40"
+                     >
+                        <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
+                        <p className="text-lg text-secondary font-light leading-relaxed">{point}</p>
+                     </SpotlightCard>
+                   ))}
+                </div>
+             </div>
+          </section>
+
+          <SectionSeparator number="04" title="WHAT A BETTER RESULT LOOKS LIKE" />
+
+          {/* 5. WHAT A BETTER RESULT LOOKS LIKE SECTION */}
+          <section className="py-20 mb-12">
+             <div className="max-w-[1400px] mx-auto px-6">
+                <div className="bg-gradient-to-br from-[#0a0a0a] to-transparent border border-white/10 rounded-[3rem] p-10 md:p-20 relative overflow-hidden shadow-2xl shadow-black/60">
+                   <div className="absolute top-0 right-0 p-12 opacity-10 blur-sm pointer-events-none">
+                     <Target className="w-64 h-64 text-white" />
+                   </div>
+                   
+                   <h2 className="text-3xl md:text-5xl font-semibold text-white mb-16 tracking-tight relative z-10 max-w-3xl">
+                     A cleaner response path that helps more leads <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbbf24] to-primary">turn into real jobs.</span>
+                   </h2>
+
+                   <div className="grid md:grid-cols-2 gap-x-12 gap-y-10 relative z-10">
+                      <div className="flex gap-5">
+                         <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                           <Shield className="w-5 h-5 text-primary" />
+                         </div>
+                         <div>
+                           <p className="text-lg text-white font-medium mb-2">Fewer leads lost</p>
+                           <p className="text-secondary font-light leading-relaxed">Plugging the leaks so demand stops falling off after the very first contact.</p>
+                         </div>
+                      </div>
+                      
+                      <div className="flex gap-5">
+                         <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                           <Key className="w-5 h-5 text-primary" />
+                         </div>
+                         <div>
+                           <p className="text-lg text-white font-medium mb-2">Clearer intake process</p>
+                           <p className="text-secondary font-light leading-relaxed">A more unified way of handling calls, forms, texts, and inbound quote requests.</p>
+                         </div>
+                      </div>
+                      
+                      <div className="flex gap-5">
+                         <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                           <Zap className="w-5 h-5 text-primary" />
+                         </div>
+                         <div>
+                           <p className="text-lg text-white font-medium mb-2">Faster response</p>
+                           <p className="text-secondary font-light leading-relaxed">Setting up simple processes that buy you time while capturing the lead instantly.</p>
+                         </div>
+                      </div>
+                      
+                      <div className="flex gap-5">
+                         <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                           <TrendingUp className="w-5 h-5 text-primary" />
+                         </div>
+                         <div>
+                           <p className="text-lg text-white font-medium mb-2">Consistent follow-up</p>
+                           <p className="text-secondary font-light leading-relaxed">Less dependence on memory and more consistency in closing warm opportunities.</p>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+          </section>
+
+          <SectionSeparator number="05" title="HOW IT STARTS" />
+
+          {/* 6. HOW IT STARTS / CTA SECTION */}
+          <section className="py-24 md:py-32 relative overflow-hidden border-t border-white/5 text-center">
+            <div className="absolute inset-0 bg-primary/5 blur-[120px] pointer-events-none" />
+            <div className="max-w-3xl mx-auto px-6 relative z-10">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-[10px] uppercase font-bold tracking-widest mb-8">
+                <Target className="w-3 h-3" />
+                First Step
+              </div>
+
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-8 tracking-tighter leading-tight">
+                Start with a review of <br className="hidden sm:block" />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbbf24] to-primary">how leads are handled now.</span>
+              </h2>
+              
+              <p className="text-lg text-secondary/80 font-light leading-relaxed mb-12 max-w-2xl mx-auto">
+                If calls are being missed, replies are slow, or quotes are going cold, that usually becomes visible quickly. The first step is not buying more marketing. It is looking at where the response path is breaking down and deciding what to fix first.
+              </p>
+
+              <div className="flex flex-col items-center justify-center gap-6">
+                <a
+                  href="https://calendly.com/triggsmt67"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative inline-flex h-16 md:h-20 overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-[0_0_50px_-10px_rgba(180,83,9,0.2)] w-full sm:w-auto transition-all hover:scale-[1.02] active:scale-95 duration-300"
+                >
+                  <span className="absolute inset-0 bg-gradient-to-r from-primary/50 via-primary to-primary/50 opacity-100 group-hover:opacity-80 transition-opacity duration-500" />
+                  <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[#0a0a0a] px-10 md:px-14 text-base md:text-lg font-semibold text-white backdrop-blur-3xl gap-4 transition-colors group-hover:bg-[#121212] whitespace-nowrap">
+                    Review My Current Setup
+                    <ArrowRight className="w-6 h-6 group-hover:translate-x-1.5 transition-transform duration-300" />
+                  </span>
+                </a>
+                
+                <p className="text-sm text-secondary/60">
+                  Takes 15 minutes. No sales pitch. I’ll call your cell.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <SectionSeparator number="06" title="FAQ" />
+
+          {/* 7. FAQ SECTION */}
+          <section className="py-20 mb-20 bg-[#080808] border-y border-white/5">
+             <div className="max-w-[1000px] mx-auto px-6">
+                <div className="mb-16 text-center">
+                  <h2 className="text-3xl md:text-5xl font-semibold text-white mb-6 tracking-tight">Questions People Usually Have</h2>
+                </div>
+                
+                <div className="space-y-6">
+                   <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.05)" className="p-8 md:p-10 bg-[#0a0a0a] border border-white/10 shadow-2xl shadow-black/40 rounded-[2rem]">
+                      <h3 className="text-xl font-semibold text-white mb-4">Is this the same as CRM setup or automation?</h3>
+                      <p className="text-lg text-secondary font-light leading-relaxed">
+                        Sometimes it overlaps, but this service starts earlier and more practically. It is about identifying where leads are being lost now and tightening the response process before adding extra tools.
+                      </p>
+                   </SpotlightCard>
+                   
+                   <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.05)" className="p-8 md:p-10 bg-[#0a0a0a] border border-white/10 shadow-2xl shadow-black/40 rounded-[2rem]">
+                      <h3 className="text-xl font-semibold text-white mb-4">Do I need more leads first?</h3>
+                      <p className="text-lg text-secondary font-light leading-relaxed">
+                        Not always. A lot of businesses already have enough demand to expose the real issue. The problem is often response speed, follow-up discipline, or intake consistency.
+                      </p>
+                   </SpotlightCard>
+
+                   <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.05)" className="p-8 md:p-10 bg-[#0a0a0a] border border-white/10 shadow-2xl shadow-black/40 rounded-[2rem]">
+                      <h3 className="text-xl font-semibold text-white mb-4">Who is this best for?</h3>
+                      <p className="text-lg text-secondary font-light leading-relaxed">
+                        It is best for local service businesses where calls, forms, and estimates are coming in, but too much of that demand is being lost because no one is handling it cleanly enough.
+                      </p>
+                   </SpotlightCard>
+                </div>
+             </div>
+          </section>
+
         </main>
         
         <Footer />

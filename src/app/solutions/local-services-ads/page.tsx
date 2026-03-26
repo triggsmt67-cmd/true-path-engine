@@ -4,66 +4,66 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SectionSeparator from '@/components/SectionSeparator';
 import { SpotlightCard } from '@/components/SpotlightCard';
-import { Shield, Search, ArrowRight, CheckCircle2, Target, Zap, Settings, Star } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Target, Settings, Wrench, Clock, TrendingDown, HelpCircle, ShieldCheck, BarChart3, Briefcase } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Google Business Profile Optimization | True Path Digital',
-  description: 'Improve your Google Business Profile so local customers can find you more easily, trust what they see, and take action faster.',
+  title: 'Local Services Ads Setup & Cleanup | True Path Digital',
+  description: 'Improve setup, lead handling, and service alignment so Local Services Ads become a more useful source of real local opportunities.',
   alternates: {
-    canonical: 'https://truepath406.com/solutions/local-authority'
+    canonical: 'https://truepath406.com/solutions/local-services-ads'
   }
 };
 
 const problemCards = [
   {
-    title: "Weak local visibility",
-    body: "Your business is not showing up clearly enough when nearby customers search for the services you actually offer.",
-    icon: Search
+    title: "Weak setup",
+    body: "Services, service areas, categories, or business details are not aligned cleanly enough with the work you actually want more of.",
+    icon: Wrench
   },
   {
-    title: "Thin trust signals",
-    body: "Your profile may exist, but weak reviews, outdated details, or poor presentation make it easier to skip.",
-    icon: Shield
+    title: "Lead handling gaps",
+    body: "Leads come in, but response is too slow or too inconsistent to turn them into real opportunities.",
+    icon: Clock
   },
   {
-    title: "Confusing services",
-    body: "Customers cannot quickly tell what you do, where you work, or whether you are the right fit.",
-    icon: Target
+    title: "Wasted spend",
+    body: "Money gets spent before anyone has cleaned up the basics that affect lead quality and conversion.",
+    icon: TrendingDown
   },
   {
-    title: "Traffic that does not convert",
-    body: "People find you, but the profile and linked website do not make the next step clear enough.",
-    icon: Zap
+    title: "Confusing performance",
+    body: "It is hard to tell whether the problem is the ad source, the setup, or what happens after the lead arrives.",
+    icon: HelpCircle
   }
 ];
 
 const optimizationChecklist = [
-  "Google Business Profile audit",
-  "Primary and secondary category review",
-  "Service list cleanup and clarification",
-  "Business description rewrite",
-  "Hours, details, and profile accuracy cleanup",
-  "Review and response guidance",
-  "Photo and media recommendations",
-  "Website link and conversion alignment",
+  "Local Services Ads setup review",
+  "Service category and service area alignment",
+  "Business profile accuracy review",
+  "Lead-handling and response-path review",
+  "Budget and spend sanity check",
+  "Screening and fit review",
+  "Lead quality pattern review",
+  "Ad-to-booking process alignment",
   "Priority action plan for what to fix first"
 ];
 
 const whoThisIsFor = [
-  "HVAC, plumbing, electrical, roofing, septic, cleaning, landscaping, auto repair, and similar service businesses",
-  "Owner-operated or family-run businesses where the phone matters",
-  "Companies with an active Google profile that still feels underwhelming",
-  "Businesses that want clearer visibility before spending more on ads"
+  "Owner-operated businesses that want better lead quality, not just more lead flow",
+  "Companies already using LSA but unsure if it is set up well enough",
+  "Teams that need cleaner handling of incoming ad leads",
+  "Businesses that want clarity before raising spend"
 ];
 
-export default function GoogleBusinessProfilePage() {
+export default function LocalServicesAdsPage() {
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": "https://truepath406.com/solutions/local-authority#service",
-    "name": "Google Business Profile Optimization",
-    "serviceType": "Local Visibility & Conversion",
+    "@id": "https://truepath406.com/solutions/local-services-ads#service",
+    "name": "Local Services Ads Setup & Cleanup",
+    "serviceType": "Paid Advertising & Lead Management",
     "provider": {
       "@id": "https://truepath406.com/#organization"
     },
@@ -71,7 +71,7 @@ export default function GoogleBusinessProfilePage() {
       "@type": "State",
       "name": "Montana"
     },
-    "description": "Improve your Google Business Profile so local customers can find you more easily, trust what they see, and take action faster."
+    "description": "Improve setup, lead handling, and service alignment so Local Services Ads become a more useful source of real local opportunities."
   };
 
   return (
@@ -100,23 +100,23 @@ export default function GoogleBusinessProfilePage() {
             <div className="max-w-[1400px] mx-auto px-6">
               <div className="max-w-4xl">
                 <div className="flex items-center gap-3 mb-8">
-                  <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_10px_#FF6B00]"></span>
+                  <span className="w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_#FF6B00]"></span>
                   <span className="text-[10px] md:text-xs font-semibold tracking-[0.2em] text-primary uppercase">
                     Core Service
                   </span>
                 </div>
                 
                 <h1 className="text-5xl md:text-6xl lg:text-8xl font-semibold mb-10 tracking-tighter leading-[1.05]">
-                  Show Up Better in <br className="hidden sm:block" />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#fbbf24] via-primary to-[#78350f]">Local Search</span>
+                  Clean Up Your Local Services Ads <br className="hidden lg:block" />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#fbbf24] via-primary to-[#78350f]">Before They Waste More Money</span>
                 </h1>
                 
                 <p className="text-xl md:text-2xl text-white font-medium mb-6">
-                  Improve your Google Business Profile so local customers can find you more easily, trust what they see, and take action faster.
+                  Improve setup, lead handling, and service alignment so Local Services Ads become a more useful source of real local opportunities.
                 </p>
 
                 <p className="text-lg md:text-xl text-secondary/80 mb-12 max-w-2xl leading-relaxed font-light">
-                  This is practical help for service businesses with weak visibility, unclear service messaging, stale profile details, or trust signals that are not doing enough work.
+                  This is practical help for service businesses that want better lead quality, clearer setup, and less leakage between ad clicks and actual booked work.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center gap-6">
@@ -153,10 +153,10 @@ export default function GoogleBusinessProfilePage() {
             <div className="max-w-[1400px] mx-auto px-6">
               <div className="mb-16 max-w-3xl">
                 <h2 className="text-3xl md:text-5xl font-semibold text-white mb-8 tracking-tight leading-tight">
-                  Your profile should help people choose you faster.
+                  A bad lead source is not always the real problem.
                 </h2>
                 <p className="text-xl text-secondary font-light leading-relaxed">
-                  A weak Google Business Profile quietly costs jobs. Sometimes the business is good, but the profile looks incomplete, unclear, or stale. That gap creates doubt right when a customer is deciding who to call.
+                  A lot of businesses assume Local Services Ads are the issue when leads feel weak or expensive. Sometimes the platform is part of it. But often the bigger problem is poor setup, bad service alignment, weak screening, slow response, or no clean process for handling the leads that do come in.
                 </p>
               </div>
 
@@ -187,13 +187,13 @@ export default function GoogleBusinessProfilePage() {
                     </div>
                     <h3 className="text-2xl font-semibold text-white mb-6 relative z-10">The Goal</h3>
                     <p className="text-secondary font-light leading-relaxed mb-6 relative z-10">
-                      This service is for businesses that already have a profile but know it is not doing enough.
+                      This service is for businesses already using Local Services Ads or considering them, but wanting a cleaner setup and a more practical path from lead to booked work.
                     </p>
                     <p className="text-secondary font-light leading-relaxed mb-6 relative z-10">
-                      The goal is <span className="text-white font-medium">not</span> to make the page look “optimized.” 
+                      The goal is <span className="text-white font-medium">not</span> to blindly spend more.
                     </p>
                     <p className="text-secondary font-light leading-relaxed relative z-10">
-                      The goal is to make it clearer, stronger, and more trustworthy where real customers are already searching.
+                      The goal is to make the lead source more usable and less wasteful.
                     </p>
                   </SpotlightCard>
                 </div>
@@ -201,15 +201,15 @@ export default function GoogleBusinessProfilePage() {
             </div>
           </section>
 
-          <SectionSeparator number="02" title="WHAT I ACTUALLY OPTIMIZE" />
+          <SectionSeparator number="02" title="WHAT I ACTUALLY HELP IMPROVE" />
 
-          {/* 3. WHAT I ACTUALLY OPTIMIZE SECTION */}
+          {/* 3. WHAT I ACTUALLY HELP IMPROVE SECTION */}
           <section className="py-20 lg:py-32 bg-[#080808] border-y border-white/5 relative overflow-hidden">
              <div className="absolute inset-0 bg-primary/2 blur-[120px] pointer-events-none" />
              <div className="max-w-[1400px] mx-auto px-6 relative z-10">
                 <div className="mb-16">
-                  <h2 className="text-3xl md:text-5xl font-semibold text-white mb-6 tracking-tight">Concrete profile improvements.</h2>
-                  <p className="text-xl text-primary font-medium">Not vague SEO language.</p>
+                  <h2 className="text-3xl md:text-5xl font-semibold text-white mb-6 tracking-tight">Practical LSA fixes.</h2>
+                  <p className="text-xl text-primary font-medium">Not vague ad management talk.</p>
                 </div>
                 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -230,9 +230,9 @@ export default function GoogleBusinessProfilePage() {
           {/* 4. WHO THIS IS FOR SECTION */}
           <section className="py-20">
              <div className="max-w-[1400px] mx-auto px-6">
-                <div className="mb-16 max-w-2xl">
+                <div className="mb-16 max-w-3xl">
                   <h2 className="text-3xl md:text-5xl font-semibold text-white mb-8 tracking-tight leading-tight">
-                    Built for service businesses where visibility and trust affect the next call.
+                    Built for service businesses where high-intent leads only matter if they turn into booked work.
                   </h2>
                 </div>
 
@@ -262,47 +262,57 @@ export default function GoogleBusinessProfilePage() {
                    </div>
                    
                    <h2 className="text-3xl md:text-5xl font-semibold text-white mb-16 tracking-tight relative z-10 max-w-3xl">
-                     A stronger local presence that makes <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbbf24] to-primary">choosing you easier.</span>
+                     A cleaner lead source with <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbbf24] to-primary">less waste around it.</span>
                    </h2>
 
                    <div className="grid md:grid-cols-2 gap-x-12 gap-y-10 relative z-10">
                       <div className="flex gap-5">
                          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                           <Shield className="w-5 h-5 text-primary" />
+                           <Target className="w-5 h-5 text-primary" />
                          </div>
                          <div>
-                           <p className="text-lg text-white font-medium mb-2">A more credible profile</p>
-                           <p className="text-secondary font-light leading-relaxed">A profile that looks more complete, credible, and current.</p>
+                           <p className="text-lg text-white font-medium mb-2">Better service alignment</p>
+                           <p className="text-secondary font-light leading-relaxed">Tighter connection between LSA setup and the actual services you want to sell.</p>
                          </div>
                       </div>
                       
                       <div className="flex gap-5">
                          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                           <Search className="w-5 h-5 text-primary" />
+                           <CheckCircle2 className="w-5 h-5 text-primary" />
                          </div>
                          <div>
-                           <p className="text-lg text-white font-medium mb-2">Clearer service language</p>
-                           <p className="text-secondary font-light leading-relaxed">Messaging that matches what customers are actually searching for.</p>
+                           <p className="text-lg text-white font-medium mb-2">Clearer lead handling</p>
+                           <p className="text-secondary font-light leading-relaxed">Knowing exactly what to do when inquiries come in so nothing gets dropped.</p>
                          </div>
                       </div>
                       
                       <div className="flex gap-5">
                          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                           <Star className="w-5 h-5 text-primary" />
+                           <ShieldCheck className="w-5 h-5 text-primary" />
                          </div>
                          <div>
-                           <p className="text-lg text-white font-medium mb-2">Stronger trust signals</p>
-                           <p className="text-secondary font-light leading-relaxed">Enhanced trust through better review presentation, visuals, and profile detail.</p>
+                           <p className="text-lg text-white font-medium mb-2">Less overall waste</p>
+                           <p className="text-secondary font-light leading-relaxed">Plugging the leaks caused by weak setup or poor response discipline.</p>
                          </div>
                       </div>
                       
                       <div className="flex gap-5">
                          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                           <Zap className="w-5 h-5 text-primary" />
+                           <BarChart3 className="w-5 h-5 text-primary" />
                          </div>
                          <div>
-                           <p className="text-lg text-white font-medium mb-2">A cleaner conversion path</p>
-                           <p className="text-secondary font-light leading-relaxed">A straightforward path from search to call, click, or booking.</p>
+                           <p className="text-lg text-white font-medium mb-2">More confidence in exactly what works</p>
+                           <p className="text-secondary font-light leading-relaxed">Seeing clearly what ad changes move the needle and what is just noise.</p>
+                         </div>
+                      </div>
+                      
+                      <div className="flex gap-5 md:col-span-2 md:justify-center md:max-w-xl md:mx-auto mt-4">
+                         <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                           <Briefcase className="w-5 h-5 text-primary" />
+                         </div>
+                         <div>
+                           <p className="text-lg text-white font-medium mb-2">A more useful paid lead source</p>
+                           <p className="text-secondary font-light leading-relaxed">Making the platform work effectively for the real business you are actually running.</p>
                          </div>
                       </div>
                    </div>
@@ -323,11 +333,11 @@ export default function GoogleBusinessProfilePage() {
 
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-8 tracking-tighter leading-tight">
                 Start with a review of <br className="hidden sm:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbbf24] to-primary">your current profile.</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbbf24] to-primary">how your ads are set up now.</span>
               </h2>
               
               <p className="text-lg text-secondary/80 font-light leading-relaxed mb-12 max-w-2xl mx-auto">
-                If the profile is thin, unclear, out of date, or not aligned with the services you actually want more of, that is usually visible pretty fast. The first step is not guessing. It is reviewing what is there now and identifying what to fix first.
+                If Local Services Ads feel expensive, inconsistent, or hard to trust, the first step is to review the setup and the lead path around it. That usually makes it much easier to see whether the real issue is targeting, service alignment, response speed, or what happens after the lead arrives.
               </p>
 
               <div className="flex flex-col items-center justify-center gap-6">
@@ -362,23 +372,23 @@ export default function GoogleBusinessProfilePage() {
                 
                 <div className="space-y-6">
                    <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.05)" className="p-8 md:p-10 bg-[#0a0a0a] border border-white/10 shadow-2xl shadow-black/40 rounded-[2rem]">
-                      <h3 className="text-xl font-semibold text-white mb-4">Is this the same thing as local SEO?</h3>
+                      <h3 className="text-xl font-semibold text-white mb-4">Is this the same as full PPC management?</h3>
                       <p className="text-lg text-secondary font-light leading-relaxed">
-                        Part of it overlaps, but this service is more practical and more focused. It is about improving the actual Google Business Profile customers see when they search, not selling vague SEO work.
+                        No. This service is specifically focused on Local Services Ads and the business systems around them. The goal is to make that lead source cleaner and more useful before adding more complexity.
                       </p>
                    </SpotlightCard>
                    
                    <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.05)" className="p-8 md:p-10 bg-[#0a0a0a] border border-white/10 shadow-2xl shadow-black/40 rounded-[2rem]">
-                      <h3 className="text-xl font-semibold text-white mb-4">Can you guarantee rankings?</h3>
+                      <h3 className="text-xl font-semibold text-white mb-4">Can you guarantee better leads?</h3>
                       <p className="text-lg text-secondary font-light leading-relaxed">
-                        No. But I can improve the quality, clarity, and trust of the profile, which gives you a stronger local presence and a better shot at converting the visibility you earn.
+                        No. But I can help improve setup, alignment, and lead handling so you are in a better position to get more usable results from the leads that do come in.
                       </p>
                    </SpotlightCard>
 
                    <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.05)" className="p-8 md:p-10 bg-[#0a0a0a] border border-white/10 shadow-2xl shadow-black/40 rounded-[2rem]">
                       <h3 className="text-xl font-semibold text-white mb-4">Who is this best for?</h3>
                       <p className="text-lg text-secondary font-light leading-relaxed">
-                        It is best for local service businesses that already have a profile but know it is incomplete, stale, underperforming, or not aligned with the work they actually want more of.
+                        It is best for local service businesses that are already using Local Services Ads, or seriously considering them, and want to make sure the setup and response path are not quietly wasting money.
                       </p>
                    </SpotlightCard>
                 </div>

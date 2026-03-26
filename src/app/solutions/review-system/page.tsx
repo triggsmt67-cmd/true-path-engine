@@ -4,66 +4,66 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import SectionSeparator from '@/components/SectionSeparator';
 import { SpotlightCard } from '@/components/SpotlightCard';
-import { Shield, Search, ArrowRight, CheckCircle2, Target, Zap, Settings, Star } from 'lucide-react';
+import { Shield, ArrowRight, CheckCircle2, Target, Zap, Settings, StarOff, CalendarDays, AlertCircle, Users, RefreshCw, BarChart3, Fingerprint, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Google Business Profile Optimization | True Path Digital',
-  description: 'Improve your Google Business Profile so local customers can find you more easily, trust what they see, and take action faster.',
+  title: 'Review Generation Systems | True Path Digital',
+  description: 'Build a simple, repeatable review system that helps more happy customers actually leave feedback.',
   alternates: {
-    canonical: 'https://truepath406.com/solutions/local-authority'
+    canonical: 'https://truepath406.com/solutions/review-system'
   }
 };
 
 const problemCards = [
   {
-    title: "Weak local visibility",
-    body: "Your business is not showing up clearly enough when nearby customers search for the services you actually offer.",
-    icon: Search
+    title: "Not enough reviews",
+    body: "You may do good work, but there is not enough visible proof online to make people feel confident choosing you.",
+    icon: StarOff
   },
   {
-    title: "Thin trust signals",
-    body: "Your profile may exist, but weak reviews, outdated details, or poor presentation make it easier to skip.",
-    icon: Shield
+    title: "Inconsistent asking",
+    body: "Reviews get requested sometimes, but there is no repeatable process that makes it happen consistently.",
+    icon: CalendarDays
   },
   {
-    title: "Confusing services",
-    body: "Customers cannot quickly tell what you do, where you work, or whether you are the right fit.",
-    icon: Target
+    title: "Too much friction",
+    body: "Customers are willing to leave a review, but the process is not easy enough or clear enough in the moment.",
+    icon: AlertCircle
   },
   {
-    title: "Traffic that does not convert",
-    body: "People find you, but the profile and linked website do not make the next step clear enough.",
-    icon: Zap
+    title: "Weak trust at decision time",
+    body: "When people compare options, thin reviews or weak recent activity can make a better business look less credible.",
+    icon: Users
   }
 ];
 
 const optimizationChecklist = [
-  "Google Business Profile audit",
-  "Primary and secondary category review",
-  "Service list cleanup and clarification",
-  "Business description rewrite",
-  "Hours, details, and profile accuracy cleanup",
-  "Review and response guidance",
-  "Photo and media recommendations",
-  "Website link and conversion alignment",
+  "Review process audit",
+  "Request timing review",
+  "Review ask messaging cleanup",
+  "Customer handoff improvements",
+  "Friction reduction in the review process",
+  "Google review workflow recommendations",
+  "Staff or owner request guidance",
+  "Response guidance for incoming reviews",
   "Priority action plan for what to fix first"
 ];
 
 const whoThisIsFor = [
-  "HVAC, plumbing, electrical, roofing, septic, cleaning, landscaping, auto repair, and similar service businesses",
-  "Owner-operated or family-run businesses where the phone matters",
-  "Companies with an active Google profile that still feels underwhelming",
-  "Businesses that want clearer visibility before spending more on ads"
+  "Owner-operated businesses that rely on local trust",
+  "Companies with strong word-of-mouth but weak online proof",
+  "Businesses that know they should be getting more reviews than they are",
+  "Teams that need a simpler, more consistent way to ask"
 ];
 
-export default function GoogleBusinessProfilePage() {
+export default function ReviewSystemPage() {
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
-    "@id": "https://truepath406.com/solutions/local-authority#service",
-    "name": "Google Business Profile Optimization",
-    "serviceType": "Local Visibility & Conversion",
+    "@id": "https://truepath406.com/solutions/review-system#service",
+    "name": "Review Generation Systems",
+    "serviceType": "Reputation Management & Local SEO",
     "provider": {
       "@id": "https://truepath406.com/#organization"
     },
@@ -71,7 +71,7 @@ export default function GoogleBusinessProfilePage() {
       "@type": "State",
       "name": "Montana"
     },
-    "description": "Improve your Google Business Profile so local customers can find you more easily, trust what they see, and take action faster."
+    "description": "Build a simple, repeatable review system that helps more happy customers actually leave feedback."
   };
 
   return (
@@ -100,23 +100,23 @@ export default function GoogleBusinessProfilePage() {
             <div className="max-w-[1400px] mx-auto px-6">
               <div className="max-w-4xl">
                 <div className="flex items-center gap-3 mb-8">
-                  <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_10px_#FF6B00]"></span>
+                  <span className="w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_#FF6B00]"></span>
                   <span className="text-[10px] md:text-xs font-semibold tracking-[0.2em] text-primary uppercase">
                     Core Service
                   </span>
                 </div>
                 
                 <h1 className="text-5xl md:text-6xl lg:text-8xl font-semibold mb-10 tracking-tighter leading-[1.05]">
-                  Show Up Better in <br className="hidden sm:block" />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#fbbf24] via-primary to-[#78350f]">Local Search</span>
+                  Get More Reviews Without <br className="hidden sm:block" />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#fbbf24] via-primary to-[#78350f]">Chasing Customers</span>
                 </h1>
                 
                 <p className="text-xl md:text-2xl text-white font-medium mb-6">
-                  Improve your Google Business Profile so local customers can find you more easily, trust what they see, and take action faster.
+                  Build a simple, repeatable review system that helps more happy customers actually leave feedback.
                 </p>
 
                 <p className="text-lg md:text-xl text-secondary/80 mb-12 max-w-2xl leading-relaxed font-light">
-                  This is practical help for service businesses with weak visibility, unclear service messaging, stale profile details, or trust signals that are not doing enough work.
+                  This is practical help for service businesses that do good work but do not have a consistent process for turning that work into visible trust.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center gap-6">
@@ -153,10 +153,10 @@ export default function GoogleBusinessProfilePage() {
             <div className="max-w-[1400px] mx-auto px-6">
               <div className="mb-16 max-w-3xl">
                 <h2 className="text-3xl md:text-5xl font-semibold text-white mb-8 tracking-tight leading-tight">
-                  Your profile should help people choose you faster.
+                  Good businesses still lose work when proof is thin.
                 </h2>
                 <p className="text-xl text-secondary font-light leading-relaxed">
-                  A weak Google Business Profile quietly costs jobs. Sometimes the business is good, but the profile looks incomplete, unclear, or stale. That gap creates doubt right when a customer is deciding who to call.
+                  A lot of service businesses do solid work, but their reviews do not reflect it. The issue usually is not quality. It is inconsistency. No one asks at the right time, the process is too awkward, or the request gets forgotten when the day gets busy.
                 </p>
               </div>
 
@@ -187,13 +187,13 @@ export default function GoogleBusinessProfilePage() {
                     </div>
                     <h3 className="text-2xl font-semibold text-white mb-6 relative z-10">The Goal</h3>
                     <p className="text-secondary font-light leading-relaxed mb-6 relative z-10">
-                      This service is for businesses that already have a profile but know it is not doing enough.
+                      This service is for businesses that already do work people appreciate but need a better system for turning that into visible trust.
                     </p>
                     <p className="text-secondary font-light leading-relaxed mb-6 relative z-10">
-                      The goal is <span className="text-white font-medium">not</span> to make the page look “optimized.” 
+                      The goal is <span className="text-white font-medium">not</span> to game reviews.
                     </p>
                     <p className="text-secondary font-light leading-relaxed relative z-10">
-                      The goal is to make it clearer, stronger, and more trustworthy where real customers are already searching.
+                      The goal is to make it easier for real customers to leave honest feedback.
                     </p>
                   </SpotlightCard>
                 </div>
@@ -201,15 +201,15 @@ export default function GoogleBusinessProfilePage() {
             </div>
           </section>
 
-          <SectionSeparator number="02" title="WHAT I ACTUALLY OPTIMIZE" />
+          <SectionSeparator number="02" title="WHAT I ACTUALLY HELP IMPROVE" />
 
-          {/* 3. WHAT I ACTUALLY OPTIMIZE SECTION */}
+          {/* 3. WHAT I ACTUALLY HELP IMPROVE SECTION */}
           <section className="py-20 lg:py-32 bg-[#080808] border-y border-white/5 relative overflow-hidden">
              <div className="absolute inset-0 bg-primary/2 blur-[120px] pointer-events-none" />
              <div className="max-w-[1400px] mx-auto px-6 relative z-10">
                 <div className="mb-16">
-                  <h2 className="text-3xl md:text-5xl font-semibold text-white mb-6 tracking-tight">Concrete profile improvements.</h2>
-                  <p className="text-xl text-primary font-medium">Not vague SEO language.</p>
+                  <h2 className="text-3xl md:text-5xl font-semibold text-white mb-6 tracking-tight">A cleaner review process.</h2>
+                  <p className="text-xl text-primary font-medium">Not vague reputation talk.</p>
                 </div>
                 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -230,9 +230,9 @@ export default function GoogleBusinessProfilePage() {
           {/* 4. WHO THIS IS FOR SECTION */}
           <section className="py-20">
              <div className="max-w-[1400px] mx-auto px-6">
-                <div className="mb-16 max-w-2xl">
+                <div className="mb-16 max-w-3xl">
                   <h2 className="text-3xl md:text-5xl font-semibold text-white mb-8 tracking-tight leading-tight">
-                    Built for service businesses where visibility and trust affect the next call.
+                    Built for service businesses where trust affects who gets the next call.
                   </h2>
                 </div>
 
@@ -262,47 +262,47 @@ export default function GoogleBusinessProfilePage() {
                    </div>
                    
                    <h2 className="text-3xl md:text-5xl font-semibold text-white mb-16 tracking-tight relative z-10 max-w-3xl">
-                     A stronger local presence that makes <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbbf24] to-primary">choosing you easier.</span>
+                     More visible proof. Less guesswork in <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbbf24] to-primary">how you earn it.</span>
                    </h2>
 
                    <div className="grid md:grid-cols-2 gap-x-12 gap-y-10 relative z-10">
                       <div className="flex gap-5">
                          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                           <Shield className="w-5 h-5 text-primary" />
+                           <RefreshCw className="w-5 h-5 text-primary" />
                          </div>
                          <div>
-                           <p className="text-lg text-white font-medium mb-2">A more credible profile</p>
-                           <p className="text-secondary font-light leading-relaxed">A profile that looks more complete, credible, and current.</p>
+                           <p className="text-lg text-white font-medium mb-2">A more consistent flow</p>
+                           <p className="text-secondary font-light leading-relaxed">A steady, predictable stream of real customer reviews replacing random bursts of feedback.</p>
                          </div>
                       </div>
                       
                       <div className="flex gap-5">
                          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                           <Search className="w-5 h-5 text-primary" />
+                           <ShieldCheck className="w-5 h-5 text-primary" />
                          </div>
                          <div>
-                           <p className="text-lg text-white font-medium mb-2">Clearer service language</p>
-                           <p className="text-secondary font-light leading-relaxed">Messaging that matches what customers are actually searching for.</p>
+                           <p className="text-lg text-white font-medium mb-2">Stronger visible trust</p>
+                           <p className="text-secondary font-light leading-relaxed">Proof that stands out when local prospects are comparing you directly against competitors.</p>
                          </div>
                       </div>
                       
                       <div className="flex gap-5">
                          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                           <Star className="w-5 h-5 text-primary" />
+                           <Fingerprint className="w-5 h-5 text-primary" />
                          </div>
                          <div>
-                           <p className="text-lg text-white font-medium mb-2">Stronger trust signals</p>
-                           <p className="text-secondary font-light leading-relaxed">Enhanced trust through better review presentation, visuals, and profile detail.</p>
+                           <p className="text-lg text-white font-medium mb-2">Easier request process</p>
+                           <p className="text-secondary font-light leading-relaxed">Less dependence on memory and more consistency in asking exactly when the customer is happiest.</p>
                          </div>
                       </div>
                       
                       <div className="flex gap-5">
                          <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                           <Zap className="w-5 h-5 text-primary" />
+                           <BarChart3 className="w-5 h-5 text-primary" />
                          </div>
                          <div>
-                           <p className="text-lg text-white font-medium mb-2">A cleaner conversion path</p>
-                           <p className="text-secondary font-light leading-relaxed">A straightforward path from search to call, click, or booking.</p>
+                           <p className="text-lg text-white font-medium mb-2">Better online alignment</p>
+                           <p className="text-secondary font-light leading-relaxed">Ensuring the quality of the work you do is actually reflected in the way the business appears online.</p>
                          </div>
                       </div>
                    </div>
@@ -323,11 +323,11 @@ export default function GoogleBusinessProfilePage() {
 
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-8 tracking-tighter leading-tight">
                 Start with a review of <br className="hidden sm:block" />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbbf24] to-primary">your current profile.</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbbf24] to-primary">your current review process.</span>
               </h2>
               
               <p className="text-lg text-secondary/80 font-light leading-relaxed mb-12 max-w-2xl mx-auto">
-                If the profile is thin, unclear, out of date, or not aligned with the services you actually want more of, that is usually visible pretty fast. The first step is not guessing. It is reviewing what is there now and identifying what to fix first.
+                If reviews are coming in too slowly, too randomly, or not at all, that usually points to a process problem. The first step is to look at how requests are being made now, where friction exists, and what to fix first.
               </p>
 
               <div className="flex flex-col items-center justify-center gap-6">
@@ -362,23 +362,23 @@ export default function GoogleBusinessProfilePage() {
                 
                 <div className="space-y-6">
                    <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.05)" className="p-8 md:p-10 bg-[#0a0a0a] border border-white/10 shadow-2xl shadow-black/40 rounded-[2rem]">
-                      <h3 className="text-xl font-semibold text-white mb-4">Is this the same thing as local SEO?</h3>
+                      <h3 className="text-xl font-semibold text-white mb-4">Is this about buying reviews or using gimmicks?</h3>
                       <p className="text-lg text-secondary font-light leading-relaxed">
-                        Part of it overlaps, but this service is more practical and more focused. It is about improving the actual Google Business Profile customers see when they search, not selling vague SEO work.
+                        No. This is about building a clean, honest process that makes it easier for real customers to leave feedback after a good experience.
                       </p>
                    </SpotlightCard>
                    
                    <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.05)" className="p-8 md:p-10 bg-[#0a0a0a] border border-white/10 shadow-2xl shadow-black/40 rounded-[2rem]">
-                      <h3 className="text-xl font-semibold text-white mb-4">Can you guarantee rankings?</h3>
+                      <h3 className="text-xl font-semibold text-white mb-4">Do reviews really matter that much?</h3>
                       <p className="text-lg text-secondary font-light leading-relaxed">
-                        No. But I can improve the quality, clarity, and trust of the profile, which gives you a stronger local presence and a better shot at converting the visibility you earn.
+                        Yes. Reviews affect trust, visibility, and how confident people feel when they compare local options. Good work with weak proof often gets overlooked.
                       </p>
                    </SpotlightCard>
 
                    <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.05)" className="p-8 md:p-10 bg-[#0a0a0a] border border-white/10 shadow-2xl shadow-black/40 rounded-[2rem]">
                       <h3 className="text-xl font-semibold text-white mb-4">Who is this best for?</h3>
                       <p className="text-lg text-secondary font-light leading-relaxed">
-                        It is best for local service businesses that already have a profile but know it is incomplete, stale, underperforming, or not aligned with the work they actually want more of.
+                        It is best for local service businesses that do good work but do not have a consistent, practical system for earning enough real reviews to reflect that.
                       </p>
                    </SpotlightCard>
                 </div>

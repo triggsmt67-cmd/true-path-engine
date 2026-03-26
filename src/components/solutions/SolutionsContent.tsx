@@ -127,7 +127,7 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
                 >
                   <SpotlightCard
                     spotlightColor={service.spotlight}
-                    className="p-8 md:p-10 bg-[#0a0a0a] border border-white/5 rounded-3xl group cursor-pointer hover:border-white/10 hover:bg-white/[0.03] transition-all duration-300 h-full flex flex-col hover:shadow-[0_0_30px_rgba(255,107,0,0.02)]"
+                    className="p-8 md:p-10 bg-[#0a0a0a] border border-white/10 shadow-2xl shadow-black/60 rounded-3xl group cursor-pointer hover:border-white/20 hover:bg-white/[0.03] transition-all duration-300 h-full flex flex-col hover:shadow-[0_0_30px_rgba(255,107,0,0.05)]"
                   >
                     <div className="flex items-center gap-4 mb-8">
                       <div className={`w-12 h-12 rounded-xl bg-white/[0.03] flex items-center justify-center ${service.color} group-hover:bg-white/[0.05] transition-colors`}>
@@ -267,7 +267,7 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
                 className="h-full"
               >
                 <Link href={`/blog/${article.slug}`} className="block h-full group decoration-transparent">
-                  <div className="p-8 h-full bg-white/[0.02] border border-white/5 rounded-[2rem] flex flex-col transition-all duration-300 group-hover:bg-white/[0.04] group-hover:border-white/10 group-hover:-translate-y-1">
+                  <div className="p-8 h-full bg-white/[0.02] border border-white/10 shadow-2xl shadow-black/40 rounded-[2rem] flex flex-col transition-all duration-300 group-hover:bg-white/[0.04] group-hover:border-white/20 group-hover:-translate-y-1">
                     <div className="mb-6 flex gap-3 items-center">
                       <FileText className="w-4 h-4 text-primary opacity-60" />
                       <span className="text-[10px] uppercase tracking-widest text-secondary/50 font-mono">Article</span>

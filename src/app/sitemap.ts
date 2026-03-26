@@ -107,6 +107,36 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly" as const,
       priority: 0.9,
     },
+    {
+      url: `${baseUrl}/solutions/review-system`,
+      lastModified: new Date().toISOString().split("T")[0],
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/solutions/website-conversion`,
+      lastModified: new Date().toISOString().split("T")[0],
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/solutions/demand-audit`,
+      lastModified: new Date().toISOString().split("T")[0],
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/solutions/estimate-follow-up`,
+      lastModified: new Date().toISOString().split("T")[0],
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/solutions/local-services-ads`,
+      lastModified: new Date().toISOString().split("T")[0],
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    },
     ...posts
   );
 
