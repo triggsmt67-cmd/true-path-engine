@@ -65,20 +65,51 @@ interface Post {
 }
 
 // --- AI Data Parsing Utilities ---
+function parseTakeaways(text: string): string[] {
+    if (!text) return [];
+    return text
+        .split(/\r?\n/)
+        .map(line => line.replace(/^[•\-\s*\d\.)]+/, '').trim())
+        .filter(line => line.length > 0 && !line.toLowerCase().includes('takeaway'));
+}
+
 function parseFaqs(text: string): { question: string, answer: string }[] {
     if (!text) return [];
-    const blocks = text.split(/\n\s*\n/);
     const faqs: { question: string, answer: string }[] = [];
-    blocks.forEach(block => {
-        const lines = block.split(/\n/);
-        let q = '', a = '';
-        lines.forEach(line => {
-            const trimmed = line.trim();
-            if (trimmed.toLowerCase().startsWith('q:')) q = trimmed.replace(/^q:\s*/i, '');
-            if (trimmed.toLowerCase().startsWith('a:')) a = trimmed.replace(/^a:\s*/i, '');
-        });
-        if (q && a) faqs.push({ question: q, answer: a });
-    });
+    const lines = text.split(/\r?\n/);
+    
+    let currentQ = '';
+    let currentA = '';
+    
+    for (const line of lines) {
+        const trimmed = line.trim();
+        if (!trimmed || trimmed.toLowerCase() === 'frequently asked questions') continue;
+        
+        // Match lines that look like "1) Q: ...", "Q: ...", "1. Q: ..."
+        const qMatch = trimmed.match(/^(?:\d+[\)\.]\s*)?Q[.:]?\s*(.+)/i);
+        const aMatch = trimmed.match(/^(?:\d+[\)\.]\s*)?A[.:]?\s*(.+)/i);
+        
+        if (qMatch) {
+            // Save the previous completed set
+            if (currentQ && currentA) {
+                faqs.push({ question: currentQ, answer: currentA });
+                currentA = ''; 
+            }
+            currentQ = qMatch[1].trim();
+        } else if (aMatch) {
+            currentA = aMatch[1].trim();
+        } else if (currentA) {
+            currentA += ' ' + trimmed;
+        } else if (currentQ) {
+            currentQ += ' ' + trimmed;
+        }
+    }
+    
+    // Save the final QA set
+    if (currentQ && currentA) {
+        faqs.push({ question: currentQ, answer: currentA });
+    }
+    
     return faqs;
 }
 
@@ -210,6 +241,7 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
     // Map fields (supporting both native frontmatter/WP fields and AI fallbacks)
     const mappedQuickAnswer = post.quickAnswer || aiDataRaw?.ai_quick_answer;
     const mappedAudience = post.audience || aiDataRaw?.audience;
+    const mappedTakeaways = aiDataRaw?.ai_takeaways ? parseTakeaways(aiDataRaw.ai_takeaways) : [];
     const mappedFaqs = post.faqs && post.faqs.length > 0 ? post.faqs : (aiDataRaw?.ai_faqs ? parseFaqs(aiDataRaw.ai_faqs) : []);
 
     // Clean excerpt for display
@@ -347,11 +379,15 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                                 {cleanTitleText}
                             </h1>
 
-                            {/* 3. One-sentence subhead / intro summary */}
-                            {cleanExcerptText && (
-                                <p className="text-xl md:text-2xl font-light leading-relaxed text-slate-600 dark:text-gray-300 border-l-2 pl-6 border-primary/20 dark:border-primary/30">
-                                    {cleanExcerptText}
-                                </p>
+                            {/* 3. AI Takeaways (Replaces Excerpt intro) */}
+                            {mappedTakeaways && mappedTakeaways.length > 0 && (
+                                <ul className="mb-10 pl-6 border-l-2 border-primary/20 dark:border-primary/30 space-y-4 list-disc list-inside marker:text-primary/50">
+                                    {mappedTakeaways.map((takeaway, i) => (
+                                        <li key={i} className="text-xl md:text-2xl font-light leading-relaxed text-slate-600 dark:text-gray-300">
+                                            {takeaway}
+                                        </li>
+                                    ))}
+                                </ul>
                             )}
 
                             {/* Optional Featured Image just under the head */}
