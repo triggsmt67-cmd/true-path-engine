@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { ArrowLeft, Clock, Zap } from 'lucide-react';
 import { notFound } from 'next/navigation';
 import ThemeToggle from '@/components/ui/ThemeToggle';
-import AIScanZone from '@/components/blog/AIScanZone';
 import ArticleScrollProgress from '@/components/blog/ArticleScrollProgress';
 import ArticleShareButtons from '@/components/blog/ArticleShareButtons';
 import { nextSlugToWpSlug } from '@/utils/nextSlugToWpSlug';
@@ -18,6 +17,7 @@ interface Post {
     title: string;
     content: string;
     date: string;
+    modified: string;
     excerpt: string;
     featuredImage?: {
         node: {
@@ -28,6 +28,8 @@ interface Post {
     author?: {
         node: {
             name: string;
+            url?: string;
+            description?: string;
         };
     };
     categories?: {
@@ -36,28 +38,33 @@ interface Post {
             slug: string;
         }[];
     };
+    tags?: {
+        nodes: {
+            name: string;
+            slug: string;
+        }[];
+    };
+    // Future-proofing standard fields if added directly
+    quickAnswer?: string;
+    audience?: string;
+    faqs?: { question: string; answer: string }[];
+    // Current AI fields
     aiOverviews?: {
         ai_overviews?: {
             ai_quick_answer?: string;
             ai_takeaways?: string;
             ai_faqs?: string;
+            audience?: string;
         } | {
             ai_quick_answer?: string;
             ai_takeaways?: string;
             ai_faqs?: string;
+            audience?: string;
         }[];
     };
 }
 
 // --- AI Data Parsing Utilities ---
-function parseTakeaways(text: string): string[] {
-    if (!text) return [];
-    return text
-        .split(/\r?\n/)
-        .map(line => line.replace(/^[•\-\s*]+/, '').trim())
-        .filter(line => line.length > 0);
-}
-
 function parseFaqs(text: string): { question: string, answer: string }[] {
     if (!text) return [];
     const blocks = text.split(/\n\s*\n/);
@@ -84,6 +91,7 @@ async function getPost(slug: string): Promise<Post | null> {
         title
         content
         date
+        modified
         excerpt
         featuredImage {
           node {
@@ -97,6 +105,12 @@ async function getPost(slug: string): Promise<Post | null> {
           }
         }
         categories {
+          nodes {
+            name
+            slug
+          }
+        }
+        tags {
           nodes {
             name
             slug
@@ -133,6 +147,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const url = `https://truepath406.com/blog/${slug}`;
     const cleanTitle = decodeHtmlEntities(post.title);
     const cleanDesc = decodeHtmlEntities(post.excerpt?.replace(/<[^>]*>?/gm, '').substring(0, 160) || '');
+    const imageUrl = post.featuredImage?.node?.sourceUrl || "https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg";
 
     return {
         title: `${cleanTitle} | True Path Digital`,
@@ -146,13 +161,20 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
             url: url,
             type: 'article',
             publishedTime: post.date,
-            authors: [post.author?.node?.name || "Trevor Riggs"],
+            modifiedTime: post.modified || post.date,
+            authors: ["Trevor Riggs"],
             images: [
                 {
-                    url: post.featuredImage?.node?.sourceUrl || "https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg",
-                    alt: post.title,
+                    url: imageUrl,
+                    alt: post.featuredImage?.node?.altText || cleanTitle,
                 }
             ]
+        },
+        twitter: {
+            card: 'summary_large_image',
+            title: `${cleanTitle} | True Path Digital`,
+            description: cleanDesc,
+            images: [imageUrl],
         }
     };
 }
@@ -165,14 +187,14 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
         notFound();
     }
 
-    // Estimate reading time
-    const wordCount = post.content.split(/\s+/).length;
-    const readingTime = Math.ceil(wordCount / 200);
-
-    // Date formatting to match Vite version
+    // Date formatting 
     const dateStr = post.date
         ? new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
         : 'Unknown Date';
+    
+    const modifiedDateStr = post.modified 
+        ? new Date(post.modified).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+        : null;
 
     // Parse AI Data
     const rawAi = post.aiOverviews?.ai_overviews;
@@ -185,13 +207,20 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
         if (match) aiDataRaw = match;
     }
 
-    const aiTakeaways = aiDataRaw?.ai_takeaways ? parseTakeaways(aiDataRaw.ai_takeaways) : [];
-    const aiFaqs = aiDataRaw?.ai_faqs ? parseFaqs(aiDataRaw.ai_faqs) : [];
+    // Map fields (supporting both native frontmatter/WP fields and AI fallbacks)
+    const mappedQuickAnswer = post.quickAnswer || aiDataRaw?.ai_quick_answer;
+    const mappedAudience = post.audience || aiDataRaw?.audience;
+    const mappedFaqs = post.faqs && post.faqs.length > 0 ? post.faqs : (aiDataRaw?.ai_faqs ? parseFaqs(aiDataRaw.ai_faqs) : []);
 
     // Clean excerpt for display
     const rawExcerpt = post.excerpt?.replace(/<[^>]*>?/gm, '').replace(/Continue reading.*/gi, '').trim() || '';
     const cleanExcerptText = decodeHtmlEntities(rawExcerpt);
     const cleanTitleText = decodeHtmlEntities(post.title);
+    
+    const articleUrl = `https://truepath406.com/blog/${slug}`;
+    const authorName = "Trevor Riggs";
+    const authorUrl = post.author?.node?.url || SOCIAL_LINKS.linkedin;
+    const imageUrl = post.featuredImage?.node?.sourceUrl || "https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg";
 
     const breadcrumbData = {
         "@context": "https://schema.org",
@@ -206,30 +235,30 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
             {
                 "@type": "ListItem",
                 "position": 2,
-                "name": "Insights",
+                "name": "Blog",
                 "item": "https://truepath406.com/blog/"
             },
             {
                 "@type": "ListItem",
                 "position": 3,
                 "name": cleanTitleText,
-                "item": `https://truepath406.com/blog/${slug}`
+                "item": articleUrl
             }
         ]
     };
 
     const structuredData = {
         "@context": "https://schema.org",
-        "@type": "TechArticle",
+        "@type": "Article",
         "headline": cleanTitleText,
         "description": cleanExcerptText.substring(0, 160),
-        "image": post.featuredImage?.node?.sourceUrl || "https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg",
+        "image": imageUrl,
         "datePublished": post.date,
+        "dateModified": post.modified || post.date,
         "author": {
             "@type": "Person",
-            "name": post.author?.node?.name || "Trevor Riggs",
-            "jobTitle": "Founder & Architect",
-            "url": SOCIAL_LINKS.linkedin
+            "name": authorName,
+            "url": authorUrl
         },
         "publisher": {
             "@id": "https://truepath406.com/#organization",
@@ -245,18 +274,25 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
         },
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": `https://truepath406.com/blog/${slug}`
-        },
-        "speakable": {
-            "@type": "SpeakableSpecification",
-            "cssSelector": [".ai-summary-zone"]
-        },
-        "about": [
-            { "@type": "Thing", "name": "Marketing Strategy" },
-            { "@type": "Thing", "name": "Artificial Intelligence" },
-            { "@type": "Thing", "name": "Conversion Rate Optimization" }
-        ]
+            "@id": articleUrl
+        }
     };
+
+    let faqSchema = null;
+    if (mappedFaqs.length > 0) {
+        faqSchema = {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": mappedFaqs.map(faq => ({
+                "@type": "Question",
+                "name": faq.question,
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": faq.answer
+                }
+            }))
+        };
+    }
 
     return (
         <main 
@@ -272,92 +308,105 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData) }}
             />
+            {faqSchema && (
+                 <script
+                 type="application/ld+json"
+                 dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+             />
+            )}
             <Navbar />
             <ThemeToggle />
             <ArticleScrollProgress />
 
-            {/* Two-Column Hero — Matching Vite Design */}
-            <section className="relative pt-32 pb-16 md:pb-24 px-6 overflow-hidden">
-                {/* Subtle background gradient */}
-                <div className="absolute top-0 left-0 w-full h-[600px] opacity-20 pointer-events-none bg-gradient-to-b from-primary/5 to-transparent dark:from-primary/10 dark:to-transparent" />
-
-                <div className="max-w-[1400px] mx-auto relative z-10">
-                    <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-
-                        {/* Left Column: Article Detail */}
-                        <div>
-                            <Link
-                                href="/blog"
-                                className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] mb-10 group transition-colors text-primary hover:text-slate-900 dark:hover:text-white decoration-transparent"
-                            >
-                                <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
-                                Return to Intelligence Vault
-                            </Link>
-
-                            <div className="flex items-center gap-4 mb-8">
-                                {post.categories?.nodes.map((cat) => (
-                                    <span
-                                        key={cat.slug}
-                                        className="px-3 py-1 rounded-full border text-[10px] font-bold tracking-widest uppercase bg-primary/5 border-primary/10 text-primary dark:bg-primary/10 dark:border-primary/20"
-                                    >
-                                        {cat.name}
-                                    </span>
-                                ))}
-                                <div className="flex items-center gap-1.5 text-[10px] font-mono uppercase tracking-widest text-slate-400 dark:text-secondary/40">
-                                    <Clock className="w-3 h-3" /> {dateStr}
+            <section className="pt-32 pb-20 px-6 relative z-10">
+                <div className="max-w-[800px] mx-auto">
+                    <article className="lg:col-span-8" data-ai-main-content="true">
+                        
+                        {/* 1. Publish date or updated date */}
+                        <header className="mb-12">
+                            <div className="flex items-center gap-4 mb-6">
+                                <Link
+                                    href="/blog"
+                                    className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] group transition-colors text-slate-500 hover:text-primary dark:hover:text-white decoration-transparent"
+                                >
+                                    <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
+                                    Back to Blog
+                                </Link>
+                                <span className="text-slate-300 dark:text-gray-700">|</span>
+                                <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-gray-400">
+                                    <Clock className="w-3.5 h-3.5" /> 
+                                    {modifiedDateStr && modifiedDateStr !== dateStr 
+                                        ? `Updated ${modifiedDateStr}` 
+                                        : `Published ${dateStr}`
+                                    }
                                 </div>
                             </div>
 
-                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.05] mb-10 text-slate-900 dark:text-white">
+                            {/* 2. H1 */}
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.05] mb-6 text-slate-900 dark:text-white">
                                 {cleanTitleText}
                             </h1>
 
+                            {/* 3. One-sentence subhead / intro summary */}
                             {cleanExcerptText && (
-                                <p className="text-xl md:text-2xl font-light leading-relaxed border-l-2 pl-8 text-slate-600 border-primary/20 dark:text-secondary dark:border-primary/30">
+                                <p className="text-xl md:text-2xl font-light leading-relaxed text-slate-600 dark:text-gray-300 border-l-2 pl-6 border-primary/20 dark:border-primary/30">
                                     {cleanExcerptText}
                                 </p>
                             )}
-                        </div>
 
-                        {/* Right Column: Featured Image */}
-                        <div className="relative aspect-[4/3] lg:aspect-auto lg:h-[550px]">
-                            <div className="absolute inset-0 rounded-[2rem] overflow-hidden border shadow-2xl border-slate-200 shadow-slate-200/50 dark:border-white/10 dark:shadow-primary/5">
-                                {post.featuredImage?.node?.sourceUrl ? (
-                                    <img
-                                        src={post.featuredImage.node.sourceUrl}
-                                        alt={post.featuredImage.node.altText || post.title}
-                                        className="w-full h-full object-cover"
+                            {/* Optional Featured Image just under the head */}
+                            {post.featuredImage?.node?.sourceUrl && (
+                                <div className="my-10 relative overflow-hidden rounded-[2rem] border border-slate-200 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-primary/5">
+                                    <img 
+                                        src={post.featuredImage.node.sourceUrl} 
+                                        alt={post.featuredImage.node.altText || cleanTitleText} 
+                                        className="w-full h-auto max-h-[500px] object-cover"
                                     />
-                                ) : (
-                                    <div className="w-full h-full bg-gradient-to-br from-primary/10 to-primary/5 flex items-center justify-center">
-                                        <div className="w-20 h-20 rounded-full bg-primary/20 blur-2xl" />
+                                </div>
+                            )}
+
+                            {/* 4. Quick Answer */}
+                            {mappedQuickAnswer && (
+                                <div className="my-8 p-6 md:p-8 bg-white border border-slate-200 dark:bg-white/[0.02] dark:border-white/10 rounded-2xl shadow-sm">
+                                    <h2 className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-3 flex items-center gap-2">
+                                        <Zap className="w-4 h-4"/> Quick Answer
+                                    </h2>
+                                    <p className="text-lg text-slate-800 dark:text-gray-200 font-medium leading-relaxed">
+                                        {mappedQuickAnswer}
+                                    </p>
+                                </div>
+                            )}
+
+                            {/* 5. Audience */}
+                            {mappedAudience && (
+                                <div className="mb-10 p-4 bg-slate-100 rounded-xl dark:bg-white/[0.05] text-slate-700 dark:text-gray-400 flex items-start gap-3">
+                                    <div className="font-bold whitespace-nowrap text-slate-900 dark:text-white mt-1 text-sm">Who this is for:</div>
+                                    <div className="text-base leading-relaxed">{mappedAudience}</div>
+                                </div>
+                            )}
+
+                            {/* 6. Author Line */}
+                            <div className="flex items-center gap-4 mt-8 pb-8 border-b border-slate-200 dark:border-white/10">
+                                <div className="w-12 h-12 rounded-full overflow-hidden border border-primary/20 bg-primary/5">
+                                    <img
+                                        src="https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
+                                        className="w-full h-full object-cover object-top"
+                                        alt={authorName}
+                                        loading="lazy"
+                                    />
+                                </div>
+                                <div className="flex flex-col">
+                                    <div className="font-bold text-lg text-slate-900 dark:text-white">
+                                        {authorName}
                                     </div>
-                                )}
-                                <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent pointer-events-none" />
+                                    <div className="text-primary text-[10px] font-bold uppercase tracking-[0.1em]">
+                                        Author
+                                    </div>
+                                </div>
                             </div>
+                        </header>
 
-                            {/* Decorative blurs */}
-                            <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/10 blur-3xl rounded-full" />
-                            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/5 blur-3xl rounded-full" />
-                        </div>
-                    </div>
-
-                    {/* AI Overview Zone */}
-                    <div className="mt-16 lg:mt-20 max-w-5xl">
-                        <AIScanZone
-                            aiQuickAnswer={aiDataRaw?.ai_quick_answer}
-                            aiTakeaways={aiTakeaways}
-                            aiFaqs={aiFaqs}
-                        />
-                    </div>
-                </div>
-            </section>
-
-            {/* Main Content + Author Sidebar */}
-            <section className="pt-6 pb-20 px-6 relative z-10">
-                <div className="max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-16">
-                    {/* Article Content */}
-                    <article className="lg:col-span-8" data-ai-main-content="true">
+                        {/* 7. Main article body */}
                         <div
                             className="prose prose-lg md:prose-xl max-w-none transition-all duration-300
                             prose-headings:text-slate-900 dark:prose-headings:text-white prose-headings:font-semibold prose-headings:tracking-tight
@@ -366,89 +415,85 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                             prose-strong:text-slate-900 dark:prose-strong:text-white
                             prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:bg-white/[0.03] dark:prose-blockquote:bg-white/[0.03]
                             prose-blockquote:py-6 prose-blockquote:px-8 prose-blockquote:rounded-r-2xl prose-blockquote:not-italic prose-blockquote:text-xl
-                            prose-img:rounded-[2rem] prose-img:shadow-2xl prose-img:border prose-img:border-black/5 dark:prose-img:border-white/5
+                            prose-img:rounded-[2rem] prose-img:shadow-xl prose-img:border prose-img:border-black/5 dark:prose-img:border-white/5
                             prose-ul:list-disc prose-ol:list-decimal
-                            dark:prose-invert dark:prose-orange"
+                            dark:prose-invert"
                             dangerouslySetInnerHTML={{ __html: post.content }}
                         />
 
-                        {/* Strategic CTA: Logic Loop */}
-                        <div className="mt-16 p-8 md:p-12 rounded-[2.5rem] bg-primary relative overflow-hidden group">
-                            <div className="absolute inset-0 bg-black/10 mix-blend-overlay"></div>
-                            <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
-                                <div className="max-w-xl text-center md:text-left">
-                                    <div className="flex items-center justify-center md:justify-start gap-3 mb-6">
-                                        <div className="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center text-white">
-                                            <Zap className="w-4 h-4" />
+                        {/* 8. FAQ section if FAQs exist */}
+                        {mappedFaqs.length > 0 && (
+                            <section className="mt-20 pt-16 border-t border-slate-200 dark:border-white/10">
+                                <h2 className="text-3xl font-bold mb-8 text-slate-900 dark:text-white tracking-tight">Frequently Asked Questions</h2>
+                                <div className="space-y-6">
+                                    {mappedFaqs.map((faq, i) => (
+                                        <div key={i} className="p-6 md:p-8 rounded-2xl bg-white border border-slate-100 dark:bg-white/[0.02] dark:border-white/5">
+                                            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-white">{faq.question}</h3>
+                                            <p className="text-lg text-slate-600 dark:text-gray-400 leading-relaxed">{faq.answer}</p>
                                         </div>
-                                        <span className="text-[10px] font-bold tracking-[0.2em] text-white uppercase">Infrastructure Context</span>
-                                    </div>
-                                    <h3 className="text-2xl md:text-3xl font-semibold text-white mb-4 tracking-tight">
-                                        This strategy is a component of our Growth Infrastructure.
+                                    ))}
+                                </div>
+                            </section>
+                        )}
+
+                        {/* 9. Soft CTA section */}
+                        <section className="mt-20 p-8 md:p-12 rounded-3xl bg-slate-100 border border-slate-200 dark:bg-white/[0.03] dark:border-white/5 group relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
+                            <div className="relative z-10 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-8">
+                                <div className="max-w-xl">
+                                    <h3 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
+                                        Want help finding the leak?
                                     </h3>
-                                    <p className="text-white/80 font-light leading-relaxed">
-                                        Implementation requires more than just reading. See how this logic fits into our core Montana frameworks.
+                                    <p className="text-lg text-slate-600 dark:text-gray-300 leading-relaxed">
+                                        I’ll look at your lead handling, follow-up, pricing logic, and website path and show you where demand or margin is slipping out.
                                     </p>
                                 </div>
                                 <Link 
-                                    href="/solutions"
-                                    className="px-8 py-4 rounded-full bg-white text-primary font-bold transition-all hover:scale-105 active:scale-95 shadow-xl decoration-transparent whitespace-nowrap"
+                                    href="/contact"
+                                    className="px-8 py-4 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-bold transition-all hover:scale-105 shadow-xl decoration-transparent whitespace-nowrap"
                                 >
-                                    Explore Solutions Hub
+                                    Let's Talk
                                 </Link>
                             </div>
-                        </div>
+                        </section>
 
-                        {/* Bottom Bar: Back + Share */}
-                        <div className="mt-20 pt-12 border-t flex flex-col md:flex-row items-center justify-between gap-8 border-slate-200 dark:border-white/10">
-                            <Link
-                                href="/blog"
-                                className="px-8 py-4 rounded-full border font-bold transition-all flex items-center gap-3 bg-white border-slate-200 text-slate-900 hover:bg-slate-50 hover:border-primary/30 shadow-sm dark:bg-white/[0.03] dark:border-white/10 dark:text-white dark:hover:bg-white/[0.08] dark:hover:border-primary/30 decoration-transparent"
-                            >
-                                <ArrowLeft className="w-5 h-5" /> Back to Insights
-                            </Link>
-                            <ArticleShareButtons title={cleanTitleText} slug={slug} />
-                        </div>
-                    </article>
-
-                    {/* Author Sidebar */}
-                    <aside className="lg:col-span-4">
-                        <div className="p-8 rounded-3xl border sticky top-32 transition-all relative overflow-hidden bg-white border-slate-200 shadow-xl dark:bg-[#121417]/80 dark:backdrop-blur-md dark:border-white/10">
-                            <div className="absolute -top-10 -left-10 w-32 h-32 blur-[80px] rounded-full opacity-30 pointer-events-none bg-primary/20 dark:bg-primary" />
-
-                            <h4 className="text-[10px] font-bold tracking-[0.25em] uppercase mb-8 text-slate-400 dark:text-gray-500">Published By</h4>
-
-                            <div className="flex items-center gap-5 mb-8 relative z-10">
-                                <div className="w-14 h-14 rounded-2xl overflow-hidden border p-0.5 border-primary/20 bg-primary/5 dark:border-primary/40 dark:bg-primary/10">
+                        {/* 10. Author bio block */}
+                        <section className="mt-20 p-8 rounded-3xl border bg-white border-slate-200 shadow-sm dark:bg-[#121417] dark:border-white/10 relative overflow-hidden">
+                            <h4 className="text-[10px] font-bold tracking-[0.25em] uppercase mb-8 text-slate-400 dark:text-gray-500">About the Author</h4>
+                            <div className="flex flex-col md:flex-row items-center md:items-start gap-6 relative z-10">
+                                <div className="w-16 h-16 shrink-0 rounded-full overflow-hidden border p-0.5 border-primary/20 bg-primary/5 dark:border-primary/40 dark:bg-primary/10">
                                     <img
                                         src="https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
-                                        className="w-full h-full object-cover object-top rounded-[14px]"
-                                        alt="Trevor Riggs"
+                                        className="w-full h-full object-cover object-top rounded-full"
+                                        alt={authorName}
                                         loading="lazy"
                                     />
                                 </div>
-                                <div>
-                                    <div className="font-bold text-xl tracking-tight text-slate-900 dark:text-white">
-                                        {post.author?.node?.name || 'Trevor Riggs'}
+                                <div className="flex-1 text-center md:text-left">
+                                    <div className="font-bold text-2xl tracking-tight text-slate-900 dark:text-white mb-1">
+                                        {authorName}
                                     </div>
-                                    <div className="text-primary text-[10px] font-bold uppercase tracking-[0.15em]">Founder / Architect</div>
+                                    <div className="text-primary text-xs font-bold uppercase tracking-[0.15em] mb-4">Founder & Architect</div>
+                                    <p className="text-base leading-relaxed mb-6 font-light text-slate-600 dark:text-secondary/80">
+                                        {post.author?.node?.description || '25+ years engineering high-conversion sales systems and strategic digital infrastructure for high-growth firms.'}
+                                    </p>
+                                    <a
+                                        href={authorUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg border border-slate-200 text-slate-600 font-medium text-sm transition-all hover:bg-slate-50 dark:border-white/10 dark:text-gray-300 dark:hover:bg-white/5 decoration-transparent"
+                                    >
+                                        Connect on LinkedIn
+                                    </a>
                                 </div>
                             </div>
+                        </section>
 
-                            <p className="text-sm leading-relaxed mb-10 font-light text-slate-600 dark:text-secondary/70">
-                                25+ years engineering high-conversion sales systems and strategic digital infrastructure for high-growth firms.
-                            </p>
-
-                            <a
-                                href={SOCIAL_LINKS.linkedin}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="block w-full py-4 rounded-xl bg-primary text-white font-bold text-sm text-center transition-all hover:scale-[1.02] active:scale-[0.98] shadow-[0_10px_30px_-5px_rgba(180,83,9,0.3)] hover:shadow-[0_15px_35px_-5px_rgba(180,83,9,0.4)] decoration-transparent"
-                            >
-                                Connect on LinkedIn
-                            </a>
+                        {/* Bottom Bar: Share */}
+                        <div className="mt-12 pt-8 border-t flex items-center justify-center border-slate-200 dark:border-white/10">
+                            <ArticleShareButtons title={cleanTitleText} slug={slug} />
                         </div>
-                    </aside>
+                    </article>
                 </div>
             </section>
 
