@@ -2,39 +2,25 @@ import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath, revalidateTag } from "next/cache";
 
 export async function PUT(request: NextRequest) {
-  const requestBody = await request.text();
-  const { paths, tags } = requestBody
-    ? JSON.parse(requestBody)
-    : { paths: [], tags: [] };
-  let revalidated = false;
+  const url = new URL(request.url);
+  // Allow secret from the URL parameter OR the header
+  const secret = url.searchParams.get("secret") || request.headers.get("X-Headless-Secret-Key");
 
-  if (
-    request.headers.get("X-Headless-Secret-Key") !== process.env.HEADLESS_SECRET
-  ) {
+  if (secret !== process.env.HEADLESS_SECRET) {
     return NextResponse.json({ message: "Invalid secret" }, { status: 401 });
   }
 
   try {
-    if (paths && Array.isArray(paths) && paths.length > 0) {
-      paths.forEach((path: string) => revalidatePath(path));
-      console.log("Revalidated paths:", paths);
-      revalidated = true;
-    }
-
-    if (tags && Array.isArray(tags) && tags.length > 0) {
-      tags.forEach((tag: string) => {
-        // @ts-expect-error Next.js 16 revalidateTag expects 2 arguments
-        revalidateTag(tag);
-      });
-      console.log("Revalidated tags:", tags);
-      revalidated = true;
-    }
+    // We can confidently revalidate the "wordpress" tag without needing specific payloads
+    // This allows free webhook plugins to trigger the flush without custom raw payloads.
+    // @ts-expect-error Next.js 16 revalidateTag expects 2 arguments
+    revalidateTag("wordpress");
+    console.log("Revalidated tag: wordpress");
 
     return NextResponse.json({
-      revalidated,
+      revalidated: true,
       now: Date.now(),
-      paths,
-      tags: tags,
+      tags: ["wordpress"],
     });
   } catch (error) {
     console.error("Revalidation error:", error);
