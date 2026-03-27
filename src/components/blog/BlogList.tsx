@@ -144,7 +144,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts, categories }) => {
           >
             All Thinking
           </button>
-          {categories.filter(c => c.count > 0 && c.slug !== 'uncategorized' && c.slug !== 'blog').map(cat => (
+          {categories.filter(c => c.count > 0 && c.slug !== 'uncategorized' && c.slug !== 'blog' && c.slug !== 'foundational' && c.slug !== 'foundational-logic').map(cat => (
             <button
               key={cat.id}
               onClick={() => handleCategoryClick(cat.slug)}
@@ -210,8 +210,8 @@ const BlogList: React.FC<BlogListProps> = ({ posts, categories }) => {
                         >
                           <div className="flex-1 space-y-4">
                             <div className="flex items-center gap-4">
-                              {post.categories?.nodes.slice(0, 1).map((cat) => (
-                                <span key={cat.slug} className="text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded border bg-primary/5 border-primary/20 text-primary">
+                              {post.categories?.nodes.filter(c => c.slug !== 'foundational').map((cat) => (
+                                <span key={cat.slug} className="text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded border bg-primary/5 border-primary/20 text-primary whitespace-nowrap">
                                   {cat.name}
                                 </span>
                               ))}

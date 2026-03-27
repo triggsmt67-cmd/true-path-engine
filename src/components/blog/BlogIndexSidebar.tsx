@@ -58,7 +58,7 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
 }) => {
     // Filter and sort categories: show 4-8 max, exclude Uncategorized
     const displayCategories = categories
-        .filter(cat => cat.slug !== 'uncategorized' && cat.slug !== 'blog' && cat.count > 0)
+        .filter(cat => cat.slug !== 'uncategorized' && cat.slug !== 'blog' && cat.slug !== 'foundational' && cat.slug !== 'foundational-logic' && cat.count > 0)
         .sort((a, b) => b.count - a.count)
         .slice(0, 8);
 
