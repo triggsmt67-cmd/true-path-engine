@@ -12,5 +12,5 @@ export const SOCIAL_LINKS = {
 };
 
 export const CONTACT_LINKS = {
-  calendar: "https://calendly.com/triggsmt67",
+  calendar: "https://calendly.com/triggsmt67/30min?back=1&month=2026-03",
 };
