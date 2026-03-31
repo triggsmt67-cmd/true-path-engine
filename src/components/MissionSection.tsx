@@ -10,7 +10,7 @@ const MissionSection: React.FC = () => {
                     {/* Subtle Label - Secondary */}
                     <div className="flex items-center gap-3 mb-12 opacity-50">
                         <div className="h-px w-8 bg-primary"></div>
-                        <span className="text-xs font-medium text-secondary uppercase tracking-widest">Introduction</span>
+                        <span className="text-xs font-medium text-secondary uppercase tracking-widest">The Real Problem</span>
                     </div>
 
                     <motion.div
@@ -21,23 +21,25 @@ const MissionSection: React.FC = () => {
                     >
                         {/* Primary Statement - Large & Confident */}
                         <h2 className="text-3xl md:text-5xl lg:text-6xl font-normal leading-[1.1] tracking-tight text-white mb-12 max-w-4xl">
-                            Most marketing problems don’t start with the platform.
+                            Why the problem usually is not the platform
                         </h2>
 
                         <div className="grid md:grid-cols-12 gap-12">
                             {/* Empty column for offset layout if desired, or just full width text */}
                             <div className="md:col-span-12 lg:col-span-10 space-y-8 text-lg md:text-2xl text-secondary font-light leading-relaxed">
                                 <p>
-                                    They start with unclear buyers, noisy advice, and too many tools doing too little.
+                                    Most businesses do not need another tool or another tactic first.
                                 </p>
                                 <p>
-                                    AI has made execution easier than ever.<br className="hidden md:block" />
-                                    It’s also made decision-making harder.
+                                    They need to know what is actually costing them jobs.
+                                </p>
+                                <p>
+                                    Sometimes it is visibility. Sometimes it is follow-up. Sometimes it is trust. Sometimes it is conversion. A lot of the time, the real problem is not where the lead came from. It is what happened next.
                                 </p>
 
                                 {/* Role Declaration - Distinct but connected */}
                                 <p className="text-white/90 pt-4">
-                                    My role is to slow the chaos down, clarify what actually matters, and help you make marketing decisions you can stand behind.
+                                    My role is to help you cut through the noise, find the real leak, and make clearer decisions about what to fix first.
                                 </p>
                             </div>
                         </div>

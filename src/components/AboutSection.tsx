@@ -51,11 +51,13 @@ const AboutSection: React.FC = () => {
 
             <div className="space-y-6 text-lg md:text-xl text-secondary leading-relaxed mb-10 font-light">
               <p>
-                I work with <span className="text-white font-medium">Montana-based businesses</span> that need clarity during change.
-                That usually means paid growth decisions, system cleanup, and figuring out what actually deserves attention when everything feels noisy.
+                I work with <span className="text-primary font-medium">owner-operated Montana service businesses</span> that need clearer decisions, not more noise.
               </p>
               <p>
-                I’m not interested in chasing trends or shipping tactics for the sake of activity. My work is about helping owners slow things down, see the signal, and make decisions they can stand behind.
+                That usually means figuring out what is actually costing you jobs — missed calls, slow follow-up, weak local visibility, poor conversion, or too many changes happening without enough context.
+              </p>
+              <p>
+                I am not interested in trends, busywork, or marketing activity for its own sake. My role is to help you slow things down, see what matters, and make decisions you can stand behind.
               </p>
 
               <div className="grid sm:grid-cols-2 gap-6 pt-6">
@@ -65,7 +67,7 @@ const AboutSection: React.FC = () => {
                     <span className="text-white font-medium">Where AI helps</span>
                   </div>
                   <div className="text-sm text-secondary leading-relaxed">
-                    Automation that reduces effort and noise — not replaces judgment or adds complexity.
+                    Automation that reduces effort and noise — not judgment, trust, or common sense.
                   </div>
                 </div>
                 <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-col justify-center gap-3">

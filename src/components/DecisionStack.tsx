@@ -8,7 +8,7 @@ import { SpotlightCard } from './SpotlightCard';
 const stackItems = [
     {
         title: 'Weak Google Visibility',
-        subtitle: 'You’re harder to find than you should be in local search.',
+        subtitle: 'People cannot hire you if they cannot find you.',
         icon: MapPin,
         color: 'text-blue-400',
         bg: 'bg-blue-400/10',
@@ -17,7 +17,7 @@ const stackItems = [
     },
     {
         title: 'Missed Calls & Slow Response',
-        subtitle: 'Leads cool off fast when no one answers or follows up.',
+        subtitle: 'Leads cool off fast when nobody answers or follows up.',
         icon: PhoneMissed,
         color: 'text-purple-400',
         bg: 'bg-purple-400/10',
@@ -26,7 +26,7 @@ const stackItems = [
     },
     {
         title: 'Thin Reviews & Weak Trust',
-        subtitle: 'Good businesses still lose work when proof is missing.',
+        subtitle: 'Good businesses lose work when proof is missing.',
         icon: Star,
         color: 'text-emerald-400',
         bg: 'bg-emerald-400/10',
@@ -35,7 +35,7 @@ const stackItems = [
     },
     {
         title: 'Wasted Spend & Leaky Conversion',
-        subtitle: 'Traffic and ad dollars do not matter if they do not turn into calls.',
+        subtitle: 'More traffic does not help if it never turns into calls.',
         icon: TrendingDown,
         color: 'text-orange-400',
         bg: 'bg-orange-400/10',
@@ -98,11 +98,11 @@ const DecisionStack: React.FC<DecisionStackProps> = ({ disableSpotlight = false 
                     {/* Flow Indicator to Final Decision */}
                     <motion.div
                         initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 24 }}
+                        animate={{ opacity: 1, height: 32 }}
                         transition={{ delay: 0.85, duration: 0.3 }}
-                        className="flex justify-center items-center text-gray-700"
+                        className="flex justify-center items-center py-2"
                     >
-                        <ArrowDown className="w-4 h-4 text-secondary/20" />
+                        <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wider text-secondary/40">Start with the leak, not more activity</span>
                     </motion.div>
 
                     {/* Final Output - Clickable Button */}
@@ -128,8 +128,8 @@ const DecisionStack: React.FC<DecisionStackProps> = ({ disableSpotlight = false 
                                     <div className="font-bold text-white text-[1.05rem] mb-0.5 group-hover/btn:text-primary transition-colors duration-300">
                                         Review My Current Setup
                                     </div>
-                                    <div className="text-xs text-secondary/60 font-medium leading-relaxed group-hover/btn:text-white/70 transition-colors duration-300">
-                                        Takes 15 minutes. No sales pitch. <br />I'll call your cell.
+                                    <div className="text-[11px] sm:text-xs text-secondary/60 font-medium leading-relaxed group-hover/btn:text-white/70 transition-colors duration-300">
+                                        A quick 15-minute look at where leads may be leaking.<br className="hidden sm:block" /> No sales pitch. I'll call your cell.
                                     </div>
                                 </div>
                             </div>

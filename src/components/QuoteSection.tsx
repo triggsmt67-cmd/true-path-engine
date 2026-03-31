@@ -12,8 +12,8 @@ const QuoteSection: React.FC = () => {
           transition={{ duration: 1.2, ease: "easeOut" }}
           className="font-serif text-4xl md:text-6xl lg:text-7xl font-normal tracking-tight text-white leading-[1.15] mb-8"
         >
-          The hardest part of marketing isn’t doing more.<br className="hidden md:block" />
-          It’s deciding what <span className="text-primary">not</span> to do.
+          The hardest part is <span className="text-primary">not</span> doing more.<br className="hidden md:block" />
+          It is knowing what to fix first.
         </motion.h2>
 
         <motion.p
@@ -23,7 +23,8 @@ const QuoteSection: React.FC = () => {
           transition={{ duration: 1, delay: 0.6 }}
           className="text-sm md:text-base text-gray-500 font-sans tracking-wide"
         >
-          Clarity comes from subtraction, not activity.
+          Clarity does not come from more activity.<br className="hidden md:block" />
+          It comes from removing noise and solving the real problem.
         </motion.p>
       </div>
     </section>

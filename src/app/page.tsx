@@ -55,12 +55,13 @@ export default function Page() {
         <Navbar />
         <main>
           <Hero />
-          <EarlyProofSection />
-          <SectionSeparator number="01" title="GROWTH ENGINE" />
+          <StakesSection />
+          <SectionSeparator number="01" title="WHY GOOD BUSINESSES STILL LOSE JOBS" />
           <FeatureSplit />
           <QuoteSection />
+          <EarlyProofSection />
 
-          <SectionSeparator number="02" title="THE MISSION" />
+          <SectionSeparator number="02" title="THE REAL PROBLEM" />
           <MissionSection />
 
           <SectionSeparator number="03" title="CORE SERVICES" />
@@ -69,10 +70,7 @@ export default function Page() {
           <SectionSeparator number="04" title="HOW I WORK" />
           <TrailGrid />
 
-          <SectionSeparator number="05" title="WHO THIS IS FOR" />
-          <StakesSection />
-
-          <SectionSeparator number="06" title="ABOUT TREVOR" />
+          <SectionSeparator number="05" title="ABOUT TREVOR" />
           <AboutSection />
         </main>
         <Footer />

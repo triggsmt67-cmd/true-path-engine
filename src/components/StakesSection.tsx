@@ -22,7 +22,7 @@ const StakesSection: React.FC = () => {
               Who This Is For
             </h2>
             <p className="text-xl md:text-2xl text-secondary leading-relaxed max-w-md font-light mb-8 lg:mb-0">
-              Built for businesses where the owner is busy, the phone matters, and bad follow-up costs real jobs.
+              Built for businesses where the owner is busy, the phone matters, and small breakdowns in follow-up cost real jobs.
             </p>
             <div className="hidden lg:block relative h-64">
               <div className="absolute inset-0 bg-primary/5 blur-[80px] rounded-full" />
@@ -41,10 +41,10 @@ const StakesSection: React.FC = () => {
             {/* List */}
             <ul className="space-y-8">
               {[
-                "Owner-operated local service providers",
-                "Businesses losing jobs to missed calls, slow response, or weak local visibility",
-                "Owners who want clarity before committing more marketing dollars",
-                "Businesses needing better conversion and stronger trust from existing demand"
+                "Owner-operated local service businesses",
+                "Businesses losing work to missed calls, slow response, weak Google visibility, or poor follow-up",
+                "Owners who want clearer decisions before committing more marketing dollars",
+                "Businesses that need better conversion and stronger trust from the demand they already have"
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-6 group">
                   <div className="p-3 rounded-2xl bg-white/[0.03] border border-white/10 text-primary group-hover:bg-primary group-hover:text-white transition-all">
@@ -62,10 +62,10 @@ const StakesSection: React.FC = () => {
               </div>
               <div className="space-y-6 relative z-10">
                 <p className="text-lg md:text-xl text-secondary font-light leading-relaxed">
-                  If you have a large corporate marketing department or want flashy agency hype, this isn’t a good fit.
+                  If you want flashy agency hype, this probably is not a fit.
                 </p>
                 <p className="text-xl md:text-2xl text-white font-medium leading-relaxed">
-                  If you want practical, plainspoken consulting that fixes real revenue leaks—we’ll work well together.
+                  If you want practical, plainspoken help fixing real demand leaks, we’ll work well together.
                 </p>
               </div>
             </div>

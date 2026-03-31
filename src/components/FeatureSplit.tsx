@@ -1,17 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { X, Check } from 'lucide-react';
 
 const FeatureSplit: React.FC = () => {
   return (
     <section className="py-20 md:py-24 bg-background relative overflow-hidden border-b border-white/5">
       <div className="max-w-6xl mx-auto px-6 relative z-10">
 
-        {/* Section Intro - Small & Subtle */}
-        <div className="mb-12 md:mb-16 text-center md:text-left">
-          <span className="text-secondary/40 text-sm md:text-base font-light tracking-wide">
-            Why marketing feels harder than it should
-          </span>
-        </div>
+        {/* Section Intro - Kept transparent for spacing if needed or removed */}
+        <div className="mb-8 md:mb-12"></div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
           {/* Left Column: The Problem */}
@@ -22,35 +19,34 @@ const FeatureSplit: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="flex flex-col opacity-80"
           >
-            <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-secondary/40 mb-6">
-              The Reactive Loop
-            </span>
-
-            <h3 className="text-2xl md:text-3xl font-medium text-white/90 mb-6 leading-tight">
-              When everything feels urgent, <br />nothing feels clear.
-            </h3>
-
-            <div className="text-secondary/60 font-light text-lg leading-relaxed space-y-6 mb-8">
+            <div className="text-secondary/60 font-light text-lg md:text-xl leading-relaxed space-y-6 mb-10">
               <p>
-                Spreadsheets. Gut calls. Constant tweaks. <br className="hidden md:block" />
-                Most marketing doesn’t fail — it just never settles.
+                When the owner is busy and every lead feels urgent, it gets harder to see what is actually breaking down.
               </p>
               <p>
-                When every metric demands attention, decisions get rushed.
-                You stay busy, but clarity keeps slipping.
+                So calls get missed. Follow-up gets delayed. Ads get tweaked. The website gets second-guessed. Another change gets made before the last one had time to tell you anything useful.
+              </p>
+              <p>
+                Most of the time, the problem is not effort. It is that too many decisions are being made under pressure, without enough context.
               </p>
             </div>
 
-            <ul className="space-y-3">
+            <h3 className="text-xl md:text-2xl font-medium text-white/90 mb-6 leading-tight">
+              What that usually looks like
+            </h3>
+
+            <ul className="space-y-4">
               {[
-                "Chasing metrics after the fact",
-                "Changing tactics too often",
-                "Conflicting reports",
+                "Chasing numbers after the fact",
+                "Changing direction too often",
+                "Conflicting signals from different tools",
                 "Decisions made under pressure"
               ].map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-sm text-secondary/40">
-                  <div className="w-1 h-1 rounded-full bg-secondary/20"></div>
-                  <span>{item}</span>
+                <li key={i} className="flex items-center gap-4 text-base text-secondary/60 group cursor-default">
+                  <div className="p-1.5 rounded-lg bg-white/[0.03] border border-white/10 text-secondary/40 group-hover:bg-red-500/20 group-hover:border-red-500/30 group-hover:text-red-400 transition-all duration-300 shrink-0">
+                    <X className="w-4 h-4" />
+                  </div>
+                  <span className="group-hover:text-white transition-colors duration-300">{item}</span>
                 </li>
               ))}
             </ul>
@@ -62,39 +58,36 @@ const FeatureSplit: React.FC = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col relative"
+            className="flex flex-col relative mt-8 lg:mt-0"
           >
             {/* Subtle backlight for right column */}
             <div className="absolute -left-10 top-0 w-full h-full bg-primary/5 blur-[100px] rounded-full pointer-events-none opacity-30"></div>
 
-            <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-primary mb-6 relative z-10">
-              The True Path Protocol
-            </span>
-
-            <h3 className="text-2xl md:text-3xl font-medium text-white mb-6 leading-tight relative z-10">
-              From reaction to <br />reasoned decisions.
-            </h3>
-
-            <div className="text-secondary font-light text-lg leading-relaxed space-y-6 mb-8 relative z-10">
+            <div className="text-secondary font-light text-lg md:text-xl leading-relaxed space-y-6 mb-10 relative z-10">
               <p>
-                Clarity doesn’t come from doing more. <br className="hidden md:block" />
-                It comes from slowing the system down enough to see signal.
+                Clarity does not come from doing more. It comes from seeing what is actually costing you jobs and fixing that first.
               </p>
               <p>
-                When decisions are grounded in context, marketing stops feeling chaotic — and starts feeling manageable.
+                When the right problem becomes clear, marketing gets easier to manage.
               </p>
             </div>
 
-            <ul className="space-y-3 relative z-10">
+            <h3 className="text-xl md:text-2xl font-medium text-white mb-6 leading-tight relative z-10">
+              What changes when things get clear
+            </h3>
+
+            <ul className="space-y-4 relative z-10">
               {[
-                "One priority at a time",
-                "Fewer, intentional changes",
-                "Signals you can explain",
+                "One clear priority at a time",
+                "Fewer unnecessary changes",
+                "Signals you can actually explain",
                 "Decisions made with context"
               ].map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-sm text-secondary font-medium">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary/60"></div>
-                  <span>{item}</span>
+                <li key={i} className="flex items-center gap-4 text-base text-secondary font-medium group cursor-default">
+                  <div className="p-1.5 rounded-lg bg-primary/10 border border-primary/20 text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300 shrink-0">
+                    <Check className="w-4 h-4" />
+                  </div>
+                  <span className="group-hover:text-white transition-colors duration-300">{item}</span>
                 </li>
               ))}
             </ul>

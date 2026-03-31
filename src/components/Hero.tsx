@@ -78,7 +78,7 @@ const Hero: React.FC = () => {
             <h1 className="mb-6 md:mb-8 font-semibold tracking-tighter leading-[1.2] md:leading-[1.1]">
               <RevealText
                 text="Clearer marketing decisions for owner-operated service businesses"
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] xl:text-[5.5rem]"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4.5rem]"
                 highlightWords={["marketing", "decisions"]}
                 highlightClassName="text-transparent bg-clip-text bg-gradient-to-br from-[#fbbf24] via-primary to-[#78350f]"
 
@@ -89,7 +89,7 @@ const Hero: React.FC = () => {
 
             {/* Subhead */}
             <motion.p variants={itemVariants} className="text-lg md:text-2xl text-secondary mb-8 md:mb-10 max-w-2xl leading-relaxed font-normal">
-              I help local service businesses fix weak Google visibility, missed calls, slow follow-up, and wasted ad spend.
+              You do not need more marketing activity. You need to know where jobs are being lost. I help local service businesses fix weak Google visibility, missed calls, slow follow-up, and wasted ad spend—so more of your existing demand turns into real calls, real jobs, and better decisions.
             </motion.p>
 
             {/* CTA Group */}
@@ -125,11 +125,8 @@ const Hero: React.FC = () => {
               <div className="flex flex-col items-center lg:items-start gap-3 mt-2">
                 <div className="flex items-center gap-2 text-sm text-secondary">
                   <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                  <span className="md:whitespace-nowrap">Find out what to turn off before you spend another dime.</span>
+                  <span className="md:whitespace-nowrap">Takes 15 minutes. No sales pitch. I'll call your cell.</span>
                 </div>
-                <p className="text-xs text-secondary/60 max-w-md text-center lg:text-left">
-                  Built for businesses where the phone matters, time is limited, and bad systems quietly cost jobs.
-                </p>
               </div>
             </motion.div>
           </motion.div>
