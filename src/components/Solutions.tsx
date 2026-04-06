@@ -1,8 +1,11 @@
 
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, PhoneCall, Star, MousePointerClick, Search, Calendar, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const solutions = [
     {
@@ -58,6 +61,19 @@ const solutions = [
 import { SpotlightCard } from './SpotlightCard';
 
 const Solutions: React.FC = () => {
+    const router = useRouter();
+    const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
+
+    const handleCardClick = (e: React.MouseEvent<HTMLAnchorElement>, index: number, href: string) => {
+        e.preventDefault();
+        setFlippedIndex(index);
+        
+        // Wait for flip animation + short artificial delay
+        setTimeout(() => {
+            router.push(href);
+        }, 1200);
+    };
+
     return (
         <section id="solutions" className="py-10 md:py-16 bg-background relative overflow-hidden border-b border-white/5 scroll-mt-20">
             {/* Abstract Background Grid/Pattern */}
@@ -106,51 +122,77 @@ const Solutions: React.FC = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5, delay: index * 0.1 }}
+                            style={{ perspective: 1000 }}
                             className="relative group h-full"
                         >
-                            <Link href={solution.href} className="block h-full decoration-transparent">
-                                <SpotlightCard
-                                    spotlightColor="rgba(255, 107, 0, 0.1)"
-                                    className="relative flex flex-col h-full bg-white/[0.02] border border-white/5 rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
-                                >
-                                    {/* Vertical Accent Line (Hover Only) */}
-                                    <div className="absolute left-0 top-1/2 -translate-y-1/2 h-2/3 w-[2px] bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-linear" />
+                            <motion.div
+                                animate={{ rotateY: flippedIndex === index ? 180 : 0 }}
+                                transition={{ duration: 0.6, ease: "easeInOut" }}
+                                style={{ transformStyle: "preserve-3d" }}
+                                className="h-full w-full relative"
+                            >
+                                <div style={{ backfaceVisibility: "hidden" }} className="h-full w-full">
+                                    <Link 
+                                        href={solution.href} 
+                                        onClick={(e) => handleCardClick(e, index, solution.href)}
+                                        className="block h-full decoration-transparent"
+                                    >
+                                        <SpotlightCard
+                                            spotlightColor="rgba(255, 107, 0, 0.1)"
+                                            className="relative flex flex-col h-full bg-white/[0.02] border border-white/5 rounded-2xl p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5"
+                                        >
+                                            {/* Vertical Accent Line (Hover Only) */}
+                                            <div className="absolute left-0 top-1/2 -translate-y-1/2 h-2/3 w-[2px] bg-primary opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-linear" />
 
-                                    {/* Icon Header */}
-                                    <div className="flex items-center justify-between mb-8 opacity-80 group-hover:opacity-100 transition-opacity">
-                                        <div className="text-secondary group-hover:text-primary transition-colors duration-300">
-                                            <solution.icon className="w-6 h-6" strokeWidth={1.5} />
-                                        </div>
-                                        <span className="text-[10px] font-medium text-secondary uppercase tracking-widest bg-white/[0.03] px-2 py-1 rounded">
-                                            {solution.role}
-                                        </span>
-                                    </div>
-
-                                    {/* Content */}
-                                    <div className="flex-1 mb-8">
-                                        <h3 className="text-xl md:text-2xl font-semibold text-white mb-4 group-hover:text-white transition-colors tracking-tight">
-                                            {solution.title}
-                                        </h3>
-                                        <p className="text-secondary text-sm md:text-base leading-relaxed font-light mb-6">
-                                            {solution.description}
-                                        </p>
-                                        <div className="flex items-center gap-2 text-primary font-medium text-sm border-b border-primary/0 group-hover:border-primary/50 w-fit transition-all pb-0.5">
-                                            View Details
-                                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                                        </div>
-                                    </div>
-
-                                    {/* Tags List */}
-                                    <div className="space-y-2 pt-6 border-t border-white/5">
-                                        {solution.tags.map((tag, i) => (
-                                            <div key={i} className="flex items-center gap-2 text-xs text-secondary/60 group-hover:text-secondary transition-colors">
-                                                <div className="w-1 h-1 rounded-full bg-gray-700 group-hover:bg-primary/50 transition-colors"></div>
-                                                {tag}
+                                            {/* Icon Header */}
+                                            <div className="flex items-center justify-between mb-8 opacity-80 group-hover:opacity-100 transition-opacity">
+                                                <div className="text-secondary group-hover:text-primary transition-colors duration-300">
+                                                    <solution.icon className="w-6 h-6" strokeWidth={1.5} />
+                                                </div>
+                                                <span className="text-[10px] font-medium text-secondary uppercase tracking-widest bg-white/[0.03] px-2 py-1 rounded">
+                                                    {solution.role}
+                                                </span>
                                             </div>
-                                        ))}
-                                    </div>
-                                </SpotlightCard>
-                            </Link>
+
+                                            {/* Content */}
+                                            <div className="flex-1 mb-8">
+                                                <h3 className="text-xl md:text-2xl font-semibold text-white mb-4 group-hover:text-white transition-colors tracking-tight">
+                                                    {solution.title}
+                                                </h3>
+                                                <p className="text-secondary text-sm md:text-base leading-relaxed font-light mb-6">
+                                                    {solution.description}
+                                                </p>
+                                                <div className="flex items-center gap-2 text-primary font-medium text-sm border-b border-primary/0 group-hover:border-primary/50 w-fit transition-all pb-0.5">
+                                                    View Details
+                                                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                                </div>
+                                            </div>
+
+                                            {/* Tags List */}
+                                            <div className="space-y-2 pt-6 border-t border-white/5">
+                                                {solution.tags.map((tag, i) => (
+                                                    <div key={i} className="flex items-center gap-2 text-xs text-secondary/60 group-hover:text-secondary transition-colors">
+                                                        <div className="w-1 h-1 rounded-full bg-gray-700 group-hover:bg-primary/50 transition-colors"></div>
+                                                        {tag}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </SpotlightCard>
+                                    </Link>
+                                </div>
+                                
+                                {/* Back Face */}
+                                <div 
+                                    style={{ 
+                                        backfaceVisibility: "hidden", 
+                                        transform: "rotateY(180deg)", 
+                                    }}
+                                    className="absolute inset-0 flex flex-col items-center justify-center bg-white/[0.02] border border-white/5 rounded-2xl"
+                                >
+                                    <div className="w-10 h-10 border-2 border-primary border-t-transparent rounded-full animate-spin mb-4" />
+                                    <p className="text-secondary text-sm tracking-wide">Finding your path...</p>
+                                </div>
+                            </motion.div>
                         </motion.div>
                     ))}
                 </div>
