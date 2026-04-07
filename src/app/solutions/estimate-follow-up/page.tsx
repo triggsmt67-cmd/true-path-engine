@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Estimate Follow-Up & Booking Automation | True Path Digital',
   description: 'Build a cleaner follow-up process so quote requests, estimates, and warm leads are less likely to slip through the cracks.',
   alternates: {
-    canonical: 'https://truepath406.com/solutions/estimate-follow-up'
+    canonical: 'https://truepath406.com/solutions/estimate-follow-up/'
   }
 };
 
@@ -60,18 +60,36 @@ const whoThisIsFor = [
 export default function EstimateFollowUpPage() {
   const serviceSchema = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": "https://truepath406.com/solutions/estimate-follow-up#service",
-    "name": "Estimate Follow-Up & Booking Automation",
-    "serviceType": "Sales Automation & CRM Setup",
-    "provider": {
-      "@id": "https://truepath406.com/#organization"
-    },
-    "areaServed": {
-      "@type": "State",
-      "name": "Montana"
-    },
-    "description": "Build a cleaner follow-up process so quote requests, estimates, and warm leads are less likely to slip through the cracks."
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://truepath406.com/solutions/estimate-follow-up/#webpage",
+        "url": "https://truepath406.com/solutions/estimate-follow-up/",
+        "name": "Estimate Follow-Up & Booking Automation | True Path Digital",
+        "description": "Build a cleaner follow-up process so quote requests, estimates, and warm leads are less likely to slip through the cracks.",
+        "isPartOf": { "@id": "https://truepath406.com/#website" },
+        "breadcrumb": { "@id": "https://truepath406.com/solutions/estimate-follow-up/#breadcrumb" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://truepath406.com/solutions/estimate-follow-up/#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://truepath406.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://truepath406.com/solutions/" },
+          { "@type": "ListItem", "position": 3, "name": "Estimate Follow-Up" }
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://truepath406.com/solutions/estimate-follow-up/#service",
+        "name": "Estimate Follow-Up & Booking Automation",
+        "serviceType": "Sales Automation & CRM Setup",
+        "provider": { "@id": "https://truepath406.com/#organization" },
+        "telephone": "+1-406-880-6992",
+        "areaServed": { "@type": "State", "name": "Montana" },
+        "description": "Build a cleaner follow-up process so quote requests, estimates, and warm leads are less likely to slip through the cracks."
+      }
+    ]
   };
 
   return (

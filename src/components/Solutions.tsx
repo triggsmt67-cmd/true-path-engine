@@ -14,7 +14,7 @@ const solutions = [
         description: "Improve your Google Business Profile with complete business information, clearer categories, and stronger review signals so local customers can find you more easily.",
         tags: ["Clear Categories", "Accurate Info", "Review Signals"],
         icon: MapPin,
-        href: "/solutions/local-authority"
+        href: "/solutions/local-authority/"
     },
     {
         role: "Speed",
@@ -22,7 +22,7 @@ const solutions = [
         description: "Stop losing jobs to missed calls, slow replies, and follow-up gaps that cool leads off fast.",
         tags: ["Auto-text Reply", "Call Tracking", "Lead Capture"],
         icon: PhoneCall,
-        href: "/solutions/lead-velocity"
+        href: "/solutions/lead-velocity/"
     },
     {
         role: "Trust",
@@ -30,7 +30,7 @@ const solutions = [
         description: "Build a simple process that helps you get more reviews without constantly chasing customers.",
         tags: ["Automated Requests", "Google Integration", "Reputation"],
         icon: Star,
-        href: "/solutions"
+        href: "/solutions/review-system/"
     },
     {
         role: "Conversion",
@@ -38,7 +38,7 @@ const solutions = [
         description: "Turn more visitors into calls, quote requests, and booked work by removing friction and tightening the message.",
         tags: ["Clear CTAs", "Mobile Layouts", "Easy Forms"],
         icon: MousePointerClick,
-        href: "/solutions"
+        href: "/solutions/website-conversion/"
     },
     {
         role: "Analysis",
@@ -46,7 +46,7 @@ const solutions = [
         description: "Find out where visibility, follow-up, conversion, and response are breaking down before spending more money.",
         tags: ["Data Review", "Process Mapping", "Cost Savings"],
         icon: Search,
-        href: "/solutions"
+        href: "/solutions/demand-audit/"
     },
     {
         role: "Automation",
@@ -54,7 +54,7 @@ const solutions = [
         description: "Keep quotes and inquiries from going cold with a cleaner, more consistent follow-up process.",
         tags: ["Quote Tracking", "Status Updates", "Drip Campaigns"],
         icon: Calendar,
-        href: "/solutions"
+        href: "/solutions/estimate-follow-up/"
     }
 ];
 

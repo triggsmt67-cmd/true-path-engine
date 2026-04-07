@@ -1,0 +1,45 @@
+# robots.txt optimized for 2026 AI SEO & Generative Engine Optimization (GEO)
+# Focus: Prioritize real-time AI citation and allow model training on public expertise
+
+# 1. AI CITATION & SEARCH BOTS (High Priority)
+# Explicitly allowing these ensures your content is cited in AI-generated answers
+User-agent: OAI-SearchBot
+Allow: /
+# OpenAI's real-time search engine bot
+
+User-agent: PerplexityBot
+Allow: /
+# Perplexity AI's crawler for citing sources in answers
+
+User-agent: ClaudeBot
+Allow: /
+# Anthropic's crawler for citations and understanding
+
+# 2. AI TRAINING BOTS
+# Allowing these helps AI models learn from your thought leadership and expertise
+User-agent: GPTBot
+Allow: /
+# OpenAI's LLM training bot
+
+User-agent: Google-Extended
+Allow: /
+# Google's bot for Bard/Gemini model training
+
+# 3. GENERAL SEARCH (Google/Bing/Yahoo)
+User-agent: *
+Allow: /
+
+# 4. PROHIBITIONS
+# Protect private app logic, API endpoints, and development routes
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+Disallow: /admin/
+Disallow: /preview/
+Disallow: /draft/
+
+# 5. SITEMAP & AI MAP
+# Traditional Sitemap for search engines
+Sitemap: https://truepath406.com/sitemap.xml
+# AI-optimized context map for Large Language Models
+Sitemap: https://truepath406.com/llms.txt

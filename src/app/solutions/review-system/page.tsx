@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Review Generation Systems | True Path Digital',
   description: 'Build a simple, repeatable review system that helps more happy customers actually leave feedback.',
   alternates: {
-    canonical: 'https://truepath406.com/solutions/review-system'
+    canonical: 'https://truepath406.com/solutions/review-system/'
   }
 };
 
@@ -60,18 +60,36 @@ const whoThisIsFor = [
 export default function ReviewSystemPage() {
   const serviceSchema = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": "https://truepath406.com/solutions/review-system#service",
-    "name": "Review Generation Systems",
-    "serviceType": "Reputation Management & Local SEO",
-    "provider": {
-      "@id": "https://truepath406.com/#organization"
-    },
-    "areaServed": {
-      "@type": "State",
-      "name": "Montana"
-    },
-    "description": "Build a simple, repeatable review system that helps more happy customers actually leave feedback."
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://truepath406.com/solutions/review-system/#webpage",
+        "url": "https://truepath406.com/solutions/review-system/",
+        "name": "Review Generation Systems | True Path Digital",
+        "description": "Build a simple, repeatable review system that helps more happy customers actually leave feedback.",
+        "isPartOf": { "@id": "https://truepath406.com/#website" },
+        "breadcrumb": { "@id": "https://truepath406.com/solutions/review-system/#breadcrumb" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://truepath406.com/solutions/review-system/#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://truepath406.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://truepath406.com/solutions/" },
+          { "@type": "ListItem", "position": 3, "name": "Review System" }
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://truepath406.com/solutions/review-system/#service",
+        "name": "Review Generation Systems",
+        "serviceType": "Reputation Management & Local SEO",
+        "provider": { "@id": "https://truepath406.com/#organization" },
+        "telephone": "+1-406-880-6992",
+        "areaServed": { "@type": "State", "name": "Montana" },
+        "description": "Build a simple, repeatable review system that helps more happy customers actually leave feedback."
+      }
+    ]
   };
 
   return (

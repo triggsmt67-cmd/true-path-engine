@@ -7,6 +7,9 @@ import { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Insights | True Path Digital',
   description: 'Clear thinking for when the right move isn\'t obvious. Notes, frameworks, and field-tested insights on making better marketing decisions.',
+  alternates: {
+    canonical: 'https://truepath406.com/blog/'
+  }
 };
 
 interface CategoryNode {
@@ -114,8 +117,35 @@ async function getCategories(): Promise<CategoryNode[]> {
 export default async function BlogPage() {
   const [posts, categories] = await Promise.all([getPosts(), getCategories()]);
 
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://truepath406.com/blog/#webpage",
+        "url": "https://truepath406.com/blog/",
+        "name": "Insights & Strategy | True Path Digital",
+        "description": "Clear thinking and field-tested insights on marketing decisions, frameworks, and service business growth.",
+        "isPartOf": { "@id": "https://truepath406.com/#website" },
+        "breadcrumb": { "@id": "https://truepath406.com/blog/#breadcrumb" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://truepath406.com/blog/#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://truepath406.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog" }
+        ]
+      }
+    ]
+  };
+
   return (
     <main className="bg-[#121417] min-h-screen flex flex-col selection:bg-primary selection:text-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
+      />
       <Navbar />
 
       {/* Background Grid */}

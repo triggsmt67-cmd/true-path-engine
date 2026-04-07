@@ -175,7 +175,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         return { title: 'Post Not Found | True Path Digital' };
     }
 
-    const url = `https://truepath406.com/blog/${slug}`;
+    const url = `https://truepath406.com/blog/${slug}/`;
     const cleanTitle = decodeHtmlEntities(post.title);
     const cleanDesc = decodeHtmlEntities(post.excerpt?.replace(/<[^>]*>?/gm, '').substring(0, 160) || '');
     const imageUrl = post.featuredImage?.node?.sourceUrl || "https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg";
@@ -484,12 +484,14 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                                         I’ll look at your lead handling, follow-up, pricing logic, and website path and show you where demand or margin is slipping out.
                                     </p>
                                 </div>
-                                <Link 
-                                    href="/contact"
+                                <a
+                                    href="https://calendly.com/triggsmt67"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="px-8 py-4 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-bold transition-all hover:scale-105 shadow-xl decoration-transparent whitespace-nowrap"
                                 >
                                     Let's Talk
-                                </Link>
+                                </a>
                             </div>
                         </section>
 
