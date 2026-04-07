@@ -132,10 +132,10 @@ export default function DemandAuditPage() {
                   </Link>
                   
                   <Link
-                    href="/#how-i-work"
+                    href="/trust-calculator"
                     className="inline-flex h-16 w-full sm:w-auto items-center justify-center rounded-full px-10 text-base font-medium text-white border border-white/10 hover:bg-white/5 transition-colors duration-300 whitespace-nowrap"
                   >
-                    See How I Work
+                    Run Instant Scan
                   </Link>
                 </div>
                 

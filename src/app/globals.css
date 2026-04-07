@@ -27,6 +27,33 @@ body {
   }
 }
 
+.glass-panel {
+  background-color: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(64px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05), 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.input-premium {
+  width: 100%;
+  background-color: transparent !important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  transition: all 0.5s;
+  padding-bottom: 1rem;
+  font-size: 1.125rem;
+  font-weight: 300;
+  outline: none;
+}
+
+.input-premium:focus {
+  border-color: #B45309;
+}
+
+.input-premium::placeholder {
+  color: rgba(192, 192, 192, 0.4);
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

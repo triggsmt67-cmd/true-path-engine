@@ -67,7 +67,7 @@ export default function Page() {
           <SectionSeparator number="03" title="CORE SERVICES" />
           <Solutions />
 
-          <SectionSeparator number="04" title="HOW I WORK" />
+          <SectionSeparator number="04" title="RUN INSTANT SCAN" />
           <TrailGrid />
 
           <SectionSeparator number="05" title="ABOUT TREVOR" />

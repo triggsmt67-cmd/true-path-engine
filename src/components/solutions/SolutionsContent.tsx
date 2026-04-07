@@ -91,10 +91,10 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
               </a>
 
               <a
-                href="/#how-i-work"
+                href="/trust-calculator"
                 className="inline-flex h-14 md:h-16 items-center justify-center rounded-full px-8 md:px-10 text-sm md:text-base font-medium text-white border border-white/10 hover:bg-white/5 transition-colors duration-300 whitespace-nowrap w-full sm:w-auto"
               >
-                See How I Work
+                Run Instant Scan
               </a>
             </div>
           </motion.div>
@@ -334,8 +334,8 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
               Takes 15 minutes. No sales pitch. I’ll call your cell.
             </p>
             
-            <Link href="/#how-i-work" className="mt-4 text-sm font-semibold text-primary/80 hover:text-primary transition-colors underline-offset-4 hover:underline">
-              See How I Work
+            <Link href="/trust-calculator" className="mt-4 text-sm font-semibold text-primary/80 hover:text-primary transition-colors underline-offset-4 hover:underline">
+              Run Instant Scan
             </Link>
           </div>
         </div>

@@ -114,10 +114,10 @@ const Hero: React.FC = () => {
 
                 <Magnetic amount={0.2}>
                   <a
-                    href="/solutions"
+                    href="/trust-calculator"
                     className="inline-flex h-14 md:h-16 items-center justify-center rounded-full px-8 md:px-10 text-sm md:text-base font-medium text-white border border-white/10 hover:bg-white/5 transition-colors duration-300 whitespace-nowrap w-full sm:w-auto"
                   >
-                    See How I Work
+                    Run Instant Scan
                   </a>
                 </Magnetic>
               </div>

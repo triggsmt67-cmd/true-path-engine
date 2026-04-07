@@ -18,8 +18,7 @@ const TrailGrid: React.FC = () => {
                     >
                         <span className="text-primary font-mono text-sm tracking-widest uppercase mb-4 block font-medium">Methodology</span>
                         <h2 className="text-3xl md:text-6xl lg:text-7xl font-semibold text-white tracking-normal leading-[0.95] mb-8">
-
-                            How I Work
+                            Run Instant Scan
                         </h2>
                         <div className="p-8 rounded-3xl bg-white/[0.02] border border-white/10 relative group overflow-hidden">
                             <div className="absolute top-0 left-0 w-1 h-full bg-primary/40 group-hover:bg-primary transition-colors" />
