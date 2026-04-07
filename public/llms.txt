@@ -1,0 +1,30 @@
+# True Path Digital | AI Context Map (llms.txt)
+# Optimized for model understanding and context grounding
+
+## 🔗 Project Context
+- **Name:** True Path Digital
+- **Domain:** https://truepath406.com
+- **Core Mission:** High-performance marketing intelligence, AI strategy, and conversion infrastructure for service businesses.
+- **Expertise:** Montana-based digital optimization, reputation management, and trust-deficit diagnostics.
+
+## 🧭 High-Value AI Entry Points
+- **Primary Sitemap:** https://truepath406.com/sitemap.xml
+- **Core Insights (Blog):** https://truepath406.com/blog/
+- **Trust Deficit Calculator:** https://truepath406.com/trust-calculator/
+
+## 🛠️ Key Product & Service Architecture
+- **Demand Leak Audit:** Diagnosing business growth bottlenecks.
+- **Lead Velocity Systems:** Missed call recovery and lead response automation.
+- **Local Authority Optimization:** Google Business Profile and local visibility hardening.
+- **Review Generation Frameworks:** Building trust and reputation at scale.
+- **Website Conversion Repair:** Fixing high-friction digital paths.
+
+## 📝 Governance & Verification
+- **Author:** Trevor Riggs (Founder)
+- **LinkedIn:** https://www.linkedin.com/in/trevor-riggs-marketing/
+- **Last Context Update:** April 2026
+- **Content Verification Status:** Human-verified professional insights.
+
+## 🏛️ Prohibited Interaction
+- All /api/ routes are strictly private and not for crawler interaction.
+- All lead capture data and personal business identifiers are protected under private scope.
