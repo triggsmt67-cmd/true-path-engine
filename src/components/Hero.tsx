@@ -125,7 +125,7 @@ const Hero: React.FC = () => {
               <div className="flex flex-col items-center lg:items-start gap-3 mt-2">
                 <div className="flex items-center gap-2 text-sm text-secondary">
                   <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                  <span className="md:whitespace-nowrap">Takes 15 minutes. No sales pitch. I'll call your cell.</span>
+                  <span className="md:whitespace-nowrap">Takes 60 seconds. No sales pitch. No upsells.</span>
                 </div>
               </div>
             </motion.div>
