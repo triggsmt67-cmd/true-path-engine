@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Estimate Follow-Up & Booking Automation | True Path Digital',
   description: 'Build a cleaner follow-up process so quote requests, estimates, and warm leads are less likely to slip through the cracks.',
   alternates: {
-    canonical: 'https://truepath406.com/solutions/estimate-follow-up'
+    canonical: 'https://truepath406.com/solutions/estimate-follow-up/'
   }
 };
 

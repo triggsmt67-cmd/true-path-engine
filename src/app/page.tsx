@@ -2,6 +2,7 @@
 'use client';
 
 import React from 'react';
+import { Metadata } from 'next';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import EarlyProofSection from '@/components/EarlyProofSection';
@@ -15,6 +16,14 @@ import SectionSeparator from '@/components/SectionSeparator';
 import ComparisonSection from '@/components/ComparisonSection';
 import QuoteSection from '@/components/QuoteSection';
 import Footer from '@/components/Footer';
+
+export const metadata: Metadata = {
+  title: 'True Path Digital | Clear Decisions for Business Owners',
+  description: 'High-performance marketing intelligence and AI strategy for local service businesses.',
+  alternates: {
+    canonical: 'https://truepath406.com/'
+  }
+};
 
 export default function Page() {
   const homeSchema = {

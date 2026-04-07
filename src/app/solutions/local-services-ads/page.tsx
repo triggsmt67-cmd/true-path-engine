@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Local Services Ads Setup & Cleanup | True Path Digital',
   description: 'Improve setup, lead handling, and service alignment so Local Services Ads become a more useful source of real local opportunities.',
   alternates: {
-    canonical: 'https://truepath406.com/solutions/local-services-ads'
+    canonical: 'https://truepath406.com/solutions/local-services-ads/'
   }
 };
 

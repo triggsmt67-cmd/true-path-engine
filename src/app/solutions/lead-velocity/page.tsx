@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Missed Call Recovery & Lead Response | True Path Digital',
   description: 'Set up a cleaner, faster lead-response process so calls, forms, and quote requests stop slipping through the cracks.',
   alternates: {
-    canonical: 'https://truepath406.com/solutions/lead-velocity'
+    canonical: 'https://truepath406.com/solutions/lead-velocity/'
   }
 };
 

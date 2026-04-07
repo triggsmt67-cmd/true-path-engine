@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Website Conversion Repair | True Path Digital',
   description: 'Fix the parts of your website that create hesitation, confusion, or friction so more of your existing traffic turns into real inquiries.',
   alternates: {
-    canonical: 'https://truepath406.com/solutions/website-conversion'
+    canonical: 'https://truepath406.com/solutions/website-conversion/'
   }
 };
 

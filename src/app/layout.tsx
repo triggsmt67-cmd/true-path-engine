@@ -6,17 +6,24 @@ import { PreviewNotice } from "@/components/Globals/PreviewNotice/PreviewNotice"
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "True Path Digital | Clear Thinking for Montana Business Owners",
-  description: "Stop guessing. Start arriving. High-performance marketing intelligence, AI strategy, and conversion infrastructure for Montana businesses.",
+  title: {
+    default: "True Path Digital | Clear Thinking for Business Owners",
+    template: "%s | True Path Digital"
+  },
+  description: "Stop guessing. Start arriving. High-performance marketing intelligence, AI strategy, and conversion infrastructure for businesses.",
   metadataBase: new URL('https://truepath406.com'),
   alternates: {
-    canonical: '/',
+    canonical: './',
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
   openGraph: {
     type: 'website',
     url: 'https://truepath406.com',
     title: 'True Path Digital | Marketing Intelligence & AI Strategy',
-    description: "Stop guessing. Start arriving. High-performance marketing intelligence, AI strategy, and conversion infrastructure for Montana businesses.",
+    description: "Stop guessing. Start arriving. High-performance marketing intelligence, AI strategy, and conversion infrastructure for businesses.",
     images: [{
       url: 'https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg',
       width: 1200,

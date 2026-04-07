@@ -1,39 +1,14 @@
 import { MetadataRoute } from "next";
 
-export const revalidate = 0;
+export default function robots(): MetadataRoute.Robots {
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://truepath406.com";
 
-export default async function robots(): Promise<MetadataRoute.Robots> {
-  const wpUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://admin.truepath406.com";
-  const res = await fetch(
-    `${wpUrl}/robots.txt`,
-    { cache: "no-store" },
-  );
-
-  const text = await res.text();
-
-  const lines = text.split("\n");
-
-  const userAgent = lines
-    .find((line) => line.startsWith("User-agent: "))
-    ?.replace("User-agent: ", "");
-  const allow = lines
-    .find((line) => line.startsWith("Allow: "))
-    ?.replace("Allow: ", "");
-  const disallow = lines
-    .find((line) => line.startsWith("Disallow: "))
-    ?.replace("Disallow: ", "");
-  const sitemap = lines
-    .find((line) => line.startsWith("Sitemap: "))
-    ?.replace("Sitemap: ", "");
-
-  const robots: MetadataRoute.Robots = {
+  return {
     rules: {
-      userAgent,
-      allow,
-      disallow,
+      userAgent: "*",
+      allow: "/",
+      disallow: ["/api/", "/_next/", "/static/"],
     },
-    sitemap,
+    sitemap: `${baseUrl}/sitemap.xml`,
   };
-
-  return robots;
 }

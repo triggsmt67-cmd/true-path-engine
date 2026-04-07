@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Google Business Profile Optimization | True Path Digital',
   description: 'Improve your Google Business Profile so local customers can find you more easily, trust what they see, and take action faster.',
   alternates: {
-    canonical: 'https://truepath406.com/solutions/local-authority'
+    canonical: 'https://truepath406.com/solutions/local-authority/'
   }
 };
 

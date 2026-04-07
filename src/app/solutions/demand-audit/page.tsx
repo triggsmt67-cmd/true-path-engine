@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Demand Leak Audit | True Path Digital',
   description: 'Find out where visibility, follow-up, trust, or conversion is breaking down before you spend more trying to fix the wrong thing.',
   alternates: {
-    canonical: 'https://truepath406.com/solutions/demand-audit'
+    canonical: 'https://truepath406.com/solutions/demand-audit/'
   }
 };
 

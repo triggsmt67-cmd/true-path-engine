@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Review Generation Systems | True Path Digital',
   description: 'Build a simple, repeatable review system that helps more happy customers actually leave feedback.',
   alternates: {
-    canonical: 'https://truepath406.com/solutions/review-system'
+    canonical: 'https://truepath406.com/solutions/review-system/'
   }
 };
 
