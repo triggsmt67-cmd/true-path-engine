@@ -26,7 +26,11 @@ export default function TrustDeficitCalculator() {
 
   const BENCHMARK = 80;
   const deficit = placeData ? BENCHMARK - placeData.user_ratings_total : 0;
-  const hasFailingFactor = deficit > 0 || (placeData && placeData.photoCount < 10) || (speedScore !== null && speedScore < 90);
+  const reputationFail = deficit > 0;
+  const imageFail = Boolean(placeData && placeData.photoCount < 10);
+  const speedFail = speedScore !== null && speedScore < 90;
+  const failCount = [reputationFail, imageFail, speedFail].filter(Boolean).length;
+  const hasFailingFactor = failCount > 0;
 
   const runSpeedTest = async () => {
     if (!websiteUrl) {
@@ -172,7 +176,7 @@ export default function TrustDeficitCalculator() {
         <div className="space-y-4 text-left">
           <div className="flex items-end gap-4">
             <span className={`text-6xl font-black font-display leading-none drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] ${photoColor}`}>
-              {photoCount}
+              {photoCount}{photoCount === 10 ? '+' : ''}
             </span>
             <span className="text-2xl text-white/40 pb-1">/ 10 Min. Standard</span>
           </div>
@@ -277,7 +281,7 @@ export default function TrustDeficitCalculator() {
                       value={businessName}
                       onChange={(e) => setBusinessName(e.target.value)}
                       placeholder="Business Name"
-                      className="input-premium w-full !bg-transparent border-b-2 border-white/10 text-white pb-4 outline-none focus:border-primary transition-all duration-500 lg:text-2xl font-light placeholder-secondary"
+                      className="input-premium w-full !bg-transparent border-b-2 border-white/10 text-white pb-4 pr-10 outline-none focus:border-primary transition-all duration-500 text-lg font-light placeholder-secondary"
                     />
                     <Search className="absolute right-0 bottom-4 w-6 h-6 text-white/20 group-focus-within/input:text-primary transition-colors duration-500" />
                   </div>
@@ -289,7 +293,7 @@ export default function TrustDeficitCalculator() {
                       value={location}
                       onChange={(e) => setLocation(e.target.value)}
                       placeholder="City, State or Zip Code"
-                      className="input-premium w-full !bg-transparent border-b-2 border-white/10 text-white pb-4 outline-none focus:border-primary transition-all duration-500 lg:text-2xl font-light placeholder-secondary"
+                      className="input-premium w-full !bg-transparent border-b-2 border-white/10 text-white pb-4 pr-10 outline-none focus:border-primary transition-all duration-500 text-lg font-light placeholder-secondary"
                     />
                     <MapPin className="absolute right-0 bottom-4 w-6 h-6 text-white/20 group-focus-within/input:text-primary transition-colors duration-500" />
                   </div>
@@ -300,7 +304,7 @@ export default function TrustDeficitCalculator() {
                       value={websiteUrl}
                       onChange={(e) => setWebsiteUrl(e.target.value)}
                       placeholder="Website URL (e.g. yoursite.com)"
-                      className="input-premium w-full !bg-transparent border-b-2 border-white/10 text-white pb-4 outline-none focus:border-primary transition-all duration-500 lg:text-2xl font-light placeholder-secondary"
+                      className="input-premium w-full !bg-transparent border-b-2 border-white/10 text-white pb-4 pr-10 outline-none focus:border-primary transition-all duration-500 text-lg font-light placeholder-secondary"
                     />
                     <Globe className="absolute right-0 bottom-4 w-6 h-6 text-white/20 group-focus-within/input:text-primary transition-colors duration-500" />
                   </div>
@@ -356,7 +360,7 @@ export default function TrustDeficitCalculator() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="AUTHORIZATION EMAIL..."
-                  className="input-premium w-full !bg-transparent border-b-2 border-white/10 text-white pb-4 outline-none focus:border-primary transition-all duration-500 text-center lg:text-3xl placeholder-secondary uppercase tracking-widest font-display"
+                  className="input-premium w-full !bg-transparent border-b-2 border-white/10 text-white pb-4 outline-none focus:border-primary transition-all duration-500 text-center text-lg lg:text-xl placeholder-secondary uppercase tracking-widest font-display"
                 />
                 
                 <div className="relative group/btn w-full max-w-xs mx-auto mt-8">
@@ -455,11 +459,15 @@ export default function TrustDeficitCalculator() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.5 }}
-                        className="mt-12 bg-red-950/40 p-6 md:p-8 rounded-2xl border border-red-500/20 text-center w-full"
+                        className={`mt-12 p-6 md:p-8 rounded-2xl border text-center w-full ${failCount === 1 ? 'bg-yellow-950/40 border-yellow-500/20' : 'bg-red-950/40 border-red-500/20'}`}
                       >
-                        <p className="text-red-400 text-xl font-bold uppercase tracking-widest mb-2 font-display">Attention</p>
-                        <p className="text-red-200 text-lg md:text-xl font-light">
-                          You are losing a massive amount of income because of these factors. Stop letting competitors steal your traffic.
+                        <p className={`text-xl font-bold uppercase tracking-widest mb-2 font-display ${failCount === 1 ? 'text-yellow-400' : 'text-red-400'}`}>
+                          {failCount === 1 ? 'Almost There' : 'Attention'}
+                        </p>
+                        <p className={`text-lg md:text-xl font-light ${failCount === 1 ? 'text-yellow-200' : 'text-red-200'}`}>
+                          {failCount === 1 
+                            ? "Your overall setup is incredibly strong, but this one missing piece is quietly costing you high-ticket jobs. A 10-minute fix here will dramatically multiply your incoming leads." 
+                            : "You are losing a massive amount of income because of these factors. Stop letting competitors steal your traffic."}
                         </p>
                       </motion.div>
                     )}
@@ -538,11 +546,15 @@ export default function TrustDeficitCalculator() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.5 }}
-                        className="mt-12 bg-red-950/40 p-6 md:p-8 rounded-2xl border border-red-500/20 text-center w-full"
+                        className={`mt-12 p-6 md:p-8 rounded-2xl border text-center w-full ${failCount === 1 ? 'bg-yellow-950/40 border-yellow-500/20' : 'bg-red-950/40 border-red-500/20'}`}
                       >
-                        <p className="text-red-400 text-xl font-bold uppercase tracking-widest mb-2 font-display">Attention</p>
-                        <p className="text-red-200 text-lg md:text-xl font-light">
-                          You are losing a massive amount of income because of these factors. Stop letting competitors steal your traffic.
+                        <p className={`text-xl font-bold uppercase tracking-widest mb-2 font-display ${failCount === 1 ? 'text-yellow-400' : 'text-red-400'}`}>
+                          {failCount === 1 ? 'Almost There' : 'Attention'}
+                        </p>
+                        <p className={`text-lg md:text-xl font-light ${failCount === 1 ? 'text-yellow-200' : 'text-red-200'}`}>
+                          {failCount === 1 
+                            ? "Your overall setup is incredibly strong, but this one missing piece is quietly costing you high-ticket jobs. A 10-minute fix here will dramatically multiply your incoming leads." 
+                            : "You are losing a massive amount of income because of these factors. Stop letting competitors steal your traffic."}
                         </p>
                       </motion.div>
                     )}
