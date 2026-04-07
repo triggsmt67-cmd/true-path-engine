@@ -40,7 +40,10 @@ const structuredData = {
       "@id": "https://truepath406.com/#website",
       "url": "https://truepath406.com/",
       "name": "True Path Digital",
-      "description": "Stop guessing. Start arriving. High-performance marketing intelligence, AI strategy, and conversion infrastructure for Montana businesses."
+      "description": "Stop guessing. Start arriving. High-performance marketing intelligence, AI strategy, and conversion infrastructure for businesses.",
+      "publisher": {
+        "@id": "https://truepath406.com/#organization"
+      }
     },
     {
       "@type": "Organization",
@@ -51,18 +54,28 @@ const structuredData = {
         "@type": "ImageObject",
         "url": "https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
       },
+      "telephone": "+1-406-880-6992",
+      "areaServed": {
+        "@type": "State",
+        "name": "Montana"
+      },
       "address": {
         "@type": "PostalAddress",
         "addressRegion": "MT",
         "addressCountry": "US"
       },
-      "areaServed": {
-        "@type": "State",
-        "name": "Montana"
-      },
       "sameAs": [
         "https://www.linkedin.com/in/trevor-riggs-marketing/"
       ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://truepath406.com/#founder",
+      "name": "Trevor Riggs",
+      "url": "https://www.linkedin.com/in/trevor-riggs-marketing/",
+      "worksFor": {
+        "@id": "https://truepath406.com/#organization"
+      }
     }
   ]
 };

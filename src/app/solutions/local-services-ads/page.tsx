@@ -60,18 +60,36 @@ const whoThisIsFor = [
 export default function LocalServicesAdsPage() {
   const serviceSchema = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": "https://truepath406.com/solutions/local-services-ads#service",
-    "name": "Local Services Ads Setup & Cleanup",
-    "serviceType": "Paid Advertising & Lead Management",
-    "provider": {
-      "@id": "https://truepath406.com/#organization"
-    },
-    "areaServed": {
-      "@type": "State",
-      "name": "Montana"
-    },
-    "description": "Improve setup, lead handling, and service alignment so Local Services Ads become a more useful source of real local opportunities."
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://truepath406.com/solutions/local-services-ads/#webpage",
+        "url": "https://truepath406.com/solutions/local-services-ads/",
+        "name": "Local Services Ads Setup & Cleanup | True Path Digital",
+        "description": "Improve setup, lead handling, and service alignment so Local Services Ads become a more useful source of real local opportunities.",
+        "isPartOf": { "@id": "https://truepath406.com/#website" },
+        "breadcrumb": { "@id": "https://truepath406.com/solutions/local-services-ads/#breadcrumb" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://truepath406.com/solutions/local-services-ads/#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://truepath406.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://truepath406.com/solutions/" },
+          { "@type": "ListItem", "position": 3, "name": "Local Services Ads" }
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://truepath406.com/solutions/local-services-ads/#service",
+        "name": "Local Services Ads Setup & Cleanup",
+        "serviceType": "Paid Advertising & Lead Management",
+        "provider": { "@id": "https://truepath406.com/#organization" },
+        "telephone": "+1-406-880-6992",
+        "areaServed": { "@type": "State", "name": "Montana" },
+        "description": "Improve setup, lead handling, and service alignment so Local Services Ads become a more useful source of real local opportunities."
+      }
+    ]
   };
 
   return (

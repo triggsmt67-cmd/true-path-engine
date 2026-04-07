@@ -60,18 +60,36 @@ const whoThisIsFor = [
 export default function DemandAuditPage() {
   const serviceSchema = {
     "@context": "https://schema.org",
-    "@type": "Service",
-    "@id": "https://truepath406.com/solutions/demand-audit#service",
-    "name": "Demand Leak Audit",
-    "serviceType": "Marketing Consulting & Auditing",
-    "provider": {
-      "@id": "https://truepath406.com/#organization"
-    },
-    "areaServed": {
-      "@type": "State",
-      "name": "Montana"
-    },
-    "description": "Find out where visibility, follow-up, trust, or conversion is breaking down before you spend more trying to fix the wrong thing."
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://truepath406.com/solutions/demand-audit/#webpage",
+        "url": "https://truepath406.com/solutions/demand-audit/",
+        "name": "Demand Leak Audit | True Path Digital",
+        "description": "Find out where visibility, follow-up, trust, or conversion is breaking down before you spend more trying to fix the wrong thing.",
+        "isPartOf": { "@id": "https://truepath406.com/#website" },
+        "breadcrumb": { "@id": "https://truepath406.com/solutions/demand-audit/#breadcrumb" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://truepath406.com/solutions/demand-audit/#breadcrumb",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://truepath406.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://truepath406.com/solutions/" },
+          { "@type": "ListItem", "position": 3, "name": "Demand Audit" }
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://truepath406.com/solutions/demand-audit/#service",
+        "name": "Demand Leak Audit",
+        "serviceType": "Marketing Consulting & Auditing",
+        "provider": { "@id": "https://truepath406.com/#organization" },
+        "telephone": "+1-406-880-6992",
+        "areaServed": { "@type": "State", "name": "Montana" },
+        "description": "Find out where visibility, follow-up, trust, or conversion is breaking down before you spend more trying to fix the wrong thing."
+      }
+    ]
   };
 
   return (
