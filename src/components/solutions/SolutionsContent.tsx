@@ -125,38 +125,33 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
                   transition={{ duration: 0.5, delay: index * 0.05 }}
                   className="h-full"
                 >
-                  <SpotlightCard
-                    spotlightColor={service.spotlight}
-                    className="p-8 md:p-10 bg-[#0a0a0a] border border-white/10 shadow-2xl shadow-black/60 rounded-3xl group cursor-pointer hover:border-white/20 hover:bg-white/[0.03] transition-all duration-300 h-full flex flex-col hover:shadow-[0_0_30px_rgba(255,107,0,0.05)]"
+                  <Link 
+                    href={service.href || '#'} 
+                    className={`block h-full group decoration-transparent ${!service.href || service.href === '#' ? 'pointer-events-none' : ''}`}
                   >
-                    <div className="flex items-center gap-4 mb-8">
-                      <div className={`w-12 h-12 rounded-xl bg-white/[0.03] flex items-center justify-center ${service.color} group-hover:bg-white/[0.05] transition-colors`}>
-                        <IconComponent className="w-6 h-6" />
+                    <SpotlightCard
+                      spotlightColor={service.spotlight}
+                      className="p-8 md:p-10 bg-[#0a0a0a] border border-white/10 shadow-2xl shadow-black/60 rounded-3xl group cursor-pointer hover:border-white/20 hover:bg-white/[0.03] transition-all duration-300 h-full flex flex-col hover:shadow-[0_0_30px_rgba(255,107,0,0.05)]"
+                    >
+                      <div className="flex items-center gap-4 mb-8">
+                        <div className={`w-12 h-12 rounded-xl bg-white/[0.03] flex items-center justify-center ${service.color} group-hover:bg-white/[0.05] transition-colors`}>
+                          <IconComponent className="w-6 h-6" />
+                        </div>
                       </div>
-                    </div>
-                    
-                    <h3 className="text-2xl font-semibold text-white mb-4 tracking-tight leading-snug">{service.title}</h3>
-                    <p className="text-base text-secondary/70 font-light leading-relaxed mb-10">
-                      {service.description}
-                    </p>
-                    
-                    <div className="mt-auto pt-6 border-t border-white/5">
-                      {service.href && service.href !== '#' ? (
-                        <Link 
-                          href={service.href}
-                          className={`inline-flex items-center gap-3 font-semibold ${service.color} transition-all duration-300 group-hover:gap-4`}
-                        >
-                          Learn More
-                          <ArrowRight className="w-5 h-5" />
-                        </Link>
-                      ) : (
+                      
+                      <h3 className="text-2xl font-semibold text-white mb-4 tracking-tight leading-snug group-hover:text-primary transition-colors">{service.title}</h3>
+                      <p className="text-base text-secondary/70 font-light leading-relaxed mb-10">
+                        {service.description}
+                      </p>
+                      
+                      <div className="mt-auto pt-6 border-t border-white/5">
                         <div className={`inline-flex items-center gap-3 font-semibold ${service.color} transition-all duration-300 group-hover:gap-4`}>
                           Learn More
                           <ArrowRight className="w-5 h-5" />
                         </div>
-                      )}
-                    </div>
-                  </SpotlightCard>
+                      </div>
+                    </SpotlightCard>
+                  </Link>
                 </motion.div>
               );
             })}
