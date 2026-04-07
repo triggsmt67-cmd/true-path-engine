@@ -1,3 +1,5 @@
+"use client";
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { MapPin, PhoneMissed, Star, TrendingDown, CheckCircle2, ArrowDown, ArrowRight } from 'lucide-react';
@@ -129,7 +131,7 @@ const DecisionStack: React.FC<DecisionStackProps> = ({ disableSpotlight = false 
                                         Review My Current Setup
                                     </div>
                                     <div className="text-[11px] sm:text-xs text-secondary/60 font-medium leading-relaxed group-hover/btn:text-white/70 transition-colors duration-300">
-                                        A quick 15-minute look at where leads may be leaking.<br className="hidden sm:block" /> No sales pitch. I'll call your cell.
+                                        A quick 60-second review of where leads are leaking.<br className="hidden sm:block" /> No sales pitch. No upsells.
                                     </div>
                                 </div>
                             </div>
