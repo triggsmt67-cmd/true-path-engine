@@ -4,6 +4,14 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY || 'stub_key');
 const rateLimitMap = new Map<string, { count: number, resetTime: number }>();
 
+// Periodically clean up expired rate limit entries to prevent memory leak
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, value] of rateLimitMap.entries()) {
+    if (now > value.resetTime) rateLimitMap.delete(key);
+  }
+}, 60000);
+
 export async function POST(request: Request) {
   try {
     // Basic IP Rate Limiting
@@ -40,12 +48,30 @@ export async function POST(request: Request) {
     }
 
     if (process.env.RESEND_API_KEY) {
-      // Basic sanitization config to prevent XSS via businessName payload
+      // Sanitize to prevent XSS and email header injection
       const safe = (s: string) => String(s || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      // Strip newlines to prevent email header injection in the subject line
+      const safeSubjectName = String(businessName || '').replace(/[\r\n]/g, ' ').slice(0, 100);
+
+      // Validate websiteUrl protocol to prevent javascript: or other non-http hrefs in email
+      let safeWebsiteUrl = '';
+      if (websiteUrl) {
+        try {
+          const parsed = new URL(websiteUrl);
+          if (['http:', 'https:'].includes(parsed.protocol)) {
+            safeWebsiteUrl = websiteUrl;
+          }
+        } catch {
+          safeWebsiteUrl = '';
+        }
+      }
+
+      // Coerce deficit score to a number for safe rendering
+      const safeDeficitScore = Number(deficitScore) || 0;
       
       const subject = isPartial 
-        ? `Partial Lead (Gate Bounce Risk): ${businessName}` 
-        : `New Trust Deficit Lead: ${businessName}`;
+        ? `Partial Lead (Gate Bounce Risk): ${safeSubjectName}` 
+        : `New Trust Deficit Lead: ${safeSubjectName}`;
 
       const emailLayout = `
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; color: #333;">
@@ -68,7 +94,7 @@ export async function POST(request: Request) {
               <tr>
                 <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb; color: #6b7280; font-weight: 500;">Website</td>
                 <td style="padding: 12px 0; border-bottom: 1px solid #e5e7eb;">
-                  ${websiteUrl ? `<a href="${safe(websiteUrl)}" style="color: #2563eb; text-decoration: none; font-weight: 600;">${safe(websiteUrl)}</a>` : '<em style="color: #9ca3af;">None Provided</em>'}
+                  ${safeWebsiteUrl ? `<a href="${safeWebsiteUrl}" style="color: #2563eb; text-decoration: none; font-weight: 600;">${safe(safeWebsiteUrl)}</a>` : '<em style="color: #9ca3af;">None Provided</em>'}
                 </td>
               </tr>
               <tr>
@@ -80,7 +106,7 @@ export async function POST(request: Request) {
               ${!isPartial ? `
               <tr>
                 <td style="padding: 12px 0; color: #6b7280; font-weight: 500;">Deficit Score</td>
-                <td style="padding: 12px 0; font-weight: bold; color: #dc2626;">${deficitScore}</td>
+                <td style="padding: 12px 0; font-weight: bold; color: #dc2626;">${safeDeficitScore}</td>
               </tr>
               ` : ''}
             </table>
@@ -89,13 +115,13 @@ export async function POST(request: Request) {
       `;
 
       const data = await resend.emails.send({
-        from: 'onboarding@resend.dev', // Use Resend's default onboarding address for testing unverified domains
+        from: 'onboarding@resend.dev',
         to: ['trevor@truepath406.com'],
         subject: subject,
         html: emailLayout,
       });
 
-      console.log('✅ Lead Captured & Sent:', { businessName, email, isPartial });
+      console.log('✅ Lead Captured & Sent:', { businessName: safeSubjectName, email, isPartial });
       return NextResponse.json({ success: true, data });
     } else {
       console.log('🧪 TEST MODE (No API Key): Lead Data Captured:', { email, businessName, location, websiteUrl });
@@ -106,3 +132,4 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
+

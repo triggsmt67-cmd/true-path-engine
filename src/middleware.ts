@@ -37,10 +37,18 @@ export async function middleware(request: NextRequest) {
     }
 
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://truepath406.com";
-    const newUrl = new URL(
-      redirect.action_data.url,
-      baseUrl
-    ).toString();
+    let newUrl: string;
+    try {
+      newUrl = new URL(redirect.action_data.url, baseUrl).toString();
+    } catch {
+      return NextResponse.next();
+    }
+
+    // Security: Prevent open redirect — only allow redirects to our own domain
+    if (!newUrl.startsWith(baseUrl)) {
+      console.warn(`[Middleware] Blocked open redirect to external URL: ${newUrl}`);
+      return NextResponse.next();
+    }
 
     return NextResponse.redirect(newUrl, {
       status: redirect.action_code === 301 ? 308 : 307,

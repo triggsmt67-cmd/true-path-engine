@@ -53,8 +53,6 @@ export async function fetchGraphQL<T = any>(
     if (data.errors) {
       console.error("GraphQL Errors:", data.errors);
       console.error("Failed Query:", query);
-      console.error("GraphQL Errors:", data.errors);
-      console.error("Failed Query:", query);
       throw new Error(JSON.stringify(data.errors));
     }
 
