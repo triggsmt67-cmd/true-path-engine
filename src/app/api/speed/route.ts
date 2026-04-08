@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     rateData.count++;
     rateLimitMap.set(ip, rateData);
 
-    if (rateData.count > 5) {
+    if (rateData.count > 50) {
       return NextResponse.json({ error: 'Too many speed test requests. Please try again later.' }, { status: 429 });
     }
 

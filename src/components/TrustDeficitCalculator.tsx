@@ -1,13 +1,55 @@
 'use client';
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Search, MapPin, ArrowRight, X, Eye, Globe, Smartphone, Camera, Star } from 'lucide-react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useInView, useMotionValue, useSpring } from 'framer-motion';
+import { Search, MapPin, ArrowRight, X, Eye, Globe, Smartphone, Camera, Star, Download, AlertTriangle } from 'lucide-react';
 
-type UIState = 'SEARCH' | 'LOADING_SEARCH' | 'GATE' | 'LOADING_GATE' | 'DIAGNOSING' | 'REVEAL';
+type DebouncedInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
+  value: string;
+  onChange: (val: string) => void;
+};
+
+function DebouncedInput({ value, onChange, ...props }: DebouncedInputProps) {
+  const [localValue, setLocalValue] = useState(value);
+  useEffect(() => { setLocalValue(value); }, [value]);
+  useEffect(() => {
+    const handler = setTimeout(() => onChange(localValue), 300);
+    return () => clearTimeout(handler);
+  }, [localValue, onChange]);
+  return <input {...props} value={localValue} onChange={(e) => setLocalValue(e.target.value)} />;
+}
+
+function AnimatedNumber({ value, format = 'integer' }: { value: number, format?: 'integer'|'decimal'|'currency' }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const motionValue = useMotionValue(0);
+  const springValue = useSpring(motionValue, { damping: 60, stiffness: 100 });
+  const isInView = useInView(ref, { once: true, margin: "0px" });
+
+  useEffect(() => {
+    if (isInView) motionValue.set(value);
+  }, [motionValue, isInView, value]);
+
+  useEffect(() => {
+    return springValue.on("change", (latest) => {
+      if (ref.current) {
+        if (format === 'integer') {
+          ref.current.textContent = Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format(latest);
+        } else if (format === 'decimal') {
+          ref.current.textContent = latest.toFixed(1);
+        } else if (format === 'currency') {
+          ref.current.textContent = Intl.NumberFormat("en-US", { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(latest);
+        }
+      }
+    });
+  }, [springValue, format]);
+
+  return <span ref={ref} />;
+}
+
+type UIState = 'SEARCH_MAPS' | 'LOADING_MAPS' | 'REVEAL_PARTIAL' | 'LOADING_GATE' | 'DIAGNOSING_SPEED' | 'REVEAL_FULL';
 
 export default function TrustDeficitCalculator() {
-  const [uiState, setUiState] = useState<UIState>('SEARCH');
+  const [uiState, setUiState] = useState<UIState>('SEARCH_MAPS');
   const [businessName, setBusinessName] = useState('');
   const [location, setLocation] = useState('');
   const [websiteUrl, setWebsiteUrl] = useState('');
@@ -23,24 +65,46 @@ export default function TrustDeficitCalculator() {
   const [speedScore, setSpeedScore] = useState<number | null>(null);
   const [isSpeedLoading, setIsSpeedLoading] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [showVisuals, setShowVisuals] = useState(false);
 
-  const BENCHMARK = 80;
-  const deficit = placeData ? BENCHMARK - placeData.user_ratings_total : 0;
-  const reputationFail = deficit > 0;
-  const imageFail = Boolean(placeData && placeData.photoCount < 10);
-  const speedFail = speedScore !== null && speedScore < 90;
-  const failCount = [reputationFail, imageFail, speedFail].filter(Boolean).length;
-  const hasFailingFactor = failCount > 0;
+  // Analytics implementation
+  const uiStateRef = useRef(uiState);
+  useEffect(() => { uiStateRef.current = uiState; }, [uiState]);
+  useEffect(() => {
+    return () => console.log('[Analytics] drop_off', { step: uiStateRef.current });
+  }, []);
+  const trackAnalytics = (event: string, data?: any) => {
+    console.log(`[Analytics] ${event}`, data || {});
+  };
+
+  // 1. Client-side memoization of scoring logic
+  const scoring = useMemo(() => {
+    const BENCHMARK = 80;
+    const deficitVal = placeData ? BENCHMARK - placeData.user_ratings_total : 0;
+    const repFailVal = deficitVal > 0;
+    const imgFailVal = Boolean(placeData && placeData.photoCount < 10);
+    const spdFailVal = speedScore !== null && speedScore < 90;
+    const failCntVal = [repFailVal, imgFailVal, spdFailVal].filter(Boolean).length;
+    const hasFailVal = failCntVal > 0;
+    return { deficit: deficitVal, failCount: failCntVal, hasFailingFactor: hasFailVal };
+  }, [placeData, speedScore]);
+
+  const { deficit, failCount, hasFailingFactor } = scoring;
+
+  // 3. Lazy-load non-critical visuals
+  useEffect(() => {
+    if (uiState === 'REVEAL_FULL' || uiState === 'REVEAL_PARTIAL') {
+      trackAnalytics('result_view', { deficit, failCount });
+      const timer = setTimeout(() => setShowVisuals(true), 150); // delay until after FCP
+      return () => clearTimeout(timer);
+    } else {
+      setShowVisuals(false);
+    }
+  }, [uiState, deficit, failCount]);
 
   const runSpeedTest = async () => {
-    if (!websiteUrl) {
-      setSpeedScore(0);
-      setUiState('REVEAL');
-      return;
-    }
-    
     setIsSpeedLoading(true);
-    setUiState('DIAGNOSING');
+    setUiState('DIAGNOSING_SPEED');
     setProgress(0);
     
     // Asymptotic progress bar simulation (never truly stalls)
@@ -67,11 +131,11 @@ export default function TrustDeficitCalculator() {
       }
       
       // Brief pause at 100% for satisfaction before reveal
-      setTimeout(() => setUiState('REVEAL'), 800);
+      setTimeout(() => setUiState('REVEAL_FULL'), 800);
     } catch (err) {
       clearInterval(interval);
       setSpeedScore(-1);
-      setUiState('REVEAL');
+      setUiState('REVEAL_FULL');
     } finally {
       setIsSpeedLoading(false);
     }
@@ -82,13 +146,14 @@ export default function TrustDeficitCalculator() {
     setErrorMsg('');
     if (!businessName || !location) return;
     
-    // Enforce location specificity to prevent vague searches returning wrong corporate profiles
+    trackAnalytics('calculator_start', { businessName, location });
+    
     if (!/\d/.test(location) && !/,/.test(location)) {
       setErrorMsg('Please include your Zip Code or format as "City, State" for an accurate scan.');
       return;
     }
 
-    setUiState('LOADING_SEARCH');
+    setUiState('LOADING_MAPS');
     
     try {
       const res = await fetch('/api/places', {
@@ -101,29 +166,33 @@ export default function TrustDeficitCalculator() {
 
       setPlaceData({ rating: data.rating, user_ratings_total: data.user_ratings_total, photoCount: data.photoCount });
       
-      // Fire partial lead capture to Resend in the background. Does not await/block the UI.
       fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
           businessName, 
           location, 
-          websiteUrl, 
           isPartial: true 
         }),
       }).catch(err => console.error('Failed to send partial lead', err));
 
-      setUiState('GATE');
+      trackAnalytics('step_completion', { step: 'SEARCH_MAPS', success: true });
+      setUiState('REVEAL_PARTIAL');
     } catch (err: any) {
       setErrorMsg(err.message || 'Something went wrong.');
-      setUiState('SEARCH');
+      setUiState('SEARCH_MAPS');
     }
   };
 
   const handleLeadSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
+    if (!email || !websiteUrl) {
+      setErrorMsg("Please provide both email and website URL.");
+      return;
+    }
+    setErrorMsg('');
     setUiState('LOADING_GATE');
+    trackAnalytics('step_completion', { step: 'REVEAL_PARTIAL_SUBMITTED', email });
     try {
       await fetch('/api/lead', {
         method: 'POST',
@@ -151,19 +220,92 @@ export default function TrustDeficitCalculator() {
     }
   };
 
+  const renderTrustSentiment = () => {
+    const rating = placeData?.rating || 0;
+    if (rating === 0) return null;
+
+    let ratingColor = 'text-green-500';
+    let ratingText = "Your local market sentiment is excellent. You have bulletproof word-of-mouth here. Any conversion issues are stemming from other technical bottlenecks in your funnel.";
+    
+    if (rating < 4.3) {
+      ratingColor = 'text-red-500';
+      ratingText = "You are bleeding high-intent local traffic to competitors strictly due to Star Velocity. You may have the volume, but consumer trust drops off a cliff beneath a 4.3. This acts as a subconscious red flag to premium buyers.";
+    } else if (rating < 4.8) {
+      ratingColor = 'text-yellow-400';
+      ratingText = "Your rating is solid, but you are not the undisputed king of the market. High-income buyers often filter by 4.8+ ratings. Elevating this metric will lock down those high-ticket clients.";
+    }
+
+    return (
+      <div className="mt-12 bg-black/40 p-8 rounded-2xl border border-white/5 backdrop-blur-md">
+        <div className="flex items-center gap-4 mb-6">
+          <Star className="w-8 h-8 text-primary" />
+          <h3 className="text-xl md:text-2xl font-display font-bold uppercase tracking-widest text-surface">Trust Sentiment</h3>
+        </div>
+        
+        <div className="space-y-4 text-left">
+          <div className="flex items-end gap-4">
+            <span className={`text-6xl font-black font-display leading-none drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] ${ratingColor}`}>
+              <AnimatedNumber value={rating} format="decimal" />
+            </span>
+            <span className="text-2xl text-white/40 pb-1">/ 5.0 Stars</span>
+          </div>
+          <div className="text-[11px] text-white/60 uppercase tracking-[0.1em] font-medium flex items-center gap-1.5 pt-1">
+            <MapPin className="w-3 h-3" aria-hidden="true" />
+             Data sourced directly from live Google Maps
+          </div>
+          <p className={`text-lg md:text-xl font-medium leading-relaxed pt-2 ${ratingColor}`}>
+            {ratingText}
+          </p>
+        </div>
+      </div>
+    );
+  };
+
+  
+  const renderRevenueLeak = () => {
+    let leak = 0;
+    if (deficit > 0) leak += Math.max(5, Math.floor(deficit / 4));
+    if (speedScore !== null && speedScore < 50) leak += 14;
+    else if (speedScore !== null && speedScore < 90) leak += 4;
+    if (placeData && placeData.photoCount < 10) leak += 7;
+    if (placeData && placeData.rating && placeData.rating < 4.5) leak += 12;
+
+    if (leak === 0) return null;
+
+    return (
+      <div className="bg-gradient-to-r from-red-950/80 to-red-900/50 p-6 md:p-8 rounded-2xl border border-red-500/30 backdrop-blur-md relative overflow-hidden mb-8 shadow-[0_0_50px_-10px_rgba(220,38,38,0.3)]">
+        <div className="absolute top-0 left-0 w-1 bg-red-500 h-full"></div>
+        <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-6 text-center md:text-left">
+          <div className="space-y-2">
+            <h3 className="text-red-400 font-bold uppercase tracking-widest text-sm flex items-center justify-center md:justify-start gap-2">
+              <AlertTriangle className="w-5 h-5 text-red-500" />
+              Projected Monthly Customer Leak
+            </h3>
+            <p className="text-white/70 text-sm md:text-base max-w-lg leading-relaxed">
+              Based on your specific technical bottlenecks, our engine projects you are bleeding this many high-intent buyers to competitors every 30 days. <strong className="text-white">Multiply this number by your average service ticket to calculate your true revenue loss.</strong>
+            </p>
+          </div>
+          <div className="text-5xl md:text-6xl font-black font-display text-red-500 drop-shadow-[0_0_20px_rgba(220,38,38,0.5)] tracking-tighter shrink-0 flex items-center">
+            -<AnimatedNumber value={leak} format="integer" />
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const renderProfileActivity = () => {
     if (!placeData) return null;
     const { photoCount } = placeData;
     
     let photoColor = 'text-green-500';
-    let photoText = "Your Google Business Profile is visually active. Homeowners see a living, breathing business instead of an empty storefront.";
+    let photoText = "Your Google Business Profile is visually active. Customers see a living, breathing business instead of an empty storefront.";
     
     if (photoCount < 10 && photoCount > 0) {
       photoColor = 'text-yellow-400';
-      photoText = "You lack a proper visual gallery. The competitor stealing your jobs has heavily documented their work. Homeowners are scrolling right past your profile.";
+      photoText = "You lack a proper visual gallery. The competitor stealing your market share has heavily documented their work. High-intent buyers are scrolling right past your profile.";
     } else if (photoCount === 0) {
       photoColor = 'text-red-500';
-      photoText = "Google’s local search system cannot see your photos. You might have uploaded them, but they are not registering. If Google's background network is blind, local map apps are blind, too. Right now, your digital storefront is a ghost town. To a homeowner searching in a cold sweat, a blank profile looks like a business that went under.";
+      photoText = "Google’s local search system cannot see your photos. You might have uploaded them, but they are not registering. If Google's background network is blind, local map apps are blind, too. Right now, your digital storefront is a ghost town. To a customer searching for an immediate solution, a blank profile looks like a business that went under.";
     }
 
     return (
@@ -176,7 +318,7 @@ export default function TrustDeficitCalculator() {
         <div className="space-y-4 text-left">
           <div className="flex items-end gap-4">
             <span className={`text-6xl font-black font-display leading-none drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] ${photoColor}`}>
-              {photoCount}{photoCount === 10 ? '+' : ''}
+              <AnimatedNumber value={photoCount} />{photoCount >= 10 ? '+' : ''}
             </span>
             <span className="text-2xl text-white/40 pb-1">/ 10 Min. Standard</span>
           </div>
@@ -256,7 +398,7 @@ export default function TrustDeficitCalculator() {
         <AnimatePresence mode="wait">
           
           {/* STATE 1: SEARCH */}
-          {(uiState === 'SEARCH' || uiState === 'LOADING_SEARCH') && (
+          {(uiState === 'SEARCH_MAPS' || uiState === 'LOADING_MAPS') && (
             <motion.div key="search" variants={staggerContainer} initial="initial" animate="animate" exit="exit" className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
               
               <div className="space-y-6">
@@ -275,11 +417,11 @@ export default function TrustDeficitCalculator() {
               <motion.form variants={blurIn} onSubmit={handleSearchSubmit} className="space-y-12 bg-black/20 p-10 rounded-2xl border border-white/5 backdrop-blur-md">
                 <div className="space-y-10">
                   <div className="relative group/input">
-                    <input
+                    <DebouncedInput
                       type="text"
                       required
                       value={businessName}
-                      onChange={(e) => setBusinessName(e.target.value)}
+                      onChange={setBusinessName}
                       placeholder="Business Name"
                       className="input-premium w-full !bg-transparent border-b-2 border-white/10 text-white pb-4 pr-10 outline-none focus:border-primary transition-all duration-500 text-lg font-light placeholder-secondary"
                     />
@@ -287,27 +429,17 @@ export default function TrustDeficitCalculator() {
                   </div>
                   
                   <div className="relative group/input">
-                    <input
+                    <DebouncedInput
                       type="text"
                       required
                       value={location}
-                      onChange={(e) => setLocation(e.target.value)}
+                      onChange={setLocation}
                       placeholder="City, State or Zip Code"
                       className="input-premium w-full !bg-transparent border-b-2 border-white/10 text-white pb-4 pr-10 outline-none focus:border-primary transition-all duration-500 text-lg font-light placeholder-secondary"
                     />
                     <MapPin className="absolute right-0 bottom-4 w-6 h-6 text-white/20 group-focus-within/input:text-primary transition-colors duration-500" />
                   </div>
 
-                  <div className="relative group/input">
-                    <input
-                      type="url"
-                      value={websiteUrl}
-                      onChange={(e) => setWebsiteUrl(e.target.value)}
-                      placeholder="Website URL (e.g. yoursite.com)"
-                      className="input-premium w-full !bg-transparent border-b-2 border-white/10 text-white pb-4 pr-10 outline-none focus:border-primary transition-all duration-500 text-lg font-light placeholder-secondary"
-                    />
-                    <Globe className="absolute right-0 bottom-4 w-6 h-6 text-white/20 group-focus-within/input:text-primary transition-colors duration-500" />
-                  </div>
                 </div>
 
                 {errorMsg && (
@@ -323,7 +455,7 @@ export default function TrustDeficitCalculator() {
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-primary/40 via-primary/80 to-primary/40 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
                   <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[#0a0a0a] px-8 md:px-10 text-lg md:text-xl font-medium text-white backdrop-blur-3xl gap-3 transition-colors group-hover:bg-background whitespace-nowrap">
-                    {uiState === 'LOADING_SEARCH' ? 'Scanning Matrix...' : 'Initiate Scan'}
+                    {uiState === 'LOADING_MAPS' ? 'Scanning Area...' : 'Scan Local Profile'}
                     {!uiState.includes('LOADING') && <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />}
                   </span>
                 </button>
@@ -338,48 +470,104 @@ export default function TrustDeficitCalculator() {
             </motion.div>
           )}
 
-          {/* STATE 2: THE GATE */}
-          {(uiState === 'GATE' || uiState === 'LOADING_GATE') && (
-            <motion.div key="gate" variants={staggerContainer} initial="initial" animate="animate" exit="exit" className="relative z-10 max-w-2xl mx-auto text-center space-y-10">
-              <motion.div variants={blurIn}>
-                <div className="w-24 h-24 mx-auto border-[1px] border-primary/40 rounded-full flex items-center justify-center bg-primary/5 shadow-[0_0_60px_rgba(180,83,9,0.2)] mb-8">
-                  <Eye className="w-10 h-10 text-primary" />
-                </div>
-                <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight text-surface font-display font-bold uppercase mb-4">
-                  Profile <span className="text-primary italic">Located.</span>
-                </h2>
-                <p className="text-white/60 text-xl font-light">
-                  A high-fidelity visibility report has been generated. Authorize your access email to review the exact metrics tearing down your market cap.
-                </p>
-              </motion.div>
+          {/* STATE 2: REVEAL PARTIAL / GATE */}
+          {(uiState === 'REVEAL_PARTIAL' || uiState === 'LOADING_GATE') && (
+            <motion.div key="partial" variants={staggerContainer} initial="initial" animate="animate" exit="exit" className="relative z-10 text-center w-full">
+               <motion.div variants={blurIn}>
+                 <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight text-surface font-display font-bold uppercase mb-8">
+                    Profile <span className="text-primary italic">Analyzed.</span>
+                 </h2>
+               </motion.div>
+               
+               <motion.div variants={blurIn} className="max-w-3xl mx-auto space-y-6 w-full text-left">
+                  {/* Reputation Block */}
+                  <div className="bg-black/40 p-8 rounded-2xl border border-white/5 backdrop-blur-md relative overflow-hidden">
+                      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-orange-400 opacity-50"></div>
+                      <div className="flex items-center gap-4 mb-6">
+                        <Star className="w-8 h-8 text-primary" />
+                        <h3 className="text-xl md:text-2xl font-display font-bold uppercase tracking-widest text-surface">Reputation Volume</h3>
+                      </div>
+                      
+                      <div className="space-y-4 text-left">
+                        <div className="flex items-end gap-4">
+                          <span className={`text-6xl font-black font-display leading-none drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] ${deficit > 0 ? 'text-red-500' : 'text-green-500'}`}>
+                            <AnimatedNumber value={placeData?.user_ratings_total || 0} />
+                          </span>
+                          <span className="text-2xl text-white/40 pb-1">/ 80 Min. Standard</span>
+                        </div>
+                        <div className="text-[11px] text-white/60 uppercase tracking-[0.1em] font-medium flex items-center gap-1.5 pt-1">
+                          <MapPin className="w-3 h-3" aria-hidden="true" />
+                           Data sourced directly from live Google Maps
+                        </div>
+                        <p className={`text-lg md:text-xl font-medium leading-relaxed pt-2 ${deficit > 0 ? 'text-red-400' : 'text-green-400'}`}>
+                          {deficit > 0 
+                            ? `You are missing ${deficit} reviews. In Montana, word-of-mouth is everything. Right now, your digital word-of-mouth is a whisper in a blizzard. You are handing revenue to the loudest competitor in town, not the best.`
+                            : `You beat the market standard. Your digital word-of-mouth is an absolute fortress. The Trust Deficit does not apply to you in this category.`}
+                        </p>
+                      </div>
+                  </div>
 
-              <motion.form variants={blurIn} onSubmit={handleLeadSubmit} className="space-y-6 pt-8">
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="AUTHORIZATION EMAIL..."
-                  className="input-premium w-full !bg-transparent border-b-2 border-white/10 text-white pb-4 outline-none focus:border-primary transition-all duration-500 text-center text-lg lg:text-xl placeholder-secondary uppercase tracking-widest font-display"
-                />
-                
-                <div className="relative group/btn w-full max-w-xs mx-auto mt-8">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-orange-300 to-primary rounded-full blur opacity-40 group-hover/btn:opacity-75 transition duration-1000 animate-pulse-slow"></div>
-                  <button
-                    type="submit"
-                    disabled={uiState === 'LOADING_GATE'}
-                    className="relative w-full py-5 bg-[#0a0a0c] border border-primary/50 text-white rounded-full text-lg font-medium hover:border-primary transition-colors flex justify-center items-center gap-3 disabled:opacity-50"
-                  >
-                    {uiState === 'LOADING_GATE' ? 'Authorizing...' : 'Unlock Intel'}
-                    {!uiState.includes('LOADING') && <ArrowRight className="w-5 h-5 transition-transform group-hover/btn:translate-x-1" />}
-                  </button>
-                </div>
-              </motion.form>
+                  {/* Teasers (Visually gated) */}
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/95 to-background z-20 flex flex-col items-center justify-end pb-0">
+                      <form onSubmit={handleLeadSubmit} className="space-y-6 mt-12 bg-black/50 p-8 md:p-12 border-t border-primary/20 backdrop-blur-md w-[calc(100%+4rem)] -mx-8 sm:w-full sm:mx-0 sm:rounded-2xl sm:border text-center shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+                         <h4 className="text-xl md:text-2xl font-bold uppercase tracking-widest text-surface font-display mb-2">Unlock Full Diagnostics</h4>
+                         <p className="text-white/70 mb-8 font-light text-base md:text-lg">Enter your website URL and email below so our system can scan your mobile speed in real-time and show you exactly where you are losing customers.</p>
+                         
+                         <div className="max-w-md mx-auto space-y-6">
+                           <input
+                              type="text"
+                              required
+                              value={websiteUrl}
+                              onChange={(e) => setWebsiteUrl(e.target.value)}
+                              placeholder="WEBSITE URL (yourdomain.com)"
+                              aria-label="Website URL"
+                              className="input-premium w-full !bg-black/50 border-b-2 border-white/10 text-white pb-4 pt-4 px-4 outline-none focus:border-primary focus-visible:ring-1 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-all duration-500 text-center text-lg placeholder-secondary font-display rounded-sm"
+                            />
+                           <input
+                              type="email"
+                              required
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
+                              placeholder="AUTHORIZATION EMAIL"
+                              aria-label="Authorization Email"
+                              className="input-premium w-full !bg-black/50 border-b-2 border-white/10 text-white pb-4 pt-4 px-4 outline-none focus:border-primary focus-visible:ring-1 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-all duration-500 text-center text-lg placeholder-secondary font-display uppercase tracking-widest rounded-sm"
+                           />
+
+                          {errorMsg && (
+                            <p className="text-sm font-medium tracking-wide text-red-400 mt-4 flex items-center justify-center gap-2" role="alert">
+                              <X className="w-4 h-4" aria-hidden="true" /> {errorMsg}
+                            </p>
+                          )}
+                           
+                           <button
+                              type="submit"
+                              disabled={uiState === 'LOADING_GATE'}
+                              aria-busy={uiState === 'LOADING_GATE'}
+                              className="relative w-full py-5 bg-[#0a0a0c] border border-primary/50 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0a] focus:outline-none text-white rounded-full text-lg font-medium hover:border-primary transition-colors flex justify-center items-center gap-3 mt-8 disabled:opacity-50"
+                            >
+                              {uiState === 'LOADING_GATE' ? 'Processing...' : 'Run Analysis & Unlock'}
+                              {!uiState.includes('LOADING') && <ArrowRight className="w-5 h-5" aria-hidden="true" />}
+                           </button>
+
+                           <p className="text-[11px] text-white/40 font-light mt-6 leading-relaxed tracking-wide">
+                             We use your email strictly to deliver your diagnostic roadmap. Zero spam. Zero list selling.
+                           </p>
+                         </div>
+                      </form>
+                    </div>
+
+                    <div className="opacity-20 blur-md pointer-events-none space-y-6 select-none overflow-hidden h-[400px]">
+                        {showVisuals && renderProfileActivity()}
+                        {showVisuals && renderSpeedDiagnostic()}
+                    </div>
+                  </div>
+               </motion.div>
             </motion.div>
           )}
 
           {/* STATE 2.5: DIAGNOSING PROGRESS BAR */}
-          {uiState === 'DIAGNOSING' && (
+          {uiState === 'DIAGNOSING_SPEED' && (
             <motion.div key="diagnosing" variants={staggerContainer} initial="initial" animate="animate" exit="exit" className="relative z-10 max-w-2xl mx-auto text-center space-y-10">
               <motion.div variants={blurIn}>
                 <div className="inline-block px-4 py-1.5 rounded-full border border-primary/20 bg-primary/5 uppercase tracking-[0.2em] text-xs font-semibold text-primary mb-8 animate-pulse">
@@ -410,7 +598,7 @@ export default function TrustDeficitCalculator() {
               </motion.div>
             </motion.div>
           )}
-          {uiState === 'REVEAL' && (
+          {uiState === 'REVEAL_FULL' && (
             <motion.div key="reveal" className="relative z-10 text-center w-full">
               {deficit > 0 ? (
                 <div className="space-y-16">
@@ -441,18 +629,24 @@ export default function TrustDeficitCalculator() {
                       <div className="space-y-4 text-left">
                         <div className="flex items-end gap-4">
                           <span className="text-6xl font-black font-display leading-none drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] text-red-500">
-                            {placeData?.user_ratings_total}
+                            <AnimatedNumber value={placeData?.user_ratings_total || 0} />
                           </span>
                           <span className="text-2xl text-white/40 pb-1">/ 80 Min. Standard</span>
                         </div>
-                        <p className="text-red-400 text-lg md:text-xl font-medium leading-relaxed">
-                          You are missing {deficit} reviews. In Montana, word-of-mouth is everything. Right now, your digital word-of-mouth is a whisper in a blizzard. You are handing jobs to the loudest competitor in town, not the best.
+                        <div className="text-[11px] text-white/60 uppercase tracking-[0.1em] font-medium flex items-center gap-1.5 pt-1">
+                          <MapPin className="w-3 h-3" aria-hidden="true" />
+                           Data sourced directly from live Google Maps
+                        </div>
+                        <p className="text-red-400 text-lg md:text-xl font-medium leading-relaxed pt-2">
+                          You are missing <AnimatedNumber value={deficit} /> reviews. In Montana, word-of-mouth is everything. Right now, your digital word-of-mouth is a whisper in a blizzard. You are handing revenue to the loudest competitor in town, not the best.
                         </p>
                       </div>
                     </div>
                     
-                    {renderProfileActivity()}
-                    {renderSpeedDiagnostic()}
+                    {showVisuals && renderRevenueLeak()}
+                    {showVisuals && renderTrustSentiment()}
+                    {showVisuals && renderProfileActivity()}
+                    {showVisuals && renderSpeedDiagnostic()}
 
                     {hasFailingFactor && (
                       <motion.div
@@ -466,7 +660,7 @@ export default function TrustDeficitCalculator() {
                         </p>
                         <p className={`text-lg md:text-xl font-light ${failCount === 1 ? 'text-yellow-200' : 'text-red-200'}`}>
                           {failCount === 1 
-                            ? "Your overall setup is incredibly strong, but this one missing piece is quietly costing you high-ticket jobs. A 10-minute fix here will dramatically multiply your incoming leads." 
+                            ? "Your overall setup is incredibly strong, but this one missing piece is quietly costing you high-ticket clients. A 10-minute fix here will dramatically multiply your incoming leads." 
                             : "You are losing a massive amount of income because of these factors. Stop letting competitors steal your traffic."}
                         </p>
                       </motion.div>
@@ -486,6 +680,7 @@ export default function TrustDeficitCalculator() {
                         href="https://calendly.com/triggsmt67/30min?back=1" 
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => trackAnalytics('cta_click', { type: 'review_setup' })}
                         className="relative w-full flex items-center justify-center gap-3 py-5 bg-[#0a0a0c] border border-primary/50 text-white rounded-full text-lg font-medium hover:border-primary transition-colors"
                       >
                         Review my current setup
@@ -528,18 +723,22 @@ export default function TrustDeficitCalculator() {
                       <div className="space-y-4 text-left">
                         <div className="flex items-end gap-4">
                           <span className="text-6xl font-black font-display leading-none drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] text-green-500">
-                            {placeData?.user_ratings_total}
+                            <AnimatedNumber value={placeData?.user_ratings_total || 0} />
                           </span>
                           <span className="text-2xl text-white/40 pb-1">/ 80 Min. Standard</span>
                         </div>
-                        <p className="text-green-400 text-lg md:text-xl font-medium leading-relaxed">
+                        <div className="text-[11px] text-white/30 uppercase tracking-[0.1em] font-medium flex items-center gap-1.5 pt-1">
+                          <MapPin className="w-3 h-3" aria-hidden="true" />
+                           Data sourced directly from live Google Places API
+                        </div>
+                        <p className="text-green-400 text-lg md:text-xl font-medium leading-relaxed pt-2">
                           You beat the market standard. Your digital word-of-mouth is an absolute fortress. The Trust Deficit does not apply to you in this category.
                         </p>
                       </div>
                     </div>
                   
-                    {renderProfileActivity()}
-                    {renderSpeedDiagnostic()}
+                    {showVisuals && renderProfileActivity()}
+                    {showVisuals && renderSpeedDiagnostic()}
 
                     {hasFailingFactor && (
                       <motion.div
@@ -553,7 +752,7 @@ export default function TrustDeficitCalculator() {
                         </p>
                         <p className={`text-lg md:text-xl font-light ${failCount === 1 ? 'text-yellow-200' : 'text-red-200'}`}>
                           {failCount === 1 
-                            ? "Your overall setup is incredibly strong, but this one missing piece is quietly costing you high-ticket jobs. A 10-minute fix here will dramatically multiply your incoming leads." 
+                            ? "Your overall setup is incredibly strong, but this one missing piece is quietly costing you high-ticket clients. A 10-minute fix here will dramatically multiply your incoming leads." 
                             : "You are losing a massive amount of income because of these factors. Stop letting competitors steal your traffic."}
                         </p>
                       </motion.div>
@@ -572,6 +771,7 @@ export default function TrustDeficitCalculator() {
                         href="https://calendly.com/triggsmt67/30min?back=1" 
                         target="_blank"
                         rel="noopener noreferrer"
+                        onClick={() => trackAnalytics('cta_click', { type: 'review_setup' })}
                         className="relative w-full flex items-center justify-center gap-3 py-5 bg-[#0a0a0c] border border-primary/50 text-white rounded-full text-lg font-medium hover:border-primary transition-colors"
                       >
                         Review my current setup
