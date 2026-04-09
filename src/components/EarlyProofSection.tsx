@@ -35,7 +35,7 @@ const clients: { name: string; descriptor: string; supportLine: string; logo: st
 
 const EarlyProofSection: React.FC = () => {
   return (
-    <section className="py-12 md:py-16 bg-background relative overflow-hidden border-b border-white/5">
+    <section className="py-16 md:py-24 bg-background relative overflow-hidden border-b border-white/5">
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
         
         {/* Header */}

@@ -10,7 +10,7 @@ interface SectionSeparatorProps {
 
 const SectionSeparator: React.FC<SectionSeparatorProps> = ({ number, title }) => {
   return (
-    <div className="relative w-full flex items-center justify-center py-6 md:py-10 overflow-hidden pointer-events-none z-20">
+    <div className="relative w-full flex items-center justify-center py-12 md:py-16 overflow-hidden pointer-events-none z-20">
 
       {/* 1. The Path (Vertical Lines) */}
       {/* Top Line descending */}

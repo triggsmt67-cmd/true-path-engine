@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 const QuoteSection: React.FC = () => {
   return (
-    <section className="py-16 md:py-24 bg-background relative flex flex-col justify-center items-center overflow-hidden">
+    <section className="py-24 md:py-32 bg-background relative flex flex-col justify-center items-center overflow-hidden">
       <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

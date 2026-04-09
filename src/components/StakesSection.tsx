@@ -6,7 +6,7 @@ import { CheckCircle2, UserCheck, AlertCircle, Sparkles } from 'lucide-react';
 
 const StakesSection: React.FC = () => {
   return (
-    <section id="who-this-is-for" className="py-12 md:py-16 bg-background relative overflow-hidden">
+    <section id="who-this-is-for" className="py-16 md:py-24 bg-background relative overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
 
         <div className="grid lg:grid-cols-12 gap-16 items-start">

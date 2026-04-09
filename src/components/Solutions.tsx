@@ -77,7 +77,7 @@ const Solutions: React.FC = () => {
     };
 
     return (
-        <section id="solutions" className="py-10 md:py-16 bg-background relative overflow-hidden border-b border-white/5 scroll-mt-20">
+        <section id="solutions" className="py-20 md:py-32 bg-background relative overflow-hidden border-b border-white/5 scroll-mt-20">
             {/* Abstract Background Grid/Pattern */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                 <svg width="100%" height="100%">
