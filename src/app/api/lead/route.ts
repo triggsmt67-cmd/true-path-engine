@@ -114,14 +114,21 @@ export async function POST(request: Request) {
         </div>
       `;
 
+      const notificationEmail = (process.env.NOTIFICATION_EMAIL || 'trevor@truepath406.com').trim();
+      const senderEmail = (process.env.SENDER_EMAIL || 'notifications@truepath406.com').trim();
+
+      console.log('📬 Attempting to send lead email:');
+      console.log('   From:', senderEmail);
+      console.log('   To:', notificationEmail);
+
       const data = await resend.emails.send({
-        from: 'onboarding@resend.dev',
-        to: ['trevor@truepath406.com'],
+        from: senderEmail,
+        to: [notificationEmail],
         subject: subject,
         html: emailLayout,
       });
 
-      console.log('✅ Lead Captured & Sent:', { businessName: safeSubjectName, email, isPartial });
+      console.log('✅ Resend API Response:', data);
       return NextResponse.json({ success: true, data });
     } else {
       console.log('🧪 TEST MODE (No API Key): Lead Data Captured:', { email, businessName, location, websiteUrl });
