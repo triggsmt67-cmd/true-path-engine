@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView, useMotionValue, useSpring } from 'framer-motion';
-import { Search, MapPin, ArrowRight, X, Eye, Globe, Smartphone, Camera, Star, Download, AlertTriangle } from 'lucide-react';
+import { Search, MapPin, ArrowRight, X, Eye, Globe, Smartphone, Camera, Star, Download, AlertTriangle, Bot } from 'lucide-react';
 
 type DebouncedInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
   value: string;
@@ -66,6 +66,134 @@ export default function TrustDeficitCalculator() {
   const [isSpeedLoading, setIsSpeedLoading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [showVisuals, setShowVisuals] = useState(false);
+  const [aiScanData, setAiScanData] = useState<{hasLocalBusinessSchema: boolean, hasSchema: boolean} | null>(null);
+  const [videoRequested, setVideoRequested] = useState(false);
+
+  const handleVideoRequest = async () => {
+    setVideoRequested(true);
+    trackAnalytics('cta_click', { type: 'video_teardown_requested' });
+    try {
+      await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          businessName: businessName || websiteUrl,
+          location,
+          websiteUrl,
+          deficitScore: deficit,
+          isPartial: false,
+          isVideoTeardownRequest: true
+        }),
+      });
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleDownloadReport = () => {
+    trackAnalytics('cta_click', { type: 'download_report' });
+    
+    const htmlContent = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Trust Deficit Diagnostic Report - ${placeData?.name || businessName || 'Business'}</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #111827; max-width: 800px; margin: 40px auto; padding: 0 20px; background-color: #f9fafb; }
+    .header { border-bottom: 2px solid #e5e7eb; padding-bottom: 20px; margin-bottom: 30px; text-align: center; }
+    .header h1 { color: #0a0a0c; font-size: 28px; margin: 0 0 10px 0; text-transform: uppercase; letter-spacing: 1px; }
+    .meta { font-size: 14px; color: #6b7280; margin-bottom: 5px; }
+    .section { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 24px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .section-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f3f4f6; padding-bottom: 12px; margin-bottom: 16px; }
+    .section-title { font-size: 18px; font-weight: 700; margin: 0; color: #374151; }
+    .badge { padding: 4px 12px; border-radius: 9999px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .badge.failing { background-color: #fee2e2; color: #991b1b; }
+    .badge.optimized { background-color: #dcfce7; color: #166534; }
+    .badge.partial { background-color: #fef3c7; color: #92400e; }
+    .metric { margin-bottom: 8px; font-size: 15px; }
+    .metric strong { color: #4b5563; }
+    .conclusion { background-color: #0a0a0c; color: white; padding: 30px; border-radius: 8px; text-align: center; margin-top: 40px; }
+    .conclusion h2 { margin: 0 0 15px 0; color: #4ade80; }
+    .footer { text-align: center; margin-top: 40px; font-size: 13px; color: #9ca3af; }
+    .footer a { color: #4ade80; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Diagnostic Audit Report</h1>
+    <div class="meta"><strong>Business:</strong> ${placeData?.name || businessName || searchQuery || 'Unknown'}</div>
+    <div class="meta"><strong>Website:</strong> ${websiteUrl || 'Not provided'}</div>
+    <div class="meta"><strong>Date:</strong> ${new Date().toLocaleDateString()}</div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <h2 class="section-title">1. Reputation Volume</h2>
+      <span class="badge ${deficit > 0 ? 'failing' : 'optimized'}">${deficit > 0 ? 'Failing' : 'Optimized'}</span>
+    </div>
+    <div class="metric"><strong>Google Maps Reviews:</strong> ${placeData?.user_ratings_total || 0}</div>
+    <div class="metric"><strong>Minimum Standard:</strong> 80</div>
+    <div class="metric"><strong>Status:</strong> ${deficit > 0 ? `<span style="color: #ef4444; font-weight: 600;">${deficit} reviews missing</span>` : 'Benchmark met'}</div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <h2 class="section-title">2. Visual Authority (Images)</h2>
+      <span class="badge ${placeData && placeData.photoCount < 10 ? 'failing' : 'optimized'}">${placeData && placeData.photoCount < 10 ? 'Failing' : 'Optimized'}</span>
+    </div>
+    <div class="metric"><strong>Profile Photos:</strong> ${placeData?.photoCount || 0}</div>
+    <div class="metric"><strong>Minimum Standard:</strong> 10+ high-quality images</div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <h2 class="section-title">3. AI Visibility Status</h2>
+      <span class="badge ${aiScanData && aiScanData.hasLocalBusinessSchema ? 'optimized' : aiScanData?.hasSchema ? 'partial' : 'failing'}">
+        ${aiScanData && aiScanData.hasLocalBusinessSchema ? 'Optimized' : aiScanData?.hasSchema ? 'Partial' : 'Invisible'}
+      </span>
+    </div>
+    <div class="metric"><strong>Structured Data Scan:</strong> ${aiScanData && aiScanData.hasLocalBusinessSchema ? 'LocalBusiness Schema Found' : 'Missing Critical LocalBusiness Schema'}</div>
+    <div class="metric" style="font-size: 13px; color: #6b7280; margin-top: 8px;">*Without proper schema, AI engines cannot confidently recommend your business to searchers.</div>
+  </div>
+
+  <div class="section">
+    <div class="section-header">
+      <h2 class="section-title">4. Mobile Speed Performance</h2>
+      <span class="badge ${speedScore && speedScore >= 90 ? 'optimized' : 'failing'}">${speedScore && speedScore >= 90 ? 'Optimized' : 'Failing'}</span>
+    </div>
+    <div class="metric"><strong>Lighthouse Score:</strong> ${speedScore || 'Unknown'}/100</div>
+    <div class="metric"><strong>Minimum Standard:</strong> 90/100</div>
+  </div>
+
+  <div class="conclusion">
+    <h2>Executive Summary</h2>
+    <p style="font-size: 16px; margin: 0;">
+      ${failCount === 0 
+        ? 'Your digital footprint is dominant. You are in a prime position to scale aggressive marketing campaigns.' 
+        : `You are failing <strong>${failCount} critical benchmarks</strong>. These technical and reputational bottlenecks act as a massive leak in your sales funnel, actively driving high-intent customers to your competitors.`}
+    </p>
+  </div>
+
+  <div class="footer">
+    Report generated by <strong>True Path Digital</strong><br>
+    <a href="https://truepath406.com">truepath406.com</a>
+  </div>
+</body>
+</html>
+    `;
+
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${(placeData?.name || businessName || 'business').replace(/[^a-z0-9]/gi, '_').toLowerCase()}_diagnostic_report.html`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
 
   // Analytics implementation
   const uiStateRef = useRef(uiState);
@@ -84,10 +212,11 @@ export default function TrustDeficitCalculator() {
     const repFailVal = deficitVal > 0;
     const imgFailVal = Boolean(placeData && placeData.photoCount < 10);
     const spdFailVal = speedScore !== null && speedScore < 90;
-    const failCntVal = [repFailVal, imgFailVal, spdFailVal].filter(Boolean).length;
+    const aiFailVal = aiScanData !== null && !aiScanData.hasLocalBusinessSchema;
+    const failCntVal = [repFailVal, imgFailVal, spdFailVal, aiFailVal].filter(Boolean).length;
     const hasFailVal = failCntVal > 0;
     return { deficit: deficitVal, failCount: failCntVal, hasFailingFactor: hasFailVal };
-  }, [placeData, speedScore]);
+  }, [placeData, speedScore, aiScanData]);
 
   const { deficit, failCount, hasFailingFactor } = scoring;
 
@@ -114,13 +243,29 @@ export default function TrustDeficitCalculator() {
 
     try {
       const formattedUrl = websiteUrl.startsWith('http') ? websiteUrl : `https://${websiteUrl}`;
-      const res = await fetch('/api/speed', {
+      
+      const speedPromise = fetch('/api/speed', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ websiteUrl: formattedUrl }),
       });
+
+      const aiPromise = fetch('/api/ai-readiness', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ websiteUrl: formattedUrl }),
+      }).catch(() => null);
+
+      const [res, aiRes] = await Promise.all([speedPromise, aiPromise]);
       const data = await res.json();
       
+      if (aiRes && aiRes.ok) {
+        const aiData = await aiRes.json();
+        if (aiData.success) {
+           setAiScanData({ hasLocalBusinessSchema: aiData.hasLocalBusinessSchema, hasSchema: aiData.hasSchema });
+        }
+      }
+
       clearInterval(interval);
       setProgress(100);
       
@@ -229,10 +374,10 @@ export default function TrustDeficitCalculator() {
     
     if (rating < 4.3) {
       ratingColor = 'text-red-500';
-      ratingText = "You are bleeding high-intent local traffic to competitors strictly due to Star Velocity. You may have the volume, but consumer trust drops off a cliff beneath a 4.3. This acts as a subconscious red flag to premium buyers.";
+      ratingText = "You are bleeding high-intent local traffic to competitors strictly due to Star Velocity. You may have the volume, but consumer trust drops off a cliff beneath a 4.3. This acts as a subconscious red flag to premium customers.";
     } else if (rating < 4.8) {
       ratingColor = 'text-yellow-400';
-      ratingText = "Your rating is solid, but you are not the undisputed king of the market. High-income buyers often filter by 4.8+ ratings. Elevating this metric will lock down those high-ticket clients.";
+      ratingText = "Your rating is solid, but you are not the undisputed king of the market. High-income customers often filter by 4.8+ ratings. Elevating this metric will lock down those high-ticket clients.";
     }
 
     return (
@@ -282,7 +427,7 @@ export default function TrustDeficitCalculator() {
               Projected Monthly Customer Leak
             </h3>
             <p className="text-white/70 text-sm md:text-base max-w-lg leading-relaxed">
-              Based on your specific technical bottlenecks, our engine projects you are bleeding this many high-intent buyers to competitors every 30 days. <strong className="text-white">Multiply this number by your average service ticket to calculate your true revenue loss.</strong>
+              Based on your specific technical bottlenecks, our engine projects you are bleeding this many high-intent customers to competitors every 30 days. <strong className="text-white">Multiply this number by your average service ticket to calculate your true revenue loss.</strong>
             </p>
           </div>
           <div className="text-5xl md:text-6xl font-black font-display text-red-500 drop-shadow-[0_0_20px_rgba(220,38,38,0.5)] tracking-tighter shrink-0 flex items-center">
@@ -302,7 +447,7 @@ export default function TrustDeficitCalculator() {
     
     if (photoCount < 10 && photoCount > 0) {
       photoColor = 'text-yellow-400';
-      photoText = "You lack a proper visual gallery. The competitor stealing your market share has heavily documented their work. High-intent buyers are scrolling right past your profile.";
+      photoText = "You lack a proper visual gallery. The competitor stealing your market share has heavily documented their work. High-intent customers are scrolling right past your profile.";
     } else if (photoCount === 0) {
       photoColor = 'text-red-500';
       photoText = "Google’s local search system cannot see your photos. You might have uploaded them, but they are not registering. If Google's background network is blind, local map apps are blind, too. Right now, your digital storefront is a ghost town. To a customer searching for an immediate solution, a blank profile looks like a business that went under.";
@@ -330,6 +475,65 @@ export default function TrustDeficitCalculator() {
     );
   };
 
+  const renderAIDiagnostic = () => {
+    if (!aiScanData && !isSpeedLoading) return null;
+
+    let aiColor = '';
+    let aiText = '';
+    let statusText = '';
+    
+    if (aiScanData) {
+      if (aiScanData.hasLocalBusinessSchema) {
+        aiColor = 'text-green-500';
+        statusText = 'OPTIMIZED';
+        aiText = "Your website contains structured LocalBusiness data. AI models like ChatGPT and Google's AI Overview can confidently ingest your business details and recommend you as an authoritative local solution.";
+      } else if (aiScanData.hasSchema) {
+        aiColor = 'text-yellow-400';
+        statusText = 'PARTIAL';
+        aiText = "Your site has some structured data, but it fails to explicitly identify you as a local business. AI engines may struggle to confidently recommend your services to local customers over competitors with proper markup.";
+      } else {
+        aiColor = 'text-red-500';
+        statusText = 'INVISIBLE';
+        aiText = "Your website entirely lacks Schema.org structured data. To modern AI engines (like ChatGPT or Perplexity), your business is invisible. When a customer asks an AI for the best local service provider, you will not be recommended.";
+      }
+    }
+
+    return (
+      <div className="mt-8 bg-black/40 p-8 rounded-2xl border border-white/5 backdrop-blur-md">
+        <div className="flex items-center gap-4 mb-6">
+          <Bot className="w-8 h-8 text-primary" />
+          <h3 className="text-xl md:text-2xl font-display font-bold uppercase tracking-widest text-surface">AI Visibility Status</h3>
+        </div>
+        
+        {isSpeedLoading && (
+          <div className="animate-pulse space-y-4 text-left">
+            <div className="h-4 bg-white/10 rounded w-full"></div>
+            <div className="h-4 bg-white/10 rounded w-3/4"></div>
+            <div className="pt-2">
+              <p className="text-primary text-sm font-bold tracking-widest uppercase mb-1">Scanning source code for structured data...</p>
+              <p className="text-white/50 text-xs italic font-light leading-relaxed max-w-sm">
+                Searching DOM for valid application/ld+json architecture...
+              </p>
+            </div>
+          </div>
+        )}
+
+        {!isSpeedLoading && aiScanData && (
+          <div className="space-y-4 text-left">
+            <div className="flex items-end gap-4">
+              <span className={`text-4xl md:text-6xl font-black font-display leading-none drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] ${aiColor}`}>
+                {statusText}
+              </span>
+            </div>
+            <p className={`text-lg md:text-xl font-medium leading-relaxed ${aiColor}`}>
+              {aiText}
+            </p>
+          </div>
+        )}
+      </div>
+    );
+  };
+
   const renderSpeedDiagnostic = () => {
     let speedColor = '';
     let speedText = '';
@@ -343,7 +547,7 @@ export default function TrustDeficitCalculator() {
         speedText = "Your site fails the mobile speed test. Half your traffic clicks the back button before your page even loads. You are paying for visibility but pouring the leads down the drain.";
       } else if (speedScore < 90) {
         speedColor = 'text-yellow-400';
-        speedText = "Your site is sluggish on mobile. You are losing a percentage of impatient buyers to faster competitors.";
+        speedText = "Your site is sluggish on mobile. You are losing a percentage of impatient customers to faster competitors.";
       } else {
         speedColor = 'text-green-500';
         speedText = "Your website experience is highly optimized. Traffic seamlessly converts without bounce friction.";
@@ -559,6 +763,7 @@ export default function TrustDeficitCalculator() {
 
                     <div className="opacity-20 blur-md pointer-events-none space-y-6 select-none overflow-hidden h-[400px]">
                         {showVisuals && renderProfileActivity()}
+                        {showVisuals && renderAIDiagnostic()}
                         {showVisuals && renderSpeedDiagnostic()}
                     </div>
                   </div>
@@ -646,6 +851,7 @@ export default function TrustDeficitCalculator() {
                     {showVisuals && renderRevenueLeak()}
                     {showVisuals && renderTrustSentiment()}
                     {showVisuals && renderProfileActivity()}
+                    {showVisuals && renderAIDiagnostic()}
                     {showVisuals && renderSpeedDiagnostic()}
 
                     {hasFailingFactor && (
@@ -661,7 +867,7 @@ export default function TrustDeficitCalculator() {
                         <p className={`text-lg md:text-xl font-light ${failCount === 1 ? 'text-yellow-200' : 'text-red-200'}`}>
                           {failCount === 1 
                             ? "Your overall setup is incredibly strong, but this one missing piece is quietly costing you high-ticket clients. A 10-minute fix here will dramatically multiply your incoming leads." 
-                            : "You are losing a massive amount of income because of these factors. Stop letting competitors steal your traffic."}
+                            : "You are currently failing multiple critical trust and discovery benchmarks. This isn't just an SEO problem—it's an ongoing revenue leak. Every day these bottlenecks remain, you are actively handing high-intent customers directly to your competitors."}
                         </p>
                       </motion.div>
                     )}
@@ -674,25 +880,44 @@ export default function TrustDeficitCalculator() {
                     transition={{ delay: 2, duration: 1 }}
                     className="flex flex-col items-center mt-8"
                   >
-                    <div className="relative group/btn w-full max-w-sm">
+                    <div className="relative group/btn w-full max-w-md">
                       <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-orange-300 to-primary rounded-full blur opacity-50 group-hover/btn:opacity-100 transition duration-1000 animate-pulse-slow"></div>
                       <a 
                         href="https://calendly.com/triggsmt67/30min?back=1" 
                         target="_blank"
                         rel="noopener noreferrer"
-                        onClick={() => trackAnalytics('cta_click', { type: 'review_setup' })}
+                        onClick={() => trackAnalytics('cta_click', { type: 'remediation_blueprint' })}
                         className="relative w-full flex items-center justify-center gap-3 py-5 bg-[#0a0a0c] border border-primary/50 text-white rounded-full text-lg font-medium hover:border-primary transition-colors"
                       >
-                        Review my current setup
+                        {hasFailingFactor ? 'Stop Leaking Customers' : 'Claim Remediation Blueprint'}
                         <ArrowRight className="w-5 h-5 transition-transform group-hover/btn:translate-x-1" />
                       </a>
                     </div>
-                    <p className="text-white/40 text-sm font-light mt-4 text-center">
-                      Takes 15 minutes. No sales pitch. I'll call your cell.
+                    <p className="text-white/60 text-sm font-light mt-5 text-center max-w-md leading-relaxed">
+                      On this 15-minute call, we will map out the exact steps to fix your digital bottlenecks. Hire us to implement it, or take the blueprint to your current web guy. Zero pressure.
                     </p>
+                    {!videoRequested ? (
+                      <button 
+                        onClick={handleVideoRequest}
+                        className="block mt-4 text-sm text-primary hover:text-primary/80 hover:underline cursor-pointer transition-colors text-center font-medium"
+                      >
+                        Too busy for a call? Request a free 5-minute video teardown instead.
+                      </button>
+                    ) : (
+                      <div className="mt-4 text-sm text-green-400 text-center font-medium animate-pulse">
+                        ✓ Teardown requested! We'll email it to {email} shortly.
+                      </div>
+                    )}
+                    <button
+                      onClick={handleDownloadReport}
+                      className="mt-8 flex items-center justify-center gap-2 text-sm text-white/60 hover:text-white transition-colors"
+                    >
+                      <Download className="w-4 h-4" />
+                      Save Diagnostic Report
+                    </button>
                     <a 
                       href="https://truepath406.com"
-                      className="block mt-6 text-sm text-gray-500 hover:text-gray-400 hover:underline cursor-pointer transition-colors text-center"
+                      className="block mt-4 text-sm text-gray-500 hover:text-gray-400 hover:underline cursor-pointer transition-colors text-center"
                     >
                       Close diagnostic and return to site.
                     </a>
@@ -738,6 +963,7 @@ export default function TrustDeficitCalculator() {
                     </div>
                   
                     {showVisuals && renderProfileActivity()}
+                    {showVisuals && renderAIDiagnostic()}
                     {showVisuals && renderSpeedDiagnostic()}
 
                     {hasFailingFactor && (
@@ -753,7 +979,7 @@ export default function TrustDeficitCalculator() {
                         <p className={`text-lg md:text-xl font-light ${failCount === 1 ? 'text-yellow-200' : 'text-red-200'}`}>
                           {failCount === 1 
                             ? "Your overall setup is incredibly strong, but this one missing piece is quietly costing you high-ticket clients. A 10-minute fix here will dramatically multiply your incoming leads." 
-                            : "You are losing a massive amount of income because of these factors. Stop letting competitors steal your traffic."}
+                            : "You are currently failing multiple critical trust and discovery benchmarks. This isn't just an SEO problem—it's an ongoing revenue leak. Every day these bottlenecks remain, you are actively handing high-intent customers directly to your competitors."}
                         </p>
                       </motion.div>
                     )}
@@ -765,25 +991,44 @@ export default function TrustDeficitCalculator() {
                     transition={{ delay: 1.2 }}
                     className="flex flex-col items-center mt-12"
                   >
-                    <div className="relative group/btn w-full max-w-sm">
+                    <div className="relative group/btn w-full max-w-md">
                       <div className="absolute -inset-0.5 bg-gradient-to-r from-primary via-orange-300 to-primary rounded-full blur opacity-50 group-hover/btn:opacity-100 transition duration-1000 animate-pulse-slow"></div>
                       <a 
                         href="https://calendly.com/triggsmt67/30min?back=1" 
                         target="_blank"
                         rel="noopener noreferrer"
-                        onClick={() => trackAnalytics('cta_click', { type: 'review_setup' })}
+                        onClick={() => trackAnalytics('cta_click', { type: 'remediation_blueprint' })}
                         className="relative w-full flex items-center justify-center gap-3 py-5 bg-[#0a0a0c] border border-primary/50 text-white rounded-full text-lg font-medium hover:border-primary transition-colors"
                       >
-                        Review my current setup
+                        {hasFailingFactor ? 'Fix Remaining Bottlenecks' : 'Explore Growth Strategies'}
                         <ArrowRight className="w-5 h-5 transition-transform group-hover/btn:translate-x-1" />
                       </a>
                     </div>
-                    <p className="text-white/40 text-sm font-light mt-4 text-center">
-                      Takes 15 minutes. No sales pitch. I'll call your cell.
+                    <p className="text-white/60 text-sm font-light mt-5 text-center max-w-md leading-relaxed">
+                      On this 15-minute call, we will map out how to leverage your dominant position for even more growth. No sales pitch.
                     </p>
+                    {!videoRequested ? (
+                      <button 
+                        onClick={handleVideoRequest}
+                        className="block mt-4 text-sm text-primary hover:text-primary/80 hover:underline cursor-pointer transition-colors text-center font-medium"
+                      >
+                        Too busy for a call? Request a free 5-minute video teardown instead.
+                      </button>
+                    ) : (
+                      <div className="mt-4 text-sm text-green-400 text-center font-medium animate-pulse">
+                        ✓ Teardown requested! We'll email it to {email} shortly.
+                      </div>
+                    )}
+                    <button
+                      onClick={handleDownloadReport}
+                      className="mt-8 flex items-center justify-center gap-2 text-sm text-white/60 hover:text-white transition-colors"
+                    >
+                      <Download className="w-4 h-4" />
+                      Save Diagnostic Report
+                    </button>
                     <a 
                       href="https://truepath406.com"
-                      className="block mt-6 text-sm text-gray-500 hover:text-gray-400 hover:underline cursor-pointer transition-colors text-center"
+                      className="block mt-4 text-sm text-gray-500 hover:text-gray-400 hover:underline cursor-pointer transition-colors text-center"
                     >
                       Close diagnostic and return to site.
                     </a>
