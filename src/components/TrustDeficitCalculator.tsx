@@ -99,7 +99,7 @@ export default function TrustDeficitCalculator() {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Trust Deficit Diagnostic Report - ${placeData?.name || businessName || 'Business'}</title>
+  <title>Trust Deficit Diagnostic Report - ${businessName || 'Business'}</title>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #111827; max-width: 800px; margin: 40px auto; padding: 0 20px; background-color: #f9fafb; }
     .header { border-bottom: 2px solid #e5e7eb; padding-bottom: 20px; margin-bottom: 30px; text-align: center; }
@@ -123,7 +123,7 @@ export default function TrustDeficitCalculator() {
 <body>
   <div class="header">
     <h1>Diagnostic Audit Report</h1>
-    <div class="meta"><strong>Business:</strong> ${placeData?.name || businessName || searchQuery || 'Unknown'}</div>
+    <div class="meta"><strong>Business:</strong> ${businessName || 'Unknown'}</div>
     <div class="meta"><strong>Website:</strong> ${websiteUrl || 'Not provided'}</div>
     <div class="meta"><strong>Date:</strong> ${new Date().toLocaleDateString()}</div>
   </div>
@@ -188,7 +188,7 @@ export default function TrustDeficitCalculator() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${(placeData?.name || businessName || 'business').replace(/[^a-z0-9]/gi, '_').toLowerCase()}_diagnostic_report.html`;
+    a.download = `${(businessName || 'business').replace(/[^a-z0-9]/gi, '_').toLowerCase()}_diagnostic_report.html`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -654,7 +654,7 @@ export default function TrustDeficitCalculator() {
 
                 <button
                   type="submit"
-                  disabled={uiState === 'LOADING_SEARCH'}
+                  disabled={uiState === 'LOADING_MAPS'}
                   className="relative flex w-full h-16 md:h-20 overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-[0_0_40px_-5px_rgba(180,83,9,0.35)] transition-all hover:scale-[1.02] active:scale-95 duration-300 mt-8 disabled:opacity-50 disabled:pointer-events-none disabled:scale-100"
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-primary/40 via-primary/80 to-primary/40 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
