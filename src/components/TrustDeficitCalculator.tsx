@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView, useMotionValue, useSpring } from 'framer-motion';
-import { Search, MapPin, ArrowRight, X, Eye, Globe, Smartphone, Camera, Star, Download, AlertTriangle, Bot } from 'lucide-react';
+import { Search, MapPin, ArrowRight, X, Eye, Globe, Smartphone, Camera, Star, Download, AlertTriangle, Bot, Lock } from 'lucide-react';
 
 type DebouncedInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
   value: string;
@@ -99,7 +99,7 @@ export default function TrustDeficitCalculator() {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Trust Deficit Diagnostic Report - ${businessName || 'Business'}</title>
+  <title>Revenue Leak Diagnostic Report - ${businessName || 'Business'}</title>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; line-height: 1.6; color: #111827; max-width: 800px; margin: 40px auto; padding: 0 20px; background-color: #f9fafb; }
     .header { border-bottom: 2px solid #e5e7eb; padding-bottom: 20px; margin-bottom: 30px; text-align: center; }
@@ -418,20 +418,24 @@ export default function TrustDeficitCalculator() {
     if (leak === 0) return null;
 
     return (
-      <div className="bg-gradient-to-r from-red-950/80 to-red-900/50 p-6 md:p-8 rounded-2xl border border-red-500/30 backdrop-blur-md relative overflow-hidden mb-8 shadow-[0_0_50px_-10px_rgba(220,38,38,0.3)]">
-        <div className="absolute top-0 left-0 w-1 bg-red-500 h-full"></div>
-        <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-6 text-center md:text-left">
-          <div className="space-y-2">
-            <h3 className="text-red-400 font-bold uppercase tracking-widest text-sm flex items-center justify-center md:justify-start gap-2">
-              <AlertTriangle className="w-5 h-5 text-red-500" />
-              Projected Monthly Customer Leak
+      <div className="bg-gradient-to-r from-amber-950/30 to-black/80 p-6 md:p-8 rounded-2xl border border-amber-500/20 backdrop-blur-md relative overflow-hidden mb-8 shadow-[0_0_40px_-10px_rgba(245,158,11,0.15)] group">
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:24px_24px] opacity-10"></div>
+        <div className="absolute top-0 left-0 w-1 bg-gradient-to-b from-amber-400 to-amber-600 h-full shadow-[0_0_15px_rgba(245,158,11,0.6)]"></div>
+        
+        <div className="flex flex-col md:flex-row items-center md:items-center justify-between gap-6 text-center md:text-left relative z-10">
+          <div className="space-y-3 w-full">
+            <h3 className="text-amber-400 font-bold uppercase tracking-widest text-sm flex items-center justify-center md:justify-start gap-2">
+              <AlertTriangle className="w-5 h-5 text-amber-500 animate-pulse" />
+              Calculate Your True Revenue Leak
             </h3>
-            <p className="text-white/70 text-sm md:text-base max-w-lg leading-relaxed">
-              Based on your specific technical bottlenecks, our engine projects you are bleeding this many high-intent customers to competitors every 30 days. <strong className="text-white">Multiply this number by your average service ticket to calculate your true revenue loss.</strong>
+            <p className="text-white/80 text-base md:text-lg max-w-2xl leading-relaxed font-light">
+              Take your estimated lost jobs from above and multiply it by your <strong className="text-white font-medium">Average Service Ticket</strong>. That is the exact dollar amount you are handing to competitors every 30 days.
             </p>
           </div>
-          <div className="text-5xl md:text-6xl font-black font-display text-red-500 drop-shadow-[0_0_20px_rgba(220,38,38,0.5)] tracking-tighter shrink-0 flex items-center">
-            -<AnimatedNumber value={leak} format="integer" />
+          <div className="shrink-0 flex items-center justify-center bg-amber-500/10 border border-amber-500/20 rounded-xl px-6 py-4">
+             <div className="text-2xl md:text-3xl font-mono text-amber-400 font-bold tracking-widest flex items-center gap-3">
+               <span className="text-amber-400/50">X</span> $$$
+             </div>
           </div>
         </div>
       </div>
@@ -607,41 +611,43 @@ export default function TrustDeficitCalculator() {
               
               <div className="space-y-6">
                 <motion.div variants={blurIn} className="inline-block px-4 py-1.5 rounded-full border border-white/10 bg-white/5 uppercase tracking-[0.2em] text-xs font-semibold text-primary">
-                  System Diagnostics
+                  Stop Losing Jobs
                 </motion.div>
                 <motion.h2 variants={blurIn} className="text-5xl md:text-7xl leading-[0.9] tracking-tighter text-surface font-display font-bold uppercase mix-blend-plus-lighter">
-                  Calculate <br/>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#fbbf24] via-primary to-[#78350f]">Trust Deficit.</span>
+                  Expose Your <br/>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#fbbf24] via-primary to-[#78350f]">Revenue Leak.</span>
                 </motion.h2>
                 <motion.p variants={blurIn} className="text-white/60 text-lg max-w-md font-light leading-relaxed">
-                  Enter your exact business name and operational city to cross-reference the market benchmark and expose your deficit score.
+                  Enter your business name and city to see exactly why local customers are choosing your competitors over you.
                 </motion.p>
               </div>
 
               <motion.form variants={blurIn} onSubmit={handleSearchSubmit} className="space-y-12 bg-black/20 p-10 rounded-2xl border border-white/5 backdrop-blur-md">
-                <div className="space-y-10">
+                <div className="space-y-6">
                   <div className="relative group/input">
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/0 via-primary/0 to-primary/0 group-focus-within/input:from-primary/20 group-focus-within/input:via-primary/5 group-focus-within/input:to-primary/20 rounded-xl blur transition-all duration-700"></div>
                     <DebouncedInput
                       type="text"
                       required
                       value={businessName}
                       onChange={setBusinessName}
-                      placeholder="Business Name"
-                      className="input-premium w-full !bg-transparent border-b-2 border-white/10 text-white pb-4 pr-10 outline-none focus:border-primary transition-all duration-500 text-lg font-light placeholder-secondary"
+                      placeholder="Enter Business Name"
+                      className="relative w-full bg-black/40 border border-white/10 rounded-xl text-white px-6 py-5 pr-12 outline-none focus:border-primary/50 focus:bg-black/60 shadow-inner shadow-black/50 transition-all duration-500 text-lg font-light placeholder-white/30 backdrop-blur-sm"
                     />
-                    <Search className="absolute right-0 bottom-4 w-6 h-6 text-white/20 group-focus-within/input:text-primary transition-colors duration-500" />
+                    <Search className="absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 text-white/20 group-focus-within/input:text-primary transition-colors duration-500" />
                   </div>
                   
                   <div className="relative group/input">
+                    <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/0 via-primary/0 to-primary/0 group-focus-within/input:from-primary/20 group-focus-within/input:via-primary/5 group-focus-within/input:to-primary/20 rounded-xl blur transition-all duration-700"></div>
                     <DebouncedInput
                       type="text"
                       required
                       value={location}
                       onChange={setLocation}
                       placeholder="City, State or Zip Code"
-                      className="input-premium w-full !bg-transparent border-b-2 border-white/10 text-white pb-4 pr-10 outline-none focus:border-primary transition-all duration-500 text-lg font-light placeholder-secondary"
+                      className="relative w-full bg-black/40 border border-white/10 rounded-xl text-white px-6 py-5 pr-12 outline-none focus:border-primary/50 focus:bg-black/60 shadow-inner shadow-black/50 transition-all duration-500 text-lg font-light placeholder-white/30 backdrop-blur-sm"
                     />
-                    <MapPin className="absolute right-0 bottom-4 w-6 h-6 text-white/20 group-focus-within/input:text-primary transition-colors duration-500" />
+                    <MapPin className="absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 text-white/20 group-focus-within/input:text-primary transition-colors duration-500" />
                   </div>
 
                 </div>
@@ -658,9 +664,19 @@ export default function TrustDeficitCalculator() {
                   className="relative flex w-full h-16 md:h-20 overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-[0_0_40px_-5px_rgba(180,83,9,0.35)] transition-all hover:scale-[1.02] active:scale-95 duration-300 mt-8 disabled:opacity-50 disabled:pointer-events-none disabled:scale-100"
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-primary/40 via-primary/80 to-primary/40 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
-                  <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[#0a0a0a] px-8 md:px-10 text-lg md:text-xl font-medium text-white backdrop-blur-3xl gap-3 transition-colors group-hover:bg-background whitespace-nowrap">
-                    {uiState === 'LOADING_MAPS' ? 'Scanning Area...' : 'Scan Local Profile'}
-                    {!uiState.includes('LOADING') && <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />}
+                  <span className="relative flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[#0a0a0a] px-8 md:px-10 text-lg md:text-xl font-medium text-white backdrop-blur-3xl gap-3 transition-colors group-hover:bg-background whitespace-nowrap overflow-hidden">
+                    {uiState === 'LOADING_MAPS' && (
+                      <motion.div 
+                        initial={{ x: '-150%' }}
+                        animate={{ x: '150%' }}
+                        transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
+                        className="absolute inset-0 w-full bg-gradient-to-r from-transparent via-primary/20 to-transparent skew-x-12"
+                      />
+                    )}
+                    <span className="relative z-10 flex items-center gap-3">
+                      {uiState === 'LOADING_MAPS' ? 'Scanning Local Area...' : 'Scan Local Profile'}
+                      {!uiState.includes('LOADING') && <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />}
+                    </span>
                   </span>
                 </button>
 
@@ -679,7 +695,7 @@ export default function TrustDeficitCalculator() {
             <motion.div key="partial" variants={staggerContainer} initial="initial" animate="animate" exit="exit" className="relative z-10 text-center w-full">
                <motion.div variants={blurIn}>
                  <h2 className="text-4xl md:text-5xl lg:text-6xl tracking-tight text-surface font-display font-bold uppercase mb-8">
-                    Profile <span className="text-primary italic">Analyzed.</span>
+                    Scan <span className="text-primary italic">Complete.</span>
                  </h2>
                </motion.div>
                
@@ -689,24 +705,24 @@ export default function TrustDeficitCalculator() {
                       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-orange-400 opacity-50"></div>
                       <div className="flex items-center gap-4 mb-6">
                         <Star className="w-8 h-8 text-primary" />
-                        <h3 className="text-xl md:text-2xl font-display font-bold uppercase tracking-widest text-surface">Reputation Volume</h3>
+                        <h3 className="text-xl md:text-2xl font-display font-bold uppercase tracking-widest text-surface">Initial Finding: Job Leak</h3>
                       </div>
                       
                       <div className="space-y-4 text-left">
                         <div className="flex items-end gap-4">
                           <span className={`text-6xl font-black font-display leading-none drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] ${deficit > 0 ? 'text-red-500' : 'text-green-500'}`}>
-                            <AnimatedNumber value={placeData?.user_ratings_total || 0} />
+                            {deficit > 0 ? <AnimatedNumber value={Math.ceil(deficit * 0.3)} /> : <AnimatedNumber value={0} />}
                           </span>
-                          <span className="text-2xl text-white/40 pb-1">/ 80 Min. Standard</span>
+                          <span className="text-2xl text-white/40 pb-1">{deficit > 0 ? 'Jobs/Mo Leaked' : 'Jobs Leaked'}</span>
                         </div>
                         <div className="text-[11px] text-white/60 uppercase tracking-[0.1em] font-medium flex items-center gap-1.5 pt-1">
                           <MapPin className="w-3 h-3" aria-hidden="true" />
-                           Data sourced directly from live Google Maps
+                           Based on local market deficit
                         </div>
                         <p className={`text-lg md:text-xl font-medium leading-relaxed pt-2 ${deficit > 0 ? 'text-red-400' : 'text-green-400'}`}>
                           {deficit > 0 
-                            ? `You are missing ${deficit} reviews. In Montana, word-of-mouth is everything. Right now, your digital word-of-mouth is a whisper in a blizzard. You are handing revenue to the loudest competitor in town, not the best.`
-                            : `You beat the market standard. Your digital word-of-mouth is an absolute fortress. The Trust Deficit does not apply to you in this category.`}
+                            ? `We estimate you are bleeding roughly ${Math.ceil(deficit * 0.3)} jobs every single month to the market leader. Your digital word-of-mouth is a whisper in a blizzard.`
+                            : `You beat the market standard. Your digital word-of-mouth is an absolute fortress. You are not leaking jobs in this category.`}
                         </p>
                       </div>
                   </div>
@@ -715,28 +731,34 @@ export default function TrustDeficitCalculator() {
                   <div className="relative">
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/95 to-background z-20 flex flex-col items-center justify-end pb-0">
                       <form onSubmit={handleLeadSubmit} className="space-y-6 mt-12 bg-black/50 p-8 md:p-12 border-t border-primary/20 backdrop-blur-md w-[calc(100%+4rem)] -mx-8 sm:w-full sm:mx-0 sm:rounded-2xl sm:border text-center shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
-                         <h4 className="text-xl md:text-2xl font-bold uppercase tracking-widest text-surface font-display mb-2">Unlock Full Diagnostics</h4>
-                         <p className="text-white/70 mb-8 font-light text-base md:text-lg">Enter your website URL and email below so our system can scan your mobile speed in real-time and show you exactly where you are losing customers.</p>
+                         <h4 className="text-xl md:text-2xl font-bold uppercase tracking-widest text-surface font-display mb-2">Find Your Exact Revenue Leaks</h4>
+                         <p className="text-white/70 mb-8 font-light text-base md:text-lg">Enter your website URL and email below so our system can run a real-time speed scan and show you exactly where competitors are outranking you.</p>
                          
                          <div className="max-w-md mx-auto space-y-6">
-                           <input
-                              type="text"
-                              required
-                              value={websiteUrl}
-                              onChange={(e) => setWebsiteUrl(e.target.value)}
-                              placeholder="WEBSITE URL (yourdomain.com)"
-                              aria-label="Website URL"
-                              className="input-premium w-full !bg-black/50 border-b-2 border-white/10 text-white pb-4 pt-4 px-4 outline-none focus:border-primary focus-visible:ring-1 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-all duration-500 text-center text-lg placeholder-secondary font-display rounded-sm"
-                            />
-                           <input
-                              type="email"
-                              required
-                              value={email}
-                              onChange={(e) => setEmail(e.target.value)}
-                              placeholder="AUTHORIZATION EMAIL"
-                              aria-label="Authorization Email"
-                              className="input-premium w-full !bg-black/50 border-b-2 border-white/10 text-white pb-4 pt-4 px-4 outline-none focus:border-primary focus-visible:ring-1 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-all duration-500 text-center text-lg placeholder-secondary font-display uppercase tracking-widest rounded-sm"
-                           />
+                            <div className="relative group/input">
+                              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/0 via-primary/0 to-primary/0 group-focus-within/input:from-primary/20 group-focus-within/input:via-primary/5 group-focus-within/input:to-primary/20 rounded-xl blur transition-all duration-700"></div>
+                              <input
+                                  type="text"
+                                  required
+                                  value={websiteUrl}
+                                  onChange={(e) => setWebsiteUrl(e.target.value)}
+                                  placeholder="WEBSITE URL (yourdomain.com)"
+                                  aria-label="Website URL"
+                                  className="relative w-full bg-black/60 border border-white/10 rounded-xl text-white px-6 py-5 outline-none focus:border-primary/50 focus:bg-black/80 shadow-inner shadow-black/50 transition-all duration-500 text-center text-lg placeholder-white/30 font-display backdrop-blur-sm"
+                                />
+                            </div>
+                            <div className="relative group/input">
+                              <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/0 via-primary/0 to-primary/0 group-focus-within/input:from-primary/20 group-focus-within/input:via-primary/5 group-focus-within/input:to-primary/20 rounded-xl blur transition-all duration-700"></div>
+                              <input
+                                  type="email"
+                                  required
+                                  value={email}
+                                  onChange={(e) => setEmail(e.target.value)}
+                                  placeholder="AUTHORIZATION EMAIL"
+                                  aria-label="Authorization Email"
+                                  className="relative w-full bg-black/60 border border-white/10 rounded-xl text-white px-6 py-5 outline-none focus:border-primary/50 focus:bg-black/80 shadow-inner shadow-black/50 transition-all duration-500 text-center text-lg placeholder-white/30 font-display uppercase tracking-widest backdrop-blur-sm"
+                              />
+                            </div>
 
                           {errorMsg && (
                             <p className="text-sm font-medium tracking-wide text-red-400 mt-4 flex items-center justify-center gap-2" role="alert">
@@ -748,15 +770,34 @@ export default function TrustDeficitCalculator() {
                               type="submit"
                               disabled={uiState === 'LOADING_GATE'}
                               aria-busy={uiState === 'LOADING_GATE'}
-                              className="relative w-full py-5 bg-[#0a0a0c] border border-primary/50 focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0a] focus:outline-none text-white rounded-full text-lg font-medium hover:border-primary transition-colors flex justify-center items-center gap-3 mt-8 disabled:opacity-50"
+                              className="relative flex w-full h-16 md:h-20 overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-[0_0_40px_-5px_rgba(180,83,9,0.35)] transition-all hover:scale-[1.02] active:scale-95 duration-300 mt-8 disabled:opacity-50 disabled:pointer-events-none disabled:scale-100"
                             >
-                              {uiState === 'LOADING_GATE' ? 'Processing...' : 'Run Analysis & Unlock'}
-                              {!uiState.includes('LOADING') && <ArrowRight className="w-5 h-5" aria-hidden="true" />}
-                           </button>
+                              <span className="absolute inset-0 bg-gradient-to-r from-primary/40 via-primary/80 to-primary/40 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
+                              <span className="relative flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[#0a0a0a] px-8 md:px-10 text-lg md:text-xl font-medium text-white backdrop-blur-3xl gap-3 transition-colors group-hover:bg-background whitespace-nowrap overflow-hidden">
+                                {uiState === 'LOADING_GATE' && (
+                                  <motion.div 
+                                    initial={{ x: '-150%' }}
+                                    animate={{ x: '150%' }}
+                                    transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}
+                                    className="absolute inset-0 w-full bg-gradient-to-r from-transparent via-primary/20 to-transparent skew-x-12"
+                                  />
+                                )}
+                                <span className="relative z-10 flex items-center gap-3">
+                                  {uiState === 'LOADING_GATE' ? 'Processing...' : 'Reveal My Revenue Leaks'}
+                                  {!uiState.includes('LOADING') && <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />}
+                                </span>
+                              </span>
+                            </button>
 
-                           <p className="text-[11px] text-white/40 font-light mt-6 leading-relaxed tracking-wide">
-                             We use your email strictly to deliver your diagnostic roadmap. Zero spam. Zero list selling.
-                           </p>
+                            <div className="flex flex-col items-center gap-3 mt-6">
+                               <div className="flex items-center justify-center gap-2 text-white/40 text-[10px] font-mono uppercase tracking-[0.2em]">
+                                  <Lock className="w-3 h-3 text-primary/70" />
+                                  <span>256-Bit Secure Diagnostics</span>
+                               </div>
+                               <p className="text-[11px] text-white/30 font-light leading-relaxed tracking-wide">
+                                 We use your email strictly to deliver your scan roadmap. Zero spam. Zero list selling.
+                               </p>
+                            </div>
                          </div>
                       </form>
                     </div>
@@ -796,8 +837,16 @@ export default function TrustDeficitCalculator() {
                     <div className="absolute inset-0 bg-[linear-gradient(90deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%)] bg-[length:250px_100%] animate-[shimmer_2s_infinite_linear]"></div>
                   </motion.div>
                 </div>
-                <div className="flex justify-between items-center text-xs font-bold tracking-[0.2em] uppercase">
-                  <span className="text-primary">Loading Intel</span>
+                <div className="flex justify-between items-center text-xs font-bold tracking-[0.2em] uppercase mt-2">
+                  <span className="text-primary/70 font-mono text-[10px] sm:text-xs">
+                    {progress < 15 ? "> Initializing system link..." :
+                     progress < 35 ? "> Pinging Google Places API..." :
+                     progress < 55 ? "> Parsing DOM structure..." :
+                     progress < 75 ? "> Running mobile Lighthouse simulation..." :
+                     progress < 90 ? "> Quantifying revenue loss metrics..." :
+                     "> Compiling final scan report..."}
+                    <span className="animate-pulse">_</span>
+                  </span>
                   <span className="text-surface">{Math.floor(progress)}%</span>
                 </div>
               </motion.div>
@@ -813,9 +862,9 @@ export default function TrustDeficitCalculator() {
                     transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
                     className="relative"
                   >
-                    <h3 className="absolute left-1/2 -translate-x-1/2 top-0 uppercase tracking-[0.4em] text-red-500/50 font-bold text-sm">Critical Deficit</h3>
-                    <div className="text-[12rem] leading-none md:text-[20rem] font-black text-transparent bg-clip-text bg-gradient-to-b from-red-600 via-red-500 to-red-950 font-display tracking-tighter mix-blend-screen drop-shadow-[0_0_80px_rgba(220,38,38,0.4)]">
-                      -{deficit}
+                    <h3 className="absolute left-1/2 -translate-x-1/2 top-0 uppercase tracking-[0.4em] text-red-500/50 font-bold text-sm whitespace-nowrap">Est. Lost Jobs Per Month</h3>
+                    <div className="text-[12rem] leading-none md:text-[20rem] font-black text-transparent bg-clip-text bg-gradient-to-b from-red-600 via-red-500 to-red-950 font-display tracking-tighter mix-blend-screen drop-shadow-[0_0_80px_rgba(220,38,38,0.4)] pt-8">
+                      <AnimatedNumber value={Math.ceil(deficit * 0.3)} />
                     </div>
                   </motion.div>
                   
@@ -833,7 +882,7 @@ export default function TrustDeficitCalculator() {
                       
                       <div className="space-y-4 text-left">
                         <div className="flex items-end gap-4">
-                          <span className="text-6xl font-black font-display leading-none drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] text-red-500">
+                          <span className={`text-6xl font-black font-display leading-none drop-shadow-[0_0_30px_rgba(255,255,255,0.1)] ${(placeData?.user_ratings_total || 0) < 20 ? 'text-red-500' : 'text-yellow-400'}`}>
                             <AnimatedNumber value={placeData?.user_ratings_total || 0} />
                           </span>
                           <span className="text-2xl text-white/40 pb-1">/ 80 Min. Standard</span>
@@ -842,8 +891,8 @@ export default function TrustDeficitCalculator() {
                           <MapPin className="w-3 h-3" aria-hidden="true" />
                            Data sourced directly from live Google Maps
                         </div>
-                        <p className="text-red-400 text-lg md:text-xl font-medium leading-relaxed pt-2">
-                          You are missing <AnimatedNumber value={deficit} /> reviews. In Montana, word-of-mouth is everything. Right now, your digital word-of-mouth is a whisper in a blizzard. You are handing revenue to the loudest competitor in town, not the best.
+                        <p className={`${(placeData?.user_ratings_total || 0) < 20 ? 'text-red-400' : 'text-yellow-300'} text-lg md:text-xl font-medium leading-relaxed pt-2`}>
+                          Based on your review deficit of <AnimatedNumber value={deficit} />, we estimate you are leaking roughly <strong className={(placeData?.user_ratings_total || 0) < 20 ? 'text-red-300' : 'text-yellow-200'}><AnimatedNumber value={Math.ceil(deficit * 0.3)} /> jobs per month</strong> to the market leader. You are handing revenue to the loudest competitor in town, not the best.
                         </p>
                       </div>
                     </div>
@@ -957,7 +1006,7 @@ export default function TrustDeficitCalculator() {
                            Data sourced directly from live Google Places API
                         </div>
                         <p className="text-green-400 text-lg md:text-xl font-medium leading-relaxed pt-2">
-                          You beat the market standard. Your digital word-of-mouth is an absolute fortress. The Trust Deficit does not apply to you in this category.
+                          You beat the market standard. Your digital word-of-mouth is an absolute fortress. You are not leaking revenue in this category.
                         </p>
                       </div>
                     </div>
