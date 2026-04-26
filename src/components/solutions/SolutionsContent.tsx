@@ -57,21 +57,21 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
              <div className="flex items-center gap-3 mb-8">
               <span className="w-2 h-2 rounded-full bg-brand-red animate-pulse shadow-[0_0_10px_#9E1B1F]"></span>
               <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-brand-red uppercase">
-                Expert Care for Performance Vehicles
+                Services for Owner-Operated Service Businesses
               </span>
             </div>
             
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-10 tracking-tighter leading-[1.1] text-brand-navy uppercase">
-              Precision Performance <br className="hidden md:block" />
-              <span className="text-brand-red italic">Services.</span>
+              What I Help Service <br className="hidden md:block" />
+              <span className="text-brand-red italic">Businesses Fix.</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-text-secondary mb-6 max-w-3xl leading-relaxed font-bold">
-              We provide factory-spec maintenance, complex diagnostics, and performance engineering for owners who demand absolute reliability and excellence from their vehicles.
+              I help local service businesses fix the places revenue leaks out — weak Google visibility, missed calls, slow follow-up, thin reviews, and websites that do not turn traffic into calls.
             </p>
             
             <p className="text-lg text-text-secondary/60 mb-12 max-w-2xl leading-relaxed font-bold uppercase tracking-widest">
-              Advanced technology. Mechanical integrity. Montana reliability.
+              Practical help for businesses where the phone matters, time is limited, and bad systems quietly cost jobs.
             </p>
 
             {/* CTAs */}
@@ -84,7 +84,7 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
               >
                 <span className="absolute inset-0 bg-brand-red group-hover:bg-[#85161a] transition-colors duration-500" />
                 <span className="relative inline-flex h-full w-full cursor-pointer items-center justify-center rounded-standard bg-transparent px-8 md:px-10 text-sm md:text-base font-bold text-white uppercase tracking-widest gap-3">
-                  Schedule A Diagnostic
+                  Review My Current Setup
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                 </span>
               </a>
@@ -93,7 +93,7 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
                 href="/trust-calculator"
                 className="inline-flex h-14 md:h-16 items-center justify-center rounded-standard px-8 md:px-10 text-sm md:text-base font-bold text-brand-navy border-2 border-brand-navy/10 hover:border-brand-navy/20 hover:bg-brand-navy/5 transition-all duration-300 uppercase tracking-widest w-full sm:w-auto"
               >
-                View Standards
+                Run Instant Scan
               </a>
             </div>
           </motion.div>
@@ -106,9 +106,9 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
       <section className="py-12 md:py-16 mb-20">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="mb-16 text-center lg:text-left">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight text-brand-navy uppercase">Specialized Solutions</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight text-brand-navy uppercase">Core Services</h2>
             <p className="text-lg text-text-secondary font-bold max-w-2xl uppercase tracking-widest">
-              From factory maintenance to high-performance tuning, we offer a comprehensive suite of services designed for precision and durability.
+              Practical help for service businesses dealing with weak visibility, missed calls, slow follow-up, thin reviews, and underperforming websites.
             </p>
           </div>
 
@@ -158,7 +158,7 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
         </div>
       </section>
 
-      <SectionSeparator number="02" title="WHY THE BENCHMARK?" />
+      <SectionSeparator number="02" title="NOT SURE WHAT YOU NEED?" />
 
       {/* Audit Block */}
       <section className="py-12 md:py-20 mb-12">
@@ -173,20 +173,20 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
               <div className="flex-1">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/20 bg-white/5 text-white text-[10px] uppercase font-bold tracking-[0.2em] mb-6">
                   <Target className="w-3 h-3" />
-                  Diagnostic Standard
+                  Diagnostic
                 </div>
                 
                 <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight uppercase">
                   Start with a <br className="hidden md:block" />
-                  <span className="text-brand-red italic">Benchmark Inspection.</span>
+                  <span className="text-brand-red italic">Demand Leak Audit.</span>
                 </h3>
                 
                 <p className="text-lg md:text-xl text-white/80 font-bold leading-relaxed mb-8 max-w-2xl">
-                  Before we turn a single wrench, we seek absolute clarity. Our digital vehicle inspection provides you with high-resolution photos, technician notes, and a clear, prioritized breakdown of your vehicle's health.
+                  If you are not sure where work is slipping through the cracks, this is the best place to start. I’ll look at your current setup, help identify where visibility, follow-up, or conversion is breaking down, and show you what is worth fixing first.
                 </p>
 
                 <p className="text-sm font-bold text-white/50 uppercase tracking-[0.3em] mb-12">
-                  Total Transparency. No Guesswork. No Hype.
+                  Practical review. Clear next steps. No hype.
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center gap-4">
@@ -198,7 +198,7 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
                   >
                     <span className="absolute inset-0 bg-brand-red" />
                     <span className="relative inline-flex h-full w-full cursor-pointer items-center justify-center rounded-standard bg-transparent px-8 md:px-10 text-sm md:text-base font-bold text-white uppercase tracking-widest gap-3">
-                      Schedule A Diagnostic
+                      Review My Current Setup
                       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                     </span>
                   </a>
@@ -209,16 +209,16 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
         </div>
       </section>
 
-      <SectionSeparator number="03" title="AUTOMOTIVE INSIGHTS" />
+      <SectionSeparator number="03" title="RELATED INSIGHTS" />
       
       {/* Supporting Insights */}
       <section className="py-12 md:py-16 mb-12">
         <div className="max-w-[1400px] mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
             <div>
-              <h2 className="text-3xl font-bold mb-4 tracking-tight text-brand-navy uppercase">Technical Insights</h2>
+              <h2 className="text-3xl font-bold mb-4 tracking-tight text-brand-navy uppercase">Related Insights</h2>
               <p className="text-lg text-text-secondary font-bold max-w-xl uppercase tracking-widest">
-                Deep dives into performance engineering and maintenance standards.
+                Clear thinking on the same problems these services are built to fix.
               </p>
             </div>
             
@@ -234,19 +234,19 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                title: "Why European Engines Require Specialized Oil Standards",
-                slug: "oil-standards",
-                excerpt: "The critical difference between off-the-shelf oil and factory-spec lubricants for high-performance German engineering."
+                title: "The #1 Profit Leak in a Service Business",
+                slug: "profit-leak",
+                excerpt: "Missing calls and slow follow-ups are quietly crushing your bottom line before you ever get a chance to compete."
               },
               {
-                title: "The Danger of Ignoring Warning Lights on Modern Electronics",
-                slug: "warning-lights",
-                excerpt: "How complex vehicle networks communicate faults and why early diagnosis prevents catastrophic system failure."
+                title: "An Inactive Google Business Profile Is Killing Your Local Visibility",
+                slug: "inactive-gmb",
+                excerpt: "Why the easiest visibility win for a local service business is often the most neglected digital asset."
               },
               {
-                title: "High-Performance Suspension: Tuning for Montana Roads",
-                slug: "suspension-tuning",
-                excerpt: "Balancing precise handling with the durability required for rugged terrain and seasonal temperature swings."
+                title: "The “More Leads” Trap: Fix Your Booking Rate First",
+                slug: "more-leads-trap",
+                excerpt: "Why buying more attention won't fix a broken intake process, and how to repair the leaks first."
               }
             ].map((article, index) => (
               <motion.div

@@ -17,11 +17,11 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   title: {
-    default: "Benchmark Automotive Service | Precision Auto Repair",
-    template: "%s | Benchmark Automotive Service"
+    default: "True Path Digital | Clear Thinking for Business Owners",
+    template: "%s | True Path Digital"
   },
-  description: "Sophisticated automotive service for luxury and performance vehicles. Experience the benchmark of precision repair.",
-  metadataBase: new URL('https://benchmarkauto.com'),
+  description: "Stop guessing. Start arriving. High-performance marketing intelligence, AI strategy, and conversion infrastructure for businesses.",
+  metadataBase: new URL('https://truepath406.com'),
   alternates: {
     canonical: './',
   },
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    url: 'https://benchmarkauto.com',
-    title: 'Benchmark Automotive Service | Precision & Heritage',
-    description: "Sophisticated automotive service for luxury and performance vehicles. Experience the benchmark of precision repair.",
+    url: 'https://truepath406.com',
+    title: 'True Path Digital | Marketing Intelligence & AI Strategy',
+    description: "Stop guessing. Start arriving. High-performance marketing intelligence, AI strategy, and conversion infrastructure for businesses.",
     images: [{
       url: 'https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg',
       width: 1200,
@@ -47,19 +47,19 @@ const structuredData = {
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://benchmarkauto.com/#website",
-      "url": "https://benchmarkauto.com/",
-      "name": "Benchmark Automotive Service",
-      "description": "Sophisticated automotive service for luxury and performance vehicles.",
+      "@id": "https://truepath406.com/#website",
+      "url": "https://truepath406.com/",
+      "name": "True Path Digital",
+      "description": "Stop guessing. Start arriving. High-performance marketing intelligence, AI strategy, and conversion infrastructure for businesses.",
       "publisher": {
-        "@id": "https://benchmarkauto.com/#organization"
+        "@id": "https://truepath406.com/#organization"
       }
     },
     {
       "@type": "Organization",
-      "@id": "https://benchmarkauto.com/#organization",
-      "name": "Benchmark Automotive Service",
-      "url": "https://benchmarkauto.com/",
+      "@id": "https://truepath406.com/#organization",
+      "name": "True Path Digital",
+      "url": "https://truepath406.com/",
       "logo": {
         "@type": "ImageObject",
         "url": "https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
@@ -73,6 +73,18 @@ const structuredData = {
         "@type": "PostalAddress",
         "addressRegion": "MT",
         "addressCountry": "US"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/trevor-riggs-marketing/"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://truepath406.com/#founder",
+      "name": "Trevor Riggs",
+      "url": "https://www.linkedin.com/in/trevor-riggs-marketing/",
+      "worksFor": {
+        "@id": "https://truepath406.com/#organization"
       }
     }
   ]

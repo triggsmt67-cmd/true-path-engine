@@ -20,10 +20,10 @@ const StakesSection: React.FC = () => {
             className="lg:col-span-5"
           >
             <h2 className="text-4xl md:text-6xl font-bold text-brand-navy mb-6 tracking-tight leading-[1.1] uppercase">
-              Ideal <span className="text-brand-red italic">Partners.</span>
+              Who This Is For
             </h2>
             <p className="text-xl md:text-2xl text-text-secondary leading-relaxed max-w-md mb-8 lg:mb-0">
-              Built for businesses where quality matters, the phone is the lifeline, and small breakdowns in trust cost major jobs.
+              Built for businesses where the owner is busy, the phone matters, and small breakdowns in follow-up cost real jobs.
             </p>
             <div className="hidden lg:block relative h-64">
               <div className="absolute inset-0 bg-brand-red/5 blur-[80px] rounded-full" />
@@ -42,10 +42,10 @@ const StakesSection: React.FC = () => {
             {/* List */}
             <ul className="space-y-8">
               {[
-                "Owner-operated automotive & local service shops",
-                "Businesses losing work to slow response, weak visibility, or poor follow-up",
-                "Owners who want diagnostic clarity before committing marketing dollars",
-                "Shops that need higher conversion and absolute trust from current demand"
+                "Owner-operated local service businesses",
+                "Businesses losing work to missed calls, slow response, weak Google visibility, or poor follow-up",
+                "Owners who want clearer decisions before committing more marketing dollars",
+                "Businesses that need better conversion and stronger trust from the demand they already have"
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-6 group">
                   <div className="p-3 rounded-standard bg-surface border border-black/5 text-brand-red group-hover:bg-brand-red group-hover:text-white transition-all shadow-sm">
@@ -63,10 +63,10 @@ const StakesSection: React.FC = () => {
               </div>
               <div className="space-y-6 relative z-10">
                 <p className="text-lg md:text-xl text-text-secondary leading-relaxed">
-                  If you want flashy agency hype, we are likely not a fit.
+                  If you want flashy agency hype, this probably is not a fit.
                 </p>
                 <p className="text-xl md:text-2xl text-brand-navy font-bold uppercase leading-relaxed">
-                  If you want <span className="text-brand-red">precision diagnostics</span> and practical help fixing revenue leaks, we'll work well together.
+                  If you want practical, plainspoken help fixing real demand leaks, we'll work well together.
                 </p>
               </div>
             </div>

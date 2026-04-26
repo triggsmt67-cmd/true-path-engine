@@ -153,7 +153,7 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
                     <div className="absolute -top-12 -right-12 w-24 h-24 blur-3xl rounded-full bg-brand-red/10 pointer-events-none" />
                     <h5 className="text-[10px] font-bold uppercase tracking-[0.25em] mb-4 text-brand-red">Technical Updates</h5>
                     <p className="text-xs leading-relaxed mb-6 font-bold text-text-secondary uppercase tracking-widest">
-                        Direct technical insights on automotive performance delivered to your bench.
+                        Direct, technical insights on AI & conversion strategy delivered to your inbox.
                     </p>
                     <div className="flex flex-col gap-3">
                         <input
@@ -185,12 +185,12 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
                         </div>
                         <div>
                             <div className="font-bold text-xl tracking-tight text-brand-navy uppercase">Trevor Riggs</div>
-                            <div className="text-brand-red text-[10px] font-bold uppercase tracking-[0.15em]">Principal Engineer / Founder</div>
+                            <div className="text-brand-red text-[10px] font-bold uppercase tracking-[0.15em]">Founder / Architect</div>
                         </div>
                     </div>
 
                     <p className="text-sm leading-relaxed mb-10 font-bold text-text-secondary/70 uppercase tracking-widest">
-                        25+ years engineering high-performance diagnostic systems and technical infrastructure for luxury automotive care.
+                        25+ years engineering high-conversion sales systems and strategic digital infrastructure for high-growth firms.
                     </p>
 
                     <a
@@ -199,7 +199,7 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
                         rel="noopener noreferrer"
                         className="block w-full py-4 rounded-xl bg-brand-navy text-white font-bold text-sm text-center transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-brand-navy/20 decoration-transparent uppercase tracking-widest"
                     >
-                        Engineering Network
+                        Connect on LinkedIn
                     </a>
                 </div>
             </div>

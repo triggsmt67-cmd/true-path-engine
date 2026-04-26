@@ -18,14 +18,14 @@ const TrailGrid: React.FC = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <span className="text-brand-red font-bold text-sm tracking-[0.2em] uppercase mb-4 block">Diagnostics</span>
+                        <span className="text-brand-red font-bold text-sm tracking-[0.2em] uppercase mb-4 block">Methodology</span>
                         <h2 className="text-3xl md:text-6xl lg:text-7xl font-bold text-brand-navy tracking-tight leading-[0.95] mb-8 uppercase">
-                            Accuracy <br /><span className="text-brand-red italic">First.</span>
+                            Run Instant <br /><span className="text-brand-red italic">Scan.</span>
                         </h2>
                         <div className="p-8 rounded-standard bg-surface border border-black/5 relative group overflow-hidden shadow-sm">
                             <div className="absolute top-0 left-0 w-1.5 h-full bg-brand-red/40 group-hover:bg-brand-red transition-colors" />
                             <p className="text-xl md:text-2xl text-brand-navy font-bold italic leading-relaxed uppercase tracking-tight">
-                                "We don't start with parts, pricing, or guesses."
+                                "I don’t start with tools, tactics, or templates."
                             </p>
                         </div>
                     </motion.div>
@@ -40,30 +40,30 @@ const TrailGrid: React.FC = () => {
                     >
                         <div className="text-lg md:text-xl text-text-secondary font-medium leading-relaxed space-y-8">
                             <p>
-                                We begin by understanding the symptoms, the data, and the vehicle's history.<br />
-                                <span className="text-text-secondary/60 italic font-bold">Not what's easiest to fix. Not what's most profitable. What's actually failing.</span>
+                                I start by understanding your buyer, your goals, and what already exists.<br />
+                                <span className="text-text-secondary/60 italic font-bold">Not what should exist. Not what someone sold you. What’s actually there.</span>
                             </p>
 
                             <div>
-                                <p className="mb-4 text-brand-navy font-bold uppercase tracking-wide">Every diagnostic follows a rigorous path:</p>
+                                <p className="mb-4 text-brand-navy font-bold uppercase tracking-wide">From there, the work takes one of two paths:</p>
                                 <ul className="space-y-4">
                                     <li className="flex items-start gap-3">
                                         <div className="w-2 h-2 rounded-full bg-brand-red mt-2 shrink-0"></div>
-                                        <span className="font-bold">Isolating the root cause with factory-spec instrumentation</span>
+                                        <span className="font-bold">Clarifying the decisions that are holding everything else up</span>
                                     </li>
                                     <li className="flex items-start gap-3">
                                         <div className="w-2 h-2 rounded-full bg-brand-red mt-2 shrink-0"></div>
-                                        <span className="font-bold">Verifying performance benchmarks before and after repair</span>
+                                        <span className="font-bold">Building only what’s necessary to support those decisions</span>
                                     </li>
                                 </ul>
                             </div>
 
                             <div className="pt-6 border-l-2 border-brand-red/30 pl-6">
                                 <p className="text-brand-navy font-bold text-xl uppercase tracking-tight">
-                                    The Benchmark Guarantee:
+                                    The goal is always the same:
                                 </p>
                                 <p className="text-text-secondary font-bold italic">
-                                    Absolute transparency, technical excellence, and repairs you can trust for the long haul.
+                                    fewer unknowns, less stress, and marketing you can actually trust.
                                 </p>
                             </div>
                         </div>

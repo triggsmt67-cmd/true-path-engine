@@ -16,10 +16,10 @@ import QuoteSection from '@/components/QuoteSection';
 import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Benchmark Automotive Service | Precision Auto Repair',
-  description: 'Sophisticated automotive service for luxury and performance vehicles. Diagnostic-first approach to car care.',
+  title: 'True Path Digital | Clear Decisions for Business Owners',
+  description: 'High-performance marketing intelligence and AI strategy for local service businesses.',
   alternates: {
-    canonical: 'https://benchmarkauto.com/'
+    canonical: 'https://truepath406.com/'
   }
 };
 
@@ -29,22 +29,22 @@ export default function Page() {
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": "https://benchmarkauto.com/#webpage",
-        "url": "https://benchmarkauto.com/",
-        "name": "Benchmark Automotive Service | Precision Auto Repair",
-        "description": "Sophisticated automotive service for luxury and performance vehicles.",
-        "isPartOf": { "@id": "https://benchmarkauto.com/#website" },
-        "about": { "@id": "https://benchmarkauto.com/#organization" }
+        "@id": "https://truepath406.com/#webpage",
+        "url": "https://truepath406.com/",
+        "name": "True Path Digital | Clear Decisions for Business Owners",
+        "description": "High-performance marketing intelligence and AI strategy for local service businesses.",
+        "isPartOf": { "@id": "https://truepath406.com/#website" },
+        "about": { "@id": "https://truepath406.com/#organization" }
       },
       {
         "@type": "ProfessionalService",
-        "@id": "https://benchmarkauto.com/#service",
-        "name": "Benchmark Automotive Service",
-        "url": "https://benchmarkauto.com/",
+        "@id": "https://truepath406.com/#service",
+        "name": "True Path Digital",
+        "url": "https://truepath406.com/",
         "image": "https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg",
-        "description": "Professional automotive service for luxury and performance vehicles.",
+        "description": "Professional marketing intelligence and AI strategy for local service businesses.",
         "telephone": "+1-406-880-6992",
-        "priceRange": "$$$",
+        "priceRange": "$$",
         "areaServed": "Montana",
         "address": {
           "@type": "PostalAddress",
@@ -77,21 +77,21 @@ export default function Page() {
         <main>
           <Hero />
           <StakesSection />
-          <SectionSeparator number="01" title="WHY LUXURY VEHICLES NEED PRECISION CARE" />
+          <SectionSeparator number="01" title="WHY GOOD BUSINESSES STILL LOSE JOBS" />
           <FeatureSplit />
           <QuoteSection />
           <EarlyProofSection />
 
-          <SectionSeparator number="02" title="OUR STANDARDS" />
+          <SectionSeparator number="02" title="THE REAL PROBLEM" />
           <MissionSection />
 
-          <SectionSeparator number="03" title="SPECIALIZED SERVICES" />
+          <SectionSeparator number="03" title="CORE SERVICES" />
           <Solutions />
 
-          <SectionSeparator number="04" title="DIAGNOSTIC STATUS" />
+          <SectionSeparator number="04" title="RUN INSTANT SCAN" />
           <TrailGrid />
 
-          <SectionSeparator number="05" title="THE BENCHMARK PROMISE" />
+          <SectionSeparator number="05" title="ABOUT TREVOR" />
           <AboutSection />
         </main>
         <Footer />

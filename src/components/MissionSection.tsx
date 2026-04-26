@@ -12,7 +12,7 @@ const MissionSection: React.FC = () => {
                     {/* Subtle Label - Secondary */}
                     <div className="flex items-center gap-3 mb-12">
                         <div className="h-px w-8 bg-brand-red"></div>
-                        <span className="text-xs font-bold text-text-secondary uppercase tracking-[0.2em]">The Diagnostic Standard</span>
+                        <span className="text-xs font-bold text-text-secondary uppercase tracking-[0.2em]">The Real Problem</span>
                     </div>
 
                     <motion.div
@@ -23,24 +23,24 @@ const MissionSection: React.FC = () => {
                     >
                         {/* Primary Statement - Large & Confident */}
                         <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight text-brand-navy mb-12 max-w-4xl uppercase">
-                            Why the problem usually isn't <span className="text-brand-red italic">the part.</span>
+                            Why the problem usually is not the platform
                         </h2>
 
                         <div className="grid md:grid-cols-12 gap-12">
                             <div className="md:col-span-12 lg:col-span-10 space-y-8 text-lg md:text-2xl text-text-secondary font-medium leading-relaxed">
                                 <p>
-                                    Most luxury vehicles don't need more parts thrown at them.
+                                    Most businesses do not need another tool or another tactic first.
                                 </p>
                                 <p>
-                                    They need an accurate diagnostic to identify what is actually failing.
+                                    They need to know what is actually costing them jobs.
                                 </p>
                                 <p>
-                                    Precision engineering requires precision care. Whether it's a complex electrical gremlin or a subtle performance dip, the real work isn't the repair—it's the clarity of knowing exactly what to fix.
+                                    Sometimes it is visibility. Sometimes it is follow-up. Sometimes it is trust. Sometimes it is conversion. A lot of the time, the real problem is not where the lead came from. It is what happened next.
                                 </p>
 
                                 {/* Role Declaration */}
                                 <p className="text-brand-navy font-bold pt-4 uppercase tracking-tight">
-                                    Our mission is to cut through the guesswork, provide absolute transparency, and ensure your vehicle performs to its original factory benchmark.
+                                    My role is to help you cut through the noise, find the real leak, and make clearer decisions about what to fix first.
                                 </p>
                             </div>
                         </div>

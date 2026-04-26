@@ -10,7 +10,7 @@ interface ArticleShareButtonsProps {
 
 const ArticleShareButtons: React.FC<ArticleShareButtonsProps> = ({ title, slug }) => {
   const [copied, setCopied] = useState(false);
-  const shareUrl = `https://benchmarkauto.com/blog/${slug}`;
+  const shareUrl = `https://truepath406.com/blog/${slug}`;
 
   const handleShare = (platform: 'twitter' | 'linkedin' | 'email' | 'copy') => {
     const text = `Check out this technical insight: ${title}`;

@@ -11,10 +11,10 @@ const Footer: React.FC = () => {
 
           <div className="md:col-span-4 text-center md:text-left">
             <h4 className="font-serif font-bold text-2xl tracking-tight text-brand-navy mb-4">
-              Benchmark <span className="text-brand-red">Automotive</span>
+              True Path <span className="text-brand-red">Digital</span>
             </h4>
             <p className="text-sm text-text-secondary/80 max-w-xs mx-auto md:mx-0 leading-relaxed font-bold italic uppercase tracking-wider">
-              Precision Diagnostics. Absolute Reliability.
+              No noise. Just signal.
             </p>
           </div>
 
@@ -61,8 +61,8 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="md:col-span-4 text-center md:text-right">
-            <p className="text-sm text-text-secondary/60 mb-1 font-bold uppercase tracking-wider">&copy; {new Date().getFullYear()} Benchmark Automotive Service. All rights reserved.</p>
-            <p className="text-xs text-text-secondary/40 font-bold uppercase tracking-widest">Based in Montana. Built for Reliability.</p>
+            <p className="text-sm text-text-secondary/60 mb-1 font-bold uppercase tracking-wider">&copy; {new Date().getFullYear()} True Path Digital LLC. All rights reserved.</p>
+            <p className="text-xs text-text-secondary/40 font-bold uppercase tracking-widest">Based in Missoula, MT. Built for the trades.</p>
           </div>
 
         </div>

@@ -172,22 +172,22 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     const post = await getPost(slug);
 
     if (!post) {
-        return { title: 'Insight Not Found | Benchmark Automotive Service' };
+        return { title: 'Post Not Found | True Path Digital' };
     }
 
-    const url = `https://benchmarkauto.com/blog/${slug}/`;
+    const url = `https://truepath406.com/blog/${slug}/`;
     const cleanTitle = decodeHtmlEntities(post.title);
     const cleanDesc = decodeHtmlEntities(post.excerpt?.replace(/<[^>]*>?/gm, '').substring(0, 160) || '');
     const imageUrl = post.featuredImage?.node?.sourceUrl || "https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg";
 
     return {
-        title: `${cleanTitle} | Benchmark Automotive Service`,
+        title: `${cleanTitle} | True Path Digital`,
         description: cleanDesc,
         alternates: {
             canonical: url,
         },
         openGraph: {
-            title: `${cleanTitle} | Benchmark Automotive Service`,
+            title: `${cleanTitle} | True Path Digital`,
             description: cleanDesc,
             url: url,
             type: 'article',
@@ -203,7 +203,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         },
         twitter: {
             card: 'summary_large_image',
-            title: `${cleanTitle} | Benchmark Automotive Service`,
+            title: `${cleanTitle} | True Path Digital`,
             description: cleanDesc,
             images: [imageUrl],
         }
@@ -249,7 +249,7 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
     const cleanExcerptText = decodeHtmlEntities(rawExcerpt);
     const cleanTitleText = decodeHtmlEntities(post.title);
     
-    const articleUrl = `https://benchmarkauto.com/blog/${slug}`;
+    const articleUrl = `https://truepath406.com/blog/${slug}`;
     const authorName = "Trevor Riggs";
     const authorUrl = post.author?.node?.url || SOCIAL_LINKS.linkedin;
     const imageUrl = post.featuredImage?.node?.sourceUrl || "https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg";
@@ -262,13 +262,13 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "https://benchmarkauto.com/"
+                "item": "https://truepath406.com/"
             },
             {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "Blog",
-                "item": "https://benchmarkauto.com/blog/"
+                "item": "https://truepath406.com/blog/"
             },
             {
                 "@type": "ListItem",
@@ -293,9 +293,9 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
             "url": authorUrl
         },
         "publisher": {
-            "@id": "https://benchmarkauto.com/#organization",
+            "@id": "https://truepath406.com/#organization",
             "@type": "Organization",
-            "name": "Benchmark Automotive Service",
+            "name": "True Path Digital",
             "logo": {
                 "@type": "ImageObject",
                 "url": "https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
@@ -328,7 +328,7 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
 
     return (
         <main 
-            className="bg-bg min-h-screen flex flex-col selection:bg-brand-red selection:text-white font-sans"
+            className="bg-slate-50 dark:bg-[#121417] min-h-screen flex flex-col transition-colors duration-500 selection:bg-primary selection:text-white"
             data-ai-content="article"
             data-ai-slug={slug}
         >
@@ -347,6 +347,7 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
              />
             )}
             <Navbar />
+            <ThemeToggle />
             <ArticleScrollProgress />
 
             <section className="pt-32 pb-20 px-6 relative z-10">
@@ -355,43 +356,43 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                         
                         {/* 1. Publish date or updated date */}
                         <header className="mb-12">
-                            <div className="flex items-center gap-4 mb-8">
+                            <div className="flex items-center gap-4 mb-6">
                                 <Link
                                     href="/blog"
-                                    className="flex items-center gap-2 font-bold text-[10px] uppercase tracking-[0.2em] group transition-colors text-text-secondary/40 hover:text-brand-red decoration-transparent"
+                                    className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] group transition-colors text-slate-500 hover:text-primary dark:hover:text-white decoration-transparent"
                                 >
                                     <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
-                                    Technical Archive
+                                    Back to Blog
                                 </Link>
-                                <span className="text-black/5">|</span>
-                                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-text-secondary/40">
+                                <span className="text-slate-300 dark:text-gray-700">|</span>
+                                <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-gray-400">
                                     <Clock className="w-3.5 h-3.5" /> 
                                     {modifiedDateStr && modifiedDateStr !== dateStr 
-                                        ? `Protocol Updated ${modifiedDateStr}` 
+                                        ? `Updated ${modifiedDateStr}` 
                                         : `Published ${dateStr}`
                                     }
                                 </div>
                             </div>
 
                             {/* 2. H1 */}
-                            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight leading-[1.05] mb-8 text-brand-navy uppercase">
+                            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-[1.05] mb-6 text-slate-900 dark:text-white">
                                 {cleanTitleText}
                             </h1>
 
-                            {/* 3. AI Takeaways (Engineering Notes) */}
+                            {/* 3. AI Takeaways (Replaces Excerpt intro) */}
                             {mappedTakeaways && mappedTakeaways.length > 0 && (
-                                <ul className="mb-12 pl-8 border-l-4 border-brand-red/20 space-y-5 list-none marker:text-brand-red">
+                                <ul className="mb-10 pl-6 border-l-2 border-primary/20 dark:border-primary/30 space-y-4 list-disc list-inside marker:text-primary/50">
                                     {mappedTakeaways.map((takeaway, i) => (
-                                        <li key={i} className="text-xl md:text-2xl font-bold leading-relaxed text-brand-navy/60 uppercase tracking-wider">
-                                            <span className="text-brand-red mr-2">—</span> {takeaway}
+                                        <li key={i} className="text-xl md:text-2xl font-light leading-relaxed text-slate-600 dark:text-gray-300">
+                                            {takeaway}
                                         </li>
                                     ))}
                                 </ul>
                             )}
 
-                            {/* Featured Image */}
+                            {/* Optional Featured Image just under the head */}
                             {post.featuredImage?.node?.sourceUrl && (
-                                <div className="my-12 relative overflow-hidden rounded-standard border-2 border-black/5 shadow-2xl">
+                                <div className="my-10 relative overflow-hidden rounded-[2rem] border border-slate-200 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-primary/5">
                                     <img 
                                         src={post.featuredImage.node.sourceUrl} 
                                         alt={post.featuredImage.node.altText || cleanTitleText} 
@@ -400,42 +401,42 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                                 </div>
                             )}
 
-                            {/* 4. Engineering Brief (Quick Answer) */}
+                            {/* 4. Quick Answer */}
                             {mappedQuickAnswer && (
-                                <div className="my-10 p-8 md:p-10 bg-surface border-2 border-black/5 rounded-standard shadow-xl">
-                                    <h2 className="text-xs font-bold uppercase tracking-[0.25em] text-brand-red mb-4 flex items-center gap-2">
-                                        <Zap className="w-4 h-4"/> Engineering Brief
+                                <div className="my-8 p-6 md:p-8 bg-white border border-slate-200 dark:bg-white/[0.02] dark:border-white/10 rounded-2xl shadow-sm">
+                                    <h2 className="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-3 flex items-center gap-2">
+                                        <Zap className="w-4 h-4"/> Quick Answer
                                     </h2>
-                                    <p className="text-xl text-brand-navy font-bold leading-relaxed italic uppercase tracking-wider">
-                                        &ldquo;{mappedQuickAnswer}&rdquo;
+                                    <p className="text-lg text-slate-800 dark:text-gray-200 font-medium leading-relaxed">
+                                        {mappedQuickAnswer}
                                     </p>
                                 </div>
                             )}
 
                             {/* 5. Audience */}
                             {mappedAudience && (
-                                <div className="mb-12 p-5 bg-bg rounded-xl border-2 border-black/5 text-text-secondary/60 flex items-start gap-4">
-                                    <div className="font-bold whitespace-nowrap text-brand-navy mt-1 text-sm uppercase tracking-widest">Protocol Context:</div>
-                                    <div className="text-base leading-relaxed font-bold uppercase tracking-widest">{mappedAudience}</div>
+                                <div className="mb-10 p-4 bg-slate-100 rounded-xl dark:bg-white/[0.05] text-slate-700 dark:text-gray-400 flex items-start gap-3">
+                                    <div className="font-bold whitespace-nowrap text-slate-900 dark:text-white mt-1 text-sm">Who this is for:</div>
+                                    <div className="text-base leading-relaxed">{mappedAudience}</div>
                                 </div>
                             )}
 
                             {/* 6. Author Line */}
-                            <div className="flex items-center gap-5 mt-10 pb-10 border-b-2 border-black/5">
-                                <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-brand-red/20 bg-brand-red/10 p-1">
+                            <div className="flex items-center gap-4 mt-8 pb-8 border-b border-slate-200 dark:border-white/10">
+                                <div className="w-12 h-12 rounded-full overflow-hidden border border-primary/20 bg-primary/5">
                                     <img
                                         src="https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
-                                        className="w-full h-full object-cover object-top rounded-xl"
+                                        className="w-full h-full object-cover object-top"
                                         alt={authorName}
                                         loading="lazy"
                                     />
                                 </div>
                                 <div className="flex flex-col">
-                                    <div className="font-bold text-xl text-brand-navy uppercase tracking-tight">
+                                    <div className="font-bold text-lg text-slate-900 dark:text-white">
                                         {authorName}
                                     </div>
-                                    <div className="text-brand-red text-[10px] font-bold uppercase tracking-[0.2em]">
-                                        Principal Engineer
+                                    <div className="text-primary text-[10px] font-bold uppercase tracking-[0.1em]">
+                                        Author
                                     </div>
                                 </div>
                             </div>
@@ -444,27 +445,27 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                         {/* 7. Main article body */}
                         <div
                             className="prose prose-lg md:prose-xl max-w-none transition-all duration-300
-                            prose-headings:text-brand-navy prose-headings:font-bold prose-headings:tracking-tight prose-headings:uppercase
-                            prose-p:text-brand-navy/70 prose-p:leading-relaxed prose-p:mb-10 prose-p:font-bold prose-p:uppercase prose-p:tracking-wider
-                            prose-a:text-brand-red prose-a:no-underline hover:prose-a:underline
-                            prose-strong:text-brand-navy
-                            prose-blockquote:border-l-4 prose-blockquote:border-brand-red prose-blockquote:bg-brand-red/5
-                            prose-blockquote:py-8 prose-blockquote:px-10 prose-blockquote:rounded-r-standard prose-blockquote:not-italic prose-blockquote:text-2xl prose-blockquote:font-bold prose-blockquote:uppercase
-                            prose-img:rounded-standard prose-img:shadow-2xl prose-img:border-2 prose-img:border-black/5
+                            prose-headings:text-slate-900 dark:prose-headings:text-white prose-headings:font-semibold prose-headings:tracking-tight
+                            prose-p:text-slate-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-8
+                            prose-a:text-primary prose-a:no-underline hover:prose-a:underline
+                            prose-strong:text-slate-900 dark:prose-strong:text-white
+                            prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:bg-white/[0.03] dark:prose-blockquote:bg-white/[0.03]
+                            prose-blockquote:py-6 prose-blockquote:px-8 prose-blockquote:rounded-r-2xl prose-blockquote:not-italic prose-blockquote:text-xl
+                            prose-img:rounded-[2rem] prose-img:shadow-xl prose-img:border prose-img:border-black/5 dark:prose-img:border-white/5
                             prose-ul:list-disc prose-ol:list-decimal
-                            prose-li:font-bold prose-li:uppercase prose-li:tracking-widest"
+                            dark:prose-invert"
                             dangerouslySetInnerHTML={{ __html: post.content }}
                         />
 
                         {/* 8. FAQ section if FAQs exist */}
                         {mappedFaqs.length > 0 && (
-                            <section className="mt-24 pt-20 border-t-2 border-black/5">
-                                <h2 className="text-3xl font-bold mb-10 text-brand-navy tracking-tight uppercase">Technical FAQ</h2>
-                                <div className="space-y-8">
+                            <section className="mt-20 pt-16 border-t border-slate-200 dark:border-white/10">
+                                <h2 className="text-3xl font-bold mb-8 text-slate-900 dark:text-white tracking-tight">Frequently Asked Questions</h2>
+                                <div className="space-y-6">
                                     {mappedFaqs.map((faq, i) => (
-                                        <div key={i} className="p-8 md:p-10 rounded-standard bg-surface border-2 border-black/5 shadow-xl">
-                                            <h3 className="text-xl font-bold mb-4 text-brand-navy uppercase tracking-wider">{faq.question}</h3>
-                                            <p className="text-lg text-text-secondary/70 leading-relaxed font-bold uppercase tracking-widest">{faq.answer}</p>
+                                        <div key={i} className="p-6 md:p-8 rounded-2xl bg-white border border-slate-100 dark:bg-white/[0.02] dark:border-white/5">
+                                            <h3 className="text-xl font-bold mb-3 text-slate-900 dark:text-white">{faq.question}</h3>
+                                            <p className="text-lg text-slate-600 dark:text-gray-400 leading-relaxed">{faq.answer}</p>
                                         </div>
                                     ))}
                                 </div>
@@ -472,62 +473,62 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                         )}
 
                         {/* 9. Soft CTA section */}
-                        <section className="mt-24 p-10 md:p-16 rounded-standard bg-brand-navy border-2 border-black/5 group relative overflow-hidden shadow-2xl">
-                            <div className="absolute top-0 right-0 w-80 h-80 bg-brand-red/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
-                            <div className="relative z-10 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-12">
+                        <section className="mt-20 p-8 md:p-12 rounded-3xl bg-slate-100 border border-slate-200 dark:bg-white/[0.03] dark:border-white/5 group relative overflow-hidden">
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none" />
+                            <div className="relative z-10 text-center md:text-left flex flex-col md:flex-row items-center justify-between gap-8">
                                 <div className="max-w-xl">
-                                    <h3 className="text-2xl md:text-4xl font-bold text-white mb-6 tracking-tight uppercase">
-                                        Need a technical second opinion?
+                                    <h3 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
+                                        Want help finding the leak?
                                     </h3>
-                                    <p className="text-lg text-white/70 leading-relaxed font-bold uppercase tracking-widest">
-                                        We specialize in diagnosing the issues other shops miss. Get a direct consultation on your performance requirements.
+                                    <p className="text-lg text-slate-600 dark:text-gray-300 leading-relaxed">
+                                        I’ll look at your lead handling, follow-up, pricing logic, and website path and show you where demand or margin is slipping out.
                                     </p>
                                 </div>
                                 <a
                                     href="https://calendly.com/triggsmt67"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="px-10 py-5 rounded-xl bg-brand-red text-white font-bold transition-all hover:scale-105 shadow-xl decoration-transparent whitespace-nowrap uppercase tracking-widest"
+                                    className="px-8 py-4 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-bold transition-all hover:scale-105 shadow-xl decoration-transparent whitespace-nowrap"
                                 >
-                                    Engineering Consult
+                                    Let's Talk
                                 </a>
                             </div>
                         </section>
 
                         {/* 10. Author bio block */}
-                        <section className="mt-24 p-10 rounded-standard border-2 bg-surface border-black/5 shadow-xl relative overflow-hidden">
-                            <h4 className="text-[10px] font-bold tracking-[0.25em] uppercase mb-10 text-text-secondary/40">Principal Engineer</h4>
-                            <div className="flex flex-col md:flex-row items-center md:items-start gap-8 relative z-10">
-                                <div className="w-20 h-20 shrink-0 rounded-2xl overflow-hidden border-2 p-1 border-brand-red/20 bg-brand-red/10">
+                        <section className="mt-20 p-8 rounded-3xl border bg-white border-slate-200 shadow-sm dark:bg-[#121417] dark:border-white/10 relative overflow-hidden">
+                            <h4 className="text-[10px] font-bold tracking-[0.25em] uppercase mb-8 text-slate-400 dark:text-gray-500">About the Author</h4>
+                            <div className="flex flex-col md:flex-row items-center md:items-start gap-6 relative z-10">
+                                <div className="w-16 h-16 shrink-0 rounded-full overflow-hidden border p-0.5 border-primary/20 bg-primary/5 dark:border-primary/40 dark:bg-primary/10">
                                     <img
                                         src="https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
-                                        className="w-full h-full object-cover object-top rounded-xl"
+                                        className="w-full h-full object-cover object-top rounded-full"
                                         alt={authorName}
                                         loading="lazy"
                                     />
                                 </div>
                                 <div className="flex-1 text-center md:text-left">
-                                    <div className="font-bold text-3xl tracking-tight text-brand-navy mb-2 uppercase">
+                                    <div className="font-bold text-2xl tracking-tight text-slate-900 dark:text-white mb-1">
                                         {authorName}
                                     </div>
-                                    <div className="text-brand-red text-[10px] font-bold uppercase tracking-[0.2em] mb-6">Founder & Principal Engineer</div>
-                                    <p className="text-lg leading-relaxed mb-8 font-bold text-text-secondary/70 uppercase tracking-widest">
-                                        {post.author?.node?.description || '25+ years engineering high-performance diagnostic systems and technical infrastructure for luxury automotive care.'}
+                                    <div className="text-primary text-xs font-bold uppercase tracking-[0.15em] mb-4">Founder & Architect</div>
+                                    <p className="text-base leading-relaxed mb-6 font-light text-slate-600 dark:text-secondary/80">
+                                        {post.author?.node?.description || '25+ years engineering high-conversion sales systems and strategic digital infrastructure for high-growth firms.'}
                                     </p>
                                     <a
                                         href={authorUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-3 px-8 py-3 rounded-lg border-2 border-black/5 text-brand-navy font-bold text-sm transition-all hover:bg-bg hover:border-brand-red/20 decoration-transparent uppercase tracking-widest"
+                                        className="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg border border-slate-200 text-slate-600 font-medium text-sm transition-all hover:bg-slate-50 dark:border-white/10 dark:text-gray-300 dark:hover:bg-white/5 decoration-transparent"
                                     >
-                                        Engineering Network
+                                        Connect on LinkedIn
                                     </a>
                                 </div>
                             </div>
                         </section>
 
                         {/* Bottom Bar: Share */}
-                        <div className="mt-16 pt-10 border-t-2 flex items-center justify-center border-black/5">
+                        <div className="mt-12 pt-8 border-t flex items-center justify-center border-slate-200 dark:border-white/10">
                             <ArticleShareButtons title={cleanTitleText} slug={slug} />
                         </div>
                     </article>

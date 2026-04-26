@@ -59,16 +59,16 @@ const Hero: React.FC = () => {
             <motion.div variants={itemVariants} className="flex items-center gap-3 mb-6 md:mb-8">
               <span className="w-2 h-2 rounded-full bg-brand-red"></span>
               <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-brand-navy uppercase">
-                The Benchmark of Precision Service
+                For Montana Service Businesses
               </span>
             </motion.div>
 
             {/* Heading with Reveal effect - Playfair Display */}
             <h1 className="mb-6 md:mb-8 font-serif font-bold tracking-tight leading-[1.1] md:leading-[1.05] text-text-primary">
               <RevealText
-                text="Sophisticated automotive care for those who demand precision"
+                text="Clearer marketing decisions for owner-operated service businesses"
                 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[5rem]"
-                highlightWords={["Sophisticated", "precision"]}
+                highlightWords={["marketing", "decisions"]}
                 highlightClassName="text-brand-red"
                 delay={0.1}
               />
@@ -76,7 +76,7 @@ const Hero: React.FC = () => {
 
             {/* Subhead - Inter */}
             <motion.p variants={itemVariants} className="text-lg md:text-xl text-text-secondary mb-8 md:mb-10 max-w-2xl leading-relaxed font-normal">
-              Benchmark Automotive Service combines industrial strength with premium reliability. From high-performance tuning to meticulous diagnostics, we treat every vehicle with the respect and precision it deserves.
+              You do not need more marketing activity. You need to know where jobs are being lost. I help local service businesses fix weak Google visibility, missed calls, slow follow-up, and wasted ad spend—so more of your existing demand turns into real calls, real jobs, and better decisions.
             </motion.p>
 
             {/* CTA Group */}
@@ -89,7 +89,7 @@ const Hero: React.FC = () => {
                     rel="noopener noreferrer"
                     className="inline-flex h-14 md:h-16 items-center justify-center rounded-standard bg-brand-red px-8 md:px-10 text-sm md:text-base font-bold text-white gap-3 transition-all hover:bg-[#85161a] hover:scale-[1.02] active:scale-95 duration-300 shadow-lg shadow-brand-red/20 whitespace-nowrap"
                   >
-                    Schedule Service
+                    Review My Current Setup
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </a>
                 </Magnetic>
@@ -99,7 +99,7 @@ const Hero: React.FC = () => {
                     href="/trust-calculator"
                     className="inline-flex h-14 md:h-16 items-center justify-center rounded-standard px-8 md:px-10 text-sm md:text-base font-bold text-brand-navy border-2 border-brand-navy/10 hover:bg-brand-navy/5 transition-all duration-300 whitespace-nowrap w-full sm:w-auto"
                   >
-                    Diagnostic Report
+                    Run Instant Scan
                   </a>
                 </Magnetic>
               </div>
@@ -107,7 +107,7 @@ const Hero: React.FC = () => {
               <div className="flex flex-col items-center lg:items-start gap-3 mt-2">
                 <div className="flex items-center gap-2 text-sm text-text-secondary font-medium">
                   <CheckCircle2 className="w-4 h-4 text-brand-red shrink-0" />
-                  <span className="md:whitespace-nowrap">ASE Certified Technicians • Luxury Vehicle Specialists</span>
+                  <span className="md:whitespace-nowrap">Takes 60 seconds. No sales pitch. No upsells.</span>
                 </div>
               </div>
             </motion.div>

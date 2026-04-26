@@ -5,10 +5,10 @@ import Footer from '@/components/Footer';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Technical Insights | Benchmark Automotive Service',
-  description: 'Technical notes, diagnostic frameworks, and field-tested insights on high-performance automotive maintenance.',
+  title: 'Insights | True Path Digital',
+  description: 'Clear thinking for when the right move isn\'t obvious. Notes, frameworks, and field-tested insights on making better marketing decisions.',
   alternates: {
-    canonical: 'https://benchmarkauto.com/blog/'
+    canonical: 'https://truepath406.com/blog/'
   }
 };
 
@@ -122,18 +122,18 @@ export default async function BlogPage() {
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": "https://benchmarkauto.com/blog/#webpage",
-        "url": "https://benchmarkauto.com/blog/",
-        "name": "Technical Insights | Benchmark Automotive Service",
-        "description": "Technical notes, diagnostic frameworks, and field-tested insights on high-performance automotive maintenance.",
-        "isPartOf": { "@id": "https://benchmarkauto.com/#website" },
-        "breadcrumb": { "@id": "https://benchmarkauto.com/blog/#breadcrumb" }
+        "@id": "https://truepath406.com/blog/#webpage",
+        "url": "https://truepath406.com/blog/",
+        "name": "Insights & Strategy | True Path Digital",
+        "description": "Clear thinking and field-tested insights on marketing decisions, frameworks, and service business growth.",
+        "isPartOf": { "@id": "https://truepath406.com/#website" },
+        "breadcrumb": { "@id": "https://truepath406.com/blog/#breadcrumb" }
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://benchmarkauto.com/blog/#breadcrumb",
+        "@id": "https://truepath406.com/blog/#breadcrumb",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://benchmarkauto.com/" },
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://truepath406.com/" },
           { "@type": "ListItem", "position": 2, "name": "Blog" }
         ]
       }
@@ -141,7 +141,7 @@ export default async function BlogPage() {
   };
 
   return (
-    <main className="bg-bg min-h-screen flex flex-col selection:bg-brand-red selection:text-white font-sans">
+    <main className="bg-[#121417] min-h-screen flex flex-col selection:bg-primary selection:text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}
@@ -150,12 +150,12 @@ export default async function BlogPage() {
 
       {/* Background Grid */}
       <div className="fixed inset-0 z-0 pointer-events-none flex justify-center">
-        <div className="w-full max-w-[1400px] h-full border-l border-black/[0.03] border-r border-black/[0.03] flex justify-between">
-          <div className="h-full w-px bg-black/[0.02]"></div>
-          <div className="h-full w-px bg-black/[0.02]"></div>
-          <div className="h-full w-px bg-black/[0.02]"></div>
-          <div className="h-full w-px bg-black/[0.02]"></div>
-          <div className="h-full w-px bg-black/[0.02]"></div>
+        <div className="w-full max-w-[1400px] h-full border-l border-white/[0.03] border-r flex justify-between">
+          <div className="h-full w-px bg-white/[0.03]"></div>
+          <div className="h-full w-px bg-white/[0.03]"></div>
+          <div className="h-full w-px bg-white/[0.03]"></div>
+          <div className="h-full w-px bg-white/[0.03]"></div>
+          <div className="h-full w-px bg-white/[0.03]"></div>
         </div>
       </div>
 

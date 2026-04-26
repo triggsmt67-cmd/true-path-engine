@@ -21,26 +21,26 @@ const FeatureSplit: React.FC = () => {
           >
             <div className="text-text-secondary text-lg md:text-xl leading-relaxed space-y-6 mb-10">
               <p>
-                When the shop is busy and every lead feels urgent, it gets harder to see what is actually breaking down in your revenue cycle.
+                When the owner is busy and every lead feels urgent, it gets harder to see what is actually breaking down.
               </p>
               <p>
-                Calls get missed. Follow-up gets delayed. Website copy gets second-guessed. Another change gets made before the last one had time to prove its worth.
+                So calls get missed. Follow-up gets delayed. Ads get tweaked. The website gets second-guessed. Another change gets made before the last one had time to tell you anything useful.
               </p>
               <p>
-                Most of the time, the problem is not effort. It is that too many decisions are being made under pressure, without clear diagnostic context.
+                Most of the time, the problem is not effort. It is that too many decisions are being made under pressure, without enough context.
               </p>
             </div>
 
             <h3 className="text-xl md:text-2xl font-bold text-brand-navy mb-6 leading-tight uppercase tracking-tight">
-              The <span className="text-brand-red">Friction</span> Points
+              What that usually looks like
             </h3>
 
             <ul className="space-y-4">
               {[
-                "Chasing performance metrics after the fact",
-                "Changing marketing direction too often",
-                "Conflicting signals from fragmented tools",
-                "Decisions made under operational pressure"
+                "Chasing numbers after the fact",
+                "Changing direction too often",
+                "Conflicting signals from different tools",
+                "Decisions made under pressure"
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-4 text-base text-text-secondary group cursor-default">
                   <div className="p-1.5 rounded-standard bg-surface border border-black/5 text-brand-red/40 group-hover:bg-brand-red group-hover:text-white transition-all duration-300 shrink-0 shadow-sm">
@@ -65,23 +65,23 @@ const FeatureSplit: React.FC = () => {
 
             <div className="text-brand-navy text-lg md:text-xl leading-relaxed space-y-6 mb-10 relative z-10">
               <p>
-                Clarity does not come from doing more. It comes from identifying what is actually costing you jobs and fixing that first.
+                Clarity does not come from doing more. It comes from seeing what is actually costing you jobs and fixing that first.
               </p>
               <p>
-                When the right bottleneck becomes clear, your marketing strategy becomes easier to manage and far more profitable.
+                When the right problem becomes clear, marketing gets easier to manage.
               </p>
             </div>
 
             <h3 className="text-xl md:text-2xl font-bold text-brand-navy mb-6 leading-tight relative z-10 uppercase tracking-tight">
-              The <span className="text-brand-red italic">Benchmark</span> Advantage
+              What changes when things get clear
             </h3>
 
             <ul className="space-y-4 relative z-10">
               {[
-                "One clear diagnostic priority at a time",
-                "Fewer unnecessary strategy changes",
-                "Signals you can actually explain to a board",
-                "Decisions made with absolute context"
+                "One clear priority at a time",
+                "Fewer unnecessary changes",
+                "Signals you can actually explain",
+                "Decisions made with context"
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-4 text-base text-brand-navy font-bold group cursor-default">
                   <div className="p-1.5 rounded-standard bg-brand-red border border-brand-red/20 text-white group-hover:bg-brand-navy transition-all duration-300 shrink-0 shadow-lg shadow-brand-red/10">

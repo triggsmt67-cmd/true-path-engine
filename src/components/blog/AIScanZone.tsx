@@ -19,13 +19,13 @@ const AIScanZone: React.FC<AIScanZoneProps> = ({ aiQuickAnswer, aiTakeaways, aiF
     >
       <div className="px-6 py-4 border-b-2 flex items-center gap-2 bg-brand-red/10 border-brand-red/10">
         <Zap className="w-4 h-4 text-brand-red" />
-        <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-red">Diagnostic Protocol Summary</span>
+        <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-red">Protocol Summary</span>
       </div>
 
       <div className="p-8 space-y-8">
         {aiQuickAnswer && (
           <div className="space-y-4">
-            <h4 className="text-sm font-bold uppercase tracking-widest text-brand-navy">Engineering Brief</h4>
+            <h4 className="text-sm font-bold uppercase tracking-widest text-brand-navy">Executive Summary</h4>
             <p className="text-lg font-bold italic leading-relaxed text-brand-navy/80 uppercase tracking-wider">
               &ldquo;{aiQuickAnswer}&rdquo;
             </p>
@@ -47,7 +47,7 @@ const AIScanZone: React.FC<AIScanZoneProps> = ({ aiQuickAnswer, aiTakeaways, aiF
           <div className="pt-8 border-t-2 border-brand-red/10">
             <h4 className="text-sm font-bold uppercase tracking-widest mb-6 flex items-center gap-2 text-brand-navy">
               <HelpCircle className="w-4 h-4 text-brand-red" />
-              Technical Q&A
+              Quick Intelligence
             </h4>
             <div className="space-y-4">
               {aiFaqs.map((faq, i) => (

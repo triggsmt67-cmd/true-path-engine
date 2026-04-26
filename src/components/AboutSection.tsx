@@ -25,8 +25,8 @@ const AboutSection: React.FC = () => {
             <div className="absolute inset-0 bg-brand-red rounded-standard blur opacity-20 transform translate-x-2 translate-y-2"></div>
             <div className="relative rounded-standard overflow-hidden border border-black/5 aspect-[4/5] group shadow-2xl">
               <img
-                src="/benchmark_automotive_shop_1777163391770.png"
-                alt="Benchmark Automotive Service Facility"
+                src="https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
+                alt="Trevor Riggs, Founder"
                 className="w-full h-full object-cover transition-all duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/60 to-transparent pointer-events-none"></div>
@@ -43,41 +43,41 @@ const AboutSection: React.FC = () => {
           >
             <div className="flex items-center gap-2 mb-6 text-brand-red font-bold text-xs md:text-sm uppercase tracking-[0.2em]">
               <ShieldCheck className="w-4 h-4" />
-              <span>Technical Excellence</span>
+              <span>Credibility</span>
             </div>
 
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-brand-navy mb-8 md:mb-10 leading-[1.1] tracking-tight uppercase">
-              Precision Over <br /><span className="text-brand-red italic">Guesswork.</span>
+              Decisions Over <span className="text-brand-red italic">Hype.</span>
             </h2>
 
             <div className="space-y-6 text-lg md:text-xl text-text-secondary leading-relaxed mb-12 font-medium">
               <p>
-                We serve <span className="text-brand-navy font-bold">performance and luxury vehicle owners</span> in Montana who demand a higher standard of care for their automotive investments.
+                I work with <span className="text-brand-navy font-bold">owner-operated Montana service businesses</span> that need clearer decisions, not more noise.
               </p>
               <p>
-                That means moving beyond "parts replacement" and into true diagnostic intelligence. Whether it's complex electronics, high-performance tuning, or factory-spec maintenance, our work is defined by accuracy and transparency.
+                That usually means figuring out what is actually costing you jobs — missed calls, slow follow-up, weak local visibility, poor conversion, or too many changes happening without enough context.
               </p>
               <p>
-                We are not interested in volume or speed at the cost of quality. Our role is to ensure your vehicle performs exactly as its engineers intended, providing you with absolute reliability on the road.
+                I am not interested in trends, busywork, or marketing activity for its own sake. My role is to help you slow things down, see what matters, and make decisions you can stand behind.
               </p>
 
               <div className="grid sm:grid-cols-2 gap-6 pt-8">
                 <div className="p-6 rounded-standard bg-surface border border-black/5 flex flex-col justify-center gap-3 shadow-sm">
                   <div className="flex items-center gap-3 text-brand-red mb-1">
-                    <Settings className="w-5 h-5" />
-                    <span className="text-brand-navy font-bold uppercase tracking-tight">Factory Tooling</span>
+                    <ShieldCheck className="w-5 h-5" />
+                    <span className="text-brand-navy font-bold uppercase tracking-tight">Where AI helps</span>
                   </div>
                   <div className="text-sm text-text-secondary leading-relaxed font-bold">
-                    Advanced diagnostic equipment calibrated specifically for European and Domestic performance vehicles.
+                    Automation that reduces effort and noise — not judgment, trust, or common sense.
                   </div>
                 </div>
                 <div className="p-6 rounded-standard bg-surface border border-black/5 flex flex-col justify-center gap-3 shadow-sm">
                   <div className="flex items-center gap-3 text-brand-red mb-1">
                     <FileText className="w-5 h-5" />
-                    <span className="text-brand-navy font-bold uppercase tracking-tight">Total Transparency</span>
+                    <span className="text-brand-navy font-bold uppercase tracking-tight">What’s been proven</span>
                   </div>
                   <div className="text-sm text-text-secondary leading-relaxed font-bold">
-                    Detailed digital inspections and clear, honest recommendations on every service.
+                    Examples, references, and past work available by request.
                   </div>
                 </div>
               </div>
@@ -94,14 +94,14 @@ const AboutSection: React.FC = () => {
                 >
                   <span className="absolute inset-0 bg-brand-red group-hover:bg-[#85161a] transition-colors duration-500" />
                   <span className="relative inline-flex h-full w-full cursor-pointer items-center justify-center rounded-standard px-10 text-base font-bold text-white uppercase tracking-widest gap-3">
-                    Schedule A Diagnostic
+                    Review My Current Setup
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </span>
                 </a>
 
               </Magnetic>
               <p className="text-xs text-text-secondary/60 mt-4 font-bold uppercase tracking-widest">
-                Factory-spec care. Montana reliability.
+                Takes 15 minutes. No sales pitch. I’ll call your cell.
               </p>
             </div>
           </motion.div>

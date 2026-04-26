@@ -5,58 +5,58 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, PhoneCall, Star, MousePointerClick, Search, Calendar, ArrowRight, PenTool as Tool, Zap, Shield, Settings, Activity } from 'lucide-react';
+import { MapPin, PhoneCall, Star, MousePointerClick, Search, Calendar, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 const solutions = [
     {
-        role: "Diagnosis",
-        title: "Advanced Engine Diagnostics",
-        description: "Pinpoint complex engine performance issues with factory-level diagnostic tools and deep technical expertise.",
-        tags: ["Fault Analysis", "Performance Tuning", "Sensor Calibration"],
+        role: "Visibility",
+        title: "Google Business Profile Optimization",
+        description: "Improve your Google Business Profile with complete business information, clearer categories, and stronger review signals so local customers can find you more easily.",
+        tags: ["Clear Categories", "Accurate Info", "Review Signals"],
+        icon: MapPin,
+        href: "/solutions/local-authority/"
+    },
+    {
+        role: "Speed",
+        title: "Missed Call Recovery & Lead Response",
+        description: "Stop losing jobs to missed calls, slow replies, and follow-up gaps that cool leads off fast.",
+        tags: ["Auto-text Reply", "Call Tracking", "Lead Capture"],
+        icon: PhoneCall,
+        href: "/solutions/lead-velocity/"
+    },
+    {
+        role: "Trust",
+        title: "Review Generation Systems",
+        description: "Build a simple process that helps you get more reviews without constantly chasing customers.",
+        tags: ["Automated Requests", "Google Integration", "Reputation"],
+        icon: Star,
+        href: "/solutions/review-system/"
+    },
+    {
+        role: "Conversion",
+        title: "Website Conversion Repair",
+        description: "Turn more visitors into calls, quote requests, and booked work by removing friction and tightening the message.",
+        tags: ["Clear CTAs", "Mobile Layouts", "Easy Forms"],
+        icon: MousePointerClick,
+        href: "/solutions/website-conversion/"
+    },
+    {
+        role: "Analysis",
+        title: "Demand Leak Audit",
+        description: "Find out where visibility, follow-up, conversion, and response are breaking down before spending more money.",
+        tags: ["Data Review", "Process Mapping", "Cost Savings"],
         icon: Search,
-        href: "/services/diagnostics/"
+        href: "/solutions/demand-audit/"
     },
     {
-        role: "Precision",
-        title: "Brake & Suspension Systems",
-        description: "Maintain absolute control and comfort with precision brake service and advanced suspension tuning.",
-        tags: ["Performance Brakes", "Adaptive Suspension", "Alignment"],
-        icon: Tool,
-        href: "/services/braking-suspension/"
-    },
-    {
-        role: "Maintenance",
-        title: "Factory Scheduled Care",
-        description: "Protect your warranty and vehicle longevity with maintenance schedules that meet or exceed factory standards.",
-        tags: ["Synthetic Fluids", "Filter Replacement", "Full Inspections"],
-        icon: Activity,
-        href: "/services/maintenance/"
-    },
-    {
-        role: "Drivetrain",
-        title: "Engine & Transmission Repair",
-        description: "Expert overhaul and repair for high-performance engines and sophisticated modern transmissions.",
-        tags: ["Turbo/Supercharger", "DCT/DSG Service", "Rebuilds"],
-        icon: Settings,
-        href: "/services/drivetrain/"
-    },
-    {
-        role: "Technical",
-        title: "Electrical & Hybrid Systems",
-        description: "Specialized service for the complex electronic architecture and high-voltage systems in modern luxury vehicles.",
-        tags: ["Battery Health", "Software Updates", "Charging Systems"],
-        icon: Zap,
-        href: "/services/electrical/"
-    },
-    {
-        role: "Reliability",
-        title: "The Benchmark Guarantee",
-        description: "Every repair is backed by our absolute commitment to reliability, transparency, and mechanical excellence.",
-        tags: ["24-Month Warranty", "Genuine Parts", "Clear Reporting"],
-        icon: Shield,
-        href: "/services/guarantee/"
+        role: "Automation",
+        title: "Estimate Follow-Up & Booking Automation",
+        description: "Keep quotes and inquiries from going cold with a cleaner, more consistent follow-up process.",
+        tags: ["Quote Tracking", "Status Updates", "Drip Campaigns"],
+        icon: Calendar,
+        href: "/solutions/estimate-follow-up/"
     }
 ];
 
@@ -100,7 +100,7 @@ const Solutions: React.FC = () => {
                         transition={{ duration: 0.6 }}
                         className="text-3xl md:text-5xl lg:text-6xl font-bold text-brand-navy mb-6 tracking-tight uppercase"
                     >
-                        Specialized <span className="text-brand-red italic">Services</span>
+                        Core Services
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -109,7 +109,7 @@ const Solutions: React.FC = () => {
                         transition={{ duration: 0.6, delay: 0.1 }}
                         className="text-lg md:text-xl text-text-secondary leading-relaxed max-w-2xl font-medium"
                     >
-                        Expert maintenance and repair for high-performance and luxury vehicles.
+                        Clear decisions across your primary growth levers.
                     </motion.p>
                 </div>
 
@@ -163,7 +163,7 @@ const Solutions: React.FC = () => {
                                                     {solution.description}
                                                 </p>
                                                 <div className="flex items-center gap-2 text-brand-red font-bold text-sm border-b border-brand-red/0 group-hover:border-brand-red/50 w-fit transition-all pb-0.5 uppercase tracking-wider">
-                                                    View Service
+                                                    View Details
                                                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                                 </div>
                                             </div>
@@ -190,7 +190,7 @@ const Solutions: React.FC = () => {
                                     className="absolute inset-0 flex flex-col items-center justify-center bg-surface border border-black/5 rounded-standard shadow-xl"
                                 >
                                     <div className="w-10 h-10 border-2 border-brand-red border-t-transparent rounded-full animate-spin mb-4" />
-                                    <p className="text-brand-navy text-sm font-bold tracking-wide uppercase">Pulling technical data...</p>
+                                    <p className="text-brand-navy text-sm font-bold tracking-wide uppercase">Finding your path...</p>
                                 </div>
                             </motion.div>
                         </motion.div>

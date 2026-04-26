@@ -8,8 +8,8 @@ import { CONTACT_LINKS } from '@/constants/links';
 
 const NAV_ITEMS = [
   { label: 'Home', href: '/' },
-  { label: 'Services', href: '/solutions' },
-  { label: 'Diagnostic Scan', href: '/trust-calculator' },
+  { label: 'Solutions', href: '/solutions' },
+  { label: 'Run Instant Scan', href: '/trust-calculator' },
   { label: 'About', href: '/#about' },
   { label: 'Insights', href: '/blog/' },
 ];
@@ -116,7 +116,7 @@ const Navbar: React.FC = () => {
           className="flex items-center gap-2 group cursor-pointer focus:outline-none decoration-transparent"
         >
           <span className="font-serif font-bold text-xl tracking-tight text-brand-navy">
-            Benchmark <span className="text-brand-red">Automotive</span>
+            True Path <span className="text-brand-red">Digital</span>
           </span>
         </Link>
 
@@ -154,7 +154,7 @@ const Navbar: React.FC = () => {
             rel="noopener noreferrer"
             className="inline-block bg-brand-red hover:bg-[#85161a] text-white px-6 py-2.5 rounded-standard text-xs font-bold uppercase tracking-widest transition-all shadow-md shadow-brand-red/10 transform hover:-translate-y-0.5 decoration-transparent"
           >
-            Schedule Service
+            Review My Current Setup
           </a>
         </div>
 
@@ -195,7 +195,7 @@ const Navbar: React.FC = () => {
                 rel="noopener noreferrer"
                 className="block text-center bg-brand-red w-full py-4 rounded-standard text-white font-bold uppercase tracking-widest decoration-transparent shadow-lg shadow-brand-red/20"
               >
-                Schedule Service
+                Review My Current Setup
               </a>
             </div>
           </motion.div>

@@ -14,8 +14,8 @@ const QuoteSection: React.FC = () => {
           transition={{ duration: 1.2, ease: "easeOut" }}
           className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-brand-navy leading-[1.1] mb-8 uppercase"
         >
-          The hardest part is <span className="text-brand-red italic">not</span> the repair.<br className="hidden md:block" />
-          It is the certainty of the diagnosis.
+          The hardest part is <span className="text-brand-red italic">not</span> doing more.<br className="hidden md:block" />
+          It is knowing what to fix first.
         </motion.h2>
 
         <motion.p
@@ -25,8 +25,8 @@ const QuoteSection: React.FC = () => {
           transition={{ duration: 1, delay: 0.6 }}
           className="text-sm md:text-base text-text-secondary font-bold uppercase tracking-[0.2em]"
         >
-          Performance is not built on guesswork.<br className="hidden md:block" />
-          It is built on precision, data, and absolute reliability.
+          Clarity does not come from more activity.<br className="hidden md:block" />
+          It comes from removing noise and solving the real problem.
         </motion.p>
       </div>
     </section>

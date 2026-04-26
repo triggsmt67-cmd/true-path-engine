@@ -6,27 +6,30 @@ import { SpotlightCard } from './SpotlightCard';
 import Image from 'next/image';
 import { ExternalLink } from 'lucide-react';
 
-const clients = [
+const clients: { name: string; descriptor: string; supportLine: string; logo: string | null; result?: string; testimonial?: string; url?: string }[] = [
   {
-    name: "European Precision",
-    descriptor: "BMW • Mercedes • Audi • Porsche",
-    supportLine: "Advanced diagnostic capabilities for complex European engineering. We use factory-level equipment to ensure your performance vehicle stays at peak specification.",
-    logo: null,
-    result: "Full system diagnostics, specialized engine work, and preventative maintenance for the world's finest imports.",
+    name: "United Formulas",
+    descriptor: "Industrial / chemical brand",
+    supportLine: "Messaging, digital strategy, and practical system support for a complex product business.",
+    logo: "/images/united-formulas-logo.png",
+    result: "United Formulas is a Montana, USA based company entirely focused on formulating and developing unique cleaning products that exceed expectations in every way.",
+    url: "https://www.unitedformulas.com/"
   },
   {
-    name: "Domestic Performance",
-    descriptor: "Ford • GM • Dodge • Corvette",
-    supportLine: "High-output tuning and heavy-duty repairs for American muscle and workhorses. We understand the unique demands of domestic powerplants.",
-    logo: null,
-    result: "Precision transmission work, performance upgrades, and reliable fleet maintenance for local Missoula businesses.",
+    name: "Benchmark Automotive Service",
+    descriptor: "Local service business / auto repair",
+    supportLine: "Website, visibility, and conversion-focused support built around trust, clarity, and local service demand.",
+    logo: "/images/benchmark-logo.png",
+    result: "Benchmark Automotive Service is an auto repair shop in Missoula, MT focused on accurate diagnostics, honest recommendations, and repairs done right the first time.",
+    url: "https://www.benchmarkmissoula.com/"
   },
   {
-    name: "Luxury & Exotic",
-    descriptor: "Land Rover • Jaguar • Tesla",
-    supportLine: "White-glove service for high-end luxury vehicles. From hybrid system calibration to air suspension repair, we handle the technology others won't.",
-    logo: null,
-    result: "Complete technical overhauls and electronic troubleshooting for the most sophisticated vehicles on the road.",
+    name: "HeavyDuty, an Amazon brand",
+    descriptor: "National / ecommerce brand",
+    supportLine: "Strategic support focused on clarity, messaging, and practical execution.",
+    logo: "/images/heavyduty-logo.png",
+    result: "A simple pretreat step for real-life stains.",
+    url: "https://www.itworxheavyduty.com/"
   }
 ];
 

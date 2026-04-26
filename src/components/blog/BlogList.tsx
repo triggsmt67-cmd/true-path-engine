@@ -108,14 +108,14 @@ const BlogList: React.FC<BlogListProps> = ({ posts, categories }) => {
         <div className="max-w-[1400px] mx-auto text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <div className="flex items-center justify-center gap-3 mb-8">
-              <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-brand-red">The Technical Vault</span>
+              <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-brand-red">The Intelligence Vault</span>
             </div>
             <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-8 text-brand-navy uppercase">
-              Mechanical intelligence for <br className="hidden md:block" />
-              performance <span className="text-brand-red italic">reliability.</span>
+              Clear thinking for when the <br className="hidden md:block" />
+              right move isn&apos;t obvious.
             </h1>
             <p className="text-lg md:text-xl max-w-2xl mx-auto font-bold leading-relaxed mb-12 text-text-secondary uppercase tracking-widest">
-              Technical notes, diagnostic frameworks, and field-tested insights on high-performance automotive maintenance.
+              Notes, frameworks, and field-tested insights on making better marketing decisions — without chasing trends or tools.
             </p>
             <div className="max-w-xl mx-auto relative group">
               <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none">
