@@ -54,7 +54,7 @@ const DecisionStack: React.FC<DecisionStackProps> = ({ disableSpotlight = false 
 
     return (
         <div className="w-full max-w-md mx-auto">
-            <div className="rounded-[32px] bg-surface/80 backdrop-blur-xl border border-black/5 overflow-hidden shadow-2xl">
+            <div className="rounded-[32px] bg-surface border border-black/5 overflow-hidden shadow-2xl">
                 {/* Header */}
                 <div className="px-6 py-5 border-b border-black/5 bg-black/[0.02]">
                     <h3 className="text-sm font-bold text-brand-navy uppercase tracking-widest text-center">
@@ -76,7 +76,7 @@ const DecisionStack: React.FC<DecisionStackProps> = ({ disableSpotlight = false 
                             className="relative z-10"
                         >
                             <SpotlightCard
-                                className={`flex items-center gap-4 p-4 rounded-2xl border bg-surface/50 ${item.border} border-opacity-30`}
+                                className={`flex items-center gap-4 p-4 rounded-2xl border bg-surface ${item.border} border-opacity-30`}
                                 spotlightColor={item.spotlight}
                                 disabled={disableSpotlight}
                             >
@@ -88,7 +88,7 @@ const DecisionStack: React.FC<DecisionStackProps> = ({ disableSpotlight = false 
                                     <div className={`font-semibold text-sm mb-0.5 text-text-primary`}>
                                         {item.title}
                                     </div>
-                                    <div className="text-xs text-text-secondary font-medium leading-snug">
+                                    <div className="text-xs text-text-primary font-medium leading-snug">
                                         {item.subtitle}
                                     </div>
                                 </div>

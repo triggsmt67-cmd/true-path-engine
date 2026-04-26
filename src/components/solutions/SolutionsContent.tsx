@@ -44,7 +44,7 @@ interface SolutionsContentProps {
 
 export default function SolutionsContent({ services }: SolutionsContentProps) {
   return (
-    <main className="pt-24 md:pt-32 bg-bg">
+    <main className="pt-24 md:pt-32 bg-background">
       {/* Hub Hero */}
       <section className="relative py-12 lg:py-20 overflow-hidden">
         <div className="max-w-[1400px] mx-auto px-6">
@@ -130,10 +130,10 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
                   >
                     <SpotlightCard
                       spotlightColor={service.spotlight}
-                      className="p-8 md:p-10 bg-surface border border-black/5 shadow-sm rounded-standard group cursor-pointer hover:border-brand-red/20 transition-all duration-300 h-full flex flex-col hover:shadow-xl"
+                      className="p-10 md:p-12 bg-surface border border-black/5 shadow-sm rounded-standard group cursor-pointer hover:border-brand-red/20 transition-all duration-300 h-full flex flex-col hover:shadow-xl"
                     >
                       <div className="flex items-center gap-4 mb-8">
-                        <div className={`w-14 h-14 rounded-xl bg-bg flex items-center justify-center ${service.color} group-hover:bg-brand-red/5 transition-colors`}>
+                        <div className={`w-14 h-14 rounded-xl bg-background flex items-center justify-center ${service.color} group-hover:bg-brand-red/5 transition-colors`}>
                           <IconComponent className="w-7 h-7" />
                         </div>
                       </div>
@@ -163,9 +163,9 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
       {/* Audit Block */}
       <section className="py-12 md:py-20 mb-12">
         <div className="max-w-[1200px] mx-auto px-6">
-          <SpotlightCard
-            spotlightColor="rgba(158, 27, 31, 0.04)"
-            className="p-10 md:p-16 bg-brand-navy border border-black/5 rounded-standard relative overflow-hidden shadow-2xl"
+          <SpotlightCard 
+            className="p-12 md:p-20 h-full flex flex-col bg-brand-navy border border-black/5 rounded-standard group overflow-hidden shadow-xl shadow-black/[0.02]"
+            spotlightColor="rgba(158, 27, 31, 0.05)"
           >
             <div className="absolute top-0 left-0 w-2 h-full bg-brand-red" />
             

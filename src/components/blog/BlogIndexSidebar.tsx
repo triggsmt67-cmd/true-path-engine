@@ -90,7 +90,7 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
                                 onClick={() => onCategoryClick(cat.slug)}
                                 className={`flex items-center justify-between group px-4 py-3 rounded-xl border-2 transition-all duration-300 ${isActive
                                     ? 'bg-brand-red/10 border-brand-red/40 text-brand-red shadow-sm'
-                                    : 'bg-surface border-black/5 text-brand-navy hover:border-black/20 hover:bg-bg hover:shadow-md'
+                                    : 'bg-surface border-black/5 text-brand-navy hover:border-black/20 hover:bg-background hover:shadow-md'
                                     }`}
                             >
                                 <div className="flex items-center gap-3">

@@ -6,10 +6,10 @@ import { CheckCircle2, UserCheck, AlertCircle, Sparkles } from 'lucide-react';
 
 const StakesSection: React.FC = () => {
   return (
-    <section id="who-this-is-for" className="py-24 md:py-32 bg-bg relative overflow-hidden">
+    <section id="who-this-is-for" className="py-24 md:py-32 bg-background relative overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
 
-        <div className="grid lg:grid-cols-12 gap-16 items-start">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
 
           {/* Headline (5 columns) */}
           <motion.div
@@ -19,10 +19,10 @@ const StakesSection: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="lg:col-span-5"
           >
-            <h2 className="text-4xl md:text-6xl font-bold text-brand-navy mb-6 tracking-tight leading-[1.1] uppercase">
+            <h2 className="text-4xl md:text-6xl font-bold text-brand-navy mb-4 tracking-tight leading-[1.1] uppercase">
               Who This Is For
             </h2>
-            <p className="text-xl md:text-2xl text-text-secondary leading-relaxed max-w-md mb-8 lg:mb-0">
+            <p className="text-xl md:text-2xl text-text-secondary leading-relaxed max-w-md mb-8 lg:mb-12">
               Built for businesses where the owner is busy, the phone matters, and small breakdowns in follow-up cost real jobs.
             </p>
             <div className="hidden lg:block relative h-64">

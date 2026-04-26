@@ -67,7 +67,7 @@ const Hero: React.FC = () => {
             <h1 className="mb-6 md:mb-8 font-serif font-bold tracking-tight leading-[1.1] md:leading-[1.05] text-text-primary">
               <RevealText
                 text="Clearer marketing decisions for owner-operated service businesses"
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[5rem]"
+                className="text-3xl sm:text-4xl md:text-6xl lg:text-[4rem] xl:text-[5rem]"
                 highlightWords={["marketing", "decisions"]}
                 highlightClassName="text-brand-red"
                 delay={0.1}
@@ -75,7 +75,7 @@ const Hero: React.FC = () => {
             </h1>
 
             {/* Subhead - Inter */}
-            <motion.p variants={itemVariants} className="text-lg md:text-xl text-text-secondary mb-8 md:mb-10 max-w-2xl leading-relaxed font-normal">
+            <motion.p variants={itemVariants} className="text-base md:text-xl text-text-secondary mb-8 md:mb-10 max-w-2xl leading-relaxed font-normal">
               You do not need more marketing activity. You need to know where jobs are being lost. I help local service businesses fix weak Google visibility, missed calls, slow follow-up, and wasted ad spend—so more of your existing demand turns into real calls, real jobs, and better decisions.
             </motion.p>
 

@@ -622,7 +622,7 @@ export default function TrustDeficitCalculator() {
                 </motion.p>
               </div>
 
-              <motion.form variants={blurIn} onSubmit={handleSearchSubmit} className="space-y-12 bg-bg p-10 rounded-standard border border-black/5 shadow-xl shadow-black/[0.02]">
+              <motion.form variants={blurIn} onSubmit={handleSearchSubmit} className="space-y-12 bg-background p-10 rounded-standard border border-black/5 shadow-xl shadow-black/[0.02]">
                 <div className="space-y-6">
                   <div className="relative group/input">
                     <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-red/0 via-brand-red/5 to-brand-red/0 group-focus-within/input:from-brand-red/20 group-focus-within/input:to-brand-red/20 rounded-xl blur transition-all duration-700"></div>
@@ -744,7 +744,7 @@ export default function TrustDeficitCalculator() {
                                   onChange={(e) => setWebsiteUrl(e.target.value)}
                                   placeholder="WEBSITE URL (yourdomain.com)"
                                   aria-label="Website URL"
-                                  className="relative w-full bg-bg border border-black/10 rounded-xl text-text-primary px-6 py-5 outline-none focus:border-brand-red/50 focus:bg-white shadow-sm transition-all duration-500 text-center text-lg font-bold placeholder-text-secondary/30"
+                                  className="relative w-full bg-background border border-black/10 rounded-xl text-text-primary px-6 py-5 outline-none focus:border-brand-red/50 focus:bg-white shadow-sm transition-all duration-500 text-center text-lg font-bold placeholder-text-secondary/30"
                                 />
                             </div>
                             <div className="relative group/input">
@@ -756,7 +756,7 @@ export default function TrustDeficitCalculator() {
                                   onChange={(e) => setEmail(e.target.value)}
                                   placeholder="AUTHORIZATION EMAIL"
                                   aria-label="Authorization Email"
-                                  className="relative w-full bg-bg border border-black/10 rounded-xl text-text-primary px-6 py-5 outline-none focus:border-brand-red/50 focus:bg-white shadow-sm transition-all duration-500 text-center text-lg placeholder-text-secondary/30 font-bold uppercase tracking-widest"
+                                  className="relative w-full bg-background border border-black/10 rounded-xl text-text-primary px-6 py-5 outline-none focus:border-brand-red/50 focus:bg-white shadow-sm transition-all duration-500 text-center text-lg placeholder-text-secondary/30 font-bold uppercase tracking-widest"
                               />
                             </div>
 

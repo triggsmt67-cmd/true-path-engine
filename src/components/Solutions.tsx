@@ -76,7 +76,7 @@ const Solutions: React.FC = () => {
     };
 
     return (
-        <section id="solutions" className="py-24 md:py-32 bg-bg relative overflow-hidden border-b border-black/5 scroll-mt-20">
+        <section id="solutions" className="py-24 md:py-32 bg-background relative overflow-hidden border-b border-black/5 scroll-mt-20">
             {/* Abstract Background Grid/Pattern */}
             <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
                 <svg width="100%" height="100%">
@@ -149,7 +149,7 @@ const Solutions: React.FC = () => {
                                                 <div className="text-text-secondary group-hover:text-brand-red transition-colors duration-300">
                                                     <solution.icon className="w-6 h-6" strokeWidth={2} />
                                                 </div>
-                                                <span className="text-[10px] font-bold text-text-secondary uppercase tracking-widest bg-bg px-2 py-1 rounded">
+                                                <span className="text-[10px] font-bold text-text-secondary uppercase tracking-widest bg-background px-2 py-1 rounded">
                                                     {solution.role}
                                                 </span>
                                             </div>

@@ -35,7 +35,7 @@ const clients: { name: string; descriptor: string; supportLine: string; logo: st
 
 const EarlyProofSection: React.FC = () => {
   return (
-    <section className="py-24 md:py-32 bg-bg relative overflow-hidden border-b border-black/5">
+    <section className="py-24 md:py-32 bg-background relative overflow-hidden border-b border-black/5">
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
         
         {/* Header */}
@@ -67,7 +67,7 @@ const EarlyProofSection: React.FC = () => {
             >
               <SpotlightCard
                 spotlightColor="rgba(158, 27, 31, 0.03)"
-                className="flex flex-col h-full bg-surface border border-black/5 rounded-standard p-6 md:p-8 hover:border-brand-red/20 transition-all group shadow-sm hover:shadow-xl hover:shadow-black/[0.02]"
+                className="flex flex-col h-full bg-surface border border-black/5 rounded-standard p-10 md:p-12 hover:border-brand-red/20 transition-all group shadow-sm hover:shadow-xl hover:shadow-black/[0.02]"
               >
                 {/* Client Info */}
                 <div className="mb-8 flex-1 relative">
@@ -84,7 +84,7 @@ const EarlyProofSection: React.FC = () => {
 
                 {/* Results & Proof */}
                 <div className="space-y-3 pt-6 border-t border-black/5">
-                  <div className="px-5 py-4 border border-black/5 rounded-standard bg-bg/50">
+                  <div className="px-5 py-4 border border-black/5 rounded-standard bg-background/50">
                     <p className="text-sm text-brand-navy/80 leading-relaxed font-bold">
                        {client.result}
                     </p>

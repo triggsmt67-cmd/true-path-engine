@@ -9,7 +9,7 @@ import { Magnetic } from './Magnetic';
 
 const AboutSection: React.FC = () => {
   return (
-    <section id="about" className="py-24 md:py-32 bg-bg relative overflow-hidden border-t border-black/5">
+    <section id="about" className="py-24 md:py-32 bg-background relative overflow-hidden border-t border-black/5">
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-20 items-center">

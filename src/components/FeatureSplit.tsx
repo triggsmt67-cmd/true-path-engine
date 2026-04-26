@@ -5,7 +5,7 @@ import { X, Check } from 'lucide-react';
 
 const FeatureSplit: React.FC = () => {
   return (
-    <section className="py-24 md:py-32 bg-bg relative overflow-hidden border-b border-black/5">
+    <section className="py-24 md:py-32 bg-background relative overflow-hidden border-b border-black/5">
       <div className="max-w-6xl mx-auto px-6 relative z-10">
 
         <div className="mb-8 md:mb-12"></div>

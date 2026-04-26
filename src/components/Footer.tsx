@@ -5,7 +5,7 @@ import { SOCIAL_LINKS } from '../constants/links';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="py-20 border-t border-black/5 bg-bg relative overflow-hidden">
+    <footer className="py-20 border-t border-black/5 bg-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-12 gap-12 items-start">
 

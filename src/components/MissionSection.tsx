@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 const MissionSection: React.FC = () => {
     return (
-        <section className="py-24 md:py-32 bg-bg relative overflow-hidden">
+        <section className="py-24 md:py-32 bg-background relative overflow-hidden">
             <div className="max-w-[1400px] mx-auto px-6 md:px-12">
                 <div className="max-w-5xl mx-auto">
                     {/* Subtle Label - Secondary */}

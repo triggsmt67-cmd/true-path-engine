@@ -101,7 +101,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts, categories }) => {
     [selectedCategorySlug, categories]);
 
   return (
-    <div className="pt-32 pb-20 min-h-screen bg-bg">
+    <div className="pt-32 pb-20 min-h-screen bg-background">
       {/* Hero Header */}
       <section className="relative px-6 overflow-hidden pt-12">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] blur-[150px] rounded-full pointer-events-none bg-brand-red/5" />
@@ -110,7 +110,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts, categories }) => {
             <div className="flex items-center justify-center gap-3 mb-8">
               <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-brand-red">The Intelligence Vault</span>
             </div>
-            <h1 className="text-3xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] mb-8 text-brand-navy uppercase">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold tracking-tight leading-[1.1] mb-8 text-brand-navy uppercase">
               Clear thinking for when the <br className="hidden md:block" />
               right move isn&apos;t obvious.
             </h1>
@@ -224,7 +224,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts, categories }) => {
                             <div className="text-base md:text-lg leading-relaxed font-bold line-clamp-2 transition-colors text-text-secondary/70 uppercase tracking-widest" dangerouslySetInnerHTML={{ __html: post.excerpt }} />
                           </div>
 
-                          <div className="flex items-center justify-center w-14 h-14 rounded-full border-2 transition-all bg-bg border-black/5 text-brand-navy/20 group-hover:bg-brand-red group-hover:border-brand-red group-hover:text-white shrink-0 shadow-sm">
+                          <div className="flex items-center justify-center w-14 h-14 rounded-full border-2 transition-all bg-background border-black/5 text-brand-navy/20 group-hover:bg-brand-red group-hover:border-brand-red group-hover:text-white shrink-0 shadow-sm">
                             <ChevronRight className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" />
                           </div>
                         </motion.div>
