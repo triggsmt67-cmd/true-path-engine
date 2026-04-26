@@ -17,8 +17,8 @@ const coreServices = [
     description: "Stop losing jobs to missed calls, slow replies, and follow-up gaps that cool leads off fast.",
     icon: "Zap",
     href: "/solutions/lead-velocity/",
-    color: "text-primary",
-    spotlight: "rgba(255, 107, 0, 0.05)"
+    color: "text-brand-red",
+    spotlight: "rgba(158, 27, 31, 0.05)"
   },
   {
     title: "Review Generation Systems",
@@ -97,17 +97,17 @@ export default async function SolutionsHubPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-ice font-sans selection:bg-primary selection:text-white relative">
+    <div className="min-h-screen bg-background text-text-primary font-sans selection:bg-brand-red selection:text-brand-navy relative">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(solutionsSchema) }}
       />
       <div className="fixed inset-0 z-0 pointer-events-none flex justify-center">
-        <div className="w-full max-w-[1400px] h-full border-l border-white/[0.03] border-r flex justify-between">
-          <div className="h-full w-px bg-white/[0.03]"></div>
-          <div className="h-full w-px bg-white/[0.03]"></div>
-          <div className="h-full w-px bg-white/[0.03]"></div>
-          <div className="h-full w-px bg-white/[0.03]"></div>
+        <div className="w-full max-w-[1400px] h-full border-l border-black/[0.03] border-r flex justify-between">
+          <div className="h-full w-px bg-black/[0.03]"></div>
+          <div className="h-full w-px bg-black/[0.03]"></div>
+          <div className="h-full w-px bg-black/[0.03]"></div>
+          <div className="h-full w-px bg-black/[0.03]"></div>
         </div>
       </div>
 
