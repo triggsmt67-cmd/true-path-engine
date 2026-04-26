@@ -11,15 +11,15 @@ const config: Config = {
         extend: {
             colors: {
                 brand: {
-                    red: "#9E1B1F",
+                    red: "#D32F2F", // Brighter red that pairs well with navy
                     navy: "#0F2233",
                     copper: "#B87333",
                 },
                 background: "#F7F7F5",
                 surface: "#FFFFFF",
                 text: {
-                    primary: "#111111",
-                    secondary: "#4B5563",
+                    primary: "#0F2233", // Dark navy instead of black
+                    secondary: "#334155", // Slate gray with blue undertones
                 }
             },
             fontFamily: {
