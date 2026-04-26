@@ -115,7 +115,7 @@ const Navbar: React.FC = () => {
           href="/"
           className="flex items-center gap-2 group cursor-pointer focus:outline-none decoration-transparent"
         >
-          <span className="font-serif font-bold text-xl tracking-tight text-brand-navy">
+          <span className="font-bold text-xl tracking-tight text-brand-navy">
             True Path <span className="text-brand-accent">Digital</span>
           </span>
         </Link>

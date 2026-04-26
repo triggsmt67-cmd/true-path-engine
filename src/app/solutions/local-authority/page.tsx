@@ -143,7 +143,7 @@ export default function GoogleBusinessProfilePage() {
                     className="relative inline-flex h-16 w-full sm:w-auto overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-[0_0_40px_-5px_rgba(79,124,122,0.2)] transition-all hover:scale-[1.02] active:scale-95 duration-300"
                   >
                     <span className="absolute inset-0 bg-gradient-to-r from-brand-accent/40 via-brand-accent/80 to-brand-accent/40 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
-                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-brand-accent px-10 text-base font-semibold text-white backdrop-blur-3xl gap-3 transition-colors group-hover:bg-brand-accent/90 whitespace-nowrap">
+                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-brand-accent px-10 text-base font-semibold text-white backdrop-blur-3xl gap-3 transition-colors group-hover:bg-brand-navy hover:border-brand-navy whitespace-nowrap">
                       Review My Current Setup
                       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                     </span>
@@ -356,7 +356,7 @@ export default function GoogleBusinessProfilePage() {
                   className="relative inline-flex h-16 md:h-20 overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-[0_0_50px_-10px_rgba(79,124,122,0.2)] w-full sm:w-auto transition-all hover:scale-[1.02] active:scale-95 duration-300"
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-brand-accent/50 via-brand-accent to-brand-accent/50 opacity-100 group-hover:opacity-80 transition-opacity duration-500" />
-                  <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-brand-accent px-10 md:px-14 text-base md:text-lg font-semibold text-white backdrop-blur-3xl gap-4 transition-colors group-hover:bg-brand-accent/90 whitespace-nowrap">
+                  <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-brand-accent px-10 md:px-14 text-base md:text-lg font-semibold text-white backdrop-blur-3xl gap-4 transition-colors group-hover:bg-brand-navy hover:border-brand-navy whitespace-nowrap">
                     Review My Current Setup
                     <ArrowRight className="w-6 h-6 group-hover:translate-x-1.5 transition-transform duration-300" />
                   </span>

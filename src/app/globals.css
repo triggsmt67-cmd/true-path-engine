@@ -7,8 +7,21 @@
     @apply bg-background text-text-primary selection:bg-brand-accent selection:text-white;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+  h1, h2 {
+    @apply font-serif tracking-tight text-brand-navy;
+  }
+  
+  h3, h4, h5, h6 {
+    @apply font-sans font-semibold text-text-primary tracking-tight;
+  }
+
+  /* Default inline links */
+  a:not([class*="btn"]):not([class*="group"]):not([class*="flex"]):not([class*="block"]) {
+    @apply text-brand-accent font-semibold transition-all;
+  }
+  
+  a:not([class*="btn"]):not([class*="group"]):not([class*="flex"]):not([class*="block"]):hover {
+    @apply text-brand-navy underline;
   }
 }
 
@@ -50,7 +63,7 @@
 }
 
 .input-premium:focus {
-  border-color: #9E1B1F;
+  border-color: #4F7C7A;
 }
 
 .input-premium::placeholder {
@@ -72,7 +85,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9E1B1F;
+  background: #4F7C7A;
 }
 
 /* Film Grain Overlay - Subtle for light mode */

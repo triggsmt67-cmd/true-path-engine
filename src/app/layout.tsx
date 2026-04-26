@@ -1,5 +1,5 @@
 import { draftMode } from "next/headers";
-import { Inter, Playfair_Display } from "next/font/google";
+import { Inter, Source_Serif_4 } from "next/font/google";
 import "@/app/globals.css";
 import { PreviewNotice } from "@/components/Globals/PreviewNotice/PreviewNotice";
 
@@ -10,9 +10,10 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
-const playfair = Playfair_Display({
+const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
-  variable: "--font-playfair",
+  variable: "--font-serif",
+  weight: ['400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = {
@@ -93,7 +94,7 @@ const structuredData = {
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode();
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} ${sourceSerif.variable}`} suppressHydrationWarning>
       <head>
         <script
           type="application/ld+json"

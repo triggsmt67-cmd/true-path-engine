@@ -664,7 +664,7 @@ export default function TrustDeficitCalculator() {
                   className="relative flex w-full h-16 md:h-20 overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-lg shadow-brand-accent/10 transition-all hover:scale-[1.02] active:scale-95 duration-300 mt-8 disabled:opacity-50 disabled:pointer-events-none disabled:scale-100"
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-brand-accent via-brand-navy to-brand-accent opacity-100 transition-opacity duration-500" />
-                  <span className="relative flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-brand-accent px-8 md:px-10 text-lg md:text-xl font-bold text-white gap-3 transition-colors group-hover:bg-brand-accent/90 whitespace-nowrap overflow-hidden">
+                  <span className="relative flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-brand-accent px-8 md:px-10 text-lg md:text-xl font-bold text-white gap-3 transition-colors group-hover:bg-brand-navy hover:border-brand-navy whitespace-nowrap overflow-hidden">
                     {uiState === 'LOADING_MAPS' && (
                       <motion.div 
                         initial={{ x: '-150%' }}
@@ -773,7 +773,7 @@ export default function TrustDeficitCalculator() {
                               className="relative flex w-full h-16 md:h-20 overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-lg shadow-brand-accent/10 transition-all hover:scale-[1.02] active:scale-95 duration-300 mt-8 disabled:opacity-50 disabled:pointer-events-none disabled:scale-100"
                             >
                               <span className="absolute inset-0 bg-gradient-to-r from-brand-accent via-brand-navy to-brand-accent opacity-100 transition-opacity duration-500" />
-                              <span className="relative flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-brand-accent px-8 md:px-10 text-lg md:text-xl font-bold text-white gap-3 transition-colors group-hover:bg-brand-accent/90 whitespace-nowrap overflow-hidden">
+                              <span className="relative flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-brand-accent px-8 md:px-10 text-lg md:text-xl font-bold text-white gap-3 transition-colors group-hover:bg-brand-navy hover:border-brand-navy whitespace-nowrap overflow-hidden">
                                 {uiState === 'LOADING_GATE' && (
                                   <motion.div 
                                     initial={{ x: '-150%' }}
@@ -936,7 +936,7 @@ export default function TrustDeficitCalculator() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => trackAnalytics('cta_click', { type: 'remediation_blueprint' })}
-                        className="relative w-full flex items-center justify-center gap-3 py-5 bg-brand-accent border border-brand-accent/50 text-white rounded-full text-lg font-bold hover:bg-brand-accent/90 transition-colors shadow-xl shadow-brand-accent/20"
+                        className="relative w-full flex items-center justify-center gap-3 py-5 bg-brand-accent border border-brand-accent/50 text-white rounded-full text-lg font-bold hover:bg-brand-navy hover:border-brand-navy transition-colors shadow-xl shadow-brand-accent/20"
                       >
                         {hasFailingFactor ? 'Stop Leaking Customers' : 'Claim Remediation Blueprint'}
                         <ArrowRight className="w-5 h-5 transition-transform group-hover/btn:translate-x-1" />
@@ -1047,7 +1047,7 @@ export default function TrustDeficitCalculator() {
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={() => trackAnalytics('cta_click', { type: 'remediation_blueprint' })}
-                        className="relative w-full flex items-center justify-center gap-3 py-5 bg-brand-accent border border-brand-accent/50 text-white rounded-full text-lg font-bold hover:bg-brand-accent/90 transition-colors shadow-xl shadow-brand-accent/20"
+                        className="relative w-full flex items-center justify-center gap-3 py-5 bg-brand-accent border border-brand-accent/50 text-white rounded-full text-lg font-bold hover:bg-brand-navy hover:border-brand-navy transition-colors shadow-xl shadow-brand-accent/20"
                       >
                         {hasFailingFactor ? 'Fix Remaining Bottlenecks' : 'Explore Growth Strategies'}
                         <ArrowRight className="w-5 h-5 transition-transform group-hover/btn:translate-x-1" />

@@ -55,7 +55,7 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
             className="max-w-4xl"
           >
              <div className="flex items-center gap-3 mb-8">
-              <span className="w-2 h-2 rounded-full bg-brand-accent animate-pulse shadow-[0_0_10px_#9E1B1F]"></span>
+              <span className="w-2 h-2 rounded-full bg-brand-accent animate-pulse shadow-[0_0_10px_#4F7C7A]"></span>
               <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-brand-accent uppercase">
                 Services for Owner-Operated Service Businesses
               </span>

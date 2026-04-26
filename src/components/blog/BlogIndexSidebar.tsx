@@ -161,7 +161,7 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
                             placeholder="Your email address"
                             className="w-full text-xs px-4 py-3 rounded-xl border-2 bg-surface focus:outline-none focus:border-brand-accent/40 transition-all font-bold border-black/5 text-brand-navy placeholder:text-brand-navy/30"
                         />
-                        <button className="w-full py-4 bg-brand-accent text-white rounded-xl hover:bg-brand-accent/90 transition-all font-bold text-xs flex items-center justify-center gap-2 group/sub shadow-lg shadow-brand-accent/20 active:scale-[0.98] uppercase tracking-widest">
+                        <button className="w-full py-4 bg-brand-accent text-white rounded-xl hover:bg-brand-navy hover:border-brand-navy transition-all font-bold text-xs flex items-center justify-center gap-2 group/sub shadow-lg shadow-brand-accent/20 active:scale-[0.98] uppercase tracking-widest">
                             Join the Technical Vault
                             <ArrowRight className="w-3.5 h-3.5 group-hover/sub:translate-x-1 transition-transform" />
                         </button>

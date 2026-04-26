@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
         <div className="grid md:grid-cols-12 gap-12 items-start">
 
           <div className="md:col-span-4 text-center md:text-left">
-            <h4 className="font-serif font-bold text-2xl tracking-tight text-brand-navy mb-4">
+            <h4 className="font-bold text-2xl tracking-tight text-brand-navy mb-4">
               True Path <span className="text-brand-accent">Digital</span>
             </h4>
             <p className="text-sm text-text-secondary/80 max-w-xs mx-auto md:mx-0 leading-relaxed font-bold italic uppercase tracking-wider">

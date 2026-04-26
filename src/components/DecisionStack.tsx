@@ -119,7 +119,7 @@ const DecisionStack: React.FC<DecisionStackProps> = ({ disableSpotlight = false 
                         transition={{ delay: 1.25, duration: 0.6, type: "spring", stiffness: 100 }}
                         className="relative z-10 block cursor-pointer group/btn no-underline"
                     >
-                        <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-accent/30 to-brand-copper/40 rounded-2xl blur opacity-0 group-hover/btn:opacity-50 transition-opacity duration-500"></div>
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-accent/30 to-brand-slate/40 rounded-2xl blur opacity-0 group-hover/btn:opacity-50 transition-opacity duration-500"></div>
                         <div className="relative flex items-center justify-between p-5 rounded-2xl border border-brand-accent/40 bg-surface shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] group-hover/btn:border-brand-accent/60 group-hover/btn:shadow-[0_15px_35px_-10px_rgba(79,124,122,0.2)] transition-all duration-300">
 
                             <div className="flex items-center gap-4">
