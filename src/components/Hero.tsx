@@ -1,11 +1,10 @@
-"use client";"use client";
+"use client";
 
 import React from 'react';
 import { motion, Variants } from 'framer-motion';
-import { ArrowRight, CheckCircle2, TrendingUp, TrendingDown, Zap } from 'lucide-react';
+import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { CONTACT_LINKS } from '../constants/links';
 import DecisionStack from './DecisionStack';
-
 import { RevealText } from './RevealText';
 import { Magnetic } from './Magnetic';
 
@@ -28,33 +27,22 @@ const Hero: React.FC = () => {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: [0.22, 1, 0.36, 1] as [number, number, number, number]
+        ease: [0.22, 1, 0.36, 1]
       },
     },
   };
 
   return (
-    <section id="hero" className="relative min-h-[60vh] flex items-center justify-center overflow-hidden pt-[110px] pb-6 lg:pt-[130px] lg:pb-12 border-b border-white/5 bg-background">
-
-      {/* Spline 3D Background */}
+    <section id="hero" className="relative min-h-[70vh] flex items-center justify-center overflow-hidden pt-[110px] pb-12 lg:pt-[140px] lg:pb-20 bg-background">
+      
+      {/* Background Accents */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute inset-0 w-full h-full scale-125 origin-center">
-          <iframe
-            src="https://my.spline.design/glasswave-6HLEnvJfCRsq1aKT2xqlgme7"
-            frameBorder="0"
-            width="100%"
-            height="100%"
-            className="w-full h-full opacity-70"
-            style={{
-              filter: 'hue-rotate(160deg) saturate(1.4) contrast(1.1)',
-            }}
-            title="3D Wave Background"
-          />
-        </div>
-        <div className="absolute inset-0 bg-background/60 mix-blend-multiply"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/50"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background/50"></div>
-        <div className="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background"></div>
+        
+        {/* Subtle Spline/3D element - Lightened */}
+        <div className="absolute right-[-10%] top-[-10%] w-[60%] h-[80%] opacity-20 blur-3xl bg-brand-red/10 rounded-full"></div>
+        <div className="absolute left-[-5%] bottom-[-5%] w-[40%] h-[60%] opacity-10 blur-3xl bg-brand-navy/20 rounded-full"></div>
       </div>
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6 w-full h-full flex flex-col justify-center">
@@ -69,28 +57,26 @@ const Hero: React.FC = () => {
           >
             {/* Label */}
             <motion.div variants={itemVariants} className="flex items-center gap-3 mb-6 md:mb-8">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_10px_#FF6B00]"></span>
-              <span className="text-[10px] md:text-xs font-medium tracking-[0.2em] text-primary uppercase">
-                For Montana Service Businesses
+              <span className="w-2 h-2 rounded-full bg-brand-red"></span>
+              <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-brand-navy uppercase">
+                The Benchmark of Precision Service
               </span>
             </motion.div>
 
-            {/* Heading with Reveal effect */}
-            <h1 className="mb-6 md:mb-8 font-semibold tracking-tighter leading-[1.2] md:leading-[1.1]">
+            {/* Heading with Reveal effect - Playfair Display */}
+            <h1 className="mb-6 md:mb-8 font-serif font-bold tracking-tight leading-[1.1] md:leading-[1.05] text-text-primary">
               <RevealText
-                text="Clearer marketing decisions for owner-operated service businesses"
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-[4.5rem]"
-                highlightWords={["marketing", "decisions"]}
-                highlightClassName="text-transparent bg-clip-text bg-gradient-to-br from-[#fbbf24] via-primary to-[#78350f]"
-
+                text="Sophisticated automotive care for those who demand precision"
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-[4rem] xl:text-[5rem]"
+                highlightWords={["Sophisticated", "precision"]}
+                highlightClassName="text-brand-red"
                 delay={0.1}
               />
             </h1>
 
-
-            {/* Subhead */}
-            <motion.p variants={itemVariants} className="text-lg md:text-2xl text-secondary mb-8 md:mb-10 max-w-2xl leading-relaxed font-normal">
-              You do not need more marketing activity. You need to know where jobs are being lost. I help local service businesses fix weak Google visibility, missed calls, slow follow-up, and wasted ad spend—so more of your existing demand turns into real calls, real jobs, and better decisions.
+            {/* Subhead - Inter */}
+            <motion.p variants={itemVariants} className="text-lg md:text-xl text-text-secondary mb-8 md:mb-10 max-w-2xl leading-relaxed font-normal">
+              Benchmark Automotive Service combines industrial strength with premium reliability. From high-performance tuning to meticulous diagnostics, we treat every vehicle with the respect and precision it deserves.
             </motion.p>
 
             {/* CTA Group */}
@@ -101,32 +87,27 @@ const Hero: React.FC = () => {
                     href={CONTACT_LINKS.calendar}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="relative inline-flex h-14 md:h-16 overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-[0_0_40px_-5px_rgba(180,83,9,0.35)] w-full sm:w-auto transition-all hover:scale-[1.02] active:scale-95 duration-300"
-
+                    className="inline-flex h-14 md:h-16 items-center justify-center rounded-standard bg-brand-red px-8 md:px-10 text-sm md:text-base font-bold text-white gap-3 transition-all hover:bg-[#85161a] hover:scale-[1.02] active:scale-95 duration-300 shadow-lg shadow-brand-red/20 whitespace-nowrap"
                   >
-                    <span className="absolute inset-0 bg-gradient-to-r from-primary/40 via-primary/80 to-primary/40 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
-                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[#0a0a0a] px-8 md:px-10 text-sm md:text-base font-medium text-white backdrop-blur-3xl gap-3 transition-colors group-hover:bg-background whitespace-nowrap">
-                      Review My Current Setup
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                    </span>
+                    Schedule Service
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </a>
-
                 </Magnetic>
 
                 <Magnetic amount={0.2}>
                   <a
                     href="/trust-calculator"
-                    className="inline-flex h-14 md:h-16 items-center justify-center rounded-full px-8 md:px-10 text-sm md:text-base font-medium text-white border border-white/10 hover:bg-white/5 transition-colors duration-300 whitespace-nowrap w-full sm:w-auto"
+                    className="inline-flex h-14 md:h-16 items-center justify-center rounded-standard px-8 md:px-10 text-sm md:text-base font-bold text-brand-navy border-2 border-brand-navy/10 hover:bg-brand-navy/5 transition-all duration-300 whitespace-nowrap w-full sm:w-auto"
                   >
-                    Run Instant Scan
+                    Diagnostic Report
                   </a>
                 </Magnetic>
               </div>
 
               <div className="flex flex-col items-center lg:items-start gap-3 mt-2">
-                <div className="flex items-center gap-2 text-sm text-secondary">
-                  <CheckCircle2 className="w-4 h-4 text-primary shrink-0" />
-                  <span className="md:whitespace-nowrap">Takes 60 seconds. No sales pitch. No upsells.</span>
+                <div className="flex items-center gap-2 text-sm text-text-secondary font-medium">
+                  <CheckCircle2 className="w-4 h-4 text-brand-red shrink-0" />
+                  <span className="md:whitespace-nowrap">ASE Certified Technicians • Luxury Vehicle Specialists</span>
                 </div>
               </div>
             </motion.div>
@@ -137,11 +118,10 @@ const Hero: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, x: 40, scale: 0.95 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
+            transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="relative block w-full mt-12 lg:mt-0"
           >
             <DecisionStack disableSpotlight={true} />
-
           </motion.div>
         </div>
       </div>

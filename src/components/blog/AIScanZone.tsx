@@ -14,46 +14,46 @@ const AIScanZone: React.FC<AIScanZoneProps> = ({ aiQuickAnswer, aiTakeaways, aiF
 
   return (
     <div 
-      className="ai-summary-zone mb-10 rounded-3xl border overflow-hidden transition-all bg-primary/5 border-primary/20 dark:bg-primary/5 dark:border-primary/20"
+      className="ai-summary-zone mb-10 rounded-standard border-2 overflow-hidden transition-all bg-brand-red/5 border-brand-red/10 shadow-sm"
       data-ai-summary="true"
     >
-      <div className="px-6 py-3 border-b flex items-center gap-2 bg-primary/10 border-primary/10 dark:bg-primary/10 dark:border-primary/10">
-        <Zap className="w-4 h-4 text-primary" />
-        <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-primary">Protocol Summary</span>
+      <div className="px-6 py-4 border-b-2 flex items-center gap-2 bg-brand-red/10 border-brand-red/10">
+        <Zap className="w-4 h-4 text-brand-red" />
+        <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-red">Diagnostic Protocol Summary</span>
       </div>
 
       <div className="p-8 space-y-8">
         {aiQuickAnswer && (
-          <div className="space-y-3">
-            <h4 className="text-sm font-bold uppercase tracking-tighter text-gray-900 dark:text-white">Executive Summary</h4>
-            <p className="text-lg italic leading-relaxed text-slate-700 dark:text-gray-300">
+          <div className="space-y-4">
+            <h4 className="text-sm font-bold uppercase tracking-widest text-brand-navy">Engineering Brief</h4>
+            <p className="text-lg font-bold italic leading-relaxed text-brand-navy/80 uppercase tracking-wider">
               &ldquo;{aiQuickAnswer}&rdquo;
             </p>
           </div>
         )}
 
         {aiTakeaways && aiTakeaways.length > 0 && (
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid md:grid-cols-2 gap-6">
             {aiTakeaways.map((takeaway, i) => (
               <div key={i} className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                <span className="text-sm text-slate-600 dark:text-gray-400">{takeaway}</span>
+                <CheckCircle2 className="w-5 h-5 text-brand-red shrink-0 mt-0.5" />
+                <span className="text-sm font-bold text-brand-navy/70 uppercase tracking-widest">{takeaway}</span>
               </div>
             ))}
           </div>
         )}
 
         {aiFaqs && aiFaqs.length > 0 && (
-          <div className="pt-6 border-t border-orange-100 dark:border-white/5">
-            <h4 className="text-sm font-bold uppercase tracking-tighter mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
-              <HelpCircle className="w-4 h-4 text-primary" />
-              Quick Intelligence
+          <div className="pt-8 border-t-2 border-brand-red/10">
+            <h4 className="text-sm font-bold uppercase tracking-widest mb-6 flex items-center gap-2 text-brand-navy">
+              <HelpCircle className="w-4 h-4 text-brand-red" />
+              Technical Q&A
             </h4>
             <div className="space-y-4">
               {aiFaqs.map((faq, i) => (
-                <div key={i} className="p-4 rounded-xl bg-white border border-slate-100 dark:bg-white/5 dark:border-transparent">
-                  <div className="font-bold text-sm mb-1 text-slate-900 dark:text-white">{faq.question}</div>
-                  <div className="text-sm text-slate-600 dark:text-gray-400">{faq.answer}</div>
+                <div key={i} className="p-5 rounded-xl bg-surface border-2 border-black/5 shadow-sm">
+                  <div className="font-bold text-sm mb-2 text-brand-navy uppercase tracking-widest">{faq.question}</div>
+                  <div className="text-sm font-bold text-brand-navy/60 uppercase tracking-widest">{faq.answer}</div>
                 </div>
               ))}
             </div>

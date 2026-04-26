@@ -9,7 +9,7 @@ import { Magnetic } from './Magnetic';
 
 const AboutSection: React.FC = () => {
   return (
-    <section id="about" className="py-16 md:py-24 bg-background relative overflow-hidden border-t border-white/5">
+    <section id="about" className="py-24 md:py-32 bg-bg relative overflow-hidden border-t border-black/5">
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-20 items-center">
@@ -22,14 +22,14 @@ const AboutSection: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="lg:col-span-5 relative"
           >
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary to-orange-600 rounded-2xl blur opacity-20 transform translate-x-2 translate-y-2"></div>
-            <div className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[4/5] group">
+            <div className="absolute inset-0 bg-brand-red rounded-standard blur opacity-20 transform translate-x-2 translate-y-2"></div>
+            <div className="relative rounded-standard overflow-hidden border border-black/5 aspect-[4/5] group shadow-2xl">
               <img
-                src="https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
-                alt="Trevor Riggs, Founder"
-                className="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 transition-all duration-700"
+                src="/benchmark_automotive_shop_1777163391770.png"
+                alt="Benchmark Automotive Service Facility"
+                className="w-full h-full object-cover transition-all duration-700"
               />
-              <div className="absolute inset-0 bg-[linear-gradient(rgba(18,20,23,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-10 bg-[length:100%_4px,6px_100%] pointer-events-none opacity-60"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/60 to-transparent pointer-events-none"></div>
             </div>
           </motion.div>
 
@@ -41,43 +41,43 @@ const AboutSection: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="lg:col-span-7"
           >
-            <div className="flex items-center gap-2 mb-4 text-secondary font-mono text-xs md:text-sm uppercase tracking-widest font-medium">
-              <MapPin className="w-4 h-4 text-primary" />
-              <span>Credibility</span>
+            <div className="flex items-center gap-2 mb-6 text-brand-red font-bold text-xs md:text-sm uppercase tracking-[0.2em]">
+              <ShieldCheck className="w-4 h-4" />
+              <span>Technical Excellence</span>
             </div>
 
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-semibold text-white mb-6 md:mb-8 leading-[1.1] tracking-tight">
-              Decisions Over Hype.
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-brand-navy mb-8 md:mb-10 leading-[1.1] tracking-tight uppercase">
+              Precision Over <br /><span className="text-brand-red italic">Guesswork.</span>
             </h2>
 
-            <div className="space-y-6 text-lg md:text-xl text-secondary leading-relaxed mb-10 font-light">
+            <div className="space-y-6 text-lg md:text-xl text-text-secondary leading-relaxed mb-12 font-medium">
               <p>
-                I work with <span className="text-primary font-medium">owner-operated Montana service businesses</span> that need clearer decisions, not more noise.
+                We serve <span className="text-brand-navy font-bold">performance and luxury vehicle owners</span> in Montana who demand a higher standard of care for their automotive investments.
               </p>
               <p>
-                That usually means figuring out what is actually costing you jobs — missed calls, slow follow-up, weak local visibility, poor conversion, or too many changes happening without enough context.
+                That means moving beyond "parts replacement" and into true diagnostic intelligence. Whether it's complex electronics, high-performance tuning, or factory-spec maintenance, our work is defined by accuracy and transparency.
               </p>
               <p>
-                I am not interested in trends, busywork, or marketing activity for its own sake. My role is to help you slow things down, see what matters, and make decisions you can stand behind.
+                We are not interested in volume or speed at the cost of quality. Our role is to ensure your vehicle performs exactly as its engineers intended, providing you with absolute reliability on the road.
               </p>
 
-              <div className="grid sm:grid-cols-2 gap-6 pt-6">
-                <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-col justify-center gap-3">
-                  <div className="flex items-center gap-3 text-primary mb-1">
-                    <ShieldCheck className="w-5 h-5" />
-                    <span className="text-white font-medium">Where AI helps</span>
+              <div className="grid sm:grid-cols-2 gap-6 pt-8">
+                <div className="p-6 rounded-standard bg-surface border border-black/5 flex flex-col justify-center gap-3 shadow-sm">
+                  <div className="flex items-center gap-3 text-brand-red mb-1">
+                    <Settings className="w-5 h-5" />
+                    <span className="text-brand-navy font-bold uppercase tracking-tight">Factory Tooling</span>
                   </div>
-                  <div className="text-sm text-secondary leading-relaxed">
-                    Automation that reduces effort and noise — not judgment, trust, or common sense.
+                  <div className="text-sm text-text-secondary leading-relaxed font-bold">
+                    Advanced diagnostic equipment calibrated specifically for European and Domestic performance vehicles.
                   </div>
                 </div>
-                <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 flex flex-col justify-center gap-3">
-                  <div className="flex items-center gap-3 text-primary mb-1">
+                <div className="p-6 rounded-standard bg-surface border border-black/5 flex flex-col justify-center gap-3 shadow-sm">
+                  <div className="flex items-center gap-3 text-brand-red mb-1">
                     <FileText className="w-5 h-5" />
-                    <span className="text-white font-medium">What’s been proven</span>
+                    <span className="text-brand-navy font-bold uppercase tracking-tight">Total Transparency</span>
                   </div>
-                  <div className="text-sm text-secondary leading-relaxed">
-                    Examples, references, and past work available by request.
+                  <div className="text-sm text-text-secondary leading-relaxed font-bold">
+                    Detailed digital inspections and clear, honest recommendations on every service.
                   </div>
                 </div>
               </div>
@@ -90,23 +90,20 @@ const AboutSection: React.FC = () => {
                   href={CONTACT_LINKS.calendar}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative inline-flex h-14 overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-[0_0_40px_-5px_rgba(180,83,9,0.35)] w-full sm:w-auto transition-all hover:scale-[1.02] active:scale-95 duration-300"
-
+                  className="relative inline-flex h-14 overflow-hidden rounded-standard p-[1px] focus:outline-none group shadow-lg shadow-brand-red/10 w-full sm:w-auto transition-all hover:scale-[1.02] active:scale-95 duration-300"
                 >
-                  <span className="absolute inset-0 bg-gradient-to-r from-primary/40 via-primary/80 to-primary/40 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
-                  <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[#0a0a0a] px-8 text-lg font-medium text-white backdrop-blur-3xl gap-3 transition-colors group-hover:bg-background">
-                    Review My Current Setup
+                  <span className="absolute inset-0 bg-brand-red group-hover:bg-[#85161a] transition-colors duration-500" />
+                  <span className="relative inline-flex h-full w-full cursor-pointer items-center justify-center rounded-standard px-10 text-base font-bold text-white uppercase tracking-widest gap-3">
+                    Schedule A Diagnostic
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </span>
                 </a>
 
               </Magnetic>
-              <p className="text-xs text-secondary/60 mt-3 sm:ml-2">
-                Takes 15 minutes. No sales pitch. I’ll call your cell.
+              <p className="text-xs text-text-secondary/60 mt-4 font-bold uppercase tracking-widest">
+                Factory-spec care. Montana reliability.
               </p>
             </div>
-
-
           </motion.div>
         </div>
       </div>

@@ -2,11 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  margin: 0;
-  padding: 0;
-  background-color: #121417;
-  color: #F0F5F9;
+@layer base {
+  body {
+    @apply bg-background text-text-primary selection:bg-brand-red selection:text-white;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
 }
 
 @layer utilities {
@@ -15,7 +18,7 @@ body {
   }
 
   .glass-card {
-    @apply bg-white/[0.03] border border-white/5 backdrop-blur-sm;
+    @apply bg-white/70 border border-black/5 backdrop-blur-md shadow-sm;
   }
 
   .no-scrollbar::-webkit-scrollbar {
@@ -28,30 +31,30 @@ body {
 }
 
 .glass-panel {
-  background-color: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(64px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05), 0 20px 40px rgba(0,0,0,0.5);
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(32px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
 .input-premium {
   width: 100%;
   background-color: transparent !important;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-  color: #FFFFFF;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  color: #111111;
   transition: all 0.5s;
   padding-bottom: 1rem;
   font-size: 1.125rem;
-  font-weight: 300;
+  font-weight: 400;
   outline: none;
 }
 
 .input-premium:focus {
-  border-color: #B45309;
+  border-color: #9E1B1F;
 }
 
 .input-premium::placeholder {
-  color: rgba(192, 192, 192, 0.4);
+  color: rgba(0, 0, 0, 0.4);
 }
 
 /* Custom Scrollbar */
@@ -60,19 +63,19 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #121417;
+  background: #F7F7F5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: #D1D5DB;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #B45309;
+  background: #9E1B1F;
 }
 
-/* Film Grain Overlay */
+/* Film Grain Overlay - Subtle for light mode */
 .grain-overlay {
   position: fixed;
   top: -150%;
@@ -81,54 +84,22 @@ body {
   height: 400%;
   background-image: url("https://grainy-gradients.vercel.app/noise.svg");
   background-repeat: repeat;
-  opacity: 0.02;
-
+  opacity: 0.015;
   pointer-events: none;
   z-index: 9999;
   animation: grain 8s steps(10) infinite;
-  mix-blend-mode: soft-light;
+  mix-blend-mode: multiply;
 }
 
 @keyframes grain {
-
-  0%,
-  100% {
-    transform: translate(0, 0)
-  }
-
-  10% {
-    transform: translate(-5%, -10%)
-  }
-
-  20% {
-    transform: translate(-15%, 5%)
-  }
-
-  30% {
-    transform: translate(7%, -15%)
-  }
-
-  40% {
-    transform: translate(-5%, 20%)
-  }
-
-  50% {
-    transform: translate(-15%, 10%)
-  }
-
-  60% {
-    transform: translate(15%, 0)
-  }
-
-  70% {
-    transform: translate(0, 15%)
-  }
-
-  80% {
-    transform: translate(3%, 35%)
-  }
-
-  90% {
-    transform: translate(-10%, 10%)
-  }
+  0%, 100% { transform: translate(0, 0) }
+  10% { transform: translate(-5%, -10%) }
+  20% { transform: translate(-15%, 5%) }
+  30% { transform: translate(7%, -15%) }
+  40% { transform: translate(-5%, 20%) }
+  50% { transform: translate(-15%, 10%) }
+  60% { transform: translate(15%, 0) }
+  70% { transform: translate(0, 15%) }
+  80% { transform: translate(3%, 35%) }
+  90% { transform: translate(-10%, 10%) }
 }

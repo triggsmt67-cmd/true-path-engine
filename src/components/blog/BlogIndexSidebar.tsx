@@ -67,13 +67,13 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
             {/* Topics Block */}
             <div className="space-y-8">
                 <div className="flex items-center justify-between">
-                    <h4 className="text-[10px] font-bold uppercase tracking-[0.25em] text-secondary/40">
-                        Topics
+                    <h4 className="text-[10px] font-bold uppercase tracking-[0.25em] text-text-secondary/40">
+                        Technical Topics
                     </h4>
                     {selectedCategorySlug && (
                         <button
                             onClick={() => onCategoryClick(selectedCategorySlug)}
-                            className="text-[10px] font-bold text-primary hover:underline underline-offset-4 uppercase tracking-widest"
+                            className="text-[10px] font-bold text-brand-red hover:underline underline-offset-4 uppercase tracking-widest"
                         >
                             Reset
                         </button>
@@ -88,16 +88,16 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
                             <button
                                 key={cat.id}
                                 onClick={() => onCategoryClick(cat.slug)}
-                                className={`flex items-center justify-between group px-4 py-3 rounded-xl border transition-all duration-300 backdrop-blur-sm ${isActive
-                                    ? 'bg-primary/10 border-primary/40 text-primary shadow-[0_0_20px_-5px_rgba(180,83,9,0.2)]'
-                                    : 'bg-white/[0.02] border-white/5 text-secondary hover:border-white/20 hover:bg-white/[0.05] hover:shadow-lg'
+                                className={`flex items-center justify-between group px-4 py-3 rounded-xl border-2 transition-all duration-300 ${isActive
+                                    ? 'bg-brand-red/10 border-brand-red/40 text-brand-red shadow-sm'
+                                    : 'bg-surface border-black/5 text-brand-navy hover:border-black/20 hover:bg-bg hover:shadow-md'
                                     }`}
                             >
                                 <div className="flex items-center gap-3">
-                                    <Icon className={`w-4 h-4 ${isActive ? 'text-primary' : 'text-secondary/40 group-hover:text-primary transition-colors'}`} />
-                                    <span className="text-xs font-medium">{cat.name}</span>
+                                    <Icon className={`w-4 h-4 ${isActive ? 'text-brand-red' : 'text-brand-navy/30 group-hover:text-brand-red transition-colors'}`} />
+                                    <span className="text-xs font-bold uppercase tracking-widest">{cat.name}</span>
                                 </div>
-                                <span className={`text-[10px] font-mono ${isActive ? 'text-primary' : 'text-secondary/20'}`}>
+                                <span className={`text-[10px] font-bold ${isActive ? 'text-brand-red' : 'text-brand-navy/20'}`}>
                                     {cat.count}
                                 </span>
                             </button>
@@ -109,11 +109,11 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
             {/* Start Here / Essentials Block */}
             <div className="space-y-8">
                 <div className="space-y-2">
-                    <h4 className="text-[10px] font-bold uppercase tracking-[0.25em] text-secondary/40">
-                        Foundational Logic
+                    <h4 className="text-[10px] font-bold uppercase tracking-[0.25em] text-text-secondary/40">
+                        Engineering Fundamentals
                     </h4>
-                    <p className="text-[11px] leading-relaxed text-secondary/20">
-                        Core frameworks for navigating digital disruption.
+                    <p className="text-[11px] leading-relaxed text-text-secondary/40 font-bold uppercase tracking-wider">
+                        Core principles for maintaining mechanical integrity.
                     </p>
                 </div>
                 <nav className="flex flex-col gap-5">
@@ -125,81 +125,81 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
                         <Link
                             key={post.id || idx}
                             href={`/blog/${post.slug}`}
-                            className="group text-left p-2 -mx-2 rounded-2xl transition-all hover:bg-white/[0.02] decoration-transparent"
+                            className="group text-left p-2 -mx-2 rounded-2xl transition-all hover:bg-black/[0.02] decoration-transparent"
                         >
                             <div className="flex items-start gap-4">
-                                <div className="mt-1 flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center border transition-all duration-300 bg-white/[0.03] border-white/10 text-primary group-hover:border-primary/50 group-hover:bg-primary/10 shadow-sm">
+                                <div className="mt-1 flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center border-2 transition-all duration-300 bg-surface border-black/5 text-brand-red group-hover:border-brand-red/50 group-hover:bg-brand-red/10 shadow-sm">
                                     <Bookmark className="w-4 h-4" />
                                 </div>
                                 <div className="space-y-1.5 flex-1">
-                                    <span className="block text-[13px] font-bold leading-tight transition-colors text-white group-hover:text-primary">
+                                    <span className="block text-[13px] font-bold leading-tight transition-colors text-brand-navy group-hover:text-brand-red uppercase tracking-wider">
                                         {title}
                                     </span>
                                     {excerpt && (
-                                        <p className="text-[11px] leading-relaxed font-light transition-colors text-secondary/40">
+                                        <p className="text-[11px] leading-relaxed font-bold transition-colors text-text-secondary/40 uppercase tracking-widest">
                                             {excerpt}...
                                         </p>
                                     )}
                                 </div>
                                 <div className="opacity-0 group-hover:opacity-100 transition-opacity self-center">
-                                    <ArrowRight className="w-3.5 h-3.5 text-primary" />
+                                    <ArrowRight className="w-3.5 h-3.5 text-brand-red" />
                                 </div>
                             </div>
                         </Link>
                     )})}
                 </nav>
 
-                <div className="mt-10 p-8 rounded-3xl border transition-all relative overflow-hidden bg-primary/5 border-primary/20 shadow-2xl shadow-primary/5">
-                    <div className="absolute -top-12 -right-12 w-24 h-24 blur-3xl rounded-full bg-primary/20 pointer-events-none" />
-                    <h5 className="text-[10px] font-bold uppercase tracking-[0.25em] mb-4 text-primary">Vault Access</h5>
-                    <p className="text-xs leading-relaxed mb-6 font-light text-secondary/70">
-                        Direct, technical insights on AI & conversion strategy delivered to your inbox.
+                <div className="mt-10 p-8 rounded-standard border-2 transition-all relative overflow-hidden bg-brand-red/5 border-brand-red/10 shadow-xl">
+                    <div className="absolute -top-12 -right-12 w-24 h-24 blur-3xl rounded-full bg-brand-red/10 pointer-events-none" />
+                    <h5 className="text-[10px] font-bold uppercase tracking-[0.25em] mb-4 text-brand-red">Technical Updates</h5>
+                    <p className="text-xs leading-relaxed mb-6 font-bold text-text-secondary uppercase tracking-widest">
+                        Direct technical insights on automotive performance delivered to your bench.
                     </p>
                     <div className="flex flex-col gap-3">
                         <input
                             type="email"
                             placeholder="Your email address"
-                            className="w-full text-xs px-4 py-3 rounded-xl border bg-transparent focus:outline-none focus:border-primary/50 transition-all font-light border-white/10 text-white placeholder:text-secondary/30 focus:bg-white/[0.02]"
+                            className="w-full text-xs px-4 py-3 rounded-xl border-2 bg-surface focus:outline-none focus:border-brand-red/40 transition-all font-bold border-black/5 text-brand-navy placeholder:text-brand-navy/30"
                         />
-                        <button className="w-full py-3 bg-primary text-white rounded-xl hover:bg-[#92400e] transition-all font-bold text-xs flex items-center justify-center gap-2 group/sub shadow-lg shadow-primary/20 active:scale-[0.98]">
-                            Join the Vault
+                        <button className="w-full py-4 bg-brand-red text-white rounded-xl hover:bg-brand-red/90 transition-all font-bold text-xs flex items-center justify-center gap-2 group/sub shadow-lg shadow-brand-red/20 active:scale-[0.98] uppercase tracking-widest">
+                            Join the Technical Vault
                             <ArrowRight className="w-3.5 h-3.5 group-hover/sub:translate-x-1 transition-transform" />
                         </button>
                     </div>
                 </div>
 
                 {/* Author Sidebar */}
-                <div className="mt-10 p-8 rounded-3xl border transition-all relative overflow-hidden bg-white/[0.02] border-white/5 shadow-2xl">
-                    <div className="absolute -top-10 -left-10 w-32 h-32 blur-[80px] rounded-full opacity-30 pointer-events-none bg-primary/20" />
+                <div className="mt-10 p-8 rounded-standard border-2 transition-all relative overflow-hidden bg-surface border-black/5 shadow-xl">
+                    <div className="absolute -top-10 -left-10 w-32 h-32 blur-[80px] rounded-full opacity-10 pointer-events-none bg-brand-red/40" />
 
-                    <h4 className="text-[10px] font-bold tracking-[0.25em] uppercase mb-8 text-secondary/40">Connect</h4>
+                    <h4 className="text-[10px] font-bold tracking-[0.25em] uppercase mb-8 text-text-secondary/40">Connect</h4>
 
                     <div className="flex items-center gap-5 mb-8 relative z-10">
-                        <div className="w-14 h-14 rounded-2xl overflow-hidden border p-0.5 border-primary/20 bg-primary/10">
+                        <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 p-1 border-brand-red/20 bg-brand-red/10">
                             <img
                                 src="https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
-                                className="w-full h-full object-cover object-top rounded-[14px]"
+                                className="w-full h-full object-cover object-top rounded-[12px]"
                                 alt="Trevor Riggs"
                                 loading="lazy"
                             />
                         </div>
                         <div>
-                            <div className="font-bold text-xl tracking-tight text-white">Trevor Riggs</div>
-                            <div className="text-primary text-[10px] font-bold uppercase tracking-[0.15em]">Founder / Architect</div>
+                            <div className="font-bold text-xl tracking-tight text-brand-navy uppercase">Trevor Riggs</div>
+                            <div className="text-brand-red text-[10px] font-bold uppercase tracking-[0.15em]">Principal Engineer / Founder</div>
                         </div>
                     </div>
 
-                    <p className="text-sm leading-relaxed mb-10 font-light text-secondary/70">
-                        25+ years engineering high-conversion sales systems and strategic digital infrastructure for high-growth firms.
+                    <p className="text-sm leading-relaxed mb-10 font-bold text-text-secondary/70 uppercase tracking-widest">
+                        25+ years engineering high-performance diagnostic systems and technical infrastructure for luxury automotive care.
                     </p>
 
                     <a
                         href={SOCIAL_LINKS.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="block w-full py-4 rounded-xl bg-primary text-white font-bold text-sm text-center transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-primary/20 decoration-transparent"
+                        className="block w-full py-4 rounded-xl bg-brand-navy text-white font-bold text-sm text-center transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-brand-navy/20 decoration-transparent uppercase tracking-widest"
                     >
-                        Connect on LinkedIn
+                        Engineering Network
                     </a>
                 </div>
             </div>

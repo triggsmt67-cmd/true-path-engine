@@ -6,40 +6,37 @@ import { SpotlightCard } from './SpotlightCard';
 import Image from 'next/image';
 import { ExternalLink } from 'lucide-react';
 
-const clients: { name: string; descriptor: string; supportLine: string; logo: string | null; result?: string; testimonial?: string; url?: string }[] = [
+const clients = [
   {
-    name: "United Formulas",
-    descriptor: "Industrial / chemical brand",
-    supportLine: "Messaging, digital strategy, and practical system support for a complex product business.",
-    logo: "/images/united-formulas-logo.png",
-    result: "United Formulas is a Montana, USA based company entirely focused on formulating and developing unique cleaning products that exceed expectations in every way.",
-    url: "https://www.unitedformulas.com/"
+    name: "European Precision",
+    descriptor: "BMW • Mercedes • Audi • Porsche",
+    supportLine: "Advanced diagnostic capabilities for complex European engineering. We use factory-level equipment to ensure your performance vehicle stays at peak specification.",
+    logo: null,
+    result: "Full system diagnostics, specialized engine work, and preventative maintenance for the world's finest imports.",
   },
   {
-    name: "Benchmark Automotive Service",
-    descriptor: "Local service business / auto repair",
-    supportLine: "Website, visibility, and conversion-focused support built around trust, clarity, and local service demand.",
-    logo: "/images/benchmark-logo.png",
-    result: "Benchmark Automotive Service is an auto repair shop in Missoula, MT focused on accurate diagnostics, honest recommendations, and repairs done right the first time.",
-    url: "https://www.benchmarkmissoula.com/"
+    name: "Domestic Performance",
+    descriptor: "Ford • GM • Dodge • Corvette",
+    supportLine: "High-output tuning and heavy-duty repairs for American muscle and workhorses. We understand the unique demands of domestic powerplants.",
+    logo: null,
+    result: "Precision transmission work, performance upgrades, and reliable fleet maintenance for local Missoula businesses.",
   },
   {
-    name: "HeavyDuty, an Amazon brand",
-    descriptor: "National / ecommerce brand",
-    supportLine: "Strategic support focused on clarity, messaging, and practical execution.",
-    logo: "/images/heavyduty-logo.png",
-    result: "A simple pretreat step for real-life stains.",
-    url: "https://www.itworxheavyduty.com/"
+    name: "Luxury & Exotic",
+    descriptor: "Land Rover • Jaguar • Tesla",
+    supportLine: "White-glove service for high-end luxury vehicles. From hybrid system calibration to air suspension repair, we handle the technology others won't.",
+    logo: null,
+    result: "Complete technical overhauls and electronic troubleshooting for the most sophisticated vehicles on the road.",
   }
 ];
 
 const EarlyProofSection: React.FC = () => {
   return (
-    <section className="py-16 md:py-24 bg-background relative overflow-hidden border-b border-white/5">
+    <section className="py-24 md:py-32 bg-bg relative overflow-hidden border-b border-black/5">
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
         
         {/* Header */}
-        <div className="mb-10 md:mb-14">
+        <div className="mb-12 md:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -47,10 +44,10 @@ const EarlyProofSection: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="flex items-center gap-4"
           >
-            <h2 className="text-sm md:text-base font-mono text-white tracking-[0.2em] uppercase font-bold">
-              Selected Client Work
+            <h2 className="text-sm md:text-base font-bold text-brand-navy tracking-[0.2em] uppercase">
+              Our <span className="text-brand-red italic">Specializations</span>
             </h2>
-            <div className="h-px w-full bg-gradient-to-r from-white/10 to-transparent flex-1"></div>
+            <div className="h-px w-full bg-gradient-to-r from-black/10 to-transparent flex-1"></div>
           </motion.div>
         </div>
 
@@ -66,74 +63,29 @@ const EarlyProofSection: React.FC = () => {
               className="h-full"
             >
               <SpotlightCard
-                spotlightColor="rgba(255, 107, 0, 0.05)"
-                className="flex flex-col h-full bg-white/[0.02] border border-white/5 rounded-2xl p-5 md:p-6 hover:border-white/10 hover:bg-white/[0.03] transition-all group"
+                spotlightColor="rgba(158, 27, 31, 0.03)"
+                className="flex flex-col h-full bg-surface border border-black/5 rounded-standard p-6 md:p-8 hover:border-brand-red/20 transition-all group shadow-sm hover:shadow-xl hover:shadow-black/[0.02]"
               >
-                {/* Logo Area */}
-                <div className="h-16 w-auto mb-5 flex items-center relative">
-                  {client.url && (
-                    <a href={client.url} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10">
-                      <span className="sr-only">Visit {client.name}</span>
-                    </a>
-                  )}
-                  {client.logo ? (
-                     <div className="relative h-12 w-32">
-                        <Image 
-                          src={client.logo} 
-                          alt={`${client.name} logo`} 
-                          fill
-                          className="object-contain object-left"
-                        />
-                     </div>
-                  ) : (
-                    <div className="h-16 w-32 border border-dashed border-white/20 rounded bg-white/[0.01] flex items-center justify-center">
-                      <span className="text-[9px] uppercase tracking-widest text-secondary/40 text-center px-1 leading-snug">[Logo]</span>
-                    </div>
-                  )}
-                </div>
-
                 {/* Client Info */}
-                <div className="mb-5 flex-1 relative">
-                  {client.url && (
-                    <a href={client.url} target="_blank" rel="noopener noreferrer" className="absolute inset-0 z-10">
-                      <span className="sr-only">Visit {client.name}</span>
-                    </a>
-                  )}
-                  <h3 className="text-xl font-medium text-white mb-2 tracking-tight flex items-center gap-2 group-hover:text-primary transition-colors">
-                    {client.name}
-                    {client.url && <ExternalLink className="w-3.5 h-3.5 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300" />}
-                  </h3>
-                  <div className="text-[10px] md:text-xs font-mono uppercase tracking-[0.15em] text-primary/70 mb-2">
+                <div className="mb-8 flex-1 relative">
+                  <div className="text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] text-brand-red mb-3">
                     {client.descriptor}
                   </div>
-                  <p className="text-sm text-secondary leading-relaxed font-light">
+                  <h3 className="text-2xl font-bold text-brand-navy mb-4 tracking-tight uppercase group-hover:text-brand-red transition-colors">
+                    {client.name}
+                  </h3>
+                  <p className="text-base text-text-secondary leading-relaxed font-medium">
                     {client.supportLine}
                   </p>
                 </div>
 
                 {/* Results & Proof */}
-                <div className="space-y-3 pt-5 border-t border-white/5">
-                  {client.result ? (
-                    <div className="px-4 py-3 border border-white/10 rounded-xl bg-white/[0.02]">
-                      <p className="text-xs md:text-sm text-white/90 leading-relaxed">
-                         {client.result}
-                      </p>
-                    </div>
-                  ) : (
-                    <div className="px-4 py-3 border border-dashed border-white/10 rounded-xl bg-white/[0.01]">
-                      <span className="text-xs text-secondary/40 font-mono italic">
-                        [Verified Result Placeholder]
-                      </span>
-                    </div>
-                  )}
-
-                  {client.testimonial && (
-                    <div className="px-4 py-3 border border-primary/20 rounded-xl bg-primary/5">
-                      <p className="text-xs md:text-sm text-white leading-relaxed italic">
-                         "{client.testimonial}"
-                      </p>
-                    </div>
-                  )}
+                <div className="space-y-3 pt-6 border-t border-black/5">
+                  <div className="px-5 py-4 border border-black/5 rounded-standard bg-bg/50">
+                    <p className="text-sm text-brand-navy/80 leading-relaxed font-bold">
+                       {client.result}
+                    </p>
+                  </div>
                 </div>
               </SpotlightCard>
             </motion.div>

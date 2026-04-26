@@ -8,8 +8,8 @@ import { CONTACT_LINKS } from '@/constants/links';
 
 const NAV_ITEMS = [
   { label: 'Home', href: '/' },
-  { label: 'Solutions', href: '/solutions' },
-  { label: 'Run Instant Scan', href: '/trust-calculator' },
+  { label: 'Services', href: '/solutions' },
+  { label: 'Diagnostic Scan', href: '/trust-calculator' },
   { label: 'About', href: '/#about' },
   { label: 'Insights', href: '/blog/' },
 ];
@@ -24,9 +24,8 @@ const Navbar: React.FC = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
 
-      // Update active segment based on scroll position on the homepage
       if (pathname === '/') {
-        const sections = ['hero', 'how-i-work', 'about'];
+        const sections = ['hero', 'about'];
         const scrollPosition = window.scrollY + 200;
 
         for (const section of sections) {
@@ -52,7 +51,6 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [pathname]);
 
-  // Set active segment based on pathname
   useEffect(() => {
     if (pathname.startsWith('/blog')) {
       setActiveSegment('/blog/');
@@ -64,7 +62,6 @@ const Navbar: React.FC = () => {
   }, [pathname]);
 
   const handleAnchorClick = (e: React.MouseEvent, href: string) => {
-    // Only handle hash links on the homepage
     if (href.startsWith('/#') && pathname === '/') {
       e.preventDefault();
       const id = href.replace('/#', '');
@@ -98,18 +95,19 @@ const Navbar: React.FC = () => {
         y: isScrolled ? 12 : 0,
         scale: isScrolled ? 0.98 : 1,
         backgroundColor: isScrolled
-          ? 'rgba(18, 20, 23, 0.75)'
-          : 'rgba(0, 0, 0, 0)',
+          ? 'rgba(255, 255, 255, 0.85)'
+          : 'rgba(255, 255, 255, 0)',
         backdropFilter: isScrolled ? 'blur(20px)' : 'blur(0px)',
         borderColor: isScrolled
-          ? 'rgba(255, 255, 255, 0.1)'
+          ? 'rgba(0, 0, 0, 0.05)'
           : 'rgba(0, 0, 0, 0)',
-        borderRadius: isScrolled ? '24px' : '0px',
+        borderRadius: isScrolled ? '20px' : '0px',
         width: isScrolled ? 'calc(100% - 32px)' : '100%',
         margin: isScrolled ? '0 16px' : '0 0',
+        boxShadow: isScrolled ? '0 10px 30px -10px rgba(0,0,0,0.1)' : 'none',
       }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed top-0 left-0 right-0 z-50 border-b flex justify-center py-4"
+      className="fixed top-0 left-0 right-0 z-50 flex justify-center py-4"
     >
       <div className="max-w-7xl mx-auto px-6 w-full flex items-center justify-between">
         {/* Logo */}
@@ -117,22 +115,22 @@ const Navbar: React.FC = () => {
           href="/"
           className="flex items-center gap-2 group cursor-pointer focus:outline-none decoration-transparent"
         >
-          <span className="font-semibold text-lg tracking-tight text-white">
-            True Path <span className="font-normal text-secondary">Digital</span>
+          <span className="font-serif font-bold text-xl tracking-tight text-brand-navy">
+            Benchmark <span className="text-brand-red">Automotive</span>
           </span>
         </Link>
 
         {/* Desktop Nav — Pill Style */}
-        <div className="hidden md:flex items-center gap-2 border rounded-full p-1.5 backdrop-blur-md bg-white/[0.03] border-white/5">
+        <div className="hidden md:flex items-center gap-1 border border-black/5 rounded-full p-1.5 backdrop-blur-md bg-black/[0.02]">
           {NAV_ITEMS.map((item) => (
             <div key={item.label} className="relative">
               <Link
                 href={item.href}
                 onClick={(e) => handleAnchorClick(e, item.href)}
-                className={`relative z-10 px-4 py-2 text-sm font-medium transition-colors duration-300 block decoration-transparent ${
+                className={`relative z-10 px-4 py-2 text-[13px] font-bold transition-colors duration-300 block decoration-transparent uppercase tracking-wider ${
                   isActive(item.href)
                     ? 'text-white'
-                    : 'text-secondary hover:text-white'
+                    : 'text-text-secondary hover:text-brand-navy'
                 }`}
               >
                 {item.label}
@@ -140,7 +138,7 @@ const Navbar: React.FC = () => {
               {isActive(item.href) && (
                 <motion.div
                   layoutId="active-pill"
-                  className="absolute inset-0 rounded-full z-0 bg-white/10"
+                  className="absolute inset-0 rounded-full z-0 bg-brand-navy"
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
@@ -154,15 +152,15 @@ const Navbar: React.FC = () => {
             href={CONTACT_LINKS.calendar}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-primary hover:bg-[#ff8533] text-white px-6 py-2 rounded-full text-sm font-semibold transition-all hover:shadow-[0_0_20px_rgba(255,107,0,0.4)] transform hover:-translate-y-0.5 decoration-transparent"
+            className="inline-block bg-brand-red hover:bg-[#85161a] text-white px-6 py-2.5 rounded-standard text-xs font-bold uppercase tracking-widest transition-all shadow-md shadow-brand-red/10 transform hover:-translate-y-0.5 decoration-transparent"
           >
-            Review My Current Setup
+            Schedule Service
           </a>
         </div>
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-white"
+          className="md:hidden text-brand-navy"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X /> : <Menu />}
@@ -176,15 +174,15 @@ const Navbar: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden absolute top-full left-0 right-0 bg-background border-b border-white/10 overflow-hidden"
+            className="md:hidden absolute top-full left-0 right-0 bg-surface border-b border-black/5 overflow-hidden shadow-xl"
           >
             <div className="px-6 py-8 flex flex-col gap-6">
               {NAV_ITEMS.map((item) => (
                 <Link
                   key={item.label}
                   href={item.href}
-                  className={`text-lg font-medium decoration-transparent ${
-                    isActive(item.href) ? 'text-primary' : 'text-secondary hover:text-primary'
+                  className={`text-lg font-bold uppercase tracking-wider decoration-transparent ${
+                    isActive(item.href) ? 'text-brand-red' : 'text-text-secondary hover:text-brand-navy'
                   }`}
                   onClick={(e) => handleAnchorClick(e, item.href)}
                 >
@@ -195,9 +193,9 @@ const Navbar: React.FC = () => {
                 href={CONTACT_LINKS.calendar}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-center bg-primary w-full py-3 rounded-full text-white font-bold decoration-transparent"
+                className="block text-center bg-brand-red w-full py-4 rounded-standard text-white font-bold uppercase tracking-widest decoration-transparent shadow-lg shadow-brand-red/20"
               >
-                Review My Current Setup
+                Schedule Service
               </a>
             </div>
           </motion.div>

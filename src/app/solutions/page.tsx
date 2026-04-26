@@ -5,60 +5,60 @@ import SolutionsContent from '@/components/solutions/SolutionsContent';
 
 const coreServices = [
   {
-    title: "Google Business Profile Optimization",
-    description: "Show up better in local search with a stronger profile, clearer services, better trust signals, and cleaner local positioning.",
-    icon: "MapPin",
-    href: "/solutions/local-authority/",
-    color: "text-blue-400",
-    spotlight: "rgba(59, 130, 246, 0.05)"
+    title: "Advanced Engine Diagnostics",
+    description: "Identify complex engine performance issues with factory-level diagnostic tools and technical expertise.",
+    icon: "Search",
+    href: "/services/diagnostics/",
+    color: "text-brand-red",
+    spotlight: "rgba(158, 27, 31, 0.05)"
   },
   {
-    title: "Missed Call Recovery & Lead Response",
-    description: "Stop losing jobs to missed calls, slow replies, and follow-up gaps that cool leads off fast.",
-    icon: "Zap",
-    href: "/solutions/lead-velocity/",
-    color: "text-primary",
-    spotlight: "rgba(255, 107, 0, 0.05)"
+    title: "Brake & Suspension Systems",
+    description: "Maintain absolute control and comfort with precision brake service and advanced suspension tuning.",
+    icon: "Tool",
+    href: "/services/braking-suspension/",
+    color: "text-brand-navy",
+    spotlight: "rgba(15, 34, 51, 0.05)"
   },
   {
-    title: "Review Generation Systems",
-    description: "Build a simple process that helps you get more reviews without constantly chasing customers.",
-    icon: "Star",
-    href: "/solutions/review-system/",
-    color: "text-cyan-400",
-    spotlight: "rgba(6, 182, 212, 0.05)"
+    title: "Factory Scheduled Maintenance",
+    description: "Protect your warranty and vehicle longevity with maintenance schedules that meet or exceed factory standards.",
+    icon: "Activity",
+    href: "/services/maintenance/",
+    color: "text-brand-red",
+    spotlight: "rgba(158, 27, 31, 0.05)"
   },
   {
-    title: "Website Conversion Repair",
-    description: "Turn more visitors into calls, quote requests, and booked work by removing friction and tightening the message.",
-    icon: "Globe",
-    href: "/solutions/website-conversion/",
-    color: "text-emerald-400",
-    spotlight: "rgba(16, 185, 129, 0.05)"
-  },
-  {
-    title: "Demand Leak Audit",
-    description: "Find out where visibility, follow-up, conversion, and response are breaking down before spending more money.",
-    icon: "Target",
-    href: "/solutions/demand-audit/",
-    color: "text-violet-400",
-    spotlight: "rgba(139, 92, 246, 0.05)"
-  },
-  {
-    title: "Estimate Follow-Up & Booking Automation",
-    description: "Keep quotes and inquiries from going cold with a cleaner, more consistent follow-up process.",
-    icon: "MessageSquare",
-    href: "/solutions/estimate-follow-up/",
-    color: "text-amber-400",
-    spotlight: "rgba(245, 158, 11, 0.05)"
-  },
-  {
-    title: "Local Services Ads Setup & Cleanup",
-    description: "Improve lead flow from Local Services Ads with cleaner setup, better response handling, and less wasted spend.",
+    title: "Engine & Transmission Repair",
+    description: "Expert overhaul and repair for high-performance engines and sophisticated modern transmissions.",
     icon: "Settings",
-    href: "/solutions/local-services-ads/",
-    color: "text-indigo-400",
-    spotlight: "rgba(99, 102, 241, 0.05)"
+    href: "/services/drivetrain/",
+    color: "text-brand-navy",
+    spotlight: "rgba(15, 34, 51, 0.05)"
+  },
+  {
+    title: "Electrical & Hybrid Systems",
+    description: "Specialized service for the complex electronic architecture and high-voltage systems in modern vehicles.",
+    icon: "Zap",
+    href: "/services/electrical/",
+    color: "text-brand-red",
+    spotlight: "rgba(158, 27, 31, 0.05)"
+  },
+  {
+    title: "Performance Upgrades",
+    description: "Enhance your vehicle's power and handling with precision-engineered performance parts and tuning.",
+    icon: "Target",
+    href: "/services/performance/",
+    color: "text-brand-navy",
+    spotlight: "rgba(15, 34, 51, 0.05)"
+  },
+  {
+    title: "The Benchmark Guarantee",
+    description: "Every repair is backed by our absolute commitment to reliability, transparency, and mechanical excellence.",
+    icon: "Shield",
+    href: "/services/guarantee/",
+    color: "text-brand-red",
+    spotlight: "rgba(158, 27, 31, 0.05)"
   }
 ];
 
@@ -68,46 +68,46 @@ export default async function SolutionsHubPage() {
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": "https://truepath406.com/solutions/#webpage",
-        "url": "https://truepath406.com/solutions/",
-        "name": "Service Business Growth Solutions | True Path Digital",
-        "description": "Practical marketing and revenue services for owner-operated local service businesses in Montana.",
-        "isPartOf": { "@id": "https://truepath406.com/#website" },
-        "breadcrumb": { "@id": "https://truepath406.com/solutions/#breadcrumb" }
+        "@id": "https://benchmarkauto.com/services/#webpage",
+        "url": "https://benchmarkauto.com/services/",
+        "name": "Specialized Automotive Services | Benchmark Automotive Service",
+        "description": "Expert maintenance and repair for high-performance and luxury vehicles in Montana.",
+        "isPartOf": { "@id": "https://benchmarkauto.com/#website" },
+        "breadcrumb": { "@id": "https://benchmarkauto.com/services/#breadcrumb" }
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://truepath406.com/solutions/#breadcrumb",
+        "@id": "https://benchmarkauto.com/services/#breadcrumb",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://truepath406.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Solutions" }
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://benchmarkauto.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Services" }
         ]
       },
       {
-        "@type": "Service",
-        "@id": "https://truepath406.com/solutions/#service",
-        "name": "True Path Digital Core Services",
-        "serviceType": "Marketing Consulting",
-        "provider": { "@id": "https://truepath406.com/#organization" },
+        "@type": "ProfessionalService",
+        "@id": "https://benchmarkauto.com/services/#service",
+        "name": "Benchmark Automotive Core Services",
+        "serviceType": "Auto Repair",
+        "provider": { "@id": "https://benchmarkauto.com/#organization" },
         "telephone": "+1-406-880-6992",
         "areaServed": { "@type": "State", "name": "Montana" },
-        "description": "Practical marketing and revenue services for owner-operated local service businesses in Montana."
+        "description": "Expert maintenance and repair for high-performance and luxury vehicles in Montana."
       }
     ]
   };
 
   return (
-    <div className="min-h-screen bg-background text-ice font-sans selection:bg-primary selection:text-white relative">
+    <div className="min-h-screen bg-bg text-text-primary font-sans selection:bg-brand-red selection:text-white relative">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(solutionsSchema) }}
       />
       <div className="fixed inset-0 z-0 pointer-events-none flex justify-center">
-        <div className="w-full max-w-[1400px] h-full border-l border-white/[0.03] border-r flex justify-between">
-          <div className="h-full w-px bg-white/[0.03]"></div>
-          <div className="h-full w-px bg-white/[0.03]"></div>
-          <div className="h-full w-px bg-white/[0.03]"></div>
-          <div className="h-full w-px bg-white/[0.03]"></div>
+        <div className="w-full max-w-[1400px] h-full border-l border-black/[0.03] border-r border-black/[0.03] flex justify-between">
+          <div className="h-full w-px bg-black/[0.02]"></div>
+          <div className="h-full w-px bg-black/[0.02]"></div>
+          <div className="h-full w-px bg-black/[0.02]"></div>
+          <div className="h-full w-px bg-black/[0.02]"></div>
         </div>
       </div>
 
