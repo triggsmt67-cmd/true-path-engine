@@ -165,7 +165,7 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
         <div className="max-w-[1200px] mx-auto px-6">
           <SpotlightCard 
             className="p-12 md:p-20 h-full flex flex-col bg-brand-navy border border-black/5 rounded-standard group overflow-hidden shadow-xl shadow-black/[0.02]"
-            spotlightColor="rgba(2, 132, 199, 0.05)"
+            spotlightColor="rgba(79, 124, 122, 0.05)"
           >
             <div className="absolute top-0 left-0 w-2 h-full bg-brand-accent" />
             

@@ -419,8 +419,8 @@ export default function TrustDeficitCalculator() {
 
     return (
       <div className="bg-gradient-to-r from-brand-accent/5 to-surface p-6 md:p-8 rounded-standard border border-brand-accent/10 relative overflow-hidden mb-8 shadow-xl shadow-brand-accent/[0.03] group">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(2,132,199,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(2,132,199,0.02)_1px,transparent_1px)] bg-[size:24px_24px] opacity-10"></div>
-        <div className="absolute top-0 left-0 w-1 bg-gradient-to-b from-brand-accent to-brand-navy h-full shadow-[0_0_15px_rgba(2,132,199,0.2)]"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(79,124,122,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(79,124,122,0.02)_1px,transparent_1px)] bg-[size:24px_24px] opacity-10"></div>
+        <div className="absolute top-0 left-0 w-1 bg-gradient-to-b from-brand-accent to-brand-navy h-full shadow-[0_0_15px_rgba(79,124,122,0.2)]"></div>
         
         <div className="flex flex-col md:flex-row items-center md:items-center justify-between gap-6 text-center md:text-left relative z-10">
           <div className="space-y-3 w-full">

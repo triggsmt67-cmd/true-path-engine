@@ -66,7 +66,7 @@ const EarlyProofSection: React.FC = () => {
               className="h-full"
             >
               <SpotlightCard
-                spotlightColor="rgba(2, 132, 199, 0.03)"
+                spotlightColor="rgba(79, 124, 122, 0.03)"
                 className="flex flex-col h-full bg-surface border border-black/5 rounded-standard p-10 md:p-12 hover:border-brand-accent/20 transition-all group shadow-sm hover:shadow-xl hover:shadow-black/[0.02]"
               >
                 {/* Client Info */}

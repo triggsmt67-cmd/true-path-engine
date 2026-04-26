@@ -11,15 +11,20 @@ const config: Config = {
         extend: {
             colors: {
                 brand: {
-                    accent: "#0284C7", // Sky blue that conveys trust and pairs perfectly with navy
-                    navy: "#0F2233",
-                    copper: "#B87333",
+                    navy: "#0F2233", // Primary Navy
+                    accent: "#4F7C7A", // Muted Teal for CTAs and trust accents
+                    slate: "#6F8493", // Slate Blue for secondary buttons/icons
+                    lavender: "#B7B5C4", // Lavender Gray for subtle premium notes
                 },
                 background: "#F7F7F5",
+                mist: "#E6ECEF", // Mist Background for soft sections
                 surface: "#FFFFFF",
+                border: {
+                    cool: "#D9DEDF", // Cool Border for cards/dividers
+                },
                 text: {
-                    primary: "#0F2233", // Dark navy instead of black
-                    secondary: "#334155", // Slate gray with blue undertones
+                    primary: "#20262C", // Ink Text for body text
+                    secondary: "#6F8493", // Slate Blue for secondary text
                 }
             },
             fontFamily: {

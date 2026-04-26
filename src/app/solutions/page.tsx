@@ -18,7 +18,7 @@ const coreServices = [
     icon: "Zap",
     href: "/solutions/lead-velocity/",
     color: "text-brand-accent",
-    spotlight: "rgba(2, 132, 199, 0.05)"
+    spotlight: "rgba(79, 124, 122, 0.05)"
   },
   {
     title: "Review Generation Systems",

@@ -118,7 +118,7 @@ export default function EstimateFollowUpPage() {
             <div className="max-w-[1400px] mx-auto px-6">
               <div className="max-w-4xl">
                 <div className="flex items-center gap-3 mb-8">
-                  <span className="w-2 h-2 rounded-full bg-brand-accent shadow-[0_0_10px_rgba(2,132,199,0.5)]"></span>
+                  <span className="w-2 h-2 rounded-full bg-brand-accent shadow-[0_0_10px_rgba(79,124,122,0.5)]"></span>
                   <span className="text-[10px] md:text-xs font-semibold tracking-[0.2em] text-brand-accent uppercase">
                     Core Service
                   </span>
@@ -140,7 +140,7 @@ export default function EstimateFollowUpPage() {
                 <div className="flex flex-col sm:flex-row items-center gap-6">
                   <Link
                     href="https://calendly.com/triggsmt67"
-                    className="relative inline-flex h-16 w-full sm:w-auto overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-[0_0_40px_-5px_rgba(2,132,199,0.2)] transition-all hover:scale-[1.02] active:scale-95 duration-300"
+                    className="relative inline-flex h-16 w-full sm:w-auto overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-[0_0_40px_-5px_rgba(79,124,122,0.2)] transition-all hover:scale-[1.02] active:scale-95 duration-300"
                   >
                     <span className="absolute inset-0 bg-gradient-to-r from-brand-accent/40 via-brand-accent/80 to-brand-accent/40 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
                     <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-brand-accent px-10 text-base font-semibold text-white backdrop-blur-3xl gap-3 transition-colors group-hover:bg-brand-accent/90 whitespace-nowrap">
@@ -183,7 +183,7 @@ export default function EstimateFollowUpPage() {
                   {problemCards.map((card, index) => (
                     <SpotlightCard
                       key={index}
-                      spotlightColor="rgba(2, 132, 199, 0.05)"
+                      spotlightColor="rgba(79, 124, 122, 0.05)"
                       className="p-8 bg-surface border border-black/10 shadow-xl shadow-black/[0.02] rounded-3xl h-full flex flex-col"
                     >
                       <div className="w-12 h-12 rounded-xl bg-black/[0.03] flex items-center justify-center text-brand-accent mb-6">
@@ -197,7 +197,7 @@ export default function EstimateFollowUpPage() {
 
                 <div className="lg:col-span-1 h-full">
                   <SpotlightCard
-                    spotlightColor="rgba(2, 132, 199, 0.08)"
+                    spotlightColor="rgba(79, 124, 122, 0.08)"
                     className="p-10 bg-surface border border-brand-accent/20 rounded-3xl h-full flex flex-col justify-center relative overflow-hidden"
                   >
                     <div className="absolute top-0 right-0 p-8 opacity-5">
@@ -258,7 +258,7 @@ export default function EstimateFollowUpPage() {
                    {whoThisIsFor.map((point, index) => (
                      <SpotlightCard 
                        key={index}
-                       spotlightColor="rgba(2, 132, 199, 0.05)"
+                       spotlightColor="rgba(79, 124, 122, 0.05)"
                        className="p-8 bg-surface border border-black/10 rounded-3xl flex items-start gap-5 shadow-xl shadow-black/[0.02]"
                      >
                         <div className="w-2 h-2 rounded-full bg-brand-accent mt-2 flex-shrink-0" />
@@ -363,7 +363,7 @@ export default function EstimateFollowUpPage() {
                   href="https://calendly.com/triggsmt67"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative inline-flex h-16 md:h-20 overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-[0_0_50px_-10px_rgba(2,132,199,0.2)] w-full sm:w-auto transition-all hover:scale-[1.02] active:scale-95 duration-300"
+                  className="relative inline-flex h-16 md:h-20 overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-[0_0_50px_-10px_rgba(79,124,122,0.2)] w-full sm:w-auto transition-all hover:scale-[1.02] active:scale-95 duration-300"
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-brand-accent/50 via-brand-accent to-brand-accent/50 opacity-100 group-hover:opacity-80 transition-opacity duration-500" />
                   <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-brand-accent px-10 md:px-14 text-base md:text-lg font-semibold text-white backdrop-blur-3xl gap-4 transition-colors group-hover:bg-brand-accent/90 whitespace-nowrap">
@@ -389,21 +389,21 @@ export default function EstimateFollowUpPage() {
                 </div>
                 
                 <div className="space-y-6">
-                   <SpotlightCard spotlightColor="rgba(2, 132, 199, 0.05)" className="p-8 md:p-10 bg-surface border border-black/10 shadow-2xl shadow-black/[0.02] rounded-[2rem]">
+                   <SpotlightCard spotlightColor="rgba(79, 124, 122, 0.05)" className="p-8 md:p-10 bg-surface border border-black/10 shadow-2xl shadow-black/[0.02] rounded-[2rem]">
                       <h3 className="text-xl font-semibold text-brand-navy mb-4">Is this the same as a CRM setup?</h3>
                       <p className="text-lg text-text-secondary font-light leading-relaxed">
                         Not exactly. Sometimes tools are part of the solution, but this service starts with the process itself. The goal is to make follow-up cleaner and more consistent before layering on extra software.
                       </p>
                    </SpotlightCard>
                    
-                   <SpotlightCard spotlightColor="rgba(2, 132, 199, 0.05)" className="p-8 md:p-10 bg-surface border border-black/10 shadow-2xl shadow-black/[0.02] rounded-[2rem]">
+                   <SpotlightCard spotlightColor="rgba(79, 124, 122, 0.05)" className="p-8 md:p-10 bg-surface border border-black/10 shadow-2xl shadow-black/[0.02] rounded-[2rem]">
                       <h3 className="text-xl font-semibold text-brand-navy mb-4">Do I need automation for this to work?</h3>
                       <p className="text-lg text-text-secondary font-light leading-relaxed">
                         Not always. Some businesses just need a better manual process. Others benefit from light automation. The goal is not complexity. It is consistency.
                       </p>
                    </SpotlightCard>
 
-                   <SpotlightCard spotlightColor="rgba(2, 132, 199, 0.05)" className="p-8 md:p-10 bg-surface border border-black/10 shadow-2xl shadow-black/[0.02] rounded-[2rem]">
+                   <SpotlightCard spotlightColor="rgba(79, 124, 122, 0.05)" className="p-8 md:p-10 bg-surface border border-black/10 shadow-2xl shadow-black/[0.02] rounded-[2rem]">
                       <h3 className="text-xl font-semibold text-brand-navy mb-4">Who is this best for?</h3>
                       <p className="text-lg text-text-secondary font-light leading-relaxed">
                         It is best for local service businesses that are already sending estimates or handling quote requests, but know too many of those opportunities are fading out before they become booked work.

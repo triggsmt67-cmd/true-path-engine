@@ -138,7 +138,7 @@ const Solutions: React.FC = () => {
                                         className="block h-full decoration-transparent"
                                     >
                                         <SpotlightCard
-                                            spotlightColor="rgba(2, 132, 199, 0.05)"
+                                            spotlightColor="rgba(79, 124, 122, 0.05)"
                                             className="relative flex flex-col h-full bg-surface border border-black/5 rounded-standard p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 shadow-sm"
                                         >
                                             {/* Vertical Accent Line (Hover Only) */}
