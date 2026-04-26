@@ -12,37 +12,37 @@ const stackItems = [
         title: 'Weak Google Visibility',
         subtitle: 'People cannot hire you if they cannot find you.',
         icon: MapPin,
-        color: 'text-blue-400',
-        bg: 'bg-blue-400/10',
-        border: 'border-blue-400/20',
-        spotlight: 'rgba(96, 165, 250, 0.15)'
+        color: 'text-blue-600',
+        bg: 'bg-blue-600/10',
+        border: 'border-blue-600/20',
+        spotlight: 'rgba(37, 99, 235, 0.15)'
     },
     {
         title: 'Missed Calls & Slow Response',
         subtitle: 'Leads cool off fast when nobody answers or follows up.',
         icon: PhoneMissed,
-        color: 'text-purple-400',
-        bg: 'bg-purple-400/10',
-        border: 'border-purple-400/20',
-        spotlight: 'rgba(192, 132, 252, 0.15)'
+        color: 'text-purple-600',
+        bg: 'bg-purple-600/10',
+        border: 'border-purple-600/20',
+        spotlight: 'rgba(147, 51, 234, 0.15)'
     },
     {
         title: 'Thin Reviews & Weak Trust',
         subtitle: 'Good businesses lose work when proof is missing.',
         icon: Star,
-        color: 'text-emerald-400',
-        bg: 'bg-emerald-400/10',
-        border: 'border-emerald-400/20',
-        spotlight: 'rgba(52, 211, 153, 0.15)'
+        color: 'text-emerald-600',
+        bg: 'bg-emerald-600/10',
+        border: 'border-emerald-600/20',
+        spotlight: 'rgba(5, 150, 105, 0.15)'
     },
     {
         title: 'Wasted Spend & Leaky Conversion',
         subtitle: 'More traffic does not help if it never turns into calls.',
         icon: TrendingDown,
-        color: 'text-orange-400',
-        bg: 'bg-orange-400/10',
-        border: 'border-orange-400/20',
-        spotlight: 'rgba(251, 146, 60, 0.15)'
+        color: 'text-orange-600',
+        bg: 'bg-orange-600/10',
+        border: 'border-orange-600/20',
+        spotlight: 'rgba(234, 88, 12, 0.15)'
     }
 ];
 
@@ -54,10 +54,10 @@ const DecisionStack: React.FC<DecisionStackProps> = ({ disableSpotlight = false 
 
     return (
         <div className="w-full max-w-md mx-auto">
-            <div className="rounded-[32px] bg-background/80 backdrop-blur-xl border border-white/10 overflow-hidden shadow-2xl">
+            <div className="rounded-[32px] bg-surface/80 backdrop-blur-xl border border-black/5 overflow-hidden shadow-2xl">
                 {/* Header */}
-                <div className="px-6 py-5 border-b border-white/5 bg-white/[0.02]">
-                    <h3 className="text-sm font-bold text-secondary uppercase tracking-widest text-center">
+                <div className="px-6 py-5 border-b border-black/5 bg-black/[0.02]">
+                    <h3 className="text-sm font-bold text-brand-navy uppercase tracking-widest text-center">
                         Where Jobs Get Lost
                     </h3>
                 </div>
@@ -65,7 +65,7 @@ const DecisionStack: React.FC<DecisionStackProps> = ({ disableSpotlight = false 
                 {/* Stack Content */}
                 <div className="p-6 space-y-3 relative">
                     {/* Connecting Line */}
-                    <div className="absolute left-[2.85rem] top-10 bottom-24 w-px bg-gradient-to-b from-white/5 via-white/10 to-transparent z-0 dashed-line" />
+                    <div className="absolute left-[2.85rem] top-10 bottom-24 w-px bg-gradient-to-b from-black/5 via-black/10 to-transparent z-0 dashed-line" />
 
                     {stackItems.map((item, index) => (
                         <motion.div
@@ -76,7 +76,7 @@ const DecisionStack: React.FC<DecisionStackProps> = ({ disableSpotlight = false 
                             className="relative z-10"
                         >
                             <SpotlightCard
-                                className={`flex items-center gap-4 p-4 rounded-2xl border bg-background/50 ${item.border} border-opacity-30`}
+                                className={`flex items-center gap-4 p-4 rounded-2xl border bg-surface/50 ${item.border} border-opacity-30`}
                                 spotlightColor={item.spotlight}
                                 disabled={disableSpotlight}
                             >
@@ -85,10 +85,10 @@ const DecisionStack: React.FC<DecisionStackProps> = ({ disableSpotlight = false 
                                     <item.icon className="w-4 h-4" />
                                 </div>
                                 <div>
-                                    <div className={`font-semibold text-sm mb-0.5 text-gray-200`}>
+                                    <div className={`font-semibold text-sm mb-0.5 text-text-primary`}>
                                         {item.title}
                                     </div>
-                                    <div className="text-xs text-secondary/60 font-medium leading-snug">
+                                    <div className="text-xs text-text-secondary font-medium leading-snug">
                                         {item.subtitle}
                                     </div>
                                 </div>
@@ -104,7 +104,7 @@ const DecisionStack: React.FC<DecisionStackProps> = ({ disableSpotlight = false 
                         transition={{ delay: 0.85, duration: 0.3 }}
                         className="flex justify-center items-center py-2"
                     >
-                        <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wider text-secondary/40">Start with the leak, not more activity</span>
+                        <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wider text-text-secondary">Start with the leak, not more activity</span>
                     </motion.div>
 
                     {/* Final Output - Clickable Button */}
@@ -119,25 +119,25 @@ const DecisionStack: React.FC<DecisionStackProps> = ({ disableSpotlight = false 
                         transition={{ delay: 1.25, duration: 0.6, type: "spring", stiffness: 100 }}
                         className="relative z-10 block cursor-pointer group/btn no-underline"
                     >
-                        <div className="absolute -inset-0.5 bg-gradient-to-r from-primary/30 to-amber-900/40 rounded-2xl blur opacity-0 group-hover/btn:opacity-50 transition-opacity duration-500"></div>
-                        <div className="relative flex items-center justify-between p-5 rounded-2xl border border-primary/40 bg-background shadow-[0_10px_30px_-10px_rgba(0,0,0,0.3)] group-hover/btn:border-primary/60 group-hover/btn:shadow-[0_15px_35px_-10px_rgba(180,83,9,0.2)] transition-all duration-300">
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-red/30 to-brand-copper/40 rounded-2xl blur opacity-0 group-hover/btn:opacity-50 transition-opacity duration-500"></div>
+                        <div className="relative flex items-center justify-between p-5 rounded-2xl border border-brand-red/40 bg-surface shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] group-hover/btn:border-brand-red/60 group-hover/btn:shadow-[0_15px_35px_-10px_rgba(158,27,31,0.2)] transition-all duration-300">
 
                             <div className="flex items-center gap-4">
-                                <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shrink-0 shadow-lg shadow-primary/20 opacity-90 group-hover/btn:opacity-100 transition-opacity">
+                                <div className="w-10 h-10 rounded-full bg-brand-red flex items-center justify-center shrink-0 shadow-lg shadow-brand-red/20 opacity-90 group-hover/btn:opacity-100 transition-opacity">
                                     <CheckCircle2 className="w-5 h-5 text-white" />
                                 </div>
                                 <div>
-                                    <div className="font-bold text-white text-[1.05rem] mb-0.5 group-hover/btn:text-primary transition-colors duration-300">
+                                    <div className="font-bold text-text-primary text-[1.05rem] mb-0.5 group-hover/btn:text-brand-red transition-colors duration-300">
                                         Review My Current Setup
                                     </div>
-                                    <div className="text-[11px] sm:text-xs text-secondary/60 font-medium leading-relaxed group-hover/btn:text-white/70 transition-colors duration-300">
+                                    <div className="text-[11px] sm:text-xs text-text-secondary font-medium leading-relaxed group-hover/btn:text-brand-navy transition-colors duration-300">
                                         A quick 60-second review of where leads are leaking.<br className="hidden sm:block" /> No sales pitch. No upsells.
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover/btn:bg-primary group-hover/btn:text-white transition-all duration-300">
-                                <ArrowRight className="w-4 h-4 text-secondary group-hover/btn:text-white transition-colors" />
+                            <div className="w-8 h-8 rounded-full bg-black/5 flex items-center justify-center group-hover/btn:bg-brand-red group-hover/btn:text-white transition-all duration-300">
+                                <ArrowRight className="w-4 h-4 text-brand-navy group-hover/btn:text-white transition-colors" />
                             </div>
                         </div>
                     </motion.a>
