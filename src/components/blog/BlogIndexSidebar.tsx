@@ -73,7 +73,7 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
                     {selectedCategorySlug && (
                         <button
                             onClick={() => onCategoryClick(selectedCategorySlug)}
-                            className="text-[10px] font-bold text-brand-red hover:underline underline-offset-4 uppercase tracking-widest"
+                            className="text-[10px] font-bold text-brand-accent hover:underline underline-offset-4 uppercase tracking-widest"
                         >
                             Reset
                         </button>
@@ -89,15 +89,15 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
                                 key={cat.id}
                                 onClick={() => onCategoryClick(cat.slug)}
                                 className={`flex items-center justify-between group px-4 py-3 rounded-xl border-2 transition-all duration-300 ${isActive
-                                    ? 'bg-brand-red/10 border-brand-red/40 text-brand-red shadow-sm'
+                                    ? 'bg-brand-accent/10 border-brand-accent/40 text-brand-accent shadow-sm'
                                     : 'bg-surface border-black/5 text-brand-navy hover:border-black/20 hover:bg-background hover:shadow-md'
                                     }`}
                             >
                                 <div className="flex items-center gap-3">
-                                    <Icon className={`w-4 h-4 ${isActive ? 'text-brand-red' : 'text-brand-navy/30 group-hover:text-brand-red transition-colors'}`} />
+                                    <Icon className={`w-4 h-4 ${isActive ? 'text-brand-accent' : 'text-brand-navy/30 group-hover:text-brand-accent transition-colors'}`} />
                                     <span className="text-xs font-bold uppercase tracking-widest">{cat.name}</span>
                                 </div>
-                                <span className={`text-[10px] font-bold ${isActive ? 'text-brand-red' : 'text-brand-navy/20'}`}>
+                                <span className={`text-[10px] font-bold ${isActive ? 'text-brand-accent' : 'text-brand-navy/20'}`}>
                                     {cat.count}
                                 </span>
                             </button>
@@ -128,11 +128,11 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
                             className="group text-left p-2 -mx-2 rounded-2xl transition-all hover:bg-black/[0.02] decoration-transparent"
                         >
                             <div className="flex items-start gap-4">
-                                <div className="mt-1 flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center border-2 transition-all duration-300 bg-surface border-black/5 text-brand-red group-hover:border-brand-red/50 group-hover:bg-brand-red/10 shadow-sm">
+                                <div className="mt-1 flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center border-2 transition-all duration-300 bg-surface border-black/5 text-brand-accent group-hover:border-brand-accent/50 group-hover:bg-brand-accent/10 shadow-sm">
                                     <Bookmark className="w-4 h-4" />
                                 </div>
                                 <div className="space-y-1.5 flex-1">
-                                    <span className="block text-[13px] font-bold leading-tight transition-colors text-brand-navy group-hover:text-brand-red uppercase tracking-wider">
+                                    <span className="block text-[13px] font-bold leading-tight transition-colors text-brand-navy group-hover:text-brand-accent uppercase tracking-wider">
                                         {title}
                                     </span>
                                     {excerpt && (
@@ -142,16 +142,16 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
                                     )}
                                 </div>
                                 <div className="opacity-0 group-hover:opacity-100 transition-opacity self-center">
-                                    <ArrowRight className="w-3.5 h-3.5 text-brand-red" />
+                                    <ArrowRight className="w-3.5 h-3.5 text-brand-accent" />
                                 </div>
                             </div>
                         </Link>
                     )})}
                 </nav>
 
-                <div className="mt-10 p-8 rounded-standard border-2 transition-all relative overflow-hidden bg-brand-red/5 border-brand-red/10 shadow-xl">
-                    <div className="absolute -top-12 -right-12 w-24 h-24 blur-3xl rounded-full bg-brand-red/10 pointer-events-none" />
-                    <h5 className="text-[10px] font-bold uppercase tracking-[0.25em] mb-4 text-brand-red">Technical Updates</h5>
+                <div className="mt-10 p-8 rounded-standard border-2 transition-all relative overflow-hidden bg-brand-accent/5 border-brand-accent/10 shadow-xl">
+                    <div className="absolute -top-12 -right-12 w-24 h-24 blur-3xl rounded-full bg-brand-accent/10 pointer-events-none" />
+                    <h5 className="text-[10px] font-bold uppercase tracking-[0.25em] mb-4 text-brand-accent">Technical Updates</h5>
                     <p className="text-xs leading-relaxed mb-6 font-bold text-text-secondary uppercase tracking-widest">
                         Direct, technical insights on AI & conversion strategy delivered to your inbox.
                     </p>
@@ -159,9 +159,9 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
                         <input
                             type="email"
                             placeholder="Your email address"
-                            className="w-full text-xs px-4 py-3 rounded-xl border-2 bg-surface focus:outline-none focus:border-brand-red/40 transition-all font-bold border-black/5 text-brand-navy placeholder:text-brand-navy/30"
+                            className="w-full text-xs px-4 py-3 rounded-xl border-2 bg-surface focus:outline-none focus:border-brand-accent/40 transition-all font-bold border-black/5 text-brand-navy placeholder:text-brand-navy/30"
                         />
-                        <button className="w-full py-4 bg-brand-red text-white rounded-xl hover:bg-brand-red/90 transition-all font-bold text-xs flex items-center justify-center gap-2 group/sub shadow-lg shadow-brand-red/20 active:scale-[0.98] uppercase tracking-widest">
+                        <button className="w-full py-4 bg-brand-accent text-white rounded-xl hover:bg-brand-accent/90 transition-all font-bold text-xs flex items-center justify-center gap-2 group/sub shadow-lg shadow-brand-accent/20 active:scale-[0.98] uppercase tracking-widest">
                             Join the Technical Vault
                             <ArrowRight className="w-3.5 h-3.5 group-hover/sub:translate-x-1 transition-transform" />
                         </button>
@@ -170,12 +170,12 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
 
                 {/* Author Sidebar */}
                 <div className="mt-10 p-8 rounded-standard border-2 transition-all relative overflow-hidden bg-surface border-black/5 shadow-xl">
-                    <div className="absolute -top-10 -left-10 w-32 h-32 blur-[80px] rounded-full opacity-10 pointer-events-none bg-brand-red/40" />
+                    <div className="absolute -top-10 -left-10 w-32 h-32 blur-[80px] rounded-full opacity-10 pointer-events-none bg-brand-accent/40" />
 
                     <h4 className="text-[10px] font-bold tracking-[0.25em] uppercase mb-8 text-text-secondary/40">Connect</h4>
 
                     <div className="flex items-center gap-5 mb-8 relative z-10">
-                        <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 p-1 border-brand-red/20 bg-brand-red/10">
+                        <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 p-1 border-brand-accent/20 bg-brand-accent/10">
                             <img
                                 src="https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
                                 className="w-full h-full object-cover object-top rounded-[12px]"
@@ -185,7 +185,7 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
                         </div>
                         <div>
                             <div className="font-bold text-xl tracking-tight text-brand-navy uppercase">Trevor Riggs</div>
-                            <div className="text-brand-red text-[10px] font-bold uppercase tracking-[0.15em]">Founder / Architect</div>
+                            <div className="text-brand-accent text-[10px] font-bold uppercase tracking-[0.15em]">Founder / Architect</div>
                         </div>
                     </div>
 

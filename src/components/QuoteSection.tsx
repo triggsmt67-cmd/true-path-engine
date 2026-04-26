@@ -14,7 +14,7 @@ const QuoteSection: React.FC = () => {
           transition={{ duration: 1.2, ease: "easeOut" }}
           className="font-serif text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-brand-navy leading-[1.1] mb-8 uppercase"
         >
-          The hardest part is <span className="text-brand-red italic">not</span> doing more.<br className="hidden md:block" />
+          The hardest part is <span className="text-brand-accent italic">not</span> doing more.<br className="hidden md:block" />
           It is knowing what to fix first.
         </motion.h2>
 

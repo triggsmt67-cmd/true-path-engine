@@ -17,8 +17,8 @@ const coreServices = [
     description: "Stop losing jobs to missed calls, slow replies, and follow-up gaps that cool leads off fast.",
     icon: "Zap",
     href: "/solutions/lead-velocity/",
-    color: "text-brand-red",
-    spotlight: "rgba(158, 27, 31, 0.05)"
+    color: "text-brand-accent",
+    spotlight: "rgba(2, 132, 199, 0.05)"
   },
   {
     title: "Review Generation Systems",
@@ -97,7 +97,7 @@ export default async function SolutionsHubPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-text-primary font-sans selection:bg-brand-red selection:text-brand-navy relative">
+    <div className="min-h-screen bg-background text-text-primary font-sans selection:bg-brand-accent selection:text-brand-navy relative">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(solutionsSchema) }}

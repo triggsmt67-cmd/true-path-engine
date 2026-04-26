@@ -43,7 +43,7 @@ const FeatureSplit: React.FC = () => {
                 "Decisions made under pressure"
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-4 text-base text-text-secondary group cursor-default">
-                  <div className="p-1.5 rounded-standard bg-surface border border-black/5 text-brand-red/40 group-hover:bg-brand-red group-hover:text-white transition-all duration-300 shrink-0 shadow-sm">
+                  <div className="p-1.5 rounded-standard bg-surface border border-black/5 text-brand-accent/40 group-hover:bg-brand-accent group-hover:text-white transition-all duration-300 shrink-0 shadow-sm">
                     <X className="w-4 h-4" />
                   </div>
                   <span className="group-hover:text-brand-navy transition-colors duration-300">{item}</span>
@@ -61,7 +61,7 @@ const FeatureSplit: React.FC = () => {
             className="flex flex-col relative mt-8 lg:mt-0"
           >
             {/* Subtle backlight for right column */}
-            <div className="absolute -left-10 top-0 w-full h-full bg-brand-red/5 blur-[100px] rounded-full pointer-events-none opacity-30"></div>
+            <div className="absolute -left-10 top-0 w-full h-full bg-brand-accent/5 blur-[100px] rounded-full pointer-events-none opacity-30"></div>
 
             <div className="text-brand-navy text-lg md:text-xl leading-relaxed space-y-6 mb-10 relative z-10">
               <p>
@@ -84,10 +84,10 @@ const FeatureSplit: React.FC = () => {
                 "Decisions made with context"
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-4 text-base text-brand-navy font-bold group cursor-default">
-                  <div className="p-1.5 rounded-standard bg-brand-red border border-brand-red/20 text-white group-hover:bg-brand-navy transition-all duration-300 shrink-0 shadow-lg shadow-brand-red/10">
+                  <div className="p-1.5 rounded-standard bg-brand-accent border border-brand-accent/20 text-white group-hover:bg-brand-navy transition-all duration-300 shrink-0 shadow-lg shadow-brand-accent/10">
                     <Check className="w-4 h-4" />
                   </div>
-                  <span className="group-hover:text-brand-red transition-colors duration-300 uppercase tracking-wide text-sm">{item}</span>
+                  <span className="group-hover:text-brand-accent transition-colors duration-300 uppercase tracking-wide text-sm">{item}</span>
                 </li>
               ))}
             </ul>

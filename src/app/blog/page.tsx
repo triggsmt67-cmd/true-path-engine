@@ -141,7 +141,7 @@ export default async function BlogPage() {
   };
 
   return (
-    <main className="bg-background min-h-screen flex flex-col selection:bg-brand-red selection:text-white">
+    <main className="bg-background min-h-screen flex flex-col selection:bg-brand-accent selection:text-white">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }}

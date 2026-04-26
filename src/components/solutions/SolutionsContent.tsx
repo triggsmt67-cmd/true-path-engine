@@ -55,15 +55,15 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
             className="max-w-4xl"
           >
              <div className="flex items-center gap-3 mb-8">
-              <span className="w-2 h-2 rounded-full bg-brand-red animate-pulse shadow-[0_0_10px_#9E1B1F]"></span>
-              <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-brand-red uppercase">
+              <span className="w-2 h-2 rounded-full bg-brand-accent animate-pulse shadow-[0_0_10px_#9E1B1F]"></span>
+              <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-brand-accent uppercase">
                 Services for Owner-Operated Service Businesses
               </span>
             </div>
             
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-10 tracking-tighter leading-[1.1] text-brand-navy uppercase">
               What I Help Service <br className="hidden md:block" />
-              <span className="text-brand-red italic">Businesses Fix.</span>
+              <span className="text-brand-accent italic">Businesses Fix.</span>
             </h1>
             
             <p className="text-xl md:text-2xl text-text-secondary mb-6 max-w-3xl leading-relaxed font-bold">
@@ -80,9 +80,9 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
                 href="https://calendly.com/triggsmt67"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative inline-flex h-14 md:h-16 overflow-hidden rounded-standard p-[1px] focus:outline-none group shadow-lg shadow-brand-red/10 w-full sm:w-auto transition-all hover:scale-[1.02] active:scale-95 duration-300"
+                className="relative inline-flex h-14 md:h-16 overflow-hidden rounded-standard p-[1px] focus:outline-none group shadow-lg shadow-brand-accent/10 w-full sm:w-auto transition-all hover:scale-[1.02] active:scale-95 duration-300"
               >
-                <span className="absolute inset-0 bg-brand-red group-hover:bg-[#85161a] transition-colors duration-500" />
+                <span className="absolute inset-0 bg-brand-accent group-hover:bg-[#85161a] transition-colors duration-500" />
                 <span className="relative inline-flex h-full w-full cursor-pointer items-center justify-center rounded-standard bg-transparent px-8 md:px-10 text-sm md:text-base font-bold text-white uppercase tracking-widest gap-3">
                   Review My Current Setup
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -130,15 +130,15 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
                   >
                     <SpotlightCard
                       spotlightColor={service.spotlight}
-                      className="p-10 md:p-12 bg-surface border border-black/5 shadow-sm rounded-standard group cursor-pointer hover:border-brand-red/20 transition-all duration-300 h-full flex flex-col hover:shadow-xl"
+                      className="p-10 md:p-12 bg-surface border border-black/5 shadow-sm rounded-standard group cursor-pointer hover:border-brand-accent/20 transition-all duration-300 h-full flex flex-col hover:shadow-xl"
                     >
                       <div className="flex items-center gap-4 mb-8">
-                        <div className={`w-14 h-14 rounded-xl bg-background flex items-center justify-center ${service.color} group-hover:bg-brand-red/5 transition-colors`}>
+                        <div className={`w-14 h-14 rounded-xl bg-background flex items-center justify-center ${service.color} group-hover:bg-brand-accent/5 transition-colors`}>
                           <IconComponent className="w-7 h-7" />
                         </div>
                       </div>
                       
-                      <h3 className="text-2xl font-bold text-brand-navy mb-4 tracking-tight leading-snug group-hover:text-brand-red transition-colors uppercase">{service.title}</h3>
+                      <h3 className="text-2xl font-bold text-brand-navy mb-4 tracking-tight leading-snug group-hover:text-brand-accent transition-colors uppercase">{service.title}</h3>
                       <p className="text-base text-text-secondary/80 font-bold leading-relaxed mb-10">
                         {service.description}
                       </p>
@@ -165,9 +165,9 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
         <div className="max-w-[1200px] mx-auto px-6">
           <SpotlightCard 
             className="p-12 md:p-20 h-full flex flex-col bg-brand-navy border border-black/5 rounded-standard group overflow-hidden shadow-xl shadow-black/[0.02]"
-            spotlightColor="rgba(158, 27, 31, 0.05)"
+            spotlightColor="rgba(2, 132, 199, 0.05)"
           >
-            <div className="absolute top-0 left-0 w-2 h-full bg-brand-red" />
+            <div className="absolute top-0 left-0 w-2 h-full bg-brand-accent" />
             
             <div className="flex flex-col md:flex-row gap-12 items-center">
               <div className="flex-1">
@@ -178,7 +178,7 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
                 
                 <h3 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight uppercase">
                   Start with a <br className="hidden md:block" />
-                  <span className="text-brand-red italic">Demand Leak Audit.</span>
+                  <span className="text-brand-accent italic">Demand Leak Audit.</span>
                 </h3>
                 
                 <p className="text-lg md:text-xl text-white/80 font-bold leading-relaxed mb-8 max-w-2xl">
@@ -196,7 +196,7 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
                     rel="noopener noreferrer"
                     className="relative inline-flex h-14 md:h-16 overflow-hidden rounded-standard p-[1px] focus:outline-none group shadow-lg w-full sm:w-auto transition-all hover:scale-[1.02] active:scale-95 duration-300"
                   >
-                    <span className="absolute inset-0 bg-brand-red" />
+                    <span className="absolute inset-0 bg-brand-accent" />
                     <span className="relative inline-flex h-full w-full cursor-pointer items-center justify-center rounded-standard bg-transparent px-8 md:px-10 text-sm md:text-base font-bold text-white uppercase tracking-widest gap-3">
                       Review My Current Setup
                       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -224,7 +224,7 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
             
             <Link 
               href="/blog"
-              className="inline-flex items-center gap-2 text-brand-red text-xs font-bold hover:gap-3 transition-all tracking-[0.2em] uppercase border-2 border-brand-red/20 px-8 py-3 rounded-standard hover:bg-brand-red/5 whitespace-nowrap"
+              className="inline-flex items-center gap-2 text-brand-accent text-xs font-bold hover:gap-3 transition-all tracking-[0.2em] uppercase border-2 border-brand-accent/20 px-8 py-3 rounded-standard hover:bg-brand-accent/5 whitespace-nowrap"
             >
               See All Insights
               <ArrowRight className="w-4 h-4" />
@@ -258,18 +258,18 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
                 className="h-full"
               >
                 <Link href={`/blog/${article.slug}`} className="block h-full group decoration-transparent">
-                  <div className="p-8 h-full bg-surface border border-black/5 shadow-sm rounded-standard flex flex-col transition-all duration-300 group-hover:border-brand-red/20 group-hover:shadow-xl group-hover:-translate-y-1">
+                  <div className="p-8 h-full bg-surface border border-black/5 shadow-sm rounded-standard flex flex-col transition-all duration-300 group-hover:border-brand-accent/20 group-hover:shadow-xl group-hover:-translate-y-1">
                     <div className="mb-6 flex gap-3 items-center">
-                      <FileText className="w-4 h-4 text-brand-red" />
+                      <FileText className="w-4 h-4 text-brand-accent" />
                       <span className="text-[10px] uppercase tracking-[0.2em] text-text-secondary/50 font-bold">Technical Article</span>
                     </div>
-                    <h3 className="text-xl font-bold text-brand-navy mb-4 tracking-tight leading-snug group-hover:text-brand-red transition-colors uppercase">
+                    <h3 className="text-xl font-bold text-brand-navy mb-4 tracking-tight leading-snug group-hover:text-brand-accent transition-colors uppercase">
                       {article.title}
                     </h3>
                     <p className="text-sm text-text-secondary/70 font-bold leading-relaxed mb-8 flex-1">
                       {article.excerpt}
                     </p>
-                    <div className="flex items-center gap-2 text-[10px] font-bold text-brand-red uppercase tracking-widest group-hover:gap-3 transition-all">
+                    <div className="flex items-center gap-2 text-[10px] font-bold text-brand-accent uppercase tracking-widest group-hover:gap-3 transition-all">
                       Read Insight
                       <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                     </div>
@@ -283,16 +283,16 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
 
       {/* Hub Footer CTA */}
       <section className="py-24 md:py-32 relative overflow-hidden border-t border-black/5 text-center">
-        <div className="absolute inset-0 bg-brand-red/5 blur-[120px] pointer-events-none" />
+        <div className="absolute inset-0 bg-brand-accent/5 blur-[120px] pointer-events-none" />
         <div className="max-w-3xl mx-auto px-6 relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-red/20 bg-brand-red/5 text-brand-red text-[10px] uppercase font-bold tracking-[0.2em] mb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-brand-accent/20 bg-brand-accent/5 text-brand-accent text-[10px] uppercase font-bold tracking-[0.2em] mb-8">
             <Target className="w-3 h-3" />
             Diagnostic Standard
           </div>
 
           <h2 className="text-4xl md:text-6xl font-bold text-brand-navy mb-6 tracking-tighter leading-tight uppercase">
             Trust But <br className="hidden sm:block" />
-            <span className="text-brand-red italic">Verify.</span>
+            <span className="text-brand-accent italic">Verify.</span>
           </h2>
           
           <p className="text-xl md:text-2xl text-text-secondary font-bold mb-8 uppercase tracking-widest">
@@ -308,9 +308,9 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
               href="https://calendly.com/triggsmt67"
               target="_blank"
               rel="noopener noreferrer"
-              className="relative inline-flex h-16 md:h-20 overflow-hidden rounded-standard p-[1px] focus:outline-none group shadow-lg shadow-brand-red/10 w-full sm:w-auto transition-all hover:scale-[1.02] active:scale-95 duration-300"
+              className="relative inline-flex h-16 md:h-20 overflow-hidden rounded-standard p-[1px] focus:outline-none group shadow-lg shadow-brand-accent/10 w-full sm:w-auto transition-all hover:scale-[1.02] active:scale-95 duration-300"
             >
-              <span className="absolute inset-0 bg-brand-red group-hover:bg-[#85161a] transition-colors duration-500" />
+              <span className="absolute inset-0 bg-brand-accent group-hover:bg-[#85161a] transition-colors duration-500" />
               <span className="relative inline-flex h-full w-full cursor-pointer items-center justify-center rounded-standard bg-transparent px-10 md:px-14 text-base md:text-lg font-bold text-white uppercase tracking-widest gap-4">
                 Schedule A Diagnostic
                 <ArrowRight className="w-6 h-6 group-hover:translate-x-1.5 transition-transform duration-300" />

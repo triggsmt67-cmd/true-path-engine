@@ -55,7 +55,7 @@ export default function Page() {
     ]
   };
   return (
-    <div className="min-h-screen bg-background text-text-primary font-sans selection:bg-brand-red selection:text-white relative">
+    <div className="min-h-screen bg-background text-text-primary font-sans selection:bg-brand-accent selection:text-white relative">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }}

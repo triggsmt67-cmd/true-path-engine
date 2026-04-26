@@ -116,7 +116,7 @@ const Navbar: React.FC = () => {
           className="flex items-center gap-2 group cursor-pointer focus:outline-none decoration-transparent"
         >
           <span className="font-serif font-bold text-xl tracking-tight text-brand-navy">
-            True Path <span className="text-brand-red">Digital</span>
+            True Path <span className="text-brand-accent">Digital</span>
           </span>
         </Link>
 
@@ -152,7 +152,7 @@ const Navbar: React.FC = () => {
             href={CONTACT_LINKS.calendar}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-brand-red hover:bg-[#85161a] text-white px-6 py-2.5 rounded-standard text-xs font-bold uppercase tracking-widest transition-all shadow-md shadow-brand-red/10 transform hover:-translate-y-0.5 decoration-transparent"
+            className="inline-block bg-brand-accent hover:bg-[#85161a] text-white px-6 py-2.5 rounded-standard text-xs font-bold uppercase tracking-widest transition-all shadow-md shadow-brand-accent/10 transform hover:-translate-y-0.5 decoration-transparent"
           >
             Review My Current Setup
           </a>
@@ -182,7 +182,7 @@ const Navbar: React.FC = () => {
                   key={item.label}
                   href={item.href}
                   className={`text-lg font-bold uppercase tracking-wider decoration-transparent ${
-                    isActive(item.href) ? 'text-brand-red' : 'text-text-secondary hover:text-brand-navy'
+                    isActive(item.href) ? 'text-brand-accent' : 'text-text-secondary hover:text-brand-navy'
                   }`}
                   onClick={(e) => handleAnchorClick(e, item.href)}
                 >
@@ -193,7 +193,7 @@ const Navbar: React.FC = () => {
                 href={CONTACT_LINKS.calendar}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-center bg-brand-red w-full py-4 rounded-standard text-white font-bold uppercase tracking-widest decoration-transparent shadow-lg shadow-brand-red/20"
+                className="block text-center bg-brand-accent w-full py-4 rounded-standard text-white font-bold uppercase tracking-widest decoration-transparent shadow-lg shadow-brand-accent/20"
               >
                 Review My Current Setup
               </a>

@@ -104,11 +104,11 @@ const BlogList: React.FC<BlogListProps> = ({ posts, categories }) => {
     <div className="pt-32 pb-20 min-h-screen bg-background">
       {/* Hero Header */}
       <section className="relative px-6 overflow-hidden pt-12">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] blur-[150px] rounded-full pointer-events-none bg-brand-red/5" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] blur-[150px] rounded-full pointer-events-none bg-brand-accent/5" />
         <div className="max-w-[1400px] mx-auto text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
             <div className="flex items-center justify-center gap-3 mb-8">
-              <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-brand-red">The Intelligence Vault</span>
+              <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-brand-accent">The Intelligence Vault</span>
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold tracking-tight leading-[1.1] mb-8 text-brand-navy uppercase">
               Clear thinking for when the <br className="hidden md:block" />
@@ -126,7 +126,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts, categories }) => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search by technical question…"
-                className="w-full border-2 rounded-standard py-4 pl-12 pr-6 transition-all text-sm outline-none border-black/5 bg-surface text-brand-navy focus:border-brand-red/40 placeholder:text-brand-navy/30 shadow-sm"
+                className="w-full border-2 rounded-standard py-4 pl-12 pr-6 transition-all text-sm outline-none border-black/5 bg-surface text-brand-navy focus:border-brand-accent/40 placeholder:text-brand-navy/30 shadow-sm"
               />
             </div>
           </motion.div>
@@ -139,7 +139,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts, categories }) => {
           <button
             onClick={() => setSelectedCategorySlug(null)}
             className={`px-6 py-3 rounded-standard text-xs font-bold whitespace-nowrap border-2 transition-all uppercase tracking-widest ${!selectedCategorySlug
-              ? 'bg-brand-red border-brand-red text-white shadow-lg shadow-brand-red/20'
+              ? 'bg-brand-accent border-brand-accent text-white shadow-lg shadow-brand-accent/20'
               : 'bg-surface border-black/5 text-text-secondary'
               }`}
           >
@@ -150,7 +150,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts, categories }) => {
               key={cat.id}
               onClick={() => handleCategoryClick(cat.slug)}
               className={`px-6 py-3 rounded-standard text-xs font-bold whitespace-nowrap border-2 transition-all uppercase tracking-widest ${selectedCategorySlug === cat.slug
-                ? 'bg-brand-red border-brand-red text-white shadow-lg shadow-brand-red/20'
+                ? 'bg-brand-accent border-brand-accent text-white shadow-lg shadow-brand-accent/20'
                 : 'bg-surface border-black/5 text-text-secondary'
                 }`}
             >
@@ -174,7 +174,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts, categories }) => {
                 <div className="flex flex-col gap-6 mb-16">
                   <div className="flex items-center gap-4">
                     {activeCategory ? (
-                      <div className="p-4 rounded-xl bg-brand-red/10 text-brand-red border-2 border-brand-red/20 shadow-sm shadow-brand-red/5">
+                      <div className="p-4 rounded-xl bg-brand-accent/10 text-brand-accent border-2 border-brand-accent/20 shadow-sm shadow-brand-accent/5">
                         <FileText className="w-8 h-8" />
                       </div>
                     ) : (
@@ -207,12 +207,12 @@ const BlogList: React.FC<BlogListProps> = ({ posts, categories }) => {
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: idx * 0.05 }}
-                          className="group relative border-2 rounded-standard p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-10 transition-all cursor-pointer bg-surface border-black/5 hover:border-brand-red/40 hover:shadow-xl"
+                          className="group relative border-2 rounded-standard p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-10 transition-all cursor-pointer bg-surface border-black/5 hover:border-brand-accent/40 hover:shadow-xl"
                         >
                           <div className="flex-1 space-y-5">
                             <div className="flex items-center gap-5">
                               {post.categories?.nodes.filter(c => c.slug !== 'foundational').map((cat) => (
-                                <span key={cat.slug} className="text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded border-2 bg-brand-red/5 border-brand-red/10 text-brand-red whitespace-nowrap">
+                                <span key={cat.slug} className="text-[10px] font-bold tracking-[0.2em] uppercase px-3 py-1 rounded border-2 bg-brand-accent/5 border-brand-accent/10 text-brand-accent whitespace-nowrap">
                                   {cat.name}
                                 </span>
                               ))}
@@ -220,11 +220,11 @@ const BlogList: React.FC<BlogListProps> = ({ posts, categories }) => {
                                 <Clock className="w-3.5 h-3.5" />{new Date(post.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                               </div>
                             </div>
-                            <h3 className="text-2xl md:text-3xl font-bold tracking-tight transition-colors group-hover:text-brand-red text-brand-navy uppercase" dangerouslySetInnerHTML={{ __html: post.title }} />
+                            <h3 className="text-2xl md:text-3xl font-bold tracking-tight transition-colors group-hover:text-brand-accent text-brand-navy uppercase" dangerouslySetInnerHTML={{ __html: post.title }} />
                             <div className="text-base md:text-lg leading-relaxed font-bold line-clamp-2 transition-colors text-text-secondary/70 uppercase tracking-widest" dangerouslySetInnerHTML={{ __html: post.excerpt }} />
                           </div>
 
-                          <div className="flex items-center justify-center w-14 h-14 rounded-full border-2 transition-all bg-background border-black/5 text-brand-navy/20 group-hover:bg-brand-red group-hover:border-brand-red group-hover:text-white shrink-0 shadow-sm">
+                          <div className="flex items-center justify-center w-14 h-14 rounded-full border-2 transition-all bg-background border-black/5 text-brand-navy/20 group-hover:bg-brand-accent group-hover:border-brand-accent group-hover:text-white shrink-0 shadow-sm">
                             <ChevronRight className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" />
                           </div>
                         </motion.div>

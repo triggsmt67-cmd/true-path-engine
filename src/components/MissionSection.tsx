@@ -11,7 +11,7 @@ const MissionSection: React.FC = () => {
                 <div className="max-w-5xl mx-auto">
                     {/* Subtle Label - Secondary */}
                     <div className="flex items-center gap-3 mb-12">
-                        <div className="h-px w-8 bg-brand-red"></div>
+                        <div className="h-px w-8 bg-brand-accent"></div>
                         <span className="text-xs font-bold text-text-secondary uppercase tracking-[0.2em]">The Real Problem</span>
                     </div>
 

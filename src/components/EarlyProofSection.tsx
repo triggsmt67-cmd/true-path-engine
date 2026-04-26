@@ -48,7 +48,7 @@ const EarlyProofSection: React.FC = () => {
             className="flex items-center gap-4"
           >
             <h2 className="text-sm md:text-base font-bold text-brand-navy tracking-[0.2em] uppercase">
-              Our <span className="text-brand-red italic">Specializations</span>
+              Our <span className="text-brand-accent italic">Specializations</span>
             </h2>
             <div className="h-px w-full bg-gradient-to-r from-black/10 to-transparent flex-1"></div>
           </motion.div>
@@ -66,15 +66,15 @@ const EarlyProofSection: React.FC = () => {
               className="h-full"
             >
               <SpotlightCard
-                spotlightColor="rgba(158, 27, 31, 0.03)"
-                className="flex flex-col h-full bg-surface border border-black/5 rounded-standard p-10 md:p-12 hover:border-brand-red/20 transition-all group shadow-sm hover:shadow-xl hover:shadow-black/[0.02]"
+                spotlightColor="rgba(2, 132, 199, 0.03)"
+                className="flex flex-col h-full bg-surface border border-black/5 rounded-standard p-10 md:p-12 hover:border-brand-accent/20 transition-all group shadow-sm hover:shadow-xl hover:shadow-black/[0.02]"
               >
                 {/* Client Info */}
                 <div className="mb-8 flex-1 relative">
-                  <div className="text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] text-brand-red mb-3">
+                  <div className="text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] text-brand-accent mb-3">
                     {client.descriptor}
                   </div>
-                  <h3 className="text-2xl font-bold text-brand-navy mb-4 tracking-tight uppercase group-hover:text-brand-red transition-colors">
+                  <h3 className="text-2xl font-bold text-brand-navy mb-4 tracking-tight uppercase group-hover:text-brand-accent transition-colors">
                     {client.name}
                   </h3>
                   <p className="text-base text-text-secondary leading-relaxed font-medium">

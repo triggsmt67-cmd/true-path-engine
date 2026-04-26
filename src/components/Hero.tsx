@@ -41,7 +41,7 @@ const Hero: React.FC = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background"></div>
         
         {/* Subtle Spline/3D element - Lightened */}
-        <div className="absolute right-[-10%] top-[-10%] w-[60%] h-[80%] opacity-20 blur-3xl bg-brand-red/10 rounded-full"></div>
+        <div className="absolute right-[-10%] top-[-10%] w-[60%] h-[80%] opacity-20 blur-3xl bg-brand-accent/10 rounded-full"></div>
         <div className="absolute left-[-5%] bottom-[-5%] w-[40%] h-[60%] opacity-10 blur-3xl bg-brand-navy/20 rounded-full"></div>
       </div>
 
@@ -57,7 +57,7 @@ const Hero: React.FC = () => {
           >
             {/* Label */}
             <motion.div variants={itemVariants} className="flex items-center gap-3 mb-6 md:mb-8">
-              <span className="w-2 h-2 rounded-full bg-brand-red"></span>
+              <span className="w-2 h-2 rounded-full bg-brand-accent"></span>
               <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-brand-navy uppercase">
                 For Montana Service Businesses
               </span>
@@ -69,7 +69,7 @@ const Hero: React.FC = () => {
                 text="Clearer marketing decisions for owner-operated service businesses"
                 className="text-3xl sm:text-4xl md:text-6xl lg:text-[4rem] xl:text-[5rem]"
                 highlightWords={["marketing", "decisions"]}
-                highlightClassName="text-brand-red"
+                highlightClassName="text-brand-accent"
                 delay={0.1}
               />
             </h1>
@@ -87,7 +87,7 @@ const Hero: React.FC = () => {
                     href={CONTACT_LINKS.calendar}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex h-14 md:h-16 items-center justify-center rounded-standard bg-brand-red px-8 md:px-10 text-sm md:text-base font-bold text-white gap-3 transition-all hover:bg-[#85161a] hover:scale-[1.02] active:scale-95 duration-300 shadow-lg shadow-brand-red/20 whitespace-nowrap"
+                    className="inline-flex h-14 md:h-16 items-center justify-center rounded-standard bg-brand-accent px-8 md:px-10 text-sm md:text-base font-bold text-white gap-3 transition-all hover:bg-[#85161a] hover:scale-[1.02] active:scale-95 duration-300 shadow-lg shadow-brand-accent/20 whitespace-nowrap"
                   >
                     Review My Current Setup
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -106,7 +106,7 @@ const Hero: React.FC = () => {
 
               <div className="flex flex-col items-center lg:items-start gap-3 mt-2">
                 <div className="flex items-center gap-2 text-sm text-text-secondary font-medium">
-                  <CheckCircle2 className="w-4 h-4 text-brand-red shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-brand-accent shrink-0" />
                   <span className="md:whitespace-nowrap">Takes 60 seconds. No sales pitch. No upsells.</span>
                 </div>
               </div>

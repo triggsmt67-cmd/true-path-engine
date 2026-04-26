@@ -119,15 +119,15 @@ const DecisionStack: React.FC<DecisionStackProps> = ({ disableSpotlight = false 
                         transition={{ delay: 1.25, duration: 0.6, type: "spring", stiffness: 100 }}
                         className="relative z-10 block cursor-pointer group/btn no-underline"
                     >
-                        <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-red/30 to-brand-copper/40 rounded-2xl blur opacity-0 group-hover/btn:opacity-50 transition-opacity duration-500"></div>
-                        <div className="relative flex items-center justify-between p-5 rounded-2xl border border-brand-red/40 bg-surface shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] group-hover/btn:border-brand-red/60 group-hover/btn:shadow-[0_15px_35px_-10px_rgba(158,27,31,0.2)] transition-all duration-300">
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-accent/30 to-brand-copper/40 rounded-2xl blur opacity-0 group-hover/btn:opacity-50 transition-opacity duration-500"></div>
+                        <div className="relative flex items-center justify-between p-5 rounded-2xl border border-brand-accent/40 bg-surface shadow-[0_10px_30px_-10px_rgba(0,0,0,0.1)] group-hover/btn:border-brand-accent/60 group-hover/btn:shadow-[0_15px_35px_-10px_rgba(2,132,199,0.2)] transition-all duration-300">
 
                             <div className="flex items-center gap-4">
-                                <div className="w-10 h-10 rounded-full bg-brand-red flex items-center justify-center shrink-0 shadow-lg shadow-brand-red/20 opacity-90 group-hover/btn:opacity-100 transition-opacity">
+                                <div className="w-10 h-10 rounded-full bg-brand-accent flex items-center justify-center shrink-0 shadow-lg shadow-brand-accent/20 opacity-90 group-hover/btn:opacity-100 transition-opacity">
                                     <CheckCircle2 className="w-5 h-5 text-white" />
                                 </div>
                                 <div>
-                                    <div className="font-bold text-text-primary text-[1.05rem] mb-0.5 group-hover/btn:text-brand-red transition-colors duration-300">
+                                    <div className="font-bold text-text-primary text-[1.05rem] mb-0.5 group-hover/btn:text-brand-accent transition-colors duration-300">
                                         Review My Current Setup
                                     </div>
                                     <div className="text-[11px] sm:text-xs text-text-secondary font-medium leading-relaxed group-hover/btn:text-brand-navy transition-colors duration-300">
@@ -136,7 +136,7 @@ const DecisionStack: React.FC<DecisionStackProps> = ({ disableSpotlight = false 
                                 </div>
                             </div>
 
-                            <div className="w-8 h-8 rounded-full bg-black/5 flex items-center justify-center group-hover/btn:bg-brand-red group-hover/btn:text-white transition-all duration-300">
+                            <div className="w-8 h-8 rounded-full bg-black/5 flex items-center justify-center group-hover/btn:bg-brand-accent group-hover/btn:text-white transition-all duration-300">
                                 <ArrowRight className="w-4 h-4 text-brand-navy group-hover/btn:text-white transition-colors" />
                             </div>
                         </div>

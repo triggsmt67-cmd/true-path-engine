@@ -11,7 +11,7 @@ const config: Config = {
         extend: {
             colors: {
                 brand: {
-                    red: "#D32F2F", // Brighter red that pairs well with navy
+                    accent: "#0284C7", // Sky blue that conveys trust and pairs perfectly with navy
                     navy: "#0F2233",
                     copper: "#B87333",
                 },

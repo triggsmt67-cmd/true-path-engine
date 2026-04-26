@@ -138,15 +138,15 @@ const Solutions: React.FC = () => {
                                         className="block h-full decoration-transparent"
                                     >
                                         <SpotlightCard
-                                            spotlightColor="rgba(158, 27, 31, 0.05)"
+                                            spotlightColor="rgba(2, 132, 199, 0.05)"
                                             className="relative flex flex-col h-full bg-surface border border-black/5 rounded-standard p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 shadow-sm"
                                         >
                                             {/* Vertical Accent Line (Hover Only) */}
-                                            <div className="absolute left-0 top-1/2 -translate-y-1/2 h-2/3 w-[2px] bg-brand-red opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-linear" />
+                                            <div className="absolute left-0 top-1/2 -translate-y-1/2 h-2/3 w-[2px] bg-brand-accent opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-linear" />
 
                                             {/* Icon Header */}
                                             <div className="flex items-center justify-between mb-8 transition-opacity">
-                                                <div className="text-text-secondary group-hover:text-brand-red transition-colors duration-300">
+                                                <div className="text-text-secondary group-hover:text-brand-accent transition-colors duration-300">
                                                     <solution.icon className="w-6 h-6" strokeWidth={2} />
                                                 </div>
                                                 <span className="text-[10px] font-bold text-text-secondary uppercase tracking-widest bg-background px-2 py-1 rounded">
@@ -156,13 +156,13 @@ const Solutions: React.FC = () => {
 
                                             {/* Content */}
                                             <div className="flex-1 mb-8">
-                                                <h3 className="text-xl md:text-2xl font-bold text-brand-navy mb-4 group-hover:text-brand-red transition-colors tracking-tight uppercase">
+                                                <h3 className="text-xl md:text-2xl font-bold text-brand-navy mb-4 group-hover:text-brand-accent transition-colors tracking-tight uppercase">
                                                     {solution.title}
                                                 </h3>
                                                 <p className="text-text-secondary text-sm md:text-base leading-relaxed font-medium mb-6">
                                                     {solution.description}
                                                 </p>
-                                                <div className="flex items-center gap-2 text-brand-red font-bold text-sm border-b border-brand-red/0 group-hover:border-brand-red/50 w-fit transition-all pb-0.5 uppercase tracking-wider">
+                                                <div className="flex items-center gap-2 text-brand-accent font-bold text-sm border-b border-brand-accent/0 group-hover:border-brand-accent/50 w-fit transition-all pb-0.5 uppercase tracking-wider">
                                                     View Details
                                                     <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                                                 </div>
@@ -172,7 +172,7 @@ const Solutions: React.FC = () => {
                                             <div className="space-y-2 pt-6 border-t border-black/5">
                                                 {solution.tags.map((tag, i) => (
                                                     <div key={i} className="flex items-center gap-2 text-xs text-text-secondary font-bold group-hover:text-brand-navy transition-colors">
-                                                        <div className="w-1 h-1 rounded-full bg-black/10 group-hover:bg-brand-red transition-colors"></div>
+                                                        <div className="w-1 h-1 rounded-full bg-black/10 group-hover:bg-brand-accent transition-colors"></div>
                                                         {tag}
                                                     </div>
                                                 ))}
@@ -189,7 +189,7 @@ const Solutions: React.FC = () => {
                                     }}
                                     className="absolute inset-0 flex flex-col items-center justify-center bg-surface border border-black/5 rounded-standard shadow-xl"
                                 >
-                                    <div className="w-10 h-10 border-2 border-brand-red border-t-transparent rounded-full animate-spin mb-4" />
+                                    <div className="w-10 h-10 border-2 border-brand-accent border-t-transparent rounded-full animate-spin mb-4" />
                                     <p className="text-brand-navy text-sm font-bold tracking-wide uppercase">Finding your path...</p>
                                 </div>
                             </motion.div>

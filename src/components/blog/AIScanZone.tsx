@@ -14,12 +14,12 @@ const AIScanZone: React.FC<AIScanZoneProps> = ({ aiQuickAnswer, aiTakeaways, aiF
 
   return (
     <div 
-      className="ai-summary-zone mb-10 rounded-standard border-2 overflow-hidden transition-all bg-brand-red/5 border-brand-red/10 shadow-sm"
+      className="ai-summary-zone mb-10 rounded-standard border-2 overflow-hidden transition-all bg-brand-accent/5 border-brand-accent/10 shadow-sm"
       data-ai-summary="true"
     >
-      <div className="px-6 py-4 border-b-2 flex items-center gap-2 bg-brand-red/10 border-brand-red/10">
-        <Zap className="w-4 h-4 text-brand-red" />
-        <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-red">Protocol Summary</span>
+      <div className="px-6 py-4 border-b-2 flex items-center gap-2 bg-brand-accent/10 border-brand-accent/10">
+        <Zap className="w-4 h-4 text-brand-accent" />
+        <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-accent">Protocol Summary</span>
       </div>
 
       <div className="p-8 space-y-8">
@@ -36,7 +36,7 @@ const AIScanZone: React.FC<AIScanZoneProps> = ({ aiQuickAnswer, aiTakeaways, aiF
           <div className="grid md:grid-cols-2 gap-6">
             {aiTakeaways.map((takeaway, i) => (
               <div key={i} className="flex items-start gap-3">
-                <CheckCircle2 className="w-5 h-5 text-brand-red shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 text-brand-accent shrink-0 mt-0.5" />
                 <span className="text-sm font-bold text-brand-navy/70 uppercase tracking-widest">{takeaway}</span>
               </div>
             ))}
@@ -44,9 +44,9 @@ const AIScanZone: React.FC<AIScanZoneProps> = ({ aiQuickAnswer, aiTakeaways, aiF
         )}
 
         {aiFaqs && aiFaqs.length > 0 && (
-          <div className="pt-8 border-t-2 border-brand-red/10">
+          <div className="pt-8 border-t-2 border-brand-accent/10">
             <h4 className="text-sm font-bold uppercase tracking-widest mb-6 flex items-center gap-2 text-brand-navy">
-              <HelpCircle className="w-4 h-4 text-brand-red" />
+              <HelpCircle className="w-4 h-4 text-brand-accent" />
               Quick Intelligence
             </h4>
             <div className="space-y-4">

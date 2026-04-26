@@ -18,12 +18,12 @@ const TrailGrid: React.FC = () => {
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
                     >
-                        <span className="text-brand-red font-bold text-sm tracking-[0.2em] uppercase mb-4 block">Methodology</span>
+                        <span className="text-brand-accent font-bold text-sm tracking-[0.2em] uppercase mb-4 block">Methodology</span>
                         <h2 className="text-3xl md:text-6xl lg:text-7xl font-bold text-brand-navy tracking-tight leading-[0.95] mb-8 uppercase">
-                            Run Instant <br /><span className="text-brand-red italic">Scan.</span>
+                            Run Instant <br /><span className="text-brand-accent italic">Scan.</span>
                         </h2>
                         <div className="p-8 rounded-standard bg-surface border border-black/5 relative group overflow-hidden shadow-sm">
-                            <div className="absolute top-0 left-0 w-1.5 h-full bg-brand-red/40 group-hover:bg-brand-red transition-colors" />
+                            <div className="absolute top-0 left-0 w-1.5 h-full bg-brand-accent/40 group-hover:bg-brand-accent transition-colors" />
                             <p className="text-xl md:text-2xl text-brand-navy font-bold italic leading-relaxed uppercase tracking-tight">
                                 "I don’t start with tools, tactics, or templates."
                             </p>
@@ -48,17 +48,17 @@ const TrailGrid: React.FC = () => {
                                 <p className="mb-4 text-brand-navy font-bold uppercase tracking-wide">From there, the work takes one of two paths:</p>
                                 <ul className="space-y-4">
                                     <li className="flex items-start gap-3">
-                                        <div className="w-2 h-2 rounded-full bg-brand-red mt-2 shrink-0"></div>
+                                        <div className="w-2 h-2 rounded-full bg-brand-accent mt-2 shrink-0"></div>
                                         <span className="font-bold">Clarifying the decisions that are holding everything else up</span>
                                     </li>
                                     <li className="flex items-start gap-3">
-                                        <div className="w-2 h-2 rounded-full bg-brand-red mt-2 shrink-0"></div>
+                                        <div className="w-2 h-2 rounded-full bg-brand-accent mt-2 shrink-0"></div>
                                         <span className="font-bold">Building only what’s necessary to support those decisions</span>
                                     </li>
                                 </ul>
                             </div>
 
-                            <div className="pt-6 border-l-2 border-brand-red/30 pl-6">
+                            <div className="pt-6 border-l-2 border-brand-accent/30 pl-6">
                                 <p className="text-brand-navy font-bold text-xl uppercase tracking-tight">
                                     The goal is always the same:
                                 </p>
