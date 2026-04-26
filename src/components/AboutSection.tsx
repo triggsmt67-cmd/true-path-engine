@@ -62,7 +62,7 @@ const AboutSection: React.FC = () => {
               </p>
 
               <div className="grid sm:grid-cols-2 gap-6 pt-8">
-                <div className="p-6 rounded-standard bg-surface border border-black/5 flex flex-col justify-center gap-3 shadow-sm">
+                <div className="p-6 rounded-standard bg-surface border border-black/5 flex flex-col justify-center gap-3 transition-all duration-500 shadow-[0_15px_35px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-1 hover:border-brand-accent/20">
                   <div className="flex items-center gap-3 text-brand-accent mb-1">
                     <ShieldCheck className="w-5 h-5" />
                     <span className="text-brand-navy font-bold uppercase tracking-tight">Where AI helps</span>
@@ -71,7 +71,7 @@ const AboutSection: React.FC = () => {
                     Automation that reduces effort and noise — not judgment, trust, or common sense.
                   </div>
                 </div>
-                <div className="p-6 rounded-standard bg-surface border border-black/5 flex flex-col justify-center gap-3 shadow-sm">
+                <div className="p-6 rounded-standard bg-surface border border-black/5 flex flex-col justify-center gap-3 transition-all duration-500 shadow-[0_15px_35px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-1 hover:border-brand-accent/20">
                   <div className="flex items-center gap-3 text-brand-accent mb-1">
                     <FileText className="w-5 h-5" />
                     <span className="text-brand-navy font-bold uppercase tracking-tight">What’s been proven</span>

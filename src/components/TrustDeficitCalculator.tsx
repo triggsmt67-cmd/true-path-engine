@@ -598,7 +598,7 @@ export default function TrustDeficitCalculator() {
   return (
     <div className="relative w-full max-w-5xl mx-auto">
 
-      <div className="bg-surface rounded-3xl p-8 md:p-20 min-h-[600px] flex flex-col justify-center overflow-hidden relative group border border-black/5 shadow-2xl shadow-black/[0.03]">
+      <div className="bg-surface rounded-3xl p-8 md:p-20 min-h-[600px] flex flex-col justify-center overflow-hidden relative group border border-black/5 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] transition-shadow duration-500 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)]">
         
         {/* Subtle glowing effect for light theme */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-accent/5 opacity-30 blur-[120px] rounded-full point-events-none animate-pulse-slow"></div>

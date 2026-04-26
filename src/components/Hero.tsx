@@ -55,13 +55,7 @@ const Hero: React.FC = () => {
             animate="visible"
             className="flex flex-col items-center lg:items-start text-center lg:text-left"
           >
-            {/* Label */}
-            <motion.div variants={itemVariants} className="flex items-center gap-3 mb-6 md:mb-8">
-              <span className="w-2 h-2 rounded-full bg-brand-accent"></span>
-              <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-brand-navy uppercase">
-                For Montana Service Businesses
-              </span>
-            </motion.div>
+
 
             {/* Heading with Reveal effect - Playfair Display */}
             <h1 className="mb-6 md:mb-8 font-serif font-bold tracking-tight leading-[1.1] md:leading-[1.05] text-text-primary">

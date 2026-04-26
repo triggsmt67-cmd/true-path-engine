@@ -93,7 +93,8 @@ const Navbar: React.FC = () => {
       initial={false}
       animate={{
         y: isScrolled ? 12 : 0,
-        scale: isScrolled ? 0.98 : 1,
+        left: isScrolled ? 16 : 0,
+        right: isScrolled ? 16 : 0,
         backgroundColor: isScrolled
           ? 'rgba(255, 255, 255, 0.85)'
           : 'rgba(255, 255, 255, 0)',
@@ -102,11 +103,9 @@ const Navbar: React.FC = () => {
           ? 'rgba(0, 0, 0, 0.05)'
           : 'rgba(0, 0, 0, 0)',
         borderRadius: isScrolled ? '20px' : '0px',
-        width: isScrolled ? 'calc(100% - 32px)' : '100%',
-        margin: isScrolled ? '0 16px' : '0 0',
         boxShadow: isScrolled ? '0 10px 30px -10px rgba(0,0,0,0.1)' : 'none',
       }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       className="fixed top-0 left-0 right-0 z-50 flex justify-center py-4"
     >
       <div className="max-w-7xl mx-auto px-6 w-full flex items-center justify-between">

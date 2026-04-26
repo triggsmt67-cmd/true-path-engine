@@ -54,18 +54,18 @@ const DecisionStack: React.FC<DecisionStackProps> = ({ disableSpotlight = false 
 
     return (
         <div className="w-full max-w-md mx-auto">
-            <div className="rounded-[32px] bg-surface border border-black/5 overflow-hidden shadow-2xl">
+            <div className="relative rounded-[32px] bg-brand-navy/70 backdrop-blur-xl border border-white/20 overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.6),0_30px_60px_-30px_rgba(15,34,51,0.8),inset_0_1px_0_rgba(255,255,255,0.2)]">
                 {/* Header */}
-                <div className="px-6 py-5 border-b border-black/5 bg-black/[0.02]">
-                    <h3 className="text-sm font-bold text-brand-navy uppercase tracking-widest text-center">
+                <div className="px-6 py-5 border-b border-white/10 bg-black/20 shadow-[inset_0_-1px_10px_rgba(0,0,0,0.1)]">
+                    <h3 className="text-sm font-bold text-white uppercase tracking-widest text-center drop-shadow-md">
                         Where Jobs Get Lost
                     </h3>
                 </div>
 
                 {/* Stack Content */}
-                <div className="p-6 space-y-3 relative">
+                <div className="p-6 space-y-4 relative">
                     {/* Connecting Line */}
-                    <div className="absolute left-[2.85rem] top-10 bottom-24 w-px bg-gradient-to-b from-black/5 via-black/10 to-transparent z-0 dashed-line" />
+                    <div className="absolute left-[2.85rem] top-10 bottom-24 w-px bg-gradient-to-b from-white/10 via-white/20 to-transparent z-0 dashed-line shadow-[0_0_8px_rgba(255,255,255,0.5)]" />
 
                     {stackItems.map((item, index) => (
                         <motion.div
@@ -76,19 +76,19 @@ const DecisionStack: React.FC<DecisionStackProps> = ({ disableSpotlight = false 
                             className="relative z-10"
                         >
                             <SpotlightCard
-                                className={`flex items-center gap-4 p-4 rounded-2xl border bg-surface ${item.border} border-opacity-30`}
+                                className={`flex items-center gap-4 p-4 rounded-2xl border bg-white/5 backdrop-blur-md ${item.border} border-opacity-40 hover:bg-white/10 transition-all duration-300 shadow-[0_8px_16px_-6px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.1)] hover:-translate-y-1 hover:shadow-[0_15px_25px_-8px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.2)] cursor-default`}
                                 spotlightColor={item.spotlight}
                                 disabled={disableSpotlight}
                             >
 
-                                <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${item.bg} ${item.color} opacity-90`}>
+                                <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${item.bg} ${item.color} opacity-90 shadow-[inset_0_1px_2px_rgba(255,255,255,0.2)]`}>
                                     <item.icon className="w-4 h-4" />
                                 </div>
                                 <div>
-                                    <div className={`font-semibold text-sm mb-0.5 text-text-primary`}>
+                                    <div className={`font-semibold text-sm mb-0.5 text-white`}>
                                         {item.title}
                                     </div>
-                                    <div className="text-xs text-text-primary font-medium leading-snug">
+                                    <div className="text-xs text-white/70 font-medium leading-snug">
                                         {item.subtitle}
                                     </div>
                                 </div>
@@ -104,7 +104,7 @@ const DecisionStack: React.FC<DecisionStackProps> = ({ disableSpotlight = false 
                         transition={{ delay: 0.85, duration: 0.3 }}
                         className="flex justify-center items-center py-2"
                     >
-                        <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wider text-text-secondary">Start with the leak, not more activity</span>
+                        <span className="text-[10px] sm:text-xs font-medium uppercase tracking-wider text-white/60">Start with the leak, not more activity</span>
                     </motion.div>
 
                     {/* Final Output - Clickable Button */}

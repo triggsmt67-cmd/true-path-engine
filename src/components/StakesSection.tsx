@@ -57,7 +57,7 @@ const StakesSection: React.FC = () => {
             </ul>
 
             {/* Closer / Fit Statement */}
-            <div className="p-8 md:p-12 rounded-standard bg-surface border border-black/5 relative overflow-hidden shadow-xl shadow-black/[0.02]">
+            <div className="p-8 md:p-12 rounded-standard bg-surface border border-black/5 relative overflow-hidden transition-all duration-500 shadow-[0_15px_35px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-1 hover:border-brand-accent/20">
               <div className="absolute top-0 right-0 p-8 opacity-5">
                 <Sparkles className="w-16 h-16 text-brand-accent" />
               </div>

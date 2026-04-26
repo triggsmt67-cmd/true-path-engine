@@ -139,7 +139,7 @@ const Solutions: React.FC = () => {
                                     >
                                         <SpotlightCard
                                             spotlightColor="rgba(79, 124, 122, 0.05)"
-                                            className="relative flex flex-col h-full bg-surface border border-black/5 rounded-standard p-8 transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 shadow-sm"
+                                            className="relative flex flex-col h-full bg-surface border border-black/5 rounded-standard p-8 transition-all duration-500 shadow-[0_15px_35px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-1"
                                         >
                                             {/* Vertical Accent Line (Hover Only) */}
                                             <div className="absolute left-0 top-1/2 -translate-y-1/2 h-2/3 w-[2px] bg-brand-accent opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-linear" />
