@@ -66,9 +66,9 @@ const Hero: React.FC = () => {
             {/* Heading with Reveal effect - Playfair Display */}
             <h1 className="mb-6 md:mb-8 font-serif font-bold tracking-tight leading-[1.1] md:leading-[1.05] text-text-primary">
               <RevealText
-                text="Clearer marketing decisions for owner-operated service businesses"
+                text="Know what to fix before you spend more on marketing"
                 className="text-3xl sm:text-4xl md:text-6xl lg:text-[4rem] xl:text-[5rem]"
-                highlightWords={["marketing", "decisions"]}
+                highlightWords={["fix", "marketing"]}
                 highlightClassName="text-brand-accent"
                 delay={0.1}
               />
