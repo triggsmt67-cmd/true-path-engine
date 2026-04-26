@@ -9,6 +9,7 @@ import {
   Lightbulb,
   FileText,
   AlertCircle,
+  Activity
 } from 'lucide-react';
 import Link from 'next/link';
 import BlogIndexSidebar from './BlogIndexSidebar';

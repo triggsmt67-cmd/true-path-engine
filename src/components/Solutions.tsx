@@ -5,11 +5,9 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, PhoneCall, Star, MousePointerClick, Search, Calendar, ArrowRight } from 'lucide-react';
+import { MapPin, PhoneCall, Star, MousePointerClick, Search, Calendar, ArrowRight, PenTool as Tool, Zap, Shield, Settings, Activity } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-
-import { Search, PenTool as Tool, Zap, Shield, Settings, Activity } from 'lucide-react';
 
 const solutions = [
     {

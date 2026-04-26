@@ -8,7 +8,7 @@ import { Shield, ArrowRight, CheckCircle2, Target, Zap, Settings, PhoneMissed, C
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Missed Call Recovery & Lead Response | True Path Digital',
+  title: 'Missed Call Recovery & Lead Response | Benchmark Automotive',
   description: 'Set up a cleaner, faster lead-response process so calls, forms, and quote requests stop slipping through the cracks.',
   alternates: {
     canonical: 'https://truepath406.com/solutions/lead-velocity/'
@@ -65,7 +65,7 @@ export default function LeadResponsePage() {
         "@type": "WebPage",
         "@id": "https://truepath406.com/solutions/lead-velocity/#webpage",
         "url": "https://truepath406.com/solutions/lead-velocity/",
-        "name": "Missed Call Recovery & Lead Response | True Path Digital",
+        "name": "Missed Call Recovery & Lead Response | Benchmark Automotive",
         "description": "Set up a cleaner, faster lead-response process so calls, forms, and quote requests stop slipping through the cracks.",
         "isPartOf": { "@id": "https://truepath406.com/#website" },
         "breadcrumb": { "@id": "https://truepath406.com/solutions/lead-velocity/#breadcrumb" }
@@ -126,7 +126,7 @@ export default function LeadResponsePage() {
                 
                 <h1 className="text-5xl md:text-6xl lg:text-8xl font-semibold mb-10 tracking-tighter leading-[1.05]">
                   Stop Losing Jobs to <br className="hidden lg:block" />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-br from-[#fbbf24] via-primary to-[#78350f]">Missed Calls and Slow Response</span>
+                  <span className="text-brand-red font-semibold">Missed Calls and Slow Response</span>
                 </h1>
                 
                 <p className="text-xl md:text-2xl text-white font-medium mb-6">
@@ -143,7 +143,7 @@ export default function LeadResponsePage() {
                     className="relative inline-flex h-16 w-full sm:w-auto overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-[0_0_40px_-5px_rgba(180,83,9,0.35)] transition-all hover:scale-[1.02] active:scale-95 duration-300"
                   >
                     <span className="absolute inset-0 bg-gradient-to-r from-primary/40 via-primary/80 to-primary/40 opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
-                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[#0a0a0a] px-10 text-base font-semibold text-white backdrop-blur-3xl gap-3 transition-colors group-hover:bg-background whitespace-nowrap">
+                    <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-bg px-10 text-base font-semibold text-white backdrop-blur-3xl gap-3 transition-colors group-hover:bg-background whitespace-nowrap">
                       Review My Current Setup
                       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                     </span>
@@ -151,7 +151,7 @@ export default function LeadResponsePage() {
                   
                   <Link
                     href="/trust-calculator"
-                    className="inline-flex h-16 w-full sm:w-auto items-center justify-center rounded-full px-10 text-base font-medium text-white border border-white/10 hover:bg-white/5 transition-colors duration-300 whitespace-nowrap"
+                    className="inline-flex h-16 w-full sm:w-auto items-center justify-center rounded-full px-10 text-base font-medium text-brand-navy border-2 border-black/5 hover:bg-black/5 hover:border-brand-red/20 uppercase tracking-widest font-bold transition-colors duration-300 whitespace-nowrap"
                   >
                     Run Instant Scan
                   </Link>
@@ -184,7 +184,7 @@ export default function LeadResponsePage() {
                     <SpotlightCard
                       key={index}
                       spotlightColor="rgba(255, 107, 0, 0.05)"
-                      className="p-8 bg-white/[0.02] border border-white/10 shadow-xl shadow-black/40 rounded-3xl h-full flex flex-col"
+                      className="p-8 bg-white/[0.02] border border-black/5 shadow-xl shadow-black/40 rounded-3xl h-full flex flex-col"
                     >
                       <div className="w-12 h-12 rounded-xl bg-white/[0.03] flex items-center justify-center text-primary mb-6">
                         <card.icon className="w-6 h-6" />
@@ -222,7 +222,7 @@ export default function LeadResponsePage() {
           <SectionSeparator number="02" title="WHAT I ACTUALLY HELP IMPROVE" />
 
           {/* 3. WHAT I ACTUALLY HELP IMPROVE SECTION */}
-          <section className="py-20 lg:py-32 bg-[#080808] border-y border-white/5 relative overflow-hidden">
+          <section className="py-20 lg:py-32 bg-bg border-y border-black/5 relative overflow-hidden">
              <div className="absolute inset-0 bg-primary/2 blur-[120px] pointer-events-none" />
              <div className="max-w-[1400px] mx-auto px-6 relative z-10">
                 <div className="mb-16">
@@ -232,7 +232,7 @@ export default function LeadResponsePage() {
                 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                    {optimizationChecklist.map((item, index) => (
-                     <div key={index} className="flex items-start gap-4 p-6 bg-white/[0.02] border border-white/5 rounded-2xl hover:bg-white/[0.04] transition-colors">
+                     <div key={index} className="flex items-start gap-4 p-6 bg-white/[0.02] border border-black/5 rounded-2xl hover:bg-white/[0.04] transition-colors">
                         <div className="mt-1">
                           <CheckCircle2 className="w-5 h-5 text-primary" />
                         </div>
@@ -259,7 +259,7 @@ export default function LeadResponsePage() {
                      <SpotlightCard 
                        key={index}
                        spotlightColor="rgba(255, 255, 255, 0.05)"
-                       className="p-8 bg-[#0a0a0a] border border-white/10 rounded-3xl flex items-start gap-5 shadow-xl shadow-black/40"
+                       className="p-8 bg-bg border border-black/5 rounded-3xl flex items-start gap-5 shadow-xl shadow-black/40"
                      >
                         <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
                         <p className="text-lg text-secondary font-light leading-relaxed">{point}</p>
@@ -274,7 +274,7 @@ export default function LeadResponsePage() {
           {/* 5. WHAT A BETTER RESULT LOOKS LIKE SECTION */}
           <section className="py-20 mb-12">
              <div className="max-w-[1400px] mx-auto px-6">
-                <div className="bg-gradient-to-br from-[#0a0a0a] to-transparent border border-white/10 rounded-[3rem] p-10 md:p-20 relative overflow-hidden shadow-2xl shadow-black/60">
+                <div className="bg-gradient-to-br from-[#0a0a0a] to-transparent border border-black/5 rounded-[3rem] p-10 md:p-20 relative overflow-hidden shadow-2xl shadow-black/60">
                    <div className="absolute top-0 right-0 p-12 opacity-10 blur-sm pointer-events-none">
                      <Target className="w-64 h-64 text-white" />
                    </div>
@@ -331,7 +331,7 @@ export default function LeadResponsePage() {
           <SectionSeparator number="05" title="HOW IT STARTS" />
 
           {/* 6. HOW IT STARTS / CTA SECTION */}
-          <section className="py-24 md:py-32 relative overflow-hidden border-t border-white/5 text-center">
+          <section className="py-24 md:py-32 relative overflow-hidden border-t border-black/5 text-center">
             <div className="absolute inset-0 bg-primary/5 blur-[120px] pointer-events-none" />
             <div className="max-w-3xl mx-auto px-6 relative z-10">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-[10px] uppercase font-bold tracking-widest mb-8">
@@ -356,7 +356,7 @@ export default function LeadResponsePage() {
                   className="relative inline-flex h-16 md:h-20 overflow-hidden rounded-full p-[1px] focus:outline-none group shadow-[0_0_50px_-10px_rgba(180,83,9,0.2)] w-full sm:w-auto transition-all hover:scale-[1.02] active:scale-95 duration-300"
                 >
                   <span className="absolute inset-0 bg-gradient-to-r from-primary/50 via-primary to-primary/50 opacity-100 group-hover:opacity-80 transition-opacity duration-500" />
-                  <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-[#0a0a0a] px-10 md:px-14 text-base md:text-lg font-semibold text-white backdrop-blur-3xl gap-4 transition-colors group-hover:bg-[#121212] whitespace-nowrap">
+                  <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-bg px-10 md:px-14 text-base md:text-lg font-semibold text-white backdrop-blur-3xl gap-4 transition-colors group-hover:bg-[#121212] whitespace-nowrap">
                     Review My Current Setup
                     <ArrowRight className="w-6 h-6 group-hover:translate-x-1.5 transition-transform duration-300" />
                   </span>
@@ -372,28 +372,28 @@ export default function LeadResponsePage() {
           <SectionSeparator number="06" title="FAQ" />
 
           {/* 7. FAQ SECTION */}
-          <section className="py-20 mb-20 bg-[#080808] border-y border-white/5">
+          <section className="py-20 mb-20 bg-bg border-y border-black/5">
              <div className="max-w-[1000px] mx-auto px-6">
                 <div className="mb-16 text-center">
                   <h2 className="text-3xl md:text-5xl font-semibold text-white mb-6 tracking-tight">Questions People Usually Have</h2>
                 </div>
                 
                 <div className="space-y-6">
-                   <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.05)" className="p-8 md:p-10 bg-[#0a0a0a] border border-white/10 shadow-2xl shadow-black/40 rounded-[2rem]">
+                   <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.05)" className="p-8 md:p-10 bg-bg border border-black/5 shadow-2xl shadow-black/40 rounded-[2rem]">
                       <h3 className="text-xl font-semibold text-white mb-4">Is this the same as CRM setup or automation?</h3>
                       <p className="text-lg text-secondary font-light leading-relaxed">
                         Sometimes it overlaps, but this service starts earlier and more practically. It is about identifying where leads are being lost now and tightening the response process before adding extra tools.
                       </p>
                    </SpotlightCard>
                    
-                   <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.05)" className="p-8 md:p-10 bg-[#0a0a0a] border border-white/10 shadow-2xl shadow-black/40 rounded-[2rem]">
+                   <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.05)" className="p-8 md:p-10 bg-bg border border-black/5 shadow-2xl shadow-black/40 rounded-[2rem]">
                       <h3 className="text-xl font-semibold text-white mb-4">Do I need more leads first?</h3>
                       <p className="text-lg text-secondary font-light leading-relaxed">
                         Not always. A lot of businesses already have enough demand to expose the real issue. The problem is often response speed, follow-up discipline, or intake consistency.
                       </p>
                    </SpotlightCard>
 
-                   <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.05)" className="p-8 md:p-10 bg-[#0a0a0a] border border-white/10 shadow-2xl shadow-black/40 rounded-[2rem]">
+                   <SpotlightCard spotlightColor="rgba(255, 255, 255, 0.05)" className="p-8 md:p-10 bg-bg border border-black/5 shadow-2xl shadow-black/40 rounded-[2rem]">
                       <h3 className="text-xl font-semibold text-white mb-4">Who is this best for?</h3>
                       <p className="text-lg text-secondary font-light leading-relaxed">
                         It is best for local service businesses where calls, forms, and estimates are coming in, but too much of that demand is being lost because no one is handling it cleanly enough.

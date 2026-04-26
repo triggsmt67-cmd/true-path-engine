@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, ShieldCheck, FileText, ArrowRight } from 'lucide-react';
+import { MapPin, ShieldCheck, FileText, ArrowRight, Settings } from 'lucide-react';
 import { SOCIAL_LINKS, CONTACT_LINKS } from '../constants/links';
 import { Magnetic } from './Magnetic';
 

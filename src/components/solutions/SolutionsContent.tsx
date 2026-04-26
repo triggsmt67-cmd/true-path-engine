@@ -6,7 +6,7 @@ import { SpotlightCard } from '@/components/SpotlightCard';
 import SectionSeparator from '@/components/SectionSeparator';
 import { 
   Search, 
-  Tool, 
+  PenTool as Tool, 
   ArrowRight, 
   CheckCircle2, 
   Target, 
