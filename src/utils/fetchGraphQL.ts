@@ -36,9 +36,10 @@ export async function fetchGraphQL<T = any>(
           ...headers,
         },
         body,
-        cache: preview ? "no-cache" : "default",
+        cache: preview ? "no-cache" : "force-cache",
         next: {
           tags: ["wordpress"],
+          revalidate: 3600, // 1 hour fallback
         },
       },
     );

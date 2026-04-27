@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath, revalidateTag } from "next/cache";
 
-export async function PUT(request: NextRequest) {
+async function handleRevalidate(request: NextRequest) {
   const url = new URL(request.url);
   // Allow secret from the URL parameter OR the header
   const secret = url.searchParams.get("secret") || request.headers.get("X-Headless-Secret-Key");
@@ -30,3 +30,7 @@ export async function PUT(request: NextRequest) {
     );
   }
 }
+
+export const GET = handleRevalidate;
+export const POST = handleRevalidate;
+export const PUT = handleRevalidate;
