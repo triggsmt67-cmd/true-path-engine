@@ -192,7 +192,11 @@ export default function TrustDeficitCalculator() {
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    
+    // Wrap in a setTimeout to prevent macOS/Safari from immediately cancelling the async download process
+    setTimeout(() => {
+      URL.revokeObjectURL(url);
+    }, 1000);
   };
 
   // Analytics implementation
@@ -598,8 +602,23 @@ export default function TrustDeficitCalculator() {
   return (
     <div className="relative w-full max-w-5xl mx-auto">
 
-      <div className="bg-surface rounded-3xl p-8 md:p-20 min-h-[600px] flex flex-col justify-center overflow-hidden relative group border border-black/5 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.08)] transition-shadow duration-500 hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.12)]">
+      <div className="bg-surface rounded-3xl p-8 md:p-20 min-h-[600px] flex flex-col justify-center overflow-hidden relative group border border-black/5 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.12)] transition-all duration-700 hover:shadow-[0_60px_120px_-20px_rgba(0,0,0,0.18)] hover:-translate-y-1">
         
+        {/* Animated glowing top line */}
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-brand-accent/10 z-10"></div>
+        <motion.div 
+          className="absolute top-0 left-0 w-[40%] h-[2px] bg-gradient-to-r from-transparent via-brand-accent to-transparent z-20"
+          animate={{ x: ["-100%", "250%"] }}
+          transition={{
+            repeat: Infinity,
+            duration: 3,
+            ease: "linear",
+            repeatDelay: 1.5
+          }}
+        >
+          <div className="absolute inset-0 bg-brand-accent blur-[4px] opacity-60" />
+        </motion.div>
+
         {/* Subtle glowing effect for light theme */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-accent/5 opacity-30 blur-[120px] rounded-full point-events-none animate-pulse-slow"></div>
 
@@ -698,10 +717,9 @@ export default function TrustDeficitCalculator() {
                     Scan <span className="text-brand-accent italic">Complete.</span>
                  </h2>
                </motion.div>
-               
-               <motion.div variants={blurIn} className="max-w-3xl mx-auto space-y-6 w-full text-left">
+                              <motion.div variants={blurIn} className="max-w-3xl mx-auto w-full text-left">
                   {/* Reputation Block */}
-                  <div className="bg-surface p-8 rounded-standard border border-black/5 shadow-lg shadow-black/[0.02] relative overflow-hidden">
+                  <div className="bg-surface p-8 rounded-3xl border border-black/5 shadow-[0_20px_40px_-10px_rgba(0,0,0,0.05)] transition-all duration-500 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-1 relative overflow-hidden">
                       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-accent to-brand-navy opacity-50"></div>
                       <div className="flex items-center gap-4 mb-6">
                         <Star className="w-8 h-8 text-brand-accent" />
@@ -728,9 +746,12 @@ export default function TrustDeficitCalculator() {
                   </div>
 
                   {/* Teasers (Visually gated) */}
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-bg/95 to-bg z-20 flex flex-col items-center justify-end pb-0">
-                      <form onSubmit={handleLeadSubmit} className="space-y-6 mt-12 bg-surface p-8 md:p-12 border-t border-brand-accent/10 shadow-2xl shadow-black/[0.05] w-[calc(100%+4rem)] -mx-8 sm:w-full sm:mx-0 sm:rounded-standard sm:border text-center">
+                  <div className="relative -mt-16 sm:-mt-24 rounded-3xl overflow-hidden shadow-2xl z-20">
+                    {/* Glass overlay sitting over the blurred cards and overlapping the text above */}
+                    <div className="absolute inset-0 bg-background/20 backdrop-blur-[3px] z-10" />
+                    
+                    <div className="absolute inset-0 z-20 flex flex-col items-center justify-center p-4 md:p-8">
+                      <form onSubmit={handleLeadSubmit} className="space-y-6 bg-white/30 backdrop-blur-xl p-8 md:p-12 border border-white/60 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] rounded-3xl w-full text-center transition-all duration-500 hover:bg-white/40">
                          <h4 className="text-xl md:text-2xl font-bold uppercase tracking-widest text-brand-navy mb-2">Find Your Exact Revenue Leaks</h4>
                          <p className="text-text-secondary mb-8 text-base md:text-lg">Enter your website URL and email below so our system can run a real-time speed scan and show you exactly where competitors are outranking you.</p>
                          
@@ -744,7 +765,7 @@ export default function TrustDeficitCalculator() {
                                   onChange={(e) => setWebsiteUrl(e.target.value)}
                                   placeholder="WEBSITE URL (yourdomain.com)"
                                   aria-label="Website URL"
-                                  className="relative w-full bg-background border border-black/10 rounded-xl text-text-primary px-6 py-5 outline-none focus:border-brand-accent/50 focus:bg-white shadow-sm transition-all duration-500 text-center text-lg font-bold placeholder-text-secondary/30"
+                                  className="relative w-full bg-white border border-white rounded-xl text-brand-navy px-6 py-5 outline-none focus:border-brand-accent/50 focus:ring-4 focus:ring-brand-accent/10 shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-500 text-center text-lg font-bold placeholder-text-secondary/40"
                                 />
                             </div>
                             <div className="relative group/input">
@@ -756,7 +777,7 @@ export default function TrustDeficitCalculator() {
                                   onChange={(e) => setEmail(e.target.value)}
                                   placeholder="AUTHORIZATION EMAIL"
                                   aria-label="Authorization Email"
-                                  className="relative w-full bg-background border border-black/10 rounded-xl text-text-primary px-6 py-5 outline-none focus:border-brand-accent/50 focus:bg-white shadow-sm transition-all duration-500 text-center text-lg placeholder-text-secondary/30 font-bold uppercase tracking-widest"
+                                  className="relative w-full bg-white border border-white rounded-xl text-brand-navy px-6 py-5 outline-none focus:border-brand-accent/50 focus:ring-4 focus:ring-brand-accent/10 shadow-[0_8px_30px_rgb(0,0,0,0.08)] transition-all duration-500 text-center text-lg placeholder-text-secondary/40 font-bold uppercase tracking-widest"
                               />
                             </div>
 
@@ -789,12 +810,12 @@ export default function TrustDeficitCalculator() {
                               </span>
                             </button>
 
-                            <div className="flex flex-col items-center gap-3 mt-6">
-                               <div className="flex items-center justify-center gap-2 text-text-secondary/40 text-[10px] font-bold uppercase tracking-[0.2em]">
-                                  <Lock className="w-3 h-3 text-brand-accent/70" />
+                            <div className="flex flex-col items-center gap-2 mt-8">
+                               <div className="flex items-center justify-center gap-2 text-brand-navy text-xs font-bold uppercase tracking-[0.2em]">
+                                  <Lock className="w-3.5 h-3.5 text-brand-accent" />
                                   <span>256-Bit Secure Diagnostics</span>
                                </div>
-                               <p className="text-[11px] text-text-secondary/50 leading-relaxed tracking-wide">
+                               <p className="text-xs text-brand-navy/80 font-medium leading-relaxed tracking-wide">
                                  We use your email strictly to deliver your scan roadmap. Zero spam. Zero list selling.
                                </p>
                             </div>
@@ -802,7 +823,7 @@ export default function TrustDeficitCalculator() {
                       </form>
                     </div>
 
-                    <div className="opacity-20 blur-md pointer-events-none space-y-6 select-none overflow-hidden h-[400px]">
+                    <div className="opacity-50 blur-[5px] pointer-events-none space-y-6 select-none overflow-hidden h-[600px] p-4">
                         {showVisuals && renderProfileActivity()}
                         {showVisuals && renderAIDiagnostic()}
                         {showVisuals && renderSpeedDiagnostic()}

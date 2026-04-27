@@ -80,7 +80,6 @@ export default function Page() {
           <SectionSeparator number="01" title="WHY GOOD BUSINESSES STILL LOSE JOBS" />
           <FeatureSplit />
           <QuoteSection />
-          <EarlyProofSection />
 
           <SectionSeparator number="02" title="THE REAL PROBLEM" />
           <MissionSection />
@@ -90,6 +89,8 @@ export default function Page() {
 
           <SectionSeparator number="04" title="RUN INSTANT SCAN" />
           <TrailGrid />
+
+          <EarlyProofSection />
 
           <SectionSeparator number="05" title="ABOUT TREVOR" />
           <AboutSection />

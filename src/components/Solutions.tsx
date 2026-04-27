@@ -146,8 +146,8 @@ const Solutions: React.FC = () => {
 
                                             {/* Icon Header */}
                                             <div className="flex items-center justify-between mb-8 transition-opacity">
-                                                <div className="text-text-secondary group-hover:text-brand-accent transition-colors duration-300">
-                                                    <solution.icon className="w-6 h-6" strokeWidth={2} />
+                                                <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-brand-accent/10 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-colors duration-300">
+                                                    <solution.icon className="w-5 h-5" strokeWidth={2.5} />
                                                 </div>
                                                 <span className="text-[10px] font-bold text-text-secondary uppercase tracking-widest bg-background px-2 py-1 rounded">
                                                     {solution.role}

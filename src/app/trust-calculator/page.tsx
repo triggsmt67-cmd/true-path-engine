@@ -11,8 +11,10 @@ export const metadata: Metadata = {
 
 export default function TrustCalculatorPage() {
   return (
-    <main className="min-h-screen bg-black text-white">
-      <TrustDeficitCalculator />
+    <main className="min-h-screen bg-background text-text-primary pt-32 pb-24 md:pt-40 flex items-center justify-center">
+      <div className="w-full px-4">
+        <TrustDeficitCalculator />
+      </div>
     </main>
   );
 }

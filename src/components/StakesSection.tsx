@@ -1,12 +1,14 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { CheckCircle2, UserCheck, AlertCircle, Sparkles } from 'lucide-react';
 
 const StakesSection: React.FC = () => {
   return (
     <section id="who-this-is-for" className="py-24 md:py-32 bg-background relative overflow-hidden">
+
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
 
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-start">
@@ -25,9 +27,16 @@ const StakesSection: React.FC = () => {
             <p className="text-xl md:text-2xl text-text-secondary leading-relaxed max-w-md mb-8 lg:mb-12">
               Built for businesses where the owner is busy, the phone matters, and small breakdowns in follow-up cost real jobs.
             </p>
-            <div className="hidden lg:block relative h-64">
-              <div className="absolute inset-0 bg-brand-accent/5 blur-[80px] rounded-full" />
-              <UserCheck className="w-32 h-32 text-brand-accent/10 absolute top-10 left-10" />
+            <div className="hidden lg:block relative mt-8 w-full max-w-[400px] aspect-square rounded-[32px] overflow-hidden shadow-2xl border border-black/5">
+              <Image 
+                src="/images/stakes-bg.jpg" 
+                alt="Service professional"
+                fill
+                className="object-cover object-center opacity-90 transition-transform duration-700 hover:scale-105"
+              />
+              {/* Subtle inner shadow and overlay for a premium editorial look */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-brand-navy/60 via-brand-navy/20 to-transparent mix-blend-multiply" />
+              <div className="absolute inset-0 shadow-[inset_0_0_40px_rgba(0,0,0,0.2)]" />
             </div>
           </motion.div>
 
