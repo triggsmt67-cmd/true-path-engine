@@ -94,7 +94,7 @@ const AboutSection: React.FC = () => {
                 >
                   <span className="absolute inset-0 bg-brand-accent group-hover:bg-[#85161a] transition-colors duration-500" />
                   <span className="relative inline-flex h-full w-full cursor-pointer items-center justify-center rounded-standard px-10 text-base font-bold text-white uppercase tracking-widest gap-3">
-                    Review My Current Setup
+                    Schedule a Leak Review
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </span>
                 </a>

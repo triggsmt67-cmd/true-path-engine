@@ -87,7 +87,7 @@ export default function Page() {
           <SectionSeparator number="03" title="CORE SERVICES" />
           <Solutions />
 
-          <SectionSeparator number="04" title="RUN INSTANT SCAN" />
+          <SectionSeparator number="04" title="START WITH WHAT'S ACTUALLY THERE" />
           <TrailGrid />
 
           <EarlyProofSection />

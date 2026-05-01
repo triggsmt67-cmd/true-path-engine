@@ -9,7 +9,7 @@ import { CONTACT_LINKS } from '@/constants/links';
 const NAV_ITEMS = [
   { label: 'Home', href: '/' },
   { label: 'Solutions', href: '/solutions' },
-  { label: 'Run Instant Scan', href: '/trust-calculator' },
+  { label: 'Check My Google Profile', href: '/trust-calculator' },
   { label: 'About', href: '/#about' },
   { label: 'Insights', href: '/blog/' },
 ];
@@ -153,7 +153,7 @@ const Navbar: React.FC = () => {
             rel="noopener noreferrer"
             className="inline-block bg-brand-accent hover:bg-[#85161a] text-white px-6 py-2.5 rounded-standard text-xs font-bold uppercase tracking-widest transition-all shadow-md shadow-brand-accent/10 transform hover:-translate-y-0.5 decoration-transparent"
           >
-            Review My Current Setup
+            Schedule a Leak Review
           </a>
         </div>
 
@@ -194,7 +194,7 @@ const Navbar: React.FC = () => {
                 rel="noopener noreferrer"
                 className="block text-center bg-brand-accent w-full py-4 rounded-standard text-white font-bold uppercase tracking-widest decoration-transparent shadow-lg shadow-brand-accent/20"
               >
-                Review My Current Setup
+                Schedule a Leak Review
               </a>
             </div>
           </motion.div>

@@ -48,7 +48,7 @@ const EarlyProofSection: React.FC = () => {
             className="flex items-center gap-4"
           >
             <h2 className="text-sm md:text-base font-bold text-brand-navy tracking-[0.2em] uppercase">
-              Our <span className="text-brand-accent italic">Specializations</span>
+              Our <span className="text-brand-accent italic">Clients</span>
             </h2>
             <div className="h-px w-full bg-gradient-to-r from-black/10 to-transparent flex-1"></div>
           </motion.div>

@@ -74,34 +74,40 @@ const Hero: React.FC = () => {
             </motion.p>
 
             {/* CTA Group */}
-            <motion.div variants={itemVariants} className="flex flex-col gap-6 w-full lg:w-auto">
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6 w-full">
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-start justify-center lg:justify-start gap-8 sm:gap-10 w-full lg:w-auto">
+              
+              {/* Primary CTA Group */}
+              <div className="flex flex-col items-center lg:items-start gap-3 w-full sm:w-auto">
                 <Magnetic amount={0.2}>
                   <a
                     href={CONTACT_LINKS.calendar}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex h-14 md:h-16 items-center justify-center rounded-standard bg-brand-accent px-8 md:px-10 text-sm md:text-base font-bold text-white gap-3 transition-all hover:bg-[#85161a] hover:scale-[1.02] active:scale-95 duration-300 shadow-lg shadow-brand-accent/20 whitespace-nowrap"
+                    className="inline-flex w-full sm:w-auto h-14 md:h-16 items-center justify-center rounded-standard bg-brand-accent px-8 md:px-10 text-sm md:text-base font-bold text-white gap-3 transition-all hover:bg-[#85161a] hover:scale-[1.02] active:scale-95 duration-300 shadow-lg shadow-brand-accent/20 whitespace-nowrap"
                   >
-                    Review My Current Setup
+                    Schedule a Leak Review
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                   </a>
                 </Magnetic>
+                <div className="flex items-start gap-2 text-xs md:text-sm text-text-secondary font-medium max-w-[280px] text-center lg:text-left">
+                  <CheckCircle2 className="w-4 h-4 text-brand-accent shrink-0 mt-0.5" />
+                  <span>15 minutes. No pitch. We'll look at where jobs may be leaking.</span>
+                </div>
+              </div>
 
+              {/* Secondary CTA Group */}
+              <div className="flex flex-col items-center lg:items-start gap-3 w-full sm:w-auto">
                 <Magnetic amount={0.2}>
                   <a
                     href="/trust-calculator"
-                    className="inline-flex h-14 md:h-16 items-center justify-center rounded-standard px-8 md:px-10 text-sm md:text-base font-bold text-brand-navy border-2 border-brand-navy/10 hover:bg-brand-navy/5 transition-all duration-300 whitespace-nowrap w-full sm:w-auto"
+                    className="inline-flex w-full sm:w-auto h-14 md:h-16 items-center justify-center rounded-standard px-8 md:px-10 text-sm md:text-base font-bold text-brand-navy border-2 border-brand-navy/10 hover:bg-brand-navy/5 transition-all duration-300 whitespace-nowrap"
                   >
-                    Run Instant Scan
+                    Check My Google Profile
                   </a>
                 </Magnetic>
-              </div>
-
-              <div className="flex flex-col items-center lg:items-start gap-3 mt-2">
-                <div className="flex items-center gap-2 text-sm text-text-secondary font-medium">
-                  <CheckCircle2 className="w-4 h-4 text-brand-accent shrink-0" />
-                  <span className="md:whitespace-nowrap">Takes 60 seconds. No sales pitch. No upsells.</span>
+                <div className="flex items-start gap-2 text-xs md:text-sm text-text-secondary font-medium max-w-[280px] text-center lg:text-left">
+                  <CheckCircle2 className="w-4 h-4 text-brand-accent shrink-0 mt-0.5" />
+                  <span>See what may be hurting your Maps visibility.</span>
                 </div>
               </div>
             </motion.div>

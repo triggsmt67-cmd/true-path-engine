@@ -20,7 +20,7 @@ const TrailGrid: React.FC = () => {
                     >
                         <span className="text-brand-accent font-bold text-sm tracking-[0.2em] uppercase mb-4 block">Methodology</span>
                         <h2 className="text-3xl md:text-6xl lg:text-7xl font-bold text-brand-navy tracking-tight leading-[0.95] mb-8 uppercase">
-                            Run Instant <br /><span className="text-brand-accent italic">Scan.</span>
+                            Start With What's <br /><span className="text-brand-accent italic">Actually There.</span>
                         </h2>
                         <div className="p-8 rounded-standard bg-surface border border-black/5 relative group overflow-hidden transition-all duration-500 shadow-[0_15px_35px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] hover:-translate-y-1 hover:border-brand-accent/20">
                             <div className="absolute top-0 left-0 w-1.5 h-full bg-brand-accent/40 group-hover:bg-brand-accent transition-colors" />
