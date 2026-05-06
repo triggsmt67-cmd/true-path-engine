@@ -1,19 +1,20 @@
 import { draftMode } from "next/headers";
-import { Inter, Source_Serif_4 } from "next/font/google";
+import localFont from "next/font/local";
 import "@/app/globals.css";
 import { PreviewNotice } from "@/components/Globals/PreviewNotice/PreviewNotice";
 
 import type { Metadata } from 'next';
 
-const inter = Inter({
-  subsets: ["latin"],
+const inter = localFont({
+  src: "../fonts/inter-variable.woff2",
   variable: "--font-inter",
+  display: "swap",
 });
 
-const sourceSerif = Source_Serif_4({
-  subsets: ["latin"],
+const sourceSerif = localFont({
+  src: "../fonts/source-serif-variable.woff2",
   variable: "--font-serif",
-  weight: ['400', '500', '600', '700'],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
