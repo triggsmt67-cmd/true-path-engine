@@ -3,22 +3,33 @@ import { MetadataRoute } from "next";
 export const revalidate = 0;
 
 async function getTotalCounts() {
-  const wpUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://admin.truepath406.com";
-  const response = await fetch(
-    `${wpUrl}/wp-json/sitemap/v1/totalpages`,
-  );
-  const data = await response.json();
-  if (!data) return [];
-  const propertyNames = Object.keys(data);
+  try {
+    const wpUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://admin.truepath406.com";
+    const response = await fetch(
+      `${wpUrl}/wp-json/sitemap/v1/totalpages`,
+    );
+    
+    if (!response.ok) {
+      console.warn(`Sitemap: WordPress API returned ${response.status} for totalpages`);
+      return [];
+    }
+    
+    const data = await response.json();
+    if (!data) return [];
+    const propertyNames = Object.keys(data);
 
-  const excludeItems = ["page", "user", "category", "tag"];
-  let totalArray = propertyNames
-    .filter((name) => !excludeItems.includes(name))
-    .map((name) => {
-      return { name, total: data[name] };
-    });
+    const excludeItems = ["page", "user", "category", "tag"];
+    let totalArray = propertyNames
+      .filter((name) => !excludeItems.includes(name))
+      .map((name) => {
+        return { name, total: data[name] };
+      });
 
-  return totalArray;
+    return totalArray;
+  } catch (error) {
+    console.error("Sitemap: Failed to fetch total counts from WordPress:", error);
+    return [];
+  }
 }
 
 async function getPostsUrls({
@@ -30,26 +41,37 @@ async function getPostsUrls({
   type: string;
   perPage: number;
 }) {
-  const wpUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://admin.truepath406.com";
-  const response = await fetch(
-    `${wpUrl}/wp-json/sitemap/v1/posts?pageNo=${page}&postType=${type}&perPage=${perPage}`,
-  );
+  try {
+    const wpUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://admin.truepath406.com";
+    const response = await fetch(
+      `${wpUrl}/wp-json/sitemap/v1/posts?pageNo=${page}&postType=${type}&perPage=${perPage}`,
+    );
 
-  const data = await response.json();
+    if (!response.ok) {
+      console.warn(`Sitemap: WordPress API returned ${response.status} for posts type=${type} page=${page}`);
+      return [];
+    }
 
-  if (!data) return [];
+    const data = await response.json();
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://truepath406.com";
-  const posts = data.map((post: any) => {
-    return {
-      url: `${baseUrl}${post.url}`,
-      lastModified: new Date(post.post_modified_date)
-        .toISOString()
-        .split("T")[0],
-    };
-  });
+    if (!data || !Array.isArray(data)) return [];
 
-  return posts;
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://truepath406.com";
+    const posts = data.map((post: any) => {
+      const formattedUrl = `${baseUrl}${post.url}`.replace(/\/?$/, '/');
+      return {
+        url: formattedUrl,
+        lastModified: post.post_modified_date 
+          ? new Date(post.post_modified_date).toISOString().split("T")[0]
+          : new Date().toISOString().split("T")[0],
+      };
+    });
+
+    return posts;
+  } catch (error) {
+    console.error(`Sitemap: Failed to fetch posts from WordPress for type=${type} page=${page}:`, error);
+    return [];
+  }
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
