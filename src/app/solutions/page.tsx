@@ -201,16 +201,16 @@ export default async function SolutionsDiagnosticPage() {
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": "https://www.truepath406.com/solutions/#webpage",
-        "url": "https://www.truepath406.com/solutions/",
+        "@id": "https://truepath406.com/solutions/#webpage",
+        "url": "https://truepath406.com/solutions/",
         "name": "What I Help Service Businesses Fix",
         "headline": "Find the leak that is costing you jobs.",
         "description": "Find the places your service business may be losing jobs — weak Google visibility, missed calls, slow follow-up, thin reviews, website conversion problems, cold estimates, and wasted ad spend.",
         "isPartOf": {
-          "@id": "https://www.truepath406.com/#website"
+          "@id": "https://truepath406.com/#website"
         },
         "publisher": {
-          "@id": "https://www.truepath406.com/#organization"
+          "@id": "https://truepath406.com/#organization"
         },
         "about": [
           { "@type": "Thing", "name": "Google Business Profile optimization" },
@@ -227,33 +227,33 @@ export default async function SolutionsDiagnosticPage() {
           "audienceType": "Owner-operated local service businesses"
         },
         "breadcrumb": {
-          "@id": "https://www.truepath406.com/solutions/#breadcrumb"
+          "@id": "https://truepath406.com/solutions/#breadcrumb"
         },
         "mainEntity": {
-          "@id": "https://www.truepath406.com/solutions/#faq"
+          "@id": "https://truepath406.com/solutions/#faq"
         }
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://www.truepath406.com/solutions/#breadcrumb",
+        "@id": "https://truepath406.com/solutions/#breadcrumb",
         "itemListElement": [
           {
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://www.truepath406.com/"
+            "item": "https://truepath406.com/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "What I Help Service Businesses Fix",
-            "item": "https://www.truepath406.com/solutions/"
+            "item": "https://truepath406.com/solutions/"
           }
         ]
       },
       {
         "@type": "FAQPage",
-        "@id": "https://www.truepath406.com/solutions/#faq",
+        "@id": "https://truepath406.com/solutions/#faq",
         "mainEntity": faqs.map(faq => ({
           "@type": "Question",
           "name": faq.q,
