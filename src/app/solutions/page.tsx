@@ -341,15 +341,15 @@ export default async function SolutionsDiagnosticPage() {
             </div>
           </section>
 
-          {/* 4. Fast Triage Section - Keeping this section dark themed as it was in dev */}
+          {/* 4. Fast Triage Section - Themed with brand-accent for contrast */}
           <section className="max-w-[1400px] mx-auto px-6 mb-32">
-            <div className="bg-brand-navy border border-black/5 rounded-3xl p-8 md:p-12 lg:p-16 shadow-2xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-accent/10 rounded-full blur-[100px] pointer-events-none" />
+            <div className="bg-brand-accent border border-black/5 rounded-3xl p-8 md:p-12 lg:p-16 shadow-2xl relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white/10 rounded-full blur-[100px] pointer-events-none" />
               
               <div className="mb-12 relative z-10">
-                <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-brand-accent uppercase mb-3 block">Fast Triage</span>
+                <span className="text-[10px] md:text-xs font-bold tracking-[0.2em] text-brand-navy uppercase mb-3 block">Fast Triage</span>
                 <h2 className="font-serif font-bold tracking-tight text-3xl md:text-4xl text-white mb-4">What to look at first</h2>
-                <p className="text-base md:text-lg text-white/80 font-normal max-w-3xl leading-relaxed">
+                <p className="text-base md:text-lg text-white/90 font-normal max-w-3xl leading-relaxed">
                   If you already know the symptom, this gives you the first place to look before adding more marketing spend or rebuilding the whole site.
                 </p>
               </div>
@@ -357,7 +357,7 @@ export default async function SolutionsDiagnosticPage() {
               <div className="overflow-x-auto relative z-10">
                 <table className="w-full text-left border-collapse min-w-[800px]">
                   <thead>
-                    <tr className="border-b border-white/10 text-brand-accent text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">
+                    <tr className="border-b border-white/20 text-brand-navy text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase">
                       <th className="py-5 px-4 w-1/3">If this is happening</th>
                       <th className="py-5 px-4 w-1/3">Look here first</th>
                       <th className="py-5 px-4 w-1/3">Related fix</th>
@@ -365,11 +365,11 @@ export default async function SolutionsDiagnosticPage() {
                   </thead>
                   <tbody className="divide-y divide-white/10">
                     {triageRows.map((row, idx) => (
-                      <tr key={idx} className="hover:bg-white/5 transition-colors group">
+                      <tr key={idx} className="hover:bg-white/10 transition-colors group">
                         <td className="py-6 px-4 text-white font-bold">{row.symptom}</td>
-                        <td className="py-6 px-4 text-white/70 text-sm font-normal leading-relaxed">{row.lookHere}</td>
+                        <td className="py-6 px-4 text-white/80 text-sm font-normal leading-relaxed">{row.lookHere}</td>
                         <td className="py-6 px-4">
-                          <Link href={row.href} className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-brand-accent transition-colors">
+                          <Link href={row.href} className="inline-flex items-center gap-2 text-sm font-bold text-white hover:text-brand-navy transition-colors">
                             {row.fix}
                             <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
                           </Link>
