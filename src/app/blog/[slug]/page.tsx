@@ -248,6 +248,12 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
     const rawExcerpt = post.excerpt?.replace(/<[^>]*>?/gm, '').replace(/Continue reading.*/gi, '').trim() || '';
     const cleanExcerptText = decodeHtmlEntities(rawExcerpt);
     const cleanTitleText = decodeHtmlEntities(post.title);
+
+    // Normalize internal absolute links to relative paths
+    // Prevents cross-subdomain mismatch and helps Next.js SPA routing
+    const normalizedContent = post.content
+        ? post.content.replace(/href="https:\/\/(www\.)?truepath406\.com/g, 'href="')
+        : '';
     
     const articleUrl = `https://truepath406.com/blog/${slug}`;
     const authorName = "Trevor Riggs";
@@ -454,7 +460,7 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                             prose-img:rounded-[2rem] prose-img:shadow-xl prose-img:border prose-img:border-black/5 dark:prose-img:border-white/5
                             prose-ul:list-disc prose-ol:list-decimal
                             dark:prose-invert"
-                            dangerouslySetInnerHTML={{ __html: post.content }}
+                            dangerouslySetInnerHTML={{ __html: normalizedContent }}
                         />
 
                         {/* 8. FAQ section if FAQs exist */}
