@@ -61,6 +61,9 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="md:col-span-4 text-center md:text-right">
+            <div className="mb-4">
+              <a href="/privacy-policy" className="text-xs text-text-secondary/60 hover:text-brand-accent transition-colors font-bold uppercase tracking-wider">Privacy Policy</a>
+            </div>
             <p className="text-sm text-text-secondary/60 mb-1 font-bold uppercase tracking-wider">&copy; {new Date().getFullYear()} True Path Digital LLC. All rights reserved.</p>
             <p className="text-xs text-text-secondary/40 font-bold uppercase tracking-widest">Based in Missoula, MT. Built for the trades.</p>
           </div>

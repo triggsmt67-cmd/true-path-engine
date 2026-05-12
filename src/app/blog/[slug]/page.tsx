@@ -251,10 +251,44 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
     const cleanTitleText = decodeHtmlEntities(post.title);
 
     // Normalize internal absolute links to relative paths
-    // Prevents cross-subdomain mismatch and helps Next.js SPA routing
-    const normalizedContent = post.content
+    let normalizedContent = post.content
         ? post.content.replace(/href="https:\/\/(www\.)?truepath406\.com/g, 'href="')
         : '';
+        
+    // Programmatic Internal Link Injection
+    // We only inject the first occurrence of each keyword to avoid link spam.
+    const linkKeywords = [
+        { keyword: "Local Services Ads", url: "/solutions/local-services-ads/" },
+        { keyword: "Website Conversion", url: "/solutions/website-conversion/" },
+        { keyword: "Lead Velocity", url: "/solutions/lead-velocity/" },
+        { keyword: "Local Authority", url: "/solutions/local-authority/" },
+        { keyword: "Review System", url: "/solutions/review-system/" },
+        { keyword: "Estimate Follow-Up", url: "/solutions/estimate-follow-up/" },
+        { keyword: "Trust Deficit", url: "/trust-calculator/" },
+    ];
+
+    linkKeywords.forEach(({ keyword, url }) => {
+        // Regex ensures we only match the word outside of HTML tags and attributes
+        // (?![^<]*>) ensures the matched keyword is not inside an HTML tag.
+        // (?<!<a[^>]*>.*?) is ideally what we want but variable length lookbehinds are not supported.
+        // As a safe fallback, we just replace the first occurrence that isn't inside an HTML tag.
+        const regex = new RegExp(`\\b(${keyword})\\b(?![^<]*>)`, 'i');
+        if (regex.test(normalizedContent)) {
+            // Check if it's already inside an anchor tag by looking at the string context
+            const matchIndex = normalizedContent.search(regex);
+            const stringUpToMatch = normalizedContent.substring(0, matchIndex);
+            const openAnchors = (stringUpToMatch.match(/<a\b/gi) || []).length;
+            const closeAnchors = (stringUpToMatch.match(/<\/a>/gi) || []).length;
+            
+            // Only inject if we are not currently inside an open anchor tag
+            if (openAnchors === closeAnchors) {
+                normalizedContent = normalizedContent.replace(
+                    regex, 
+                    `<a href="${url}" class="text-brand-accent hover:underline font-medium">$1</a>`
+                );
+            }
+        }
+    });
     
     const articleUrl = `https://truepath406.com/blog/${slug}`;
     const authorName = "Trevor Riggs";
