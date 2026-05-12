@@ -99,8 +99,8 @@ const Hero: React.FC = () => {
               <div className="flex flex-col items-center lg:items-start gap-3 w-full sm:w-auto">
                 <Magnetic amount={0.2}>
                   <a
-                    href="/trust-calculator"
-                    className="inline-flex w-full sm:w-auto h-14 md:h-16 items-center justify-center rounded-standard px-8 md:px-10 text-sm md:text-base font-bold text-brand-navy border-2 border-brand-navy/10 hover:bg-brand-navy/5 transition-all duration-300 whitespace-nowrap"
+                    href="/trust-calculator/"
+                    className="inline-flex h-14 md:h-16 items-center justify-center rounded-standard px-8 md:px-10 text-sm md:text-base font-bold text-brand-navy border-2 border-brand-navy/10 hover:bg-brand-navy/5 transition-all duration-300 whitespace-nowrap w-full sm:w-auto"
                   >
                     Check My Google Profile
                   </a>

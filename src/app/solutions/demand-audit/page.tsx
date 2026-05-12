@@ -6,6 +6,8 @@ import SectionSeparator from '@/components/SectionSeparator';
 import { SpotlightCard } from '@/components/SpotlightCard';
 import { Shield, ArrowRight, CheckCircle2, Target, Settings, EyeOff, UserMinus, ShieldAlert, TrendingDown, Search, Lightbulb, ClipboardList, PiggyBank, Compass } from 'lucide-react';
 import Link from 'next/link';
+import RelatedInsights from '@/components/blog/RelatedInsights';
+
 
 export const metadata: Metadata = {
   title: 'Demand Leak Audit | True Path Digital',
@@ -68,7 +70,8 @@ export default function DemandAuditPage() {
         "name": "Demand Leak Audit | True Path Digital",
         "description": "Find out where visibility, follow-up, trust, or conversion is breaking down before you spend more trying to fix the wrong thing.",
         "isPartOf": { "@id": "https://truepath406.com/#website" },
-        "breadcrumb": { "@id": "https://truepath406.com/solutions/demand-audit/#breadcrumb" }
+        "breadcrumb": { "@id": "https://truepath406.com/solutions/demand-audit/#breadcrumb" },
+        "mainEntity": { "@id": "https://truepath406.com/solutions/demand-audit/#service" }
       },
       {
         "@type": "BreadcrumbList",
@@ -150,7 +153,7 @@ export default function DemandAuditPage() {
                   </Link>
                   
                   <Link
-                    href="/trust-calculator"
+                    href="/trust-calculator/"
                     className="inline-flex h-16 w-full sm:w-auto items-center justify-center rounded-full px-10 text-base font-medium text-brand-navy border border-black/10 hover:bg-black/5 transition-colors duration-300 whitespace-nowrap"
                   >
                     Run Instant Scan
@@ -381,7 +384,7 @@ export default function DemandAuditPage() {
           <SectionSeparator number="06" title="FAQ" />
 
           {/* 7. FAQ SECTION */}
-          <section className="py-20 mb-20 bg-background border-y border-black/5">
+          <section className="py-20 bg-background">
              <div className="max-w-[1000px] mx-auto px-6">
                 <div className="mb-16 text-center">
                   <h2 className="text-3xl md:text-5xl font-semibold text-brand-navy mb-6 tracking-tight">Questions People Usually Have</h2>
@@ -411,6 +414,8 @@ export default function DemandAuditPage() {
                 </div>
              </div>
           </section>
+
+          <RelatedInsights categoryName="demand-audit" />
 
         </main>
         

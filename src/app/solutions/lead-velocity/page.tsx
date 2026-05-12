@@ -6,6 +6,8 @@ import SectionSeparator from '@/components/SectionSeparator';
 import { SpotlightCard } from '@/components/SpotlightCard';
 import { Shield, ArrowRight, CheckCircle2, Target, Zap, Settings, PhoneMissed, Clock, Filter, FileText, CheckCircle, TrendingUp, Key, BrainCircuit } from 'lucide-react';
 import Link from 'next/link';
+import RelatedInsights from '@/components/blog/RelatedInsights';
+
 
 export const metadata: Metadata = {
   title: 'Missed Call Recovery & Lead Response | True Path Digital',
@@ -68,7 +70,8 @@ export default function LeadResponsePage() {
         "name": "Missed Call Recovery & Lead Response | True Path Digital",
         "description": "Set up a cleaner, faster lead-response process so calls, forms, and quote requests stop slipping through the cracks.",
         "isPartOf": { "@id": "https://truepath406.com/#website" },
-        "breadcrumb": { "@id": "https://truepath406.com/solutions/lead-velocity/#breadcrumb" }
+        "breadcrumb": { "@id": "https://truepath406.com/solutions/lead-velocity/#breadcrumb" },
+        "mainEntity": { "@id": "https://truepath406.com/solutions/lead-velocity/#service" }
       },
       {
         "@type": "BreadcrumbList",
@@ -150,7 +153,7 @@ export default function LeadResponsePage() {
                   </Link>
                   
                   <Link
-                    href="/trust-calculator"
+                    href="/trust-calculator/"
                     className="inline-flex h-16 w-full sm:w-auto items-center justify-center rounded-full px-10 text-base font-medium text-brand-navy border border-black/10 hover:bg-black/5 transition-colors duration-300 whitespace-nowrap"
                   >
                     Run Instant Scan
@@ -372,7 +375,7 @@ export default function LeadResponsePage() {
           <SectionSeparator number="06" title="FAQ" />
 
           {/* 7. FAQ SECTION */}
-          <section className="py-20 mb-20 bg-background border-y border-black/5">
+          <section className="py-20 bg-background">
              <div className="max-w-[1000px] mx-auto px-6">
                 <div className="mb-16 text-center">
                   <h2 className="text-3xl md:text-5xl font-semibold text-brand-navy mb-6 tracking-tight">Questions People Usually Have</h2>
@@ -402,6 +405,8 @@ export default function LeadResponsePage() {
                 </div>
              </div>
           </section>
+
+          <RelatedInsights categoryName="lead-velocity" />
 
         </main>
         

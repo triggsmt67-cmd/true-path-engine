@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { decodeHtmlEntities } from '@/utils/decodeHtmlEntities';
 import { SOCIAL_LINKS } from '@/constants/links';
 import {
@@ -175,22 +176,23 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
                     <h4 className="text-[10px] font-bold tracking-[0.25em] uppercase mb-8 text-text-secondary/40">Connect</h4>
 
                     <div className="flex items-center gap-5 mb-8 relative z-10">
-                        <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 p-1 border-brand-accent/20 bg-brand-accent/10">
-                            <img
+                        <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 p-1 border-brand-accent/20 bg-brand-accent/10 relative">
+                            <Image
                                 src="https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
-                                className="w-full h-full object-cover object-top rounded-[12px]"
+                                className="object-cover object-top rounded-[12px]"
                                 alt="Trevor Riggs"
-                                loading="lazy"
+                                fill
+                                sizes="64px"
                             />
                         </div>
                         <div>
                             <div className="font-bold text-xl tracking-tight text-brand-navy uppercase">Trevor Riggs</div>
-                            <div className="text-brand-accent text-[10px] font-bold uppercase tracking-[0.15em]">Founder / Architect</div>
+                            <div className="text-brand-accent text-[10px] font-bold uppercase tracking-[0.15em]">Founder, True Path Digital</div>
                         </div>
                     </div>
 
                     <p className="text-sm leading-relaxed mb-10 font-bold text-text-secondary/70 uppercase tracking-widest">
-                        25+ years engineering high-conversion sales systems and strategic digital infrastructure for high-growth firms.
+                        Trevor Riggs helps owner-operated service businesses find and fix the places jobs leak out — weak Google visibility, missed calls, slow follow-up, thin reviews, underperforming websites, and wasted ad spend. He runs True Path Digital, a practical consulting and implementation business built around clearer decisions, better lead handling, and fewer missed opportunities.
                     </p>
 
                     <a

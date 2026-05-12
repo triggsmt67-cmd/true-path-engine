@@ -6,6 +6,8 @@ import SectionSeparator from '@/components/SectionSeparator';
 import { SpotlightCard } from '@/components/SpotlightCard';
 import { Shield, ArrowRight, CheckCircle2, Target, Settings, Clock, Snowflake, CalendarX, Settings2, ShieldCheck, RefreshCw, BrainCircuit, CalendarCheck } from 'lucide-react';
 import Link from 'next/link';
+import RelatedInsights from '@/components/blog/RelatedInsights';
+
 
 export const metadata: Metadata = {
   title: 'Estimate Follow-Up & Booking Automation | True Path Digital',
@@ -68,7 +70,8 @@ export default function EstimateFollowUpPage() {
         "name": "Estimate Follow-Up & Booking Automation | True Path Digital",
         "description": "Build a cleaner follow-up process so quote requests, estimates, and warm leads are less likely to slip through the cracks.",
         "isPartOf": { "@id": "https://truepath406.com/#website" },
-        "breadcrumb": { "@id": "https://truepath406.com/solutions/estimate-follow-up/#breadcrumb" }
+        "breadcrumb": { "@id": "https://truepath406.com/solutions/estimate-follow-up/#breadcrumb" },
+        "mainEntity": { "@id": "https://truepath406.com/solutions/estimate-follow-up/#service" }
       },
       {
         "@type": "BreadcrumbList",
@@ -150,7 +153,7 @@ export default function EstimateFollowUpPage() {
                   </Link>
                   
                   <Link
-                    href="/trust-calculator"
+                    href="/trust-calculator/"
                     className="inline-flex h-16 w-full sm:w-auto items-center justify-center rounded-full px-10 text-base font-medium text-brand-navy border border-black/10 hover:bg-black/5 transition-colors duration-300 whitespace-nowrap"
                   >
                     Run Instant Scan
@@ -382,7 +385,7 @@ export default function EstimateFollowUpPage() {
           <SectionSeparator number="06" title="FAQ" />
 
           {/* 7. FAQ SECTION */}
-          <section className="py-20 mb-20 bg-background border-y border-black/5">
+          <section className="py-20 bg-background">
              <div className="max-w-[1000px] mx-auto px-6">
                 <div className="mb-16 text-center">
                   <h2 className="text-3xl md:text-5xl font-semibold text-brand-navy mb-6 tracking-tight">Questions People Usually Have</h2>
@@ -412,6 +415,8 @@ export default function EstimateFollowUpPage() {
                 </div>
              </div>
           </section>
+
+          <RelatedInsights categoryName="follow-up" />
 
         </main>
         

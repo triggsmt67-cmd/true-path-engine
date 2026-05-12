@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Strategic Infrastructure Hub | True Path Digital',
-  description: 'The Command Center for Montana trade growth. High-fidelity marketing frameworks and tactical service nodes for Plumbing, HVAC, and Septic business owners.',
+  title: 'What I Help Service Businesses Fix | True Path Digital',
+  description: 'Find the places your service business may be losing jobs — weak Google visibility, missed calls, slow follow-up, thin reviews, website conversion problems, cold estimates, and wasted ad spend.',
   alternates: {
     canonical: 'https://truepath406.com/solutions/'
   }

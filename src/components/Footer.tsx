@@ -3,6 +3,12 @@ import React from 'react';
 import { Linkedin, Twitter, Mail, Instagram } from 'lucide-react';
 import { SOCIAL_LINKS } from '../constants/links';
 
+const SubstackIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className} xmlns="http://www.w3.org/2000/svg">
+    <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM22.539 11.25H1.46v11.666l10.54-5.895 10.539 5.895V11.25zM22.539 0H1.46v2.836h21.08V0z"/>
+  </svg>
+);
+
 const Footer: React.FC = () => {
   return (
     <footer className="py-20 border-t border-black/5 bg-background relative overflow-hidden">
@@ -24,7 +30,7 @@ const Footer: React.FC = () => {
                 href={SOCIAL_LINKS.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-standard bg-surface border border-black/5 text-text-secondary hover:text-brand-accent hover:border-brand-accent/50 transition-all shadow-sm"
+                className="p-3 rounded-standard bg-surface border border-black/5 text-text-secondary hover:text-[#0A66C2] hover:border-[#0A66C2]/50 transition-all shadow-sm"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
@@ -33,7 +39,7 @@ const Footer: React.FC = () => {
                 href={SOCIAL_LINKS.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-standard bg-surface border border-black/5 text-text-secondary hover:text-brand-accent hover:border-brand-accent/50 transition-all shadow-sm"
+                className="p-3 rounded-standard bg-surface border border-black/5 text-text-secondary hover:text-[#000000] dark:hover:text-[#FFFFFF] hover:border-black/50 dark:hover:border-white/50 transition-all shadow-sm"
                 aria-label="X"
               >
                 <Twitter className="w-5 h-5" />
@@ -42,10 +48,19 @@ const Footer: React.FC = () => {
                 href={SOCIAL_LINKS.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-standard bg-surface border border-black/5 text-text-secondary hover:text-brand-accent hover:border-brand-accent/50 transition-all shadow-sm"
+                className="p-3 rounded-standard bg-surface border border-black/5 text-text-secondary hover:text-[#E1306C] hover:border-[#E1306C]/50 transition-all shadow-sm"
                 aria-label="Instagram"
               >
                 <Instagram className="w-5 h-5" />
+              </a>
+              <a
+                href="https://substack.com/@truepathmt"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 rounded-standard bg-surface border border-black/5 text-text-secondary hover:text-[#FF6719] hover:border-[#FF6719]/50 transition-all shadow-sm"
+                aria-label="Substack"
+              >
+                <SubstackIcon className="w-5 h-5" />
               </a>
               <a
                 href={`mailto:${SOCIAL_LINKS.email}`}
@@ -61,6 +76,9 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="md:col-span-4 text-center md:text-right">
+            <div className="mb-4">
+              <a href="/privacy-policy" className="text-xs text-text-secondary/60 hover:text-brand-accent transition-colors font-bold uppercase tracking-wider">Privacy Policy</a>
+            </div>
             <p className="text-sm text-text-secondary/60 mb-1 font-bold uppercase tracking-wider">&copy; {new Date().getFullYear()} True Path Digital LLC. All rights reserved.</p>
             <p className="text-xs text-text-secondary/40 font-bold uppercase tracking-widest">Based in Missoula, MT. Built for the trades.</p>
           </div>

@@ -8,8 +8,8 @@ import { CONTACT_LINKS } from '@/constants/links';
 
 const NAV_ITEMS = [
   { label: 'Home', href: '/' },
-  { label: 'Solutions', href: '/solutions' },
-  { label: 'Check My Google Profile', href: '/trust-calculator' },
+  { label: 'Solutions', href: '/solutions/' },
+  { label: 'Check My Google Profile', href: '/trust-calculator/' },
   { label: 'About', href: '/#about' },
   { label: 'Insights', href: '/blog/' },
 ];

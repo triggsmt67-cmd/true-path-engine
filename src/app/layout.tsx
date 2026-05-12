@@ -14,6 +14,7 @@ const inter = localFont({
 const sourceSerif = localFont({
   src: "../fonts/source-serif-variable.woff2",
   variable: "--font-serif",
+  weight: "400 700",
   display: "swap",
 });
 
@@ -58,7 +59,7 @@ const structuredData = {
       }
     },
     {
-      "@type": "Organization",
+      "@type": "MarketingAgency",
       "@id": "https://truepath406.com/#organization",
       "name": "True Path Digital",
       "url": "https://truepath406.com/",
@@ -73,11 +74,13 @@ const structuredData = {
       },
       "address": {
         "@type": "PostalAddress",
+        "addressLocality": "Missoula",
         "addressRegion": "MT",
         "addressCountry": "US"
       },
       "sameAs": [
-        "https://www.linkedin.com/in/trevor-riggs-marketing/"
+        "https://www.linkedin.com/in/trevor-riggs-marketing/",
+        "https://substack.com/@truepathmt"
       ]
     },
     {
@@ -85,9 +88,14 @@ const structuredData = {
       "@id": "https://truepath406.com/#founder",
       "name": "Trevor Riggs",
       "url": "https://www.linkedin.com/in/trevor-riggs-marketing/",
+      "jobTitle": "Founder & Principal",
       "worksFor": {
         "@id": "https://truepath406.com/#organization"
-      }
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/trevor-riggs-marketing/",
+        "https://substack.com/@truepathmt"
+      ]
     }
   ]
 };

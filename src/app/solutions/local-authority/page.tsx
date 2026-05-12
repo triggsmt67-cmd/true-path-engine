@@ -6,6 +6,7 @@ import SectionSeparator from '@/components/SectionSeparator';
 import { SpotlightCard } from '@/components/SpotlightCard';
 import { Shield, Search, ArrowRight, CheckCircle2, Target, Zap, Settings, Star } from 'lucide-react';
 import Link from 'next/link';
+import RelatedInsights from '@/components/blog/RelatedInsights';
 
 export const metadata: Metadata = {
   title: 'Google Business Profile Optimization | True Path Digital',
@@ -68,7 +69,8 @@ export default function GoogleBusinessProfilePage() {
         "name": "Google Business Profile Optimization | True Path Digital",
         "description": "Improve your Google Business Profile so local customers can find you more easily, trust what they see, and take action faster.",
         "isPartOf": { "@id": "https://truepath406.com/#website" },
-        "breadcrumb": { "@id": "https://truepath406.com/solutions/local-authority/#breadcrumb" }
+        "breadcrumb": { "@id": "https://truepath406.com/solutions/local-authority/#breadcrumb" },
+        "mainEntity": { "@id": "https://truepath406.com/solutions/local-authority/#service" }
       },
       {
         "@type": "BreadcrumbList",
@@ -150,7 +152,7 @@ export default function GoogleBusinessProfilePage() {
                   </Link>
                   
                   <Link
-                    href="/trust-calculator"
+                    href="/trust-calculator/"
                     className="inline-flex h-16 w-full sm:w-auto items-center justify-center rounded-full px-10 text-base font-medium text-brand-navy border border-black/10 hover:bg-black/5 transition-colors duration-300 whitespace-nowrap"
                   >
                     Run Instant Scan
@@ -372,7 +374,7 @@ export default function GoogleBusinessProfilePage() {
           <SectionSeparator number="06" title="FAQ" />
 
           {/* 7. FAQ SECTION */}
-          <section className="py-20 mb-20 bg-background border-y border-black/5">
+          <section className="py-20 bg-background">
              <div className="max-w-[1000px] mx-auto px-6">
                 <div className="mb-16 text-center">
                   <h2 className="text-3xl md:text-5xl font-semibold text-brand-navy mb-6 tracking-tight">Questions People Usually Have</h2>
@@ -402,6 +404,8 @@ export default function GoogleBusinessProfilePage() {
                 </div>
              </div>
           </section>
+
+          <RelatedInsights categoryName="seo" />
 
         </main>
         

@@ -6,6 +6,8 @@ import SectionSeparator from '@/components/SectionSeparator';
 import { SpotlightCard } from '@/components/SpotlightCard';
 import { ArrowRight, CheckCircle2, Target, Settings, Wrench, Clock, TrendingDown, HelpCircle, ShieldCheck, BarChart3, Briefcase } from 'lucide-react';
 import Link from 'next/link';
+import RelatedInsights from '@/components/blog/RelatedInsights';
+
 
 export const metadata: Metadata = {
   title: 'Local Services Ads Setup & Cleanup | True Path Digital',
@@ -68,7 +70,8 @@ export default function LocalServicesAdsPage() {
         "name": "Local Services Ads Setup & Cleanup | True Path Digital",
         "description": "Improve setup, lead handling, and service alignment so Local Services Ads become a more useful source of real local opportunities.",
         "isPartOf": { "@id": "https://truepath406.com/#website" },
-        "breadcrumb": { "@id": "https://truepath406.com/solutions/local-services-ads/#breadcrumb" }
+        "breadcrumb": { "@id": "https://truepath406.com/solutions/local-services-ads/#breadcrumb" },
+        "mainEntity": { "@id": "https://truepath406.com/solutions/local-services-ads/#service" }
       },
       {
         "@type": "BreadcrumbList",
@@ -150,7 +153,7 @@ export default function LocalServicesAdsPage() {
                   </Link>
                   
                   <Link
-                    href="/trust-calculator"
+                    href="/trust-calculator/"
                     className="inline-flex h-16 w-full sm:w-auto items-center justify-center rounded-full px-10 text-base font-medium text-brand-navy border border-black/10 hover:bg-black/5 transition-colors duration-300 whitespace-nowrap"
                   >
                     Run Instant Scan
@@ -382,7 +385,7 @@ export default function LocalServicesAdsPage() {
           <SectionSeparator number="06" title="FAQ" />
 
           {/* 7. FAQ SECTION */}
-          <section className="py-20 mb-20 bg-background border-y border-black/5">
+          <section className="py-20 bg-background">
              <div className="max-w-[1000px] mx-auto px-6">
                 <div className="mb-16 text-center">
                   <h2 className="text-3xl md:text-5xl font-semibold text-brand-navy mb-6 tracking-tight">Questions People Usually Have</h2>
@@ -412,6 +415,8 @@ export default function LocalServicesAdsPage() {
                 </div>
              </div>
           </section>
+
+          <RelatedInsights categoryName="ads" />
 
         </main>
         

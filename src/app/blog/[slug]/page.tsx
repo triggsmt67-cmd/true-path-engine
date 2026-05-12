@@ -2,6 +2,7 @@ import { fetchGraphQL } from '@/utils/fetchGraphQL';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Clock, Zap } from 'lucide-react';
 import { notFound } from 'next/navigation';
@@ -248,6 +249,46 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
     const rawExcerpt = post.excerpt?.replace(/<[^>]*>?/gm, '').replace(/Continue reading.*/gi, '').trim() || '';
     const cleanExcerptText = decodeHtmlEntities(rawExcerpt);
     const cleanTitleText = decodeHtmlEntities(post.title);
+
+    // Normalize internal absolute links to relative paths
+    let normalizedContent = post.content
+        ? post.content.replace(/href="https:\/\/(www\.)?truepath406\.com/g, 'href="')
+        : '';
+        
+    // Programmatic Internal Link Injection
+    // We only inject the first occurrence of each keyword to avoid link spam.
+    const linkKeywords = [
+        { keyword: "Local Services Ads", url: "/solutions/local-services-ads/" },
+        { keyword: "Website Conversion", url: "/solutions/website-conversion/" },
+        { keyword: "Lead Velocity", url: "/solutions/lead-velocity/" },
+        { keyword: "Local Authority", url: "/solutions/local-authority/" },
+        { keyword: "Review System", url: "/solutions/review-system/" },
+        { keyword: "Estimate Follow-Up", url: "/solutions/estimate-follow-up/" },
+        { keyword: "Trust Deficit", url: "/trust-calculator/" },
+    ];
+
+    linkKeywords.forEach(({ keyword, url }) => {
+        // Regex ensures we only match the word outside of HTML tags and attributes
+        // (?![^<]*>) ensures the matched keyword is not inside an HTML tag.
+        // (?<!<a[^>]*>.*?) is ideally what we want but variable length lookbehinds are not supported.
+        // As a safe fallback, we just replace the first occurrence that isn't inside an HTML tag.
+        const regex = new RegExp(`\\b(${keyword})\\b(?![^<]*>)`, 'i');
+        if (regex.test(normalizedContent)) {
+            // Check if it's already inside an anchor tag by looking at the string context
+            const matchIndex = normalizedContent.search(regex);
+            const stringUpToMatch = normalizedContent.substring(0, matchIndex);
+            const openAnchors = (stringUpToMatch.match(/<a\b/gi) || []).length;
+            const closeAnchors = (stringUpToMatch.match(/<\/a>/gi) || []).length;
+            
+            // Only inject if we are not currently inside an open anchor tag
+            if (openAnchors === closeAnchors) {
+                normalizedContent = normalizedContent.replace(
+                    regex, 
+                    `<a href="${url}" class="text-brand-accent hover:underline font-medium">$1</a>`
+                );
+            }
+        }
+    });
     
     const articleUrl = `https://truepath406.com/blog/${slug}`;
     const authorName = "Trevor Riggs";
@@ -358,7 +399,7 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                         <header className="mb-12">
                             <div className="flex items-center gap-4 mb-6">
                                 <Link
-                                    href="/blog"
+                                    href="/blog/"
                                     className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] group transition-colors text-slate-500 hover:text-primary dark:hover:text-white decoration-transparent"
                                 >
                                     <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
@@ -392,11 +433,13 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
 
                             {/* Optional Featured Image just under the head */}
                             {post.featuredImage?.node?.sourceUrl && (
-                                <div className="my-10 relative overflow-hidden rounded-[2rem] border border-slate-200 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-primary/5">
-                                    <img 
+                                <div className="my-10 relative overflow-hidden rounded-[2rem] border border-slate-200 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-primary/5 h-[300px] md:h-[500px]">
+                                    <Image 
                                         src={post.featuredImage.node.sourceUrl} 
                                         alt={post.featuredImage.node.altText || cleanTitleText} 
-                                        className="w-full h-auto max-h-[500px] object-cover"
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 800px"
+                                        className="object-cover"
                                     />
                                 </div>
                             )}
@@ -423,12 +466,13 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
 
                             {/* 6. Author Line */}
                             <div className="flex items-center gap-4 mt-8 pb-8 border-b border-slate-200 dark:border-white/10">
-                                <div className="w-12 h-12 rounded-full overflow-hidden border border-primary/20 bg-primary/5">
-                                    <img
+                                <div className="w-12 h-12 rounded-full overflow-hidden border border-primary/20 bg-primary/5 relative">
+                                    <Image
                                         src="https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
-                                        className="w-full h-full object-cover object-top"
+                                        className="object-cover object-top"
                                         alt={authorName}
-                                        loading="lazy"
+                                        fill
+                                        sizes="48px"
                                     />
                                 </div>
                                 <div className="flex flex-col">
@@ -454,7 +498,7 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                             prose-img:rounded-[2rem] prose-img:shadow-xl prose-img:border prose-img:border-black/5 dark:prose-img:border-white/5
                             prose-ul:list-disc prose-ol:list-decimal
                             dark:prose-invert"
-                            dangerouslySetInnerHTML={{ __html: post.content }}
+                            dangerouslySetInnerHTML={{ __html: normalizedContent }}
                         />
 
                         {/* 8. FAQ section if FAQs exist */}
@@ -499,21 +543,22 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                         <section className="mt-20 p-8 rounded-3xl border bg-white border-slate-200 shadow-sm dark:bg-[#121417] dark:border-white/10 relative overflow-hidden">
                             <h4 className="text-[10px] font-bold tracking-[0.25em] uppercase mb-8 text-slate-400 dark:text-gray-500">About the Author</h4>
                             <div className="flex flex-col md:flex-row items-center md:items-start gap-6 relative z-10">
-                                <div className="w-16 h-16 shrink-0 rounded-full overflow-hidden border p-0.5 border-primary/20 bg-primary/5 dark:border-primary/40 dark:bg-primary/10">
-                                    <img
+                                <div className="w-16 h-16 rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/5 relative">
+                                    <Image
                                         src="https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
-                                        className="w-full h-full object-cover object-top rounded-full"
+                                        className="object-cover object-top"
                                         alt={authorName}
-                                        loading="lazy"
+                                        fill
+                                        sizes="64px"
                                     />
                                 </div>
                                 <div className="flex-1 text-center md:text-left">
                                     <div className="font-bold text-2xl tracking-tight text-slate-900 dark:text-white mb-1">
                                         {authorName}
                                     </div>
-                                    <div className="text-primary text-xs font-bold uppercase tracking-[0.15em] mb-4">Founder & Architect</div>
+                                    <div className="text-primary text-xs font-bold uppercase tracking-[0.15em] mb-4">Founder, True Path Digital</div>
                                     <p className="text-base leading-relaxed mb-6 font-light text-slate-600 dark:text-secondary/80">
-                                        {post.author?.node?.description || '25+ years engineering high-conversion sales systems and strategic digital infrastructure for high-growth firms.'}
+                                        Trevor Riggs helps owner-operated service businesses find and fix the places jobs leak out — weak Google visibility, missed calls, slow follow-up, thin reviews, underperforming websites, and wasted ad spend. He runs True Path Digital, a practical consulting and implementation business built around clearer decisions, better lead handling, and fewer missed opportunities.
                                     </p>
                                     <a
                                         href={authorUrl}

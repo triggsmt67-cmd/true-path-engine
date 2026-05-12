@@ -6,6 +6,8 @@ import SectionSeparator from '@/components/SectionSeparator';
 import { SpotlightCard } from '@/components/SpotlightCard';
 import { ArrowRight, CheckCircle2, Target, Settings, HelpCircle, MousePointer2, ShieldAlert, AlertOctagon, MessageSquare, ShieldCheck, LineChart } from 'lucide-react';
 import Link from 'next/link';
+import RelatedInsights from '@/components/blog/RelatedInsights';
+
 
 export const metadata: Metadata = {
   title: 'Website Conversion Repair | True Path Digital',
@@ -68,7 +70,8 @@ export default function WebsiteConversionPage() {
         "name": "Website Conversion Repair | True Path Digital",
         "description": "Fix the parts of your website that create hesitation, confusion, or friction so more of your existing traffic turns into real inquiries.",
         "isPartOf": { "@id": "https://truepath406.com/#website" },
-        "breadcrumb": { "@id": "https://truepath406.com/solutions/website-conversion/#breadcrumb" }
+        "breadcrumb": { "@id": "https://truepath406.com/solutions/website-conversion/#breadcrumb" },
+        "mainEntity": { "@id": "https://truepath406.com/solutions/website-conversion/#service" }
       },
       {
         "@type": "BreadcrumbList",
@@ -150,7 +153,7 @@ export default function WebsiteConversionPage() {
                   </Link>
                   
                   <Link
-                    href="/trust-calculator"
+                    href="/trust-calculator/"
                     className="inline-flex h-16 w-full sm:w-auto items-center justify-center rounded-full px-10 text-base font-medium text-brand-navy border border-black/10 hover:bg-black/5 transition-colors duration-300 whitespace-nowrap"
                   >
                     Run Instant Scan
@@ -372,7 +375,7 @@ export default function WebsiteConversionPage() {
           <SectionSeparator number="06" title="FAQ" />
 
           {/* 7. FAQ SECTION */}
-          <section className="py-20 mb-20 bg-background border-y border-black/5">
+          <section className="py-20 bg-background">
              <div className="max-w-[1000px] mx-auto px-6">
                 <div className="mb-16 text-center">
                   <h2 className="text-3xl md:text-5xl font-semibold text-brand-navy mb-6 tracking-tight">Questions People Usually Have</h2>
@@ -402,6 +405,8 @@ export default function WebsiteConversionPage() {
                 </div>
              </div>
           </section>
+
+          <RelatedInsights categoryName="website-conversion" />
 
         </main>
         
