@@ -68,7 +68,8 @@ export default function DemandAuditPage() {
         "name": "Demand Leak Audit | True Path Digital",
         "description": "Find out where visibility, follow-up, trust, or conversion is breaking down before you spend more trying to fix the wrong thing.",
         "isPartOf": { "@id": "https://truepath406.com/#website" },
-        "breadcrumb": { "@id": "https://truepath406.com/solutions/demand-audit/#breadcrumb" }
+        "breadcrumb": { "@id": "https://truepath406.com/solutions/demand-audit/#breadcrumb" },
+        "mainEntity": { "@id": "https://truepath406.com/solutions/demand-audit/#service" }
       },
       {
         "@type": "BreadcrumbList",

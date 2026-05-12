@@ -68,7 +68,8 @@ export default function LocalServicesAdsPage() {
         "name": "Local Services Ads Setup & Cleanup | True Path Digital",
         "description": "Improve setup, lead handling, and service alignment so Local Services Ads become a more useful source of real local opportunities.",
         "isPartOf": { "@id": "https://truepath406.com/#website" },
-        "breadcrumb": { "@id": "https://truepath406.com/solutions/local-services-ads/#breadcrumb" }
+        "breadcrumb": { "@id": "https://truepath406.com/solutions/local-services-ads/#breadcrumb" },
+        "mainEntity": { "@id": "https://truepath406.com/solutions/local-services-ads/#service" }
       },
       {
         "@type": "BreadcrumbList",

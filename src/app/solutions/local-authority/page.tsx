@@ -68,7 +68,8 @@ export default function GoogleBusinessProfilePage() {
         "name": "Google Business Profile Optimization | True Path Digital",
         "description": "Improve your Google Business Profile so local customers can find you more easily, trust what they see, and take action faster.",
         "isPartOf": { "@id": "https://truepath406.com/#website" },
-        "breadcrumb": { "@id": "https://truepath406.com/solutions/local-authority/#breadcrumb" }
+        "breadcrumb": { "@id": "https://truepath406.com/solutions/local-authority/#breadcrumb" },
+        "mainEntity": { "@id": "https://truepath406.com/solutions/local-authority/#service" }
       },
       {
         "@type": "BreadcrumbList",

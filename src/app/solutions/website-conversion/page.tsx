@@ -68,7 +68,8 @@ export default function WebsiteConversionPage() {
         "name": "Website Conversion Repair | True Path Digital",
         "description": "Fix the parts of your website that create hesitation, confusion, or friction so more of your existing traffic turns into real inquiries.",
         "isPartOf": { "@id": "https://truepath406.com/#website" },
-        "breadcrumb": { "@id": "https://truepath406.com/solutions/website-conversion/#breadcrumb" }
+        "breadcrumb": { "@id": "https://truepath406.com/solutions/website-conversion/#breadcrumb" },
+        "mainEntity": { "@id": "https://truepath406.com/solutions/website-conversion/#service" }
       },
       {
         "@type": "BreadcrumbList",

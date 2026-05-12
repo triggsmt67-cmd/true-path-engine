@@ -68,7 +68,8 @@ export default function LeadResponsePage() {
         "name": "Missed Call Recovery & Lead Response | True Path Digital",
         "description": "Set up a cleaner, faster lead-response process so calls, forms, and quote requests stop slipping through the cracks.",
         "isPartOf": { "@id": "https://truepath406.com/#website" },
-        "breadcrumb": { "@id": "https://truepath406.com/solutions/lead-velocity/#breadcrumb" }
+        "breadcrumb": { "@id": "https://truepath406.com/solutions/lead-velocity/#breadcrumb" },
+        "mainEntity": { "@id": "https://truepath406.com/solutions/lead-velocity/#service" }
       },
       {
         "@type": "BreadcrumbList",

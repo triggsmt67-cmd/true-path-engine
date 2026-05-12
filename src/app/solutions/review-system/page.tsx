@@ -68,7 +68,8 @@ export default function ReviewSystemPage() {
         "name": "Review Generation Systems | True Path Digital",
         "description": "Build a simple, repeatable review system that helps more happy customers actually leave feedback.",
         "isPartOf": { "@id": "https://truepath406.com/#website" },
-        "breadcrumb": { "@id": "https://truepath406.com/solutions/review-system/#breadcrumb" }
+        "breadcrumb": { "@id": "https://truepath406.com/solutions/review-system/#breadcrumb" },
+        "mainEntity": { "@id": "https://truepath406.com/solutions/review-system/#service" }
       },
       {
         "@type": "BreadcrumbList",

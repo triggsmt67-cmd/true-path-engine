@@ -68,7 +68,8 @@ export default function EstimateFollowUpPage() {
         "name": "Estimate Follow-Up & Booking Automation | True Path Digital",
         "description": "Build a cleaner follow-up process so quote requests, estimates, and warm leads are less likely to slip through the cracks.",
         "isPartOf": { "@id": "https://truepath406.com/#website" },
-        "breadcrumb": { "@id": "https://truepath406.com/solutions/estimate-follow-up/#breadcrumb" }
+        "breadcrumb": { "@id": "https://truepath406.com/solutions/estimate-follow-up/#breadcrumb" },
+        "mainEntity": { "@id": "https://truepath406.com/solutions/estimate-follow-up/#service" }
       },
       {
         "@type": "BreadcrumbList",
