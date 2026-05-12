@@ -150,7 +150,7 @@ export default function DemandAuditPage() {
                   </Link>
                   
                   <Link
-                    href="/trust-calculator"
+                    href="/trust-calculator/"
                     className="inline-flex h-16 w-full sm:w-auto items-center justify-center rounded-full px-10 text-base font-medium text-brand-navy border border-black/10 hover:bg-black/5 transition-colors duration-300 whitespace-nowrap"
                   >
                     Run Instant Scan

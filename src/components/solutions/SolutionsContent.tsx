@@ -90,7 +90,7 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
               </a>
 
               <a
-                href="/trust-calculator"
+                href="/trust-calculator/"
                 className="inline-flex h-14 md:h-16 items-center justify-center rounded-standard px-8 md:px-10 text-sm md:text-base font-bold text-brand-navy border-2 border-brand-navy/10 hover:border-brand-navy/20 hover:bg-brand-navy/5 transition-all duration-300 uppercase tracking-widest w-full sm:w-auto"
               >
                 Run Instant Scan
@@ -223,7 +223,7 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
             </div>
             
             <Link 
-              href="/blog"
+              href="/blog/"
               className="inline-flex items-center gap-2 text-brand-accent text-xs font-bold hover:gap-3 transition-all tracking-[0.2em] uppercase border-2 border-brand-accent/20 px-8 py-3 rounded-standard hover:bg-brand-accent/5 whitespace-nowrap"
             >
               See All Insights

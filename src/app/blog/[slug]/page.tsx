@@ -358,7 +358,7 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                         <header className="mb-12">
                             <div className="flex items-center gap-4 mb-6">
                                 <Link
-                                    href="/blog"
+                                    href="/blog/"
                                     className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] group transition-colors text-slate-500 hover:text-primary dark:hover:text-white decoration-transparent"
                                 >
                                     <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-1 transition-transform" />
