@@ -2,6 +2,8 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
+import RelatedInsights from '@/components/blog/RelatedInsights';
+
 import { ArrowRight, ChevronDown, CheckCircle2, Target, Search } from 'lucide-react';
 import { CONTACT_LINKS } from '@/constants/links';
 import { SpotlightCard } from '@/components/SpotlightCard';
@@ -569,6 +571,8 @@ export default async function SolutionsDiagnosticPage() {
               </div>
             </div>
           </section>
+
+          <RelatedInsights />
 
         </main>
 

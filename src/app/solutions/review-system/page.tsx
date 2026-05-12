@@ -6,6 +6,8 @@ import SectionSeparator from '@/components/SectionSeparator';
 import { SpotlightCard } from '@/components/SpotlightCard';
 import { Shield, ArrowRight, CheckCircle2, Target, Zap, Settings, StarOff, CalendarDays, AlertCircle, Users, RefreshCw, BarChart3, Fingerprint, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
+import RelatedInsights from '@/components/blog/RelatedInsights';
+
 
 export const metadata: Metadata = {
   title: 'Review Generation Systems | True Path Digital',
@@ -373,7 +375,7 @@ export default function ReviewSystemPage() {
           <SectionSeparator number="06" title="FAQ" />
 
           {/* 7. FAQ SECTION */}
-          <section className="py-20 mb-20 bg-background border-y border-black/5">
+          <section className="py-20 bg-background">
              <div className="max-w-[1000px] mx-auto px-6">
                 <div className="mb-16 text-center">
                   <h2 className="text-3xl md:text-5xl font-semibold text-brand-navy mb-6 tracking-tight">Questions People Usually Have</h2>
@@ -403,6 +405,8 @@ export default function ReviewSystemPage() {
                 </div>
              </div>
           </section>
+
+          <RelatedInsights categoryName="reviews" />
 
         </main>
         
