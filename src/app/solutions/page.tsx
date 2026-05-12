@@ -48,6 +48,13 @@ const diagnosticCards = [
     leak: "Wasted ad spend",
     nextStep: "Run a demand leak audit",
     href: "/solutions/demand-audit/"
+  },
+  {
+    title: "Local Services Ads feel expensive or chaotic?",
+    body: "Weak setup or poor lead handling might be making Google Guaranteed less profitable than it should be.",
+    leak: "LSA waste",
+    nextStep: "Review LSA setup",
+    href: "/solutions/local-services-ads/"
   }
 ];
 
@@ -87,6 +94,12 @@ const triageRows = [
     lookHere: "Lead handling, call quality, response speed, landing path, tracking gaps",
     fix: "Demand Leak Audit",
     href: "/solutions/demand-audit/"
+  },
+  {
+    symptom: "Google Guaranteed leads are weak or disputed",
+    lookHere: "Category alignment, service areas, response speed, dispute process",
+    fix: "Local Services Ads Cleanup",
+    href: "/solutions/local-services-ads/"
   }
 ];
 
@@ -138,6 +151,14 @@ const problemDetails = [
     causes: "Slow response, weak call handling, unclear landing pages, poor review proof, tracking gaps, or ads running into a broken path.",
     checkFirst: "Trace one lead from click or call to outcome. Where did it slow down, get missed, or disappear?",
     href: "/solutions/demand-audit/"
+  },
+  {
+    title: "Chaotic Local Services Ads",
+    fix: "Local Services Ads Setup & Cleanup",
+    feelsLike: "You are paying for leads, but they are the wrong jobs, out of your area, or slipping through because of slow responses.",
+    causes: "Incorrect service categories, misaligned service areas, slow dispute processes, or no dedicated intake for ad calls.",
+    checkFirst: "Check your active service categories against what you actually want to sell. How many leads were disputed last month?",
+    href: "/solutions/local-services-ads/"
   }
 ];
 
@@ -198,7 +219,8 @@ export default async function SolutionsDiagnosticPage() {
           { "@type": "Thing", "name": "Website conversion repair" },
           { "@type": "Thing", "name": "Estimate follow-up" },
           { "@type": "Thing", "name": "Wasted ad spend" },
-          { "@type": "Thing", "name": "Demand leak audit" }
+          { "@type": "Thing", "name": "Demand leak audit" },
+          { "@type": "Thing", "name": "Local Services Ads cleanup" }
         ],
         "audience": {
           "@type": "Audience",
