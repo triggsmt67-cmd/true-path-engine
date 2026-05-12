@@ -79,7 +79,8 @@ const structuredData = {
         "addressCountry": "US"
       },
       "sameAs": [
-        "https://www.linkedin.com/in/trevor-riggs-marketing/"
+        "https://www.linkedin.com/in/trevor-riggs-marketing/",
+        "https://substack.com/@truepathmt"
       ]
     },
     {
@@ -87,9 +88,14 @@ const structuredData = {
       "@id": "https://truepath406.com/#founder",
       "name": "Trevor Riggs",
       "url": "https://www.linkedin.com/in/trevor-riggs-marketing/",
+      "jobTitle": "Founder & Principal",
       "worksFor": {
         "@id": "https://truepath406.com/#organization"
-      }
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/trevor-riggs-marketing/",
+        "https://substack.com/@truepathmt"
+      ]
     }
   ]
 };
