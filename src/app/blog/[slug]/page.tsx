@@ -2,6 +2,7 @@ import { fetchGraphQL } from '@/utils/fetchGraphQL';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, Clock, Zap } from 'lucide-react';
 import { notFound } from 'next/navigation';
@@ -398,11 +399,13 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
 
                             {/* Optional Featured Image just under the head */}
                             {post.featuredImage?.node?.sourceUrl && (
-                                <div className="my-10 relative overflow-hidden rounded-[2rem] border border-slate-200 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-primary/5">
-                                    <img 
+                                <div className="my-10 relative overflow-hidden rounded-[2rem] border border-slate-200 dark:border-white/10 shadow-xl shadow-slate-200/50 dark:shadow-primary/5 h-[300px] md:h-[500px]">
+                                    <Image 
                                         src={post.featuredImage.node.sourceUrl} 
                                         alt={post.featuredImage.node.altText || cleanTitleText} 
-                                        className="w-full h-auto max-h-[500px] object-cover"
+                                        fill
+                                        sizes="(max-width: 768px) 100vw, 800px"
+                                        className="object-cover"
                                     />
                                 </div>
                             )}
@@ -429,12 +432,13 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
 
                             {/* 6. Author Line */}
                             <div className="flex items-center gap-4 mt-8 pb-8 border-b border-slate-200 dark:border-white/10">
-                                <div className="w-12 h-12 rounded-full overflow-hidden border border-primary/20 bg-primary/5">
-                                    <img
+                                <div className="w-12 h-12 rounded-full overflow-hidden border border-primary/20 bg-primary/5 relative">
+                                    <Image
                                         src="https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
-                                        className="w-full h-full object-cover object-top"
+                                        className="object-cover object-top"
                                         alt={authorName}
-                                        loading="lazy"
+                                        fill
+                                        sizes="48px"
                                     />
                                 </div>
                                 <div className="flex flex-col">
@@ -505,12 +509,13 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                         <section className="mt-20 p-8 rounded-3xl border bg-white border-slate-200 shadow-sm dark:bg-[#121417] dark:border-white/10 relative overflow-hidden">
                             <h4 className="text-[10px] font-bold tracking-[0.25em] uppercase mb-8 text-slate-400 dark:text-gray-500">About the Author</h4>
                             <div className="flex flex-col md:flex-row items-center md:items-start gap-6 relative z-10">
-                                <div className="w-16 h-16 shrink-0 rounded-full overflow-hidden border p-0.5 border-primary/20 bg-primary/5 dark:border-primary/40 dark:bg-primary/10">
-                                    <img
+                                <div className="w-16 h-16 rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-white/5 relative">
+                                    <Image
                                         src="https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
-                                        className="w-full h-full object-cover object-top rounded-full"
+                                        className="object-cover object-top"
                                         alt={authorName}
-                                        loading="lazy"
+                                        fill
+                                        sizes="64px"
                                     />
                                 </div>
                                 <div className="flex-1 text-center md:text-left">

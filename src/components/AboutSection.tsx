@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { MapPin, ShieldCheck, FileText, ArrowRight, Settings } from 'lucide-react';
 import { SOCIAL_LINKS, CONTACT_LINKS } from '../constants/links';
 import { Magnetic } from './Magnetic';
@@ -24,10 +25,12 @@ const AboutSection: React.FC = () => {
           >
             <div className="absolute inset-0 bg-brand-accent rounded-standard blur opacity-20 transform translate-x-2 translate-y-2"></div>
             <div className="relative rounded-standard overflow-hidden border border-black/5 aspect-[4/5] group shadow-2xl">
-              <img
+              <Image
                 src="https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
                 alt="Trevor Riggs, Founder"
-                className="w-full h-full object-cover transition-all duration-700"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover transition-all duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/60 to-transparent pointer-events-none"></div>
             </div>

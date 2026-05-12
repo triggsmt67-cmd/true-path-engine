@@ -8,12 +8,14 @@ import type { Metadata } from 'next';
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: 'swap',
 });
 
 const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
   variable: "--font-serif",
   weight: ['400', '500', '600', '700'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
