@@ -57,7 +57,7 @@ const structuredData = {
       }
     },
     {
-      "@type": "Organization",
+      "@type": "MarketingAgency",
       "@id": "https://truepath406.com/#organization",
       "name": "True Path Digital",
       "url": "https://truepath406.com/",
@@ -72,6 +72,7 @@ const structuredData = {
       },
       "address": {
         "@type": "PostalAddress",
+        "addressLocality": "Missoula",
         "addressRegion": "MT",
         "addressCountry": "US"
       },
