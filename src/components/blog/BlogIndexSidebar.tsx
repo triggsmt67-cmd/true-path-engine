@@ -187,12 +187,12 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
                         </div>
                         <div>
                             <div className="font-bold text-xl tracking-tight text-brand-navy uppercase">Trevor Riggs</div>
-                            <div className="text-brand-accent text-[10px] font-bold uppercase tracking-[0.15em]">Founder / Architect</div>
+                            <div className="text-brand-accent text-[10px] font-bold uppercase tracking-[0.15em]">Founder, True Path Digital</div>
                         </div>
                     </div>
 
                     <p className="text-sm leading-relaxed mb-10 font-bold text-text-secondary/70 uppercase tracking-widest">
-                        25+ years engineering high-conversion sales systems and strategic digital infrastructure for high-growth firms.
+                        Trevor Riggs helps owner-operated service businesses find and fix the places jobs leak out — weak Google visibility, missed calls, slow follow-up, thin reviews, underperforming websites, and wasted ad spend. He runs True Path Digital, a practical consulting and implementation business built around clearer decisions, better lead handling, and fewer missed opportunities.
                     </p>
 
                     <a
