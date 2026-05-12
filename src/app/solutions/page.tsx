@@ -182,18 +182,64 @@ export default async function SolutionsDiagnosticPage() {
         "@type": "WebPage",
         "@id": "https://www.truepath406.com/solutions/#webpage",
         "url": "https://www.truepath406.com/solutions/",
-        "name": "What I Help Service Businesses Fix | True Path Digital",
+        "name": "What I Help Service Businesses Fix",
+        "headline": "Find the leak that is costing you jobs.",
         "description": "Find the places your service business may be losing jobs — weak Google visibility, missed calls, slow follow-up, thin reviews, website conversion problems, cold estimates, and wasted ad spend.",
-        "isPartOf": { "@id": "https://www.truepath406.com/#website" },
-        "breadcrumb": { "@id": "https://www.truepath406.com/solutions/#breadcrumb" }
+        "isPartOf": {
+          "@id": "https://www.truepath406.com/#website"
+        },
+        "publisher": {
+          "@id": "https://www.truepath406.com/#organization"
+        },
+        "about": [
+          { "@type": "Thing", "name": "Google Business Profile optimization" },
+          { "@type": "Thing", "name": "Missed call recovery" },
+          { "@type": "Thing", "name": "Review generation systems" },
+          { "@type": "Thing", "name": "Website conversion repair" },
+          { "@type": "Thing", "name": "Estimate follow-up" },
+          { "@type": "Thing", "name": "Wasted ad spend" },
+          { "@type": "Thing", "name": "Demand leak audit" }
+        ],
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "Owner-operated local service businesses"
+        },
+        "breadcrumb": {
+          "@id": "https://www.truepath406.com/solutions/#breadcrumb"
+        },
+        "mainEntity": {
+          "@id": "https://www.truepath406.com/solutions/#faq"
+        }
       },
       {
         "@type": "BreadcrumbList",
         "@id": "https://www.truepath406.com/solutions/#breadcrumb",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.truepath406.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Solutions" }
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.truepath406.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "What I Help Service Businesses Fix",
+            "item": "https://www.truepath406.com/solutions/"
+          }
         ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://www.truepath406.com/solutions/#faq",
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.q,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.a
+          }
+        }))
       }
     ]
   };
