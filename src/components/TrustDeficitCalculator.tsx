@@ -339,6 +339,22 @@ export default function TrustDeficitCalculator() {
       setErrorMsg("Please provide both email and website URL.");
       return;
     }
+
+    // Email security & spam validation
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const domain = email.split('@')[1]?.toLowerCase();
+    const blockedDomains = ['test.com', 'example.com', 'fake.com', 'spam.com', 'email.com', 'mail.com', '123.com', 'abc.com'];
+    
+    if (!emailRegex.test(email) || email.includes('..')) {
+      setErrorMsg("Please enter a valid email address.");
+      return;
+    }
+    
+    if (domain && blockedDomains.includes(domain)) {
+      setErrorMsg("Please enter a valid business or personal email address.");
+      return;
+    }
+
     setErrorMsg('');
     setUiState('LOADING_GATE');
     trackAnalytics('step_completion', { step: 'REVEAL_PARTIAL_SUBMITTED', email });

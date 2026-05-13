@@ -81,6 +81,7 @@ export default function RevenueLeakCalculator() {
   };
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
 
   // Core Math
   const weeklyLeak = jobValue * missedCalls * (closeRate / 100);
@@ -89,6 +90,23 @@ export default function RevenueLeakCalculator() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
+    
+    // Email security & spam validation
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const domain = email.split('@')[1]?.toLowerCase();
+    const blockedDomains = ['test.com', 'example.com', 'fake.com', 'spam.com', 'email.com', 'mail.com', '123.com', 'abc.com'];
+    
+    if (!emailRegex.test(email) || email.includes('..')) {
+      setErrorMsg("Please enter a valid email address.");
+      return;
+    }
+    
+    if (domain && blockedDomains.includes(domain)) {
+      setErrorMsg("Please enter a valid business or personal email address.");
+      return;
+    }
+    
+    setErrorMsg('');
     setIsSubmitting(true);
     
     try {
@@ -453,6 +471,10 @@ export default function RevenueLeakCalculator() {
                         />
                         <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-500" />
                       </div>
+
+                      {errorMsg && (
+                        <p className="text-red-400 text-sm font-medium text-center">{errorMsg}</p>
+                      )}
 
                       <button 
                         type="submit"
