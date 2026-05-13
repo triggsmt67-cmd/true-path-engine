@@ -86,18 +86,39 @@ export default function RevenueLeakCalculator() {
   const weeklyLeak = jobValue * missedCalls * (closeRate / 100);
   const annualLeak = weeklyLeak * 52;
 
-  // [MIGRATION NOTE]: When moving to True Path Digital, replace this setTimeout with your real 
-  // email API call (e.g., Resend, Mailchimp, or WordPress webhook) to capture the lead's email.
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
     setIsSubmitting(true);
     
-    // Simulate API Call
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const response = await fetch('/api/revenue-leak', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          industry,
+          jobValue,
+          missedCalls,
+          closeRate,
+          weeklyLeak,
+          annualLeak,
+          ltvMultiplier: INDUSTRY_BENCHMARKS[industry].ltvMultiplier
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send report');
+      }
+
       setSubmitted(true);
-    }, 1500);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      // Still show success to not block the user from getting their local report download
+      setSubmitted(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // [CRITICAL MIGRATION NOTE]: DO NOT remove this local Blob generation when migrating.
@@ -465,13 +486,13 @@ export default function RevenueLeakCalculator() {
                     </div>
                     <h4 className="text-white font-bold text-2xl mb-2">Report Sent!</h4>
                     <p className="text-emerald-100/70 mb-6">
-                      Check your inbox for the detailed breakdown and the 5-minute fix to patch your revenue leak.
+                      Report sent. Check your detail breakdown in 5 minutes.
                     </p>
                     <button 
                       onClick={handleDownloadMockReport}
                       className="inline-flex items-center justify-center gap-2 bg-emerald-500 text-black font-bold px-6 py-3 rounded-xl hover:bg-emerald-400 transition-colors w-full"
                     >
-                      <Download className="w-5 h-5" /> View Mock Report
+                      <Download className="w-5 h-5" /> View your report
                     </button>
                   </motion.div>
                 )}

@@ -76,7 +76,9 @@ const Footer: React.FC = () => {
           </div>
 
           <div className="md:col-span-4 text-center md:text-right">
-            <div className="mb-4">
+            <div className="mb-4 flex flex-col md:items-end gap-2">
+              <a href="/revenue-leak-calculator" className="text-xs text-text-secondary/60 hover:text-brand-accent transition-colors font-bold uppercase tracking-wider">Revenue Leak Calculator</a>
+              <a href="/trust-calculator" className="text-xs text-text-secondary/60 hover:text-brand-accent transition-colors font-bold uppercase tracking-wider">Trust Deficit Calculator</a>
               <a href="/privacy-policy" className="text-xs text-text-secondary/60 hover:text-brand-accent transition-colors font-bold uppercase tracking-wider">Privacy Policy</a>
             </div>
             <p className="text-sm text-text-secondary/60 mb-1 font-bold uppercase tracking-wider">&copy; {new Date().getFullYear()} True Path Digital LLC. All rights reserved.</p>
