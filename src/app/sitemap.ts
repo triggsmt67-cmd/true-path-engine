@@ -23,6 +23,25 @@ const POSTS_QUERY = `
   }
 `;
 
+function toValidLastModified(value?: string) {
+  if (!value) {
+    return new Date().toISOString();
+  }
+
+  const parsed = new Date(value);
+  if (!Number.isNaN(parsed.getTime())) {
+    return parsed.toISOString();
+  }
+
+  // Some WordPress responses can omit timezone info. Assume UTC as a safe fallback.
+  const utcParsed = new Date(`${value}Z`);
+  if (!Number.isNaN(utcParsed.getTime())) {
+    return utcParsed.toISOString();
+  }
+
+  return new Date().toISOString();
+}
+
 async function getPostEntries() {
   const wpUrl =
     process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://admin.truepath406.com";
@@ -64,7 +83,7 @@ async function getPostEntries() {
     posts.push(
       ...nodes.map((post: { slug: string; modified?: string; date?: string }) => ({
         url: `${SITE_URL}/blog/${post.slug}/`,
-        lastModified: post.modified || post.date || new Date().toISOString(),
+        lastModified: toValidLastModified(post.modified || post.date),
         changeFrequency: "weekly" as const,
         priority: 0.7,
       })),
