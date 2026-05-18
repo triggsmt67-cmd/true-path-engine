@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Revenue Leak Calculator | True Path Digital',
   description: 'Calculate your revenue leak and see how much money your business is leaving on the table.',
   alternates: {
-    canonical: 'https://truepath406.com/revenue-leak-calculator/',
+    canonical: 'https://www.truepath406.com/revenue-leak-calculator/',
   }
 };
 

@@ -40,6 +40,6 @@ Disallow: /draft/
 
 # 5. SITEMAP & AI MAP
 # Traditional Sitemap for search engines
-Sitemap: https://truepath406.com/sitemap.xml
+Sitemap: https://www.truepath406.com/sitemap.xml
 # AI-optimized context map for Large Language Models
-Sitemap: https://truepath406.com/llms.txt
+Sitemap: https://www.truepath406.com/llms.txt

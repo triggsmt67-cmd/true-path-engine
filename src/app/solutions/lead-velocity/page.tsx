@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: 'Missed Call Recovery & Lead Response | True Path Digital',
   description: 'Set up a cleaner, faster lead-response process so calls, forms, and quote requests stop slipping through the cracks.',
   alternates: {
-    canonical: 'https://truepath406.com/solutions/lead-velocity/'
+    canonical: 'https://www.truepath406.com/solutions/lead-velocity/'
   }
 };
 
@@ -65,29 +65,29 @@ export default function LeadResponsePage() {
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": "https://truepath406.com/solutions/lead-velocity/#webpage",
-        "url": "https://truepath406.com/solutions/lead-velocity/",
+        "@id": "https://www.truepath406.com/solutions/lead-velocity/#webpage",
+        "url": "https://www.truepath406.com/solutions/lead-velocity/",
         "name": "Missed Call Recovery & Lead Response | True Path Digital",
         "description": "Set up a cleaner, faster lead-response process so calls, forms, and quote requests stop slipping through the cracks.",
-        "isPartOf": { "@id": "https://truepath406.com/#website" },
-        "breadcrumb": { "@id": "https://truepath406.com/solutions/lead-velocity/#breadcrumb" },
-        "mainEntity": { "@id": "https://truepath406.com/solutions/lead-velocity/#service" }
+        "isPartOf": { "@id": "https://www.truepath406.com/#website" },
+        "breadcrumb": { "@id": "https://www.truepath406.com/solutions/lead-velocity/#breadcrumb" },
+        "mainEntity": { "@id": "https://www.truepath406.com/solutions/lead-velocity/#service" }
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://truepath406.com/solutions/lead-velocity/#breadcrumb",
+        "@id": "https://www.truepath406.com/solutions/lead-velocity/#breadcrumb",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://truepath406.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://truepath406.com/solutions/" },
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.truepath406.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://www.truepath406.com/solutions/" },
           { "@type": "ListItem", "position": 3, "name": "Lead Velocity" }
         ]
       },
       {
         "@type": "Service",
-        "@id": "https://truepath406.com/solutions/lead-velocity/#service",
+        "@id": "https://www.truepath406.com/solutions/lead-velocity/#service",
         "name": "Missed Call Recovery & Lead Response",
         "serviceType": "Lead Management & Operations",
-        "provider": { "@id": "https://truepath406.com/#organization" },
+        "provider": { "@id": "https://www.truepath406.com/#organization" },
         "telephone": "+1-406-880-6992",
         "areaServed": { "@type": "State", "name": "Montana" },
         "description": "Set up a cleaner, faster lead-response process so calls, forms, and quote requests stop slipping through the cracks."

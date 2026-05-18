@@ -11,7 +11,7 @@ import { SeoQuery } from "@/queries/general/SeoQuery";
 const notFoundPageWordPressId = 501;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://truepath406.com";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://www.truepath406.com";
   return {
     title: "404 - Not Found",
     description: "Page not found",

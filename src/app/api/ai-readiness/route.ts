@@ -50,7 +50,7 @@ export async function POST(request: Request) {
     try {
       const response = await fetch(formattedUrl, {
         headers: {
-          'User-Agent': 'Mozilla/5.0 (compatible; TruePathEngine/1.0; +https://truepath406.com)',
+          'User-Agent': 'Mozilla/5.0 (compatible; TruePathEngine/1.0; +https://www.truepath406.com)',
         },
         signal: controller.signal,
       });

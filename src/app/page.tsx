@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: 'True Path Digital | Clear Decisions for Business Owners',
   description: 'High-performance marketing intelligence and AI strategy for local service businesses.',
   alternates: {
-    canonical: 'https://truepath406.com/'
+    canonical: 'https://www.truepath406.com/'
   }
 };
 
@@ -29,18 +29,18 @@ export default function Page() {
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": "https://truepath406.com/#webpage",
-        "url": "https://truepath406.com/",
+        "@id": "https://www.truepath406.com/#webpage",
+        "url": "https://www.truepath406.com/",
         "name": "True Path Digital | Clear Decisions for Business Owners",
         "description": "High-performance marketing intelligence and AI strategy for local service businesses.",
-        "isPartOf": { "@id": "https://truepath406.com/#website" },
-        "about": { "@id": "https://truepath406.com/#organization" }
+        "isPartOf": { "@id": "https://www.truepath406.com/#website" },
+        "about": { "@id": "https://www.truepath406.com/#organization" }
       },
       {
         "@type": "ProfessionalService",
-        "@id": "https://truepath406.com/#service",
+        "@id": "https://www.truepath406.com/#service",
         "name": "True Path Digital",
-        "url": "https://truepath406.com/",
+        "url": "https://www.truepath406.com/",
         "image": "https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg",
         "description": "Professional marketing intelligence and AI strategy for local service businesses.",
         "telephone": "+1-406-880-6992",

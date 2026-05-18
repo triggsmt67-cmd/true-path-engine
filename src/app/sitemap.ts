@@ -1,172 +1,160 @@
 import { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site-url";
 
-export const revalidate = 0;
+export const revalidate = 3600;
 
-async function getTotalCounts() {
-  try {
-    const wpUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://admin.truepath406.com";
-    const response = await fetch(
-      `${wpUrl}/wp-json/sitemap/v1/totalpages`,
-    );
-    
-    if (!response.ok) {
-      console.warn(`Sitemap: WordPress API returned ${response.status} for totalpages`);
-      return [];
+const POSTS_QUERY = `
+  query SitemapPosts($first: Int!, $after: String) {
+    posts(
+      first: $first
+      after: $after
+      where: { orderby: { field: DATE, order: DESC } }
+    ) {
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
+      nodes {
+        slug
+        date
+        modified
+      }
     }
-    
-    const data = await response.json();
-    if (!data) return [];
-    const propertyNames = Object.keys(data);
-
-    const excludeItems = ["page", "user", "category", "tag"];
-    let totalArray = propertyNames
-      .filter((name) => !excludeItems.includes(name))
-      .map((name) => {
-        return { name, total: data[name] };
-      });
-
-    return totalArray;
-  } catch (error) {
-    console.error("Sitemap: Failed to fetch total counts from WordPress:", error);
-    return [];
   }
-}
+`;
 
-async function getPostsUrls({
-  page,
-  type,
-  perPage,
-}: {
-  page: number;
-  type: string;
-  perPage: number;
-}) {
-  try {
-    const wpUrl = process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://admin.truepath406.com";
-    const response = await fetch(
-      `${wpUrl}/wp-json/sitemap/v1/posts?pageNo=${page}&postType=${type}&perPage=${perPage}`,
-    );
+async function getPostEntries() {
+  const wpUrl =
+    process.env.NEXT_PUBLIC_WORDPRESS_API_URL || "https://admin.truepath406.com";
+  const posts: MetadataRoute.Sitemap = [];
+  let after: string | null = null;
+  let hasNextPage = true;
 
-    if (!response.ok) {
-      console.warn(`Sitemap: WordPress API returned ${response.status} for posts type=${type} page=${page}`);
-      return [];
-    }
-
-    const data = await response.json();
-
-    if (!data || !Array.isArray(data)) return [];
-
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://truepath406.com";
-    const posts = data.map((post: any) => {
-      const formattedUrl = `${baseUrl}${post.url}`.replace(/\/?$/, '/');
-      return {
-        url: formattedUrl,
-        lastModified: post.post_modified_date 
-          ? new Date(post.post_modified_date).toISOString().split("T")[0]
-          : new Date().toISOString().split("T")[0],
-      };
+  while (hasNextPage) {
+    const response = await fetch(`${wpUrl}/graphql`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        query: POSTS_QUERY,
+        variables: {
+          first: 100,
+          after,
+        },
+      }),
+      next: {
+        revalidate,
+        tags: ["wordpress"],
+      },
     });
 
-    return posts;
-  } catch (error) {
-    console.error(`Sitemap: Failed to fetch posts from WordPress for type=${type} page=${page}:`, error);
-    return [];
+    if (!response.ok) {
+      throw new Error(`Sitemap GraphQL request failed with ${response.status}`);
+    }
+
+    const payload = await response.json();
+    if (payload.errors) {
+      throw new Error(`Sitemap GraphQL errors: ${JSON.stringify(payload.errors)}`);
+    }
+
+    const connection = payload?.data?.posts;
+    const nodes = connection?.nodes || [];
+
+    posts.push(
+      ...nodes.map((post: { slug: string; modified?: string; date?: string }) => ({
+        url: `${SITE_URL}/blog/${post.slug}/`,
+        lastModified: post.modified || post.date || new Date().toISOString(),
+        changeFrequency: "weekly" as const,
+        priority: 0.7,
+      })),
+    );
+
+    hasNextPage = Boolean(connection?.pageInfo?.hasNextPage);
+    after = connection?.pageInfo?.endCursor || null;
   }
+
+  return posts;
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://truepath406.com";
-  const sitemap = [];
+  let posts: MetadataRoute.Sitemap = [];
 
-  const details = await getTotalCounts();
+  try {
+    posts = await getPostEntries();
+  } catch (error) {
+    console.error("Sitemap: failed to fetch blog posts from GraphQL", error);
+  }
 
-  const postsUrls = await Promise.all(
-    details.map(async (detail) => {
-      const { name, total } = detail;
-      const perPage = 50;
-      const totalPages = Math.ceil(total / perPage);
+  const now = new Date().toISOString();
 
-      const urls = await Promise.all(
-        Array.from({ length: totalPages }, (_, i) => i + 1).map((page) =>
-          getPostsUrls({ page, type: name, perPage }),
-        ),
-      );
-
-      return urls.flat();
-    }),
-  );
-
-  const posts = postsUrls.flat();
-
-  sitemap.push(
+  return [
     {
-      url: `${baseUrl}/`,
-      lastModified: new Date().toISOString().split("T")[0],
-      changeFrequency: "daily" as const,
+      url: `${SITE_URL}/`,
+      lastModified: now,
+      changeFrequency: "daily",
       priority: 1,
     },
     {
-      url: `${baseUrl}/blog/`,
-      lastModified: new Date().toISOString().split("T")[0],
-      changeFrequency: "daily" as const,
+      url: `${SITE_URL}/blog/`,
+      lastModified: now,
+      changeFrequency: "daily",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/solutions/`,
-      lastModified: new Date().toISOString().split("T")[0],
-      changeFrequency: "weekly" as const,
-      priority: 1.0,
+      url: `${SITE_URL}/solutions/`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 1,
     },
     {
-      url: `${baseUrl}/trust-calculator/`,
-      lastModified: new Date().toISOString().split("T")[0],
-      changeFrequency: "monthly" as const,
+      url: `${SITE_URL}/trust-calculator/`,
+      lastModified: now,
+      changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/solutions/local-authority/`,
-      lastModified: new Date().toISOString().split("T")[0],
-      changeFrequency: "weekly" as const,
+      url: `${SITE_URL}/solutions/local-authority/`,
+      lastModified: now,
+      changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/solutions/lead-velocity/`,
-      lastModified: new Date().toISOString().split("T")[0],
-      changeFrequency: "weekly" as const,
+      url: `${SITE_URL}/solutions/lead-velocity/`,
+      lastModified: now,
+      changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/solutions/review-system/`,
-      lastModified: new Date().toISOString().split("T")[0],
-      changeFrequency: "weekly" as const,
+      url: `${SITE_URL}/solutions/review-system/`,
+      lastModified: now,
+      changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/solutions/website-conversion/`,
-      lastModified: new Date().toISOString().split("T")[0],
-      changeFrequency: "weekly" as const,
+      url: `${SITE_URL}/solutions/website-conversion/`,
+      lastModified: now,
+      changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/solutions/demand-audit/`,
-      lastModified: new Date().toISOString().split("T")[0],
-      changeFrequency: "weekly" as const,
+      url: `${SITE_URL}/solutions/demand-audit/`,
+      lastModified: now,
+      changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/solutions/estimate-follow-up/`,
-      lastModified: new Date().toISOString().split("T")[0],
-      changeFrequency: "weekly" as const,
+      url: `${SITE_URL}/solutions/estimate-follow-up/`,
+      lastModified: now,
+      changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/solutions/local-services-ads/`,
-      lastModified: new Date().toISOString().split("T")[0],
-      changeFrequency: "weekly" as const,
+      url: `${SITE_URL}/solutions/local-services-ads/`,
+      lastModified: now,
+      changeFrequency: "weekly",
       priority: 0.9,
     },
-    ...posts
-  );
-
-  return sitemap;
+    ...posts,
+  ];
 }

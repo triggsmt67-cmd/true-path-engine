@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | True Path Digital"
   },
   description: "Stop guessing. Start arriving. High-performance marketing intelligence, AI strategy, and conversion infrastructure for businesses.",
-  metadataBase: new URL('https://truepath406.com'),
+  metadataBase: new URL('https://www.truepath406.com'),
   alternates: {
     canonical: './',
   },
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    url: 'https://truepath406.com',
+    url: 'https://www.truepath406.com',
     title: 'True Path Digital | Marketing Intelligence & AI Strategy',
     description: "Stop guessing. Start arriving. High-performance marketing intelligence, AI strategy, and conversion infrastructure for businesses.",
     images: [{
@@ -50,19 +50,19 @@ const structuredData = {
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://truepath406.com/#website",
-      "url": "https://truepath406.com/",
+      "@id": "https://www.truepath406.com/#website",
+      "url": "https://www.truepath406.com/",
       "name": "True Path Digital",
       "description": "Stop guessing. Start arriving. High-performance marketing intelligence, AI strategy, and conversion infrastructure for businesses.",
       "publisher": {
-        "@id": "https://truepath406.com/#organization"
+        "@id": "https://www.truepath406.com/#organization"
       }
     },
     {
       "@type": "MarketingAgency",
-      "@id": "https://truepath406.com/#organization",
+      "@id": "https://www.truepath406.com/#organization",
       "name": "True Path Digital",
-      "url": "https://truepath406.com/",
+      "url": "https://www.truepath406.com/",
       "logo": {
         "@type": "ImageObject",
         "url": "https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg"
@@ -85,12 +85,12 @@ const structuredData = {
     },
     {
       "@type": "Person",
-      "@id": "https://truepath406.com/#founder",
+      "@id": "https://www.truepath406.com/#founder",
       "name": "Trevor Riggs",
       "url": "https://www.linkedin.com/in/trevor-riggs-marketing/",
       "jobTitle": "Founder & Principal",
       "worksFor": {
-        "@id": "https://truepath406.com/#organization"
+        "@id": "https://www.truepath406.com/#organization"
       },
       "sameAs": [
         "https://www.linkedin.com/in/trevor-riggs-marketing/",
