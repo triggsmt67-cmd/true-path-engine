@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   title: 'Website Conversion Repair | True Path Digital',
   description: 'Fix the parts of your website that create hesitation, confusion, or friction so more of your existing traffic turns into real inquiries.',
   alternates: {
-    canonical: 'https://truepath406.com/solutions/website-conversion/'
+    canonical: 'https://www.truepath406.com/solutions/website-conversion/'
   }
 };
 
@@ -65,29 +65,29 @@ export default function WebsiteConversionPage() {
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": "https://truepath406.com/solutions/website-conversion/#webpage",
-        "url": "https://truepath406.com/solutions/website-conversion/",
+        "@id": "https://www.truepath406.com/solutions/website-conversion/#webpage",
+        "url": "https://www.truepath406.com/solutions/website-conversion/",
         "name": "Website Conversion Repair | True Path Digital",
         "description": "Fix the parts of your website that create hesitation, confusion, or friction so more of your existing traffic turns into real inquiries.",
-        "isPartOf": { "@id": "https://truepath406.com/#website" },
-        "breadcrumb": { "@id": "https://truepath406.com/solutions/website-conversion/#breadcrumb" },
-        "mainEntity": { "@id": "https://truepath406.com/solutions/website-conversion/#service" }
+        "isPartOf": { "@id": "https://www.truepath406.com/#website" },
+        "breadcrumb": { "@id": "https://www.truepath406.com/solutions/website-conversion/#breadcrumb" },
+        "mainEntity": { "@id": "https://www.truepath406.com/solutions/website-conversion/#service" }
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://truepath406.com/solutions/website-conversion/#breadcrumb",
+        "@id": "https://www.truepath406.com/solutions/website-conversion/#breadcrumb",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://truepath406.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://truepath406.com/solutions/" },
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.truepath406.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://www.truepath406.com/solutions/" },
           { "@type": "ListItem", "position": 3, "name": "Website Conversion" }
         ]
       },
       {
         "@type": "Service",
-        "@id": "https://truepath406.com/solutions/website-conversion/#service",
+        "@id": "https://www.truepath406.com/solutions/website-conversion/#service",
         "name": "Website Conversion Repair",
         "serviceType": "Conversion Rate Optimization",
-        "provider": { "@id": "https://truepath406.com/#organization" },
+        "provider": { "@id": "https://www.truepath406.com/#organization" },
         "telephone": "+1-406-880-6992",
         "areaServed": { "@type": "State", "name": "Montana" },
         "description": "Fix the parts of your website that create hesitation, confusion, or friction so more of your existing traffic turns into real inquiries."

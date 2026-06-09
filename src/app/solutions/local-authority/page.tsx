@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: 'Google Business Profile Optimization | True Path Digital',
   description: 'Improve your Google Business Profile so local customers can find you more easily, trust what they see, and take action faster.',
   alternates: {
-    canonical: 'https://truepath406.com/solutions/local-authority/'
+    canonical: 'https://www.truepath406.com/solutions/local-authority/'
   }
 };
 
@@ -64,29 +64,29 @@ export default function GoogleBusinessProfilePage() {
     "@graph": [
       {
         "@type": "WebPage",
-        "@id": "https://truepath406.com/solutions/local-authority/#webpage",
-        "url": "https://truepath406.com/solutions/local-authority/",
+        "@id": "https://www.truepath406.com/solutions/local-authority/#webpage",
+        "url": "https://www.truepath406.com/solutions/local-authority/",
         "name": "Google Business Profile Optimization | True Path Digital",
         "description": "Improve your Google Business Profile so local customers can find you more easily, trust what they see, and take action faster.",
-        "isPartOf": { "@id": "https://truepath406.com/#website" },
-        "breadcrumb": { "@id": "https://truepath406.com/solutions/local-authority/#breadcrumb" },
-        "mainEntity": { "@id": "https://truepath406.com/solutions/local-authority/#service" }
+        "isPartOf": { "@id": "https://www.truepath406.com/#website" },
+        "breadcrumb": { "@id": "https://www.truepath406.com/solutions/local-authority/#breadcrumb" },
+        "mainEntity": { "@id": "https://www.truepath406.com/solutions/local-authority/#service" }
       },
       {
         "@type": "BreadcrumbList",
-        "@id": "https://truepath406.com/solutions/local-authority/#breadcrumb",
+        "@id": "https://www.truepath406.com/solutions/local-authority/#breadcrumb",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://truepath406.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://truepath406.com/solutions/" },
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.truepath406.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://www.truepath406.com/solutions/" },
           { "@type": "ListItem", "position": 3, "name": "Local Authority" }
         ]
       },
       {
         "@type": "Service",
-        "@id": "https://truepath406.com/solutions/local-authority/#service",
+        "@id": "https://www.truepath406.com/solutions/local-authority/#service",
         "name": "Google Business Profile Optimization",
         "serviceType": "Local Visibility & Conversion",
-        "provider": { "@id": "https://truepath406.com/#organization" },
+        "provider": { "@id": "https://www.truepath406.com/#organization" },
         "telephone": "+1-406-880-6992",
         "areaServed": { "@type": "State", "name": "Montana" },
         "description": "Improve your Google Business Profile so local customers can find you more easily, trust what they see, and take action faster."

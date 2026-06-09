@@ -12,6 +12,7 @@ import ArticleShareButtons from '@/components/blog/ArticleShareButtons';
 import { nextSlugToWpSlug } from '@/utils/nextSlugToWpSlug';
 import { SOCIAL_LINKS } from '@/constants/links';
 import { decodeHtmlEntities } from '@/utils/decodeHtmlEntities';
+import { SITE_URL } from '@/lib/site-url';
 
 // --- Types ---
 interface Post {
@@ -176,7 +177,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         return { title: 'Post Not Found | True Path Digital' };
     }
 
-    const url = `https://truepath406.com/blog/${slug}/`;
+    const url = `${SITE_URL}/blog/${slug}/`;
     const cleanTitle = decodeHtmlEntities(post.title);
     const cleanDesc = decodeHtmlEntities(post.excerpt?.replace(/<[^>]*>?/gm, '').substring(0, 160) || '');
     const imageUrl = post.featuredImage?.node?.sourceUrl || "https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg";
@@ -290,7 +291,7 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
         }
     });
     
-    const articleUrl = `https://truepath406.com/blog/${slug}/`;
+    const articleUrl = `${SITE_URL}/blog/${slug}/`;
     const authorName = "Trevor Riggs";
     const authorUrl = post.author?.node?.url || SOCIAL_LINKS.linkedin;
     const imageUrl = post.featuredImage?.node?.sourceUrl || "https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg";
@@ -303,13 +304,13 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
                 "@type": "ListItem",
                 "position": 1,
                 "name": "Home",
-                "item": "https://truepath406.com/"
+                "item": `${SITE_URL}/`
             },
             {
                 "@type": "ListItem",
                 "position": 2,
                 "name": "Blog",
-                "item": "https://truepath406.com/blog/"
+                "item": `${SITE_URL}/blog/`
             },
             {
                 "@type": "ListItem",
@@ -334,7 +335,7 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
             "url": authorUrl
         },
         "publisher": {
-            "@id": "https://truepath406.com/#organization",
+            "@id": `${SITE_URL}/#organization`,
             "@type": "Organization",
             "name": "True Path Digital",
             "logo": {

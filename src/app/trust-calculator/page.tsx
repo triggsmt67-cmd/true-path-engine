@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: 'Trust Deficit Calculator | True Path Digital',
   description: 'Calculate your trust deficit and see how your digital presence is costing you business.',
   alternates: {
-    canonical: 'https://truepath406.com/trust-calculator/',
+    canonical: 'https://www.truepath406.com/trust-calculator/',
   }
 };
 

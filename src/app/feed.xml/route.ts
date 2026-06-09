@@ -25,7 +25,7 @@ export async function GET() {
     const data = await fetchGraphQL(query);
     const posts = data?.posts?.nodes || [];
 
-    const siteUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://truepath406.com';
+    const siteUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://www.truepath406.com';
     const feedUrl = `${siteUrl}/feed.xml`;
 
     const rssItems = posts

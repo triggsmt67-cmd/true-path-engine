@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Privacy Policy | True Path Digital',
   description: 'Privacy Policy and Terms of Data Collection for True Path Digital.',
   alternates: {
-    canonical: 'https://truepath406.com/privacy-policy/'
+    canonical: 'https://www.truepath406.com/privacy-policy/'
   }
 };
 

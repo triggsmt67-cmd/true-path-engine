@@ -1,11 +1,11 @@
 import { Page } from "@/gql/graphql";
+import { SITE_URL } from "@/lib/site-url";
 
 export const setSeoData = ({ seo }: { seo: any }) => {
   if (!seo) return {};
 
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://truepath406.com";
   return {
-    metadataBase: new URL(baseUrl),
+    metadataBase: new URL(SITE_URL),
     title: seo.title || "",
     description: seo.metaDesc || "",
     robots: {
