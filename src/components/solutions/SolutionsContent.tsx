@@ -257,7 +257,7 @@ export default function SolutionsContent({ services }: SolutionsContentProps) {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="h-full"
               >
-                <Link href={`/blog/${article.slug}`} className="block h-full group decoration-transparent">
+                <Link href={`/blog/${article.slug}/`} className="block h-full group decoration-transparent">
                   <div className="p-8 h-full bg-surface border border-black/5 shadow-sm rounded-standard flex flex-col transition-all duration-300 group-hover:border-brand-accent/20 group-hover:shadow-xl group-hover:-translate-y-1">
                     <div className="mb-6 flex gap-3 items-center">
                       <FileText className="w-4 h-4 text-brand-accent" />

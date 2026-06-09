@@ -202,7 +202,7 @@ const BlogList: React.FC<BlogListProps> = ({ posts, categories }) => {
                 ) : (
                   <div className="grid gap-8">
                     {filteredPosts.map((post, idx) => (
-                      <Link href={`/blog/${post.slug}`} key={post.id} className="block decoration-transparent">
+                      <Link href={`/blog/${post.slug}/`} key={post.id} className="block decoration-transparent">
                         <motion.div
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}

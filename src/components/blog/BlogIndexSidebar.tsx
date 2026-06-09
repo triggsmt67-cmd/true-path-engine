@@ -125,7 +125,7 @@ const BlogIndexSidebar: React.FC<BlogIndexSidebarProps> = ({
                         return (
                         <Link
                             key={post.id || idx}
-                            href={`/blog/${post.slug}`}
+                            href={`/blog/${post.slug}/`}
                             className="group text-left p-2 -mx-2 rounded-2xl transition-all hover:bg-black/[0.02] decoration-transparent"
                         >
                             <div className="flex items-start gap-4">

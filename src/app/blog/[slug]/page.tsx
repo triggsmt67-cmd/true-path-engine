@@ -290,7 +290,7 @@ export default async function SinglePostPage({ params }: { params: Promise<{ slu
         }
     });
     
-    const articleUrl = `https://truepath406.com/blog/${slug}`;
+    const articleUrl = `https://truepath406.com/blog/${slug}/`;
     const authorName = "Trevor Riggs";
     const authorUrl = post.author?.node?.url || SOCIAL_LINKS.linkedin;
     const imageUrl = post.featuredImage?.node?.sourceUrl || "https://admin.truepath406.com/wp-content/uploads/2025/12/Gemini_Generated_Image_gqrc0ygqrc0ygqrc.jpg";
